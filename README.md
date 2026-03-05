@@ -1,2 +1,2 @@
 # milo-inbox
-Inbound email capture for Getmilo outreach replies
+Inbound email capture and outbound sending for Getmilo outreach.
