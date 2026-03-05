@@ -9,11 +9,21 @@ export default async function handler(req, res) {
 
   try {
     const payload = req.body;
-    const from = payload.from || payload.sender || JSON.stringify(payload.from_email || 'unknown');
-    const to = payload.to || 'felix@join.getmilo.dev';
-    const subject = payload.subject || '(no subject)';
-    const text = payload.text || payload.html || payload.body || '';
-    const ts = new Date().toISOString();
+
+    // Only process email.received events from Resend
+    if (payload.type && payload.type !== 'email.received') {
+      return res.status(200).json({ status: 'skipped', type: payload.type });
+    }
+
+    // Resend nests email data under payload.data
+    const data = payload.data || payload;
+    const from = data.from || data.sender || 'unknown';
+    const to = Array.isArray(data.to) ? data.to.join(', ') : (data.to || 'unknown');
+    const subject = data.subject || '(no subject)';
+    const text = data.text || data.html || data.body || '';
+    const cc = Array.isArray(data.cc) ? data.cc.join(', ') : (data.cc || '');
+    const replyTo = data.reply_to || '';
+    const ts = payload.created_at || new Date().toISOString();
 
     const ghToken = process.env.GITHUB_TOKEN;
     if (!ghToken) {
@@ -21,9 +31,28 @@ export default async function handler(req, res) {
       return res.status(200).json({ status: 'received', stored: false });
     }
 
-    const issueBody = `**From:** ${from}\n**To:** ${to}\n**Subject:** ${subject}\n**Received:** ${ts}\n\n---\n\n${typeof text === 'string' ? text.substring(0, 8000) : JSON.stringify(text).substring(0, 8000)}\n\n---\n<details><summary>Raw payload</summary>\n\n\`\`\`json\n${JSON.stringify(payload, null, 2).substring(0, 15000)}\n\`\`\`\n</details>`;
+    const issueBody = [
+      `**From:** ${from}`,
+      `**To:** ${to}`,
+      cc ? `**CC:** ${cc}` : null,
+      replyTo ? `**Reply-To:** ${replyTo}` : null,
+      `**Subject:** ${subject}`,
+      `**Received:** ${ts}`,
+      '',
+      '---',
+      '',
+      typeof text === 'string' ? text.substring(0, 8000) : JSON.stringify(text).substring(0, 8000),
+      '',
+      '---',
+      '<details><summary>Raw payload</summary>',
+      '',
+      '```json',
+      JSON.stringify(payload, null, 2).substring(0, 15000),
+      '```',
+      '</details>'
+    ].filter(line => line !== null).join('\n');
 
-    await fetch('https://api.github.com/repos/getmilodev/milo-inbox/issues', {
+    const ghRes = await fetch('https://api.github.com/repos/getmilodev/milo-inbox/issues', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${ghToken}`,
@@ -37,8 +66,9 @@ export default async function handler(req, res) {
       })
     });
 
-    console.log('INBOUND:', JSON.stringify({ from, to, subject, ts }));
-    return res.status(200).json({ status: 'received', stored: true });
+    const ghData = await ghRes.json();
+    console.log('INBOUND:', JSON.stringify({ from, to, subject, ts, issue: ghData.number }));
+    return res.status(200).json({ status: 'received', stored: true, issue: ghData.number });
   } catch (err) {
     console.error('Error:', err.message);
     return res.status(200).json({ status: 'error', message: err.message });
