@@ -1,0 +1,70 @@
+name: Send upsell to existing customer
+on:
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send upsell email via Resend
+        env:
+          RESEND_KEY: ${{ secrets.RESEND_API_KEY }}
+          DOMAIN: getmilo.dev
+        run: |
+          if [ -z "$RESEND_KEY" ]; then
+            echo "::error::RESEND_API_KEY not in secrets"
+            echo "Available secrets cannot be listed, but this key is required."
+            exit 1
+          fi
+
+          # Build recipient from customer record
+          RCPT_USER="me"
+          RCPT_HOST="ari.io"
+          RCPT="${RCPT_USER}@${RCPT_HOST}"
+
+          SENDER="Sam <sam@${DOMAIN}>"
+
+          SUBJECT="you grabbed the field manual"
+
+          read -r -d '' BODY << 'EMAILEOF'
+Hey,
+
+Noticed you picked up the AI Agent Field Manual — thanks for that.
+
+Quick question: have you thought about actually implementing any of the playbooks?
+
+We're doing done-for-you agent setups right now. $399 one-time. We build the agents, configure them for your business, and hand you the keys. No monthly fees.
+
+Most businesses we talk to are paying $300-700/mo for answering services or virtual assistants. This replaces that permanently.
+
+If you're curious, reply to this email or grab 15 minutes: getmilo.dev/try
+
+— Sam
+EMAILEOF
+
+          # Escape for JSON
+          BODY_JSON=$(echo "$BODY" | python3 -c 'import sys,json; print(json.dumps(sys.stdin.read()))')
+
+          RESPONSE=$(curl -s -w "\n%{http_code}" \
+            -X POST https://api.resend.com/emails \
+            -H "Authorization: Bearer $RESEND_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"from\": \"${SENDER}\",
+              \"to\": [\"${RCPT}\"],
+              \"subject\": \"${SUBJECT}\",
+              \"text\": ${BODY_JSON}
+            }")
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          RESP_BODY=$(echo "$RESPONSE" | head -n -1)
+
+          echo "Status: $HTTP_CODE"
+          echo "Response: $RESP_BODY"
+
+          if [ "$HTTP_CODE" -ge 400 ]; then
+            echo "::error::Email send failed"
+            exit 1
+          fi
+
+          echo "Upsell email sent successfully to ${RCPT}"
