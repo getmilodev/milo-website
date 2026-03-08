@@ -33,7 +33,8 @@
     { "source": "/blog/how-much-does-ai-agent-cost", "destination": "/content/blog-how-much-does-ai-agent-cost.html" },
     { "source": "/blog/missed-calls-cost-calculator", "destination": "/content/blog-missed-calls-cost-calculator.html" },
     { "source": "/blog/ai-receptionist-pricing-comparison", "destination": "/content/blog-ai-receptionist-pricing-comparison.html" },
-    { "source": "/blog/ai-agent-team-cost-2026", "destination": "/content/blog-ai-agent-team-cost-2026.html" }
+    { "source": "/blog/ai-agent-team-cost-2026", "destination": "/content/blog-ai-agent-team-cost-2026.html" },
+    { "source": "/blog/ai-phone-answering-service", "destination": "/content/blog-ai-phone-answering-service.html" }
   ],
   "headers": [
     {
