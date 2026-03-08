@@ -1,7 +1,8 @@
 {
   "rewrites": [
     { "source": "/receptionist", "destination": "/receptionist.html" },
-    { "source": "/demo", "destination": "/demo.html" }
+    { "source": "/demo", "destination": "/demo.html" },
+    { "source": "/ainative", "destination": "/ainative.html" }
   ],
   "headers": [
     {
@@ -19,6 +20,12 @@
     },
     {
       "source": "/demo",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/ainative",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
