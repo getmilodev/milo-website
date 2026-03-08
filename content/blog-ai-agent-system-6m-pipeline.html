@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What a $6.6M AI Agent System Looks Like (And How to Get One Without Building It Yourself) | Milo</title>
+  <meta name="description" content="One agency built 6 AI agents that resurrected $6.6M in dead pipeline. It took 8 months of debugging. Here's how small businesses can get the same results in a week.">
+  <meta property="og:title" content="What a $6.6M AI Agent System Looks Like">
+  <meta property="og:description" content="229 dead CRM deals. $6.6M resurrected. Here's what an AI agent system actually looks like in production — and why you shouldn't build yours from scratch.">
+  <link rel="canonical" href="https://getmilo.dev/blog/ai-agent-system">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; line-height: 1.7; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    article { padding: 60px 0 80px; }
+    h1 { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .meta { color: #888; font-size: 0.9rem; margin-bottom: 40px; }
+    h2 { font-size: 1.5rem; font-weight: 700; margin: 48px 0 16px; }
+    h3 { font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px; }
+    p { font-size: 1.05rem; color: #333; margin-bottom: 16px; }
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
+    li { font-size: 1.05rem; color: #333; margin-bottom: 8px; }
+    strong { color: #1a1a1a; }
+    em { color: #555; }
+    .highlight { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 24px 0; border-radius: 0 8px 8px 0; }
+    .highlight p { margin-bottom: 0; }
+    .stat-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 24px; margin: 24px 0; text-align: center; }
+    .stat-box .num { font-size: 2.5rem; font-weight: 700; color: #16a34a; }
+    .stat-box .label { font-size: 0.95rem; color: #555; }
+    .cta-box { background: #1a1a1a; color: #fff; border-radius: 12px; padding: 40px; margin: 48px 0; text-align: center; }
+    .cta-box h2 { color: #fff; margin-top: 0; }
+    .cta-box p { color: #ccc; }
+    .cta-box a { display: inline-block; background: #fff; color: #1a1a1a; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 16px; }
+    .agent-card { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin: 20px 0; }
+    .agent-card h3 { margin-top: 0; }
+    .agent-card .result { font-weight: 600; color: #16a34a; }
+    .takeaway { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 24px; margin: 24px 0; }
+    .takeaway h3 { margin-top: 0; color: #1d4ed8; }
+    blockquote { border-left: 4px solid #d1d5db; padding-left: 20px; margin: 24px 0; font-style: italic; color: #555; }
+    a { color: #2563eb; }
+    @media (max-width: 640px) { h1 { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<article>
+  <div class="container">
+    <h1>What a $6.6M AI Agent System Looks Like (And How to Get One Without Building It Yourself)</h1>
+    <p class="meta">March 2026 &middot; 7 min read</p>
+
+    <p>Eric Siu runs SingleGrain, a digital marketing agency. He recently shared what happened after going all-in on AI agents for 8 months: 6 specialized agents, 64 automated cron jobs, and <strong>$6.6 million in resurrected pipeline</strong> from deals everyone assumed were dead.</p>
+
+    <p>His system is impressive. It's also a cautionary tale about what it takes to build one from scratch.</p>
+
+    <p>Here's what his system does, what it cost him to build, and how businesses half his size can get the same results without the 8-month debugging marathon.</p>
+
+    <h2>The Six Agents That Run His Agency</h2>
+
+    <div class="agent-card">
+      <h3>1. The Deal Resurrector</h3>
+      <p>229 closed-lost deals sitting dead in HubSpot. The agent scans each one, scores them by time decay (90 days, 6 months, 12 months), checks if the original contact left the company, finds their replacement, and if the champion moved to a new company — follows them there.</p>
+      <p class="result">Result: 40 deals resurfaced. $6.6M in pipeline. Zero human effort.</p>
+    </div>
+
+    <div class="agent-card">
+      <h3>2. The Recruiter (Cyborg)</h3>
+      <p>Scrapes agency team pages, RocketReach, TheOrg, and press releases. Sources 80+ candidates per day across 4 open roles. Scores each against a detailed rubric. Runs personalized drip outreach. Learns from every thumbs-up and thumbs-down in Slack.</p>
+      <p class="result">Result: First candidate hired within days. Team prefers it over their $30M-funded recruiting tool.</p>
+    </div>
+
+    <div class="agent-card">
+      <h3>3. The Sales Agent (Arrow)</h3>
+      <p>Daily pipeline sweeps across HubSpot. Weekly Gong call intelligence digests — objections, competitor mentions, sentiment patterns. Daily rep check-ins and accountability tracking.</p>
+      <p class="result">Result: Discovered their speed-to-lead was 40-50 minutes. Problem no human ever measured.</p>
+    </div>
+
+    <div class="agent-card">
+      <h3>4. The Content Engine (Flash)</h3>
+      <p>Takes every YouTube and podcast episode, extracts distinct moments, scores each one. Only 90+ scores pass. Then generates platform-specific drafts for X, LinkedIn, Instagram, short-form video, and newsletter. Calibration system tracks what performs and feeds it back.</p>
+      <p class="result">Result: 85,000 average views per article. One Instagram post hit 40,000 views.</p>
+    </div>
+
+    <div class="agent-card">
+      <h3>5. The SEO Agent (Oracle)</h3>
+      <p>Weekly reports from Search Console and Analytics. Detects content decay before traffic drops. Monitors AI search results. Auto-generates WordPress refresh drafts when pages need updates.</p>
+      <p class="result">Result: No more quarterly SEO reviews discovering pages that died 2 months ago.</p>
+    </div>
+
+    <div class="agent-card">
+      <h3>6. The CEO Operating System</h3>
+      <p>Morning briefing: calendar, commitments (scanned from meeting transcripts and Slack), CRM nudges. Evening preview of tomorrow. Weekly metrics ritual with accountability against stated goals.</p>
+      <p class="result">Result: Catches promises he forgot he made. Better than a human chief of staff.</p>
+    </div>
+
+    <h2>The Part Nobody Wants to Hear</h2>
+
+    <p>Eric is honest about what it took:</p>
+
+    <blockquote>"Building this was not fun. Maintaining it is not glamorous. Most days involve fixing something that broke overnight."</blockquote>
+
+    <p>His agents broke constantly. They hallucinated results. They sent embarrassing messages. One agent confidently reported finishing a task it never started.</p>
+
+    <p>This is what <strong>8 months of full-time engineering effort</strong> looks like. Eric has a technical background and a team of engineers. He can afford to debug agents at 2am. He can absorb the cost of mistakes.</p>
+
+    <p>Most small business owners can't. And they shouldn't have to.</p>
+
+    <div class="stat-box">
+      <div class="num">8 months</div>
+      <div class="label">Time Eric spent building and debugging his AI agent system<br><em>Most small businesses need results in days, not months</em></div>
+    </div>
+
+    <h2>What This Means for Your Business</h2>
+
+    <p>Eric's system proves three things:</p>
+
+    <ol>
+      <li><strong>AI agents produce real revenue.</strong> $6.6M in pipeline isn't a demo. It's money.</li>
+      <li><strong>The value is in specific workflows, not general AI.</strong> Each agent does one thing well. Deal resurrection. Recruiting. Content repurposing. Not "general AI assistant."</li>
+      <li><strong>Building it yourself is expensive and painful.</strong> Unless you have engineers on staff and months to spare, the DIY route costs more than it saves.</li>
+    </ol>
+
+    <p>The good news: you don't need 6 agents and 64 cron jobs to start seeing results. Most businesses get massive ROI from just one or two agents targeting their biggest bottleneck.</p>
+
+    <div class="takeaway">
+      <h3>The highest-ROI agents for most businesses</h3>
+      <ul>
+        <li><strong>Dead pipeline resurrector:</strong> You have closed-lost deals in your CRM right now worth six figures. An agent can find them.</li>
+        <li><strong>Speed-to-lead agent:</strong> If your response time is over 5 minutes, you're losing 50%+ of your leads. An agent responds in seconds.</li>
+        <li><strong>Follow-up agent:</strong> 80% of deals close after the 5th follow-up. Most businesses stop at 2. An agent never stops.</li>
+        <li><strong>Content repurposing agent:</strong> Every podcast, video, or webinar you've done is sitting unused. An agent turns each one into 10+ pieces of content.</li>
+      </ul>
+    </div>
+
+    <h2>DIY vs. Done-For-You: The Real Cost</h2>
+
+    <p>Eric built his system himself because he could. Here's what that looked like:</p>
+
+    <ul>
+      <li><strong>Engineering time:</strong> 8+ months of active development</li>
+      <li><strong>Debugging:</strong> Daily fixes, broken agents, hallucinated outputs</li>
+      <li><strong>Iteration:</strong> Constant tuning of prompts, workflows, and integrations</li>
+      <li><strong>Cost:</strong> Engineering salaries + API costs + opportunity cost of his own time</li>
+    </ul>
+
+    <p>Here's what the same capabilities look like when someone who's already done the debugging builds it for you:</p>
+
+    <ul>
+      <li><strong>Setup time:</strong> About a week</li>
+      <li><strong>Debugging:</strong> Already done. We've made the mistakes so you don't have to.</li>
+      <li><strong>Iteration:</strong> We configure it around your specific workflows, CRM, and tools</li>
+      <li><strong>Cost:</strong> $299 for a single agent. $2,499 for a full team. No subscriptions.</li>
+    </ul>
+
+    <div class="highlight">
+      <p><strong>The best time to start was 8 months ago.</strong> The second best time is this week. Every day without these agents is a day of dead pipeline staying dead, leads going cold, and content sitting unused.</p>
+    </div>
+
+    <h2>Start With Your Dead Pipeline</h2>
+
+    <p>If Eric's thread teaches one thing, it's this: <strong>start with the money you're already leaving on the table.</strong></p>
+
+    <p>You have closed-lost deals in your CRM. You have leads that went cold. You have proposals that never got followed up on. An AI agent can scan all of it, score the opportunities, and tell you exactly which ones are worth re-engaging — and then do the re-engagement for you.</p>
+
+    <p>That's not speculative. That's $6.6M in proof.</p>
+
+    <div class="cta-box">
+      <h2>Find the dead revenue in your CRM</h2>
+      <p>Tell us what you need — deal resurrection, speed-to-lead, content repurposing, or all of it.<br>We'll build your agent team in about a week.</p>
+      <a href="/build">Build Your Agent Team &rarr;</a>
+    </div>
+
+    <p style="margin-top: 32px; text-align: center; color: #888; font-size: 0.9rem;">
+      <a href="/" style="color: #888; text-decoration: none;">Milo</a> builds AI agent teams for small businesses. Custom-configured, done-for-you, no subscriptions.<br>
+      <em>Source: <a href="https://x.com/ericosiu" style="color: #888;">Eric Siu's thread on building AI agents at SingleGrain</a></em>
+    </p>
+  </div>
+</article>
+
+</body>
+</html>
