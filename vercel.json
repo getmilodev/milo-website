@@ -28,7 +28,12 @@
     { "source": "/blog/ai-native-agencies", "destination": "/content/blog-ai-native-agencies.html" },
     { "source": "/blog/ai-agents-small-business", "destination": "/content/blog-ai-agents-small-business.html" },
     { "source": "/blog/ai-agent-system", "destination": "/content/blog-ai-agent-system-6m-pipeline.html" },
-    { "source": "/blog/build-vs-buy-ai-agents", "destination": "/content/blog-build-vs-buy-ai-agents.html" }
+    { "source": "/blog/build-vs-buy-ai-agents", "destination": "/content/blog-build-vs-buy-ai-agents.html" },
+    { "source": "/blog/one-time-vs-monthly-ai-subscriptions", "destination": "/content/blog-one-time-vs-monthly-ai-subscriptions.html" },
+    { "source": "/blog/how-much-does-ai-agent-cost", "destination": "/content/blog-how-much-does-ai-agent-cost.html" },
+    { "source": "/blog/missed-calls-cost-calculator", "destination": "/content/blog-missed-calls-cost-calculator.html" },
+    { "source": "/blog/ai-receptionist-pricing-comparison", "destination": "/content/blog-ai-receptionist-pricing-comparison.html" },
+    { "source": "/blog/ai-agent-team-cost-2026", "destination": "/content/blog-ai-agent-team-cost-2026.html" }
   ],
   "headers": [
     {
