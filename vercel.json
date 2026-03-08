@@ -34,7 +34,11 @@
     { "source": "/blog/missed-calls-cost-calculator", "destination": "/content/blog-missed-calls-cost-calculator.html" },
     { "source": "/blog/ai-receptionist-pricing-comparison", "destination": "/content/blog-ai-receptionist-pricing-comparison.html" },
     { "source": "/blog/ai-agent-team-cost-2026", "destination": "/content/blog-ai-agent-team-cost-2026.html" },
-    { "source": "/blog/ai-phone-answering-service", "destination": "/content/blog-ai-phone-answering-service.html" }
+    { "source": "/blog/ai-phone-answering-service", "destination": "/content/blog-ai-phone-answering-service.html" },
+    { "source": "/blog/ai-receptionist-dental-practices", "destination": "/content/blog-ai-receptionist-dental-practices.html" },
+    { "source": "/blog/ai-receptionist-hvac-plumbing", "destination": "/content/blog-ai-receptionist-hvac-plumbing.html" },
+    { "source": "/blog/ai-receptionist-law-firms", "destination": "/content/blog-ai-receptionist-law-firms.html" },
+    { "source": "/blog/ai-receptionist-veterinary-clinics", "destination": "/content/blog-ai-receptionist-veterinary-clinics.html" }
   ],
   "headers": [
     {
