@@ -1,16 +1,34 @@
 # Milo Distribution Tracker
-*Last updated: 2026-03-08*
+*Last updated: 2026-03-08 (evening)*
+
+## Site Content Summary
+- **Comparison pages:** 5 (Smith.ai, AnswerConnect, Ruby Receptionists, My AI Front Desk, Goodcall)
+- **Blog posts:** 17
+- **Vertical landing pages:** 5 (dental, law firms, HVAC, veterinary, accountants)
+- **Total sitemap URLs:** 38
+- **Revenue:** $49
 
 ## Awesome List Submissions (GitHub)
+⚠️ **ACTION NEEDED:** All 4 submissions are ISSUES but repos accept PRs. Need to convert to PRs via GitHub web UI.
+
 | Repo | Stars | Issue/PR | Status | Link |
 |------|-------|----------|--------|------|
-| e2b-dev/awesome-ai-agents | 26,323 | Issue #407 | ⏳ Open | [Link](https://github.com/e2b-dev/awesome-ai-agents/issues/407) |
-| mahseema/awesome-ai-tools | 4,541 | Issue #745 | ⏳ Open | [Link](https://github.com/mahseema/awesome-ai-tools/issues/745) |
-| jim-schwoebel/awesome_ai_agents | 1,456 | Issue #83 | ⏳ Open | [Link](https://github.com/jim-schwoebel/awesome_ai_agents/issues/83) |
-| slavakurilyak/awesome-ai-agents | 1,304 | Issue #101 | ⏳ Open | [Link](https://github.com/slavakurilyak/awesome-ai-agents/issues/101) |
+| e2b-dev/awesome-ai-agents | 26,323 | Issue #407 | ⚠️ Needs PR | [Link](https://github.com/e2b-dev/awesome-ai-agents/issues/407) |
+| mahseema/awesome-ai-tools | 4,541 | Issue #745 | ⚠️ Needs PR (fork exists) | [Link](https://github.com/mahseema/awesome-ai-tools/issues/745) |
+| jim-schwoebel/awesome_ai_agents | 1,456 | Issue #83 | ⚠️ Needs PR | [Link](https://github.com/jim-schwoebel/awesome_ai_agents/issues/83) |
+| slavakurilyak/awesome-ai-agents | 1,304 | Issue #101 | ⚠️ Needs PR | [Link](https://github.com/slavakurilyak/awesome-ai-agents/issues/101) |
 | kyrolabs/awesome-agents | 1,868 | SKIPPED | ❌ Requires open-source | N/A |
 
 **Total combined stars exposure: 33,624**
+
+## Competitor Comparison Pages (LIVE)
+| Competitor | URL | Key Angle |
+|-----------|-----|-----------|
+| Smith.ai | /compare/smith-ai | $600+/mo vs $399 one-time |
+| AnswerConnect | /compare/answerconnect | Per-minute charges vs ownership |
+| Ruby Receptionists | /compare/ruby-receptionists | Human service costs vs AI ownership |
+| My AI Front Desk | /compare/my-ai-front-desk | $0.25/min overage, 200-300 min caps |
+| Goodcall | /compare/goodcall | $0.50/customer overage, per-agent pricing |
 
 ## AI Agent Directories (Priority - agent-specific)
 | Directory | URL | Submission | Status |
@@ -40,9 +58,13 @@
 | Channel | Status | Notes |
 |---------|--------|-------|
 | OpenClaw GitHub Discussions | ✅ Active | Posts in #24619, #25634 |
-| Reddit (r/SaaS, r/smallbusiness, r/AI_Agents) | 📝 Drafted | content/reddit-replies-march6.md |
-| Quora | 📝 Drafted | content/quora-answers.md |
+| Reddit — General (5 replies) | 📝 Drafted | content/reddit-replies-march6.md |
+| Reddit — Dental (4 replies) | 📝 Drafted | content/reddit-replies-dental.md |
+| Reddit — Receptionist threads (5 replies) | 📝 Drafted | content/reddit-replies-receptionist-threads.md |
+| Quora (4 answers) | 📝 Drafted | content/quora-answers.md |
 | Show HN | 📝 Drafted | content/show-hn-post.md |
+
+**Total community replies drafted: 18 (14 Reddit + 4 Quora). Zero posted.**
 
 ## Outreach
 | Channel | Count | Status |
