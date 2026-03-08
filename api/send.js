@@ -1,59 +1,38 @@
 export default async function handler(req, res) {
-  // GET: health check + env status
   if (req.method === 'GET') {
-    return res.status(200).json({
-      status: 'ok',
-      service: 'milo-outbound',
-      hasResendKey: !!process.env.RESEND_API_KEY,
-      hasGithubToken: !!process.env.GITHUB_TOKEN,
-      envKeys: Object.keys(process.env).filter(k => 
-        k.includes('RESEND') || k.includes('STRIPE') || k.includes('TWITTER') || 
-        k.includes('ZOHO') || k.includes('APOLLO') || k.includes('API')
-      )
-    });
+    return res.status(200).json({ status: 'ok', service: 'milo-outbound' });
   }
-
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: 'RESEND_API_KEY not configured' });
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return res.status(500).json({ error: 'Missing config' });
+
+  const { to, subject, text, html, from, reply_to } = req.body;
+  if (!to || !subject || (!text && !html)) {
+    return res.status(400).json({ error: 'Missing: to, subject, text/html' });
   }
 
-  const { to, subject, text, html, from } = req.body;
-  if (!to || !subject || (!text && !html)) {
-    return res.status(400).json({ error: 'Missing required fields: to, subject, text or html' });
-  }
+  const replyTo = reply_to || process.env.DEFAULT_REPLY_TO;
+  const sender = from || process.env.DEFAULT_FROM;
+  if (!sender) return res.status(500).json({ error: 'Set DEFAULT_FROM env or pass from' });
+
+  const payload = { from: sender, to: [].concat(to), subject };
+  if (text) payload.text = text;
+  if (html) payload.html = html;
+  if (replyTo) payload.reply_to = replyTo;
 
   try {
-    const emailRes = await fetch('https://api.resend.com/emails', {
+    const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: from || 'Felix <felix@getmilo.dev>',
-        to: Array.isArray(to) ? to : [to],
-        subject,
-        text: text || undefined,
-        html: html || undefined
-      })
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
+      body: JSON.stringify(payload)
     });
-
-    const data = await emailRes.json();
-    
-    if (!emailRes.ok) {
-      console.error('Resend error:', JSON.stringify(data));
-      return res.status(emailRes.status).json({ error: 'Resend API error', details: data });
-    }
-
-    console.log('EMAIL SENT:', JSON.stringify({ to, subject, id: data.id }));
-    return res.status(200).json({ status: 'sent', id: data.id });
-  } catch (err) {
-    console.error('Send error:', err.message);
-    return res.status(500).json({ error: err.message });
+    const data = await r.json();
+    if (!r.ok) return res.status(r.status).json({ error: 'Send failed', details: data });
+    return res.status(200).json({ status: 'sent', id: data.id, reply_to: replyTo || sender });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
   }
 }
