@@ -13,6 +13,7 @@
     { "source": "/build", "destination": "/build.html" },
     { "source": "/calculator", "destination": "/calculator.html" },
     { "source": "/security", "destination": "/security.html" },
+    { "source": "/why-so-cheap", "destination": "/content/why-so-cheap.html" },
     { "source": "/law-firms", "destination": "/content/law-firm-landing.html" },
     { "source": "/accountants", "destination": "/content/cpa-landing.html" },
     { "source": "/hvac", "destination": "/content/hvac-landing.html" },
@@ -35,7 +36,7 @@
       ]
     },
     {
-      "source": "/(receptionist|demo|ainative|agents|build|calculator|security)",
+      "source": "/(receptionist|demo|ainative|agents|build|calculator|security|why-so-cheap)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
