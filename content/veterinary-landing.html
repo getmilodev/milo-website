@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Receptionist for Veterinary Clinics — Answer Every Pet Emergency Call | Milo</title>
+  <meta name="description" content="Pet owners call when they're worried — often after hours. Milo's AI receptionist answers every call 24/7, books appointments, and triages emergencies. $399 one-time setup.">
+  <meta property="og:title" content="AI Receptionist for Veterinary Clinics | Milo">
+  <meta property="og:description" content="Anxious pet owners don't leave voicemails. AI receptionist that answers, triages, and books — 24/7. $399 one-time.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; line-height: 1.6; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .hero { padding: 80px 0 60px; }
+    .hero .eyebrow { font-size: 0.85rem; font-weight: 600; color: #2563eb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 20px; }
+    .hero h1 span { color: #e53e3e; }
+    .hero p { font-size: 1.2rem; color: #555; margin-bottom: 32px; max-width: 640px; }
+    .cta-btn { display: inline-block; background: #1a1a1a; color: #fff; padding: 16px 36px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.05rem; transition: background 0.2s; }
+    .cta-btn:hover { background: #333; }
+    .cta-secondary { display: inline-block; color: #1a1a1a; padding: 16px 24px; text-decoration: none; font-weight: 500; font-size: 1rem; margin-left: 12px; }
+    .problem { padding: 60px 0; background: #fef2f2; }
+    .problem h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 24px; }
+    .problem p { font-size: 1.05rem; color: #444; margin-bottom: 16px; }
+    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+    .stat { text-align: center; }
+    .stat .number { font-size: 2.5rem; font-weight: 700; color: #e53e3e; }
+    .stat .label { font-size: 0.9rem; color: #666; margin-top: 4px; }
+    .solution { padding: 60px 0; }
+    .solution h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 32px; }
+    .feature { margin-bottom: 32px; padding-left: 32px; border-left: 3px solid #1a1a1a; }
+    .feature h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; }
+    .feature p { color: #555; }
+    .cost-compare { padding: 60px 0; background: #f0fdf4; }
+    .cost-compare h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 24px; }
+    .vs-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    .vs-table th, .vs-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #d1fae5; }
+    .vs-table th { background: #dcfce7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .vs-table .highlight-row { background: #f0fdf4; font-weight: 600; }
+    .social-proof { padding: 60px 0; border-top: 1px solid #eee; }
+    .social-proof h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; text-align: center; }
+    .scenario { background: #f9fafb; border-radius: 12px; padding: 32px; margin: 24px 0; }
+    .scenario h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; }
+    .scenario p { color: #555; margin-bottom: 8px; }
+    .bottom-cta { padding: 80px 0; text-align: center; background: #1a1a1a; color: #fff; }
+    .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; color: #fff; }
+    .bottom-cta p { color: #999; font-size: 1.1rem; margin-bottom: 32px; }
+    .bottom-cta .cta-btn { background: #fff; color: #1a1a1a; }
+    .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px; }
+    .internal-links { padding: 40px 0; border-top: 1px solid #eee; }
+    .internal-links h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 16px; text-align: center; color: #666; }
+    .internal-links .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .internal-links a { color: #2563eb; text-decoration: none; font-size: 0.95rem; padding: 6px 14px; background: #f0f9ff; border-radius: 6px; }
+    .internal-links a:hover { background: #dbeafe; }
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.75rem; }
+      .stat-grid { grid-template-columns: 1fr; gap: 16px; }
+      .cta-secondary { display: block; margin: 12px 0 0 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="container">
+    <div class="eyebrow">For Veterinary Clinics</div>
+    <h1>Their dog is limping at 9pm.<br>They're calling you <span>right now</span>.</h1>
+    <p>Pet owners don't wait until morning when their animal is in distress. They call immediately — and if they hit voicemail, they call the next clinic. Milo answers every call to your practice, 24/7. One-time $399 setup.</p>
+    <a href="/buy/starter" class="cta-btn">Get Your AI Receptionist</a>
+    <a href="/receptionist" class="cta-secondary">How it works &rarr;</a>
+  </div>
+</div>
+
+<div class="problem">
+  <div class="container">
+    <h2>Why Vet Clinics Lose Clients After Hours</h2>
+    <p>Pet emergencies are emotional. When a pet owner's dog is vomiting or their cat isn't breathing right, they're not calmly Googling — they're panicking and calling the first vet they find.</p>
+    <p>If your clinic doesn't answer, they don't leave a message. They call the emergency vet, pay $400 for a visit, and often switch to that practice permanently because "at least they were there when we needed them."</p>
+    <p>Even during business hours, your vet techs are in appointments, your front desk is checking in patients, and the phone is competing with the waiting room. Calls slip through.</p>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="number">58%</div>
+        <div class="label">of pet owner calls happen outside clinic hours</div>
+      </div>
+      <div class="stat">
+        <div class="number">$3,500</div>
+        <div class="label">average annual revenue per client household</div>
+      </div>
+      <div class="stat">
+        <div class="number">12</div>
+        <div class="label">clients lost per month to unanswered calls</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="solution">
+  <div class="container">
+    <h2>What Your AI Receptionist Does</h2>
+
+    <div class="feature">
+      <h3>Answers every call — even during the Saturday rush</h3>
+      <p>Saturday mornings are chaos. Wellness exams back to back, a walk-in with a nail bleed, and the phone won't stop. Milo handles every incoming call so your team stays with patients.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Triages after-hours emergencies</h3>
+      <p>Difficulty breathing, seizures, suspected poisoning — the AI recognizes true emergencies and immediately connects the caller with your on-call vet or directs them to the nearest emergency hospital. Non-urgent calls get a next-day appointment.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Books appointments and sends reminders</h3>
+      <p>"I need to schedule my dog's annual vaccines." Done. The AI checks your availability, books the slot, and sends a confirmation. Vaccine reminders, dental cleanings, follow-ups — all handled.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Answers the questions your front desk gets 40 times a day</h3>
+      <p>"Do you see exotic pets?" "What are your boarding rates?" "Is Dr. Chen available Thursday?" "My cat won't eat — should I come in?" — trained on YOUR clinic's protocols and services.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Captures new client information</h3>
+      <p>New client calling? Milo collects pet name, species, breed, age, and reason for visit before they walk in the door. Your front desk has everything ready when they arrive.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cost-compare">
+  <div class="container">
+    <h2>The Math Behind Missed Calls</h2>
+    <table class="vs-table">
+      <thead>
+        <tr><th></th><th>Voicemail (Now)</th><th>Answering Service</th><th>Milo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Monthly Cost</td><td>$0</td><td>$300-$600/mo</td><td>~$40/mo infrastructure</td></tr>
+        <tr><td>Setup</td><td>Free</td><td>Free</td><td>$399 one-time</td></tr>
+        <tr><td>After-Hours Coverage</td><td>None</td><td>24/7</td><td>24/7</td></tr>
+        <tr><td>Knows Your Clinic</td><td>N/A</td><td>Basic script</td><td>Deeply trained</td></tr>
+        <tr><td>Clients Lost Monthly</td><td>~12</td><td>~2</td><td>0</td></tr>
+        <tr class="highlight-row"><td>Annual Revenue Lost</td><td>$42,000 (12 × $3,500)</td><td>$7,000</td><td>$0</td></tr>
+        <tr><td>Annual Service Cost</td><td>$0</td><td>$3,600-$7,200</td><td>$879 (year 1)</td></tr>
+        <tr><td>You Own It</td><td>N/A</td><td>No</td><td>Yes</td></tr>
+      </tbody>
+    </table>
+    <p style="color: #166534; font-weight: 600; margin-top: 16px;">One retained client household ($3,500/year) pays for Milo four times over.</p>
+  </div>
+</div>
+
+<div class="social-proof">
+  <div class="container">
+    <h2>Real Scenarios</h2>
+
+    <div class="scenario">
+      <h3>Sunday, 10pm — "My dog ate chocolate"</h3>
+      <p>A pet owner's Labrador just ate a bag of dark chocolate. They're panicking and calling your clinic.</p>
+      <p><strong>Without Milo:</strong> Voicemail. They call the emergency vet 30 minutes away. $450 ER visit. They start going there for everything because "they were there when it mattered."</p>
+      <p><strong>With Milo:</strong> AI answers immediately. Asks about the dog's weight, type of chocolate, and amount eaten. For a true emergency, it provides immediate guidance ("induce vomiting only if within 2 hours — here's how") and connects them to emergency care. For a non-emergency, it books a first-thing Monday appointment and texts the vet a heads-up. Either way, that client stays with your practice.</p>
+    </div>
+
+    <div class="scenario">
+      <h3>Monday, 9:15am — The morning rush</h3>
+      <p>Three clients are checking in. A puppy is having its first visit and needs extra attention. The phone rings twice in 5 minutes — two new clients wanting to schedule.</p>
+      <p><strong>Without Milo:</strong> One call goes to voicemail. The other gets a rushed answer. Neither books.</p>
+      <p><strong>With Milo:</strong> AI handles both calls in parallel. Books wellness exams, captures pet details, and sends confirmations. Your front desk stays with the puppy. Two new clients booked without interruption.</p>
+    </div>
+
+    <div class="scenario">
+      <h3>Wednesday, 3pm — Prescription refill</h3>
+      <p>An existing client calls: "My dog needs a Rimadyl refill. Can I pick it up tomorrow?"</p>
+      <p><strong>Without Milo:</strong> Vet tech stops mid-appointment to answer the phone. Breaks focus. Delays the next patient.</p>
+      <p><strong>With Milo:</strong> AI confirms the prescription is on file, lets the client know it'll be ready for pickup, and adds a note for your pharmacy tech. Zero staff interruption.</p>
+    </div>
+  </div>
+</div>
+
+<div class="internal-links">
+  <div class="container">
+    <h3>Compare Milo to Specific Services</h3>
+    <div class="links">
+      <a href="/compare/smith-ai">vs. Smith.ai</a>
+      <a href="/compare/ruby-receptionists">vs. Ruby Receptionists</a>
+      <a href="/compare/answerconnect">vs. AnswerConnect</a>
+      <a href="/compare/best-ai-receptionist">Best AI Receptionist 2026</a>
+      <a href="/compare/law-firm">For Law Firms</a>
+      <a href="/compare/dental">For Dental Practices</a>
+      <a href="/compare/cpa">For CPA Firms</a>
+      <a href="/compare/hvac">For HVAC Companies</a>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-cta">
+  <div class="container">
+    <span class="promo">Use code EARLYMILO25 for 25% off</span>
+    <h2>Every missed call is a pet owner who finds another vet</h2>
+    <p>$399 one-time. AI agents you own. One retained client pays for it four times over.</p>
+    <a href="/buy/starter" class="cta-btn">Get Your AI Receptionist</a>
+  </div>
+</div>
+
+</body>
+</html>
