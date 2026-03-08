@@ -1,4 +1,9 @@
 {
+  "redirects": [
+    { "source": "/buy/starter", "destination": "https://buy.stripe.com/dRm9ASdoFcD5e426KifIs0e", "statusCode": 307 },
+    { "source": "/buy/team", "destination": "https://buy.stripe.com/28EdR81FXbz11hgc4CfIs0f", "statusCode": 307 },
+    { "source": "/buy/managed", "destination": "https://buy.stripe.com/bJe5kC2K18mP5xw7OmfIs0g", "statusCode": 307 }
+  ],
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/receptionist", "destination": "/receptionist.html" },
