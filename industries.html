@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agents by Industry — Built for How Your Business Actually Works | Milo</title>
+  <meta name="description" content="AI agent teams built for specific industries: law firms, dental practices, HVAC companies, veterinary clinics, and accounting firms. One-time setup from $399.">
+  <meta property="og:title" content="AI Agents by Industry | Milo">
+  <meta property="og:description" content="Your industry has specific problems. We build AI agents that solve them. Law firms, dental, HVAC, veterinary, accounting — and more.">
+  <link rel="canonical" href="https://getmilo.dev/industries">
+  <link rel="stylesheet" href="milo-design-system.css">
+  <style>
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    @media (max-width: 768px) {
+      .industry-grid { grid-template-columns: 1fr; }
+    }
+    .industry-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .industry-card:hover {
+      border-color: var(--copper);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .industry-card__emoji {
+      font-size: 2rem;
+      margin-bottom: var(--space-3);
+    }
+    .industry-card h3 {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-2);
+    }
+    .industry-card p {
+      font-size: var(--text-sm);
+      color: var(--graphite);
+      margin-bottom: var(--space-4);
+    }
+    .industry-card__cta {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--copper);
+    }
+    .compare-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+    @media (max-width: 768px) {
+      .compare-list { grid-template-columns: 1fr; }
+    }
+    .compare-link {
+      display: block;
+      padding: var(--space-4);
+      background: var(--warm-gray);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--slate);
+      font-weight: 500;
+      font-size: var(--text-sm);
+      transition: background 0.2s;
+    }
+    .compare-link:hover { background: var(--border-light); }
+    .compare-link span { color: var(--graphite); font-weight: 400; display: block; margin-top: 2px; }
+  </style>
+</head>
+<body>
+
+  <div style="background: var(--slate); color: var(--white); text-align: center; padding: 10px 16px; font-size: var(--text-sm); font-weight: 500;">
+    🚀 Founding customer pricing: <strong>25% off any package</strong> with code <strong>EARLYMILO25</strong> — limited spots
+  </div>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="milo-icon.svg" alt="" class="nav__logo-icon">
+        <span class="nav__logo-text">milo</span>
+      </a>
+      <div class="nav__links">
+        <a href="/agents" class="nav__link">AI Agents</a>
+        <a href="/industries" class="nav__link" style="color: var(--copper); font-weight: 600;">Industries</a>
+        <a href="/security" class="nav__link">Security</a>
+        <a href="/blog" class="nav__link">Guides</a>
+        <a href="/calculator" class="nav__link">Free Calculator</a>
+        <a href="/build" class="btn btn--primary btn--sm">Build Your Team</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div style="max-width: 680px; margin: 0 auto var(--space-12); text-align: center;">
+        <h1>AI agents built for your industry</h1>
+        <p class="lead">Every business has different bottlenecks. A law firm loses cases to voicemail. An HVAC company misses emergency calls. A dental practice forgets to confirm appointments. We build agents that solve your specific problems — not generic chatbots.</p>
+      </div>
+
+      <div class="industry-grid">
+        <a href="/law-firms" class="industry-card">
+          <div class="industry-card__emoji">⚖️</div>
+          <h3>Law Firms</h3>
+          <p>35% of potential clients who can't reach you on the first call never try again. Your AI receptionist answers every intake call 24/7, qualifies leads, and books consultations — even at 11pm after a DUI arrest.</p>
+          <span class="industry-card__cta">See how it works for law firms →</span>
+        </a>
+
+        <a href="/dental" class="industry-card">
+          <div class="industry-card__emoji">🦷</div>
+          <h3>Dental Practices</h3>
+          <p>Missed calls cost dental practices $200+ per lost appointment. Your AI agent handles appointment scheduling, sends confirmations and reminders, and answers insurance questions — without tying up your front desk.</p>
+          <span class="industry-card__cta">See how it works for dental →</span>
+        </a>
+
+        <a href="/hvac" class="industry-card">
+          <div class="industry-card__emoji">🔧</div>
+          <h3>HVAC &amp; Home Services</h3>
+          <p>When a furnace dies at midnight, the first company that answers gets the job. Your AI receptionist captures emergency calls, dispatches to on-call techs, and books routine maintenance — 24/7/365.</p>
+          <span class="industry-card__cta">See how it works for HVAC →</span>
+        </a>
+
+        <a href="/veterinary" class="industry-card">
+          <div class="industry-card__emoji">🐾</div>
+          <h3>Veterinary Clinics</h3>
+          <p>Pet emergencies don't happen during office hours. Your AI agent triages urgent calls, schedules routine appointments, answers medication questions, and follows up on post-visit care instructions.</p>
+          <span class="industry-card__cta">See how it works for vet clinics →</span>
+        </a>
+
+        <a href="/accountants" class="industry-card">
+          <div class="industry-card__emoji">📊</div>
+          <h3>Accounting &amp; CPA Firms</h3>
+          <p>Tax season buries your team in calls. Your AI agent handles document collection reminders, appointment scheduling, and answers routine questions — freeing your CPAs to do billable work.</p>
+          <span class="industry-card__cta">See how it works for CPAs →</span>
+        </a>
+
+        <a href="/build" class="industry-card" style="border-style: dashed;">
+          <div class="industry-card__emoji">🚀</div>
+          <h3>Your Industry</h3>
+          <p>Don't see your business type? We build custom AI agents for any service business. Consulting, real estate, insurance, e-commerce, coaching — if you can describe the process, we can automate it.</p>
+          <span class="industry-card__cta">Build your custom AI team →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tinted">
+    <div class="container">
+      <h2 class="text-center mb-4">How Milo compares</h2>
+      <p class="lead text-center text-narrow mb-8">We're not the only AI receptionist. But we're the only one where you pay once and own everything.</p>
+      <div class="compare-list">
+        <a href="/compare/smith-ai" class="compare-link">Milo vs. Smith.ai <span>$399 one-time vs. $292-1,387/mo</span></a>
+        <a href="/compare/ruby-receptionists" class="compare-link">Milo vs. Ruby Receptionists <span>AI-powered vs. human operators</span></a>
+        <a href="/compare/answerconnect" class="compare-link">Milo vs. AnswerConnect <span>Own your system vs. rent it</span></a>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-6);">
+        <a href="/why-so-cheap" style="font-size: var(--text-sm); color: var(--copper); font-weight: 500;">Why is Milo so much cheaper? →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center mb-4">Guides &amp; resources</h2>
+      <p class="lead text-center text-narrow mb-8">Learn how AI agents are changing small business operations.</p>
+      <div class="compare-list">
+        <a href="/blog/ai-agent-system" class="compare-link">What a $6.6M AI Agent System Looks Like <span>Case study: SingleGrain's 6-agent system</span></a>
+        <a href="/blog/ai-agents-small-business" class="compare-link">AI Agents for Small Business <span>The complete guide for 2026</span></a>
+        <a href="/blog/best-ai-receptionist" class="compare-link">Best AI Receptionist 2026 <span>Comparison of top options</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--slate); color: var(--white); padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 640px; text-align: center;">
+      <h2 style="color: var(--white); margin-bottom: var(--space-4);">Every missed call is a missed customer.</h2>
+      <p style="color: rgba(255,255,255,0.7); margin-bottom: var(--space-8);">$399 one-time. Your AI agents start answering this week. No monthly fees to us.</p>
+      <div style="display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;">
+        <a href="/build" class="btn btn--primary btn--lg">Build Your AI Team</a>
+        <a href="/calculator" class="btn btn--outline btn--lg" style="border-color: rgba(255,255,255,0.3); color: var(--white);">See What You're Losing</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <img src="milo-icon.svg" alt="" class="footer__logo-icon">
+            <span class="footer__logo-text" style="font-family: var(--font-heading); font-size: var(--text-xl); color: var(--white); letter-spacing: -0.03em;">milo</span>
+          </div>
+          <p class="footer__brand-text">AI agent teams for small businesses. One-time setup. You own everything.</p>
+        </div>
+        <div>
+          <h4>Industries</h4>
+          <ul class="footer__links">
+            <li><a href="/law-firms">Law Firms</a></li>
+            <li><a href="/dental">Dental Practices</a></li>
+            <li><a href="/hvac">HVAC &amp; Home Services</a></li>
+            <li><a href="/veterinary">Veterinary Clinics</a></li>
+            <li><a href="/accountants">Accounting Firms</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer__links">
+            <li><a href="/agents">AI Agent Teams</a></li>
+            <li><a href="/why-so-cheap">Why So Cheap?</a></li>
+            <li><a href="/calculator">Savings Calculator</a></li>
+            <li><a href="/blog/ai-agent-system">$6.6M Case Study</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Milo</span>
+        <span><a href="https://x.com/getmilo_dev" style="color: inherit;">@getmilo_dev</a></span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
