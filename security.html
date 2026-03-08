@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Services — Milo</title>
+  <meta name="description" content="OpenClaw and NanoClaw security hardening. Free scanner, automated vulnerability detection, expert audits, and done-for-you secure deployments.">
+  <meta property="og:title" content="Security Services — Milo">
+  <meta property="og:description" content="Scan, harden, and secure your AI agent deployment. Free scanner to done-for-you builds.">
+  <link rel="stylesheet" href="milo-design-system.css">
+  <style>
+    .security-hero {
+      padding: var(--space-24) 0 var(--space-16);
+      background: var(--copper-wash);
+      position: relative;
+      overflow: hidden;
+    }
+    .security-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196, 122, 90, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .security-hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .tier-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8); }
+    @media (max-width: 768px) { .tier-grid { grid-template-columns: 1fr; } }
+    .tier-grid--4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 768px) { .tier-grid--4 { grid-template-columns: repeat(2, 1fr); } }
+    .tier-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: var(--space-8); display: flex; flex-direction: column; }
+    .tier-card--featured { border-color: var(--copper); }
+    .tier-card__price { font-family: var(--font-heading); font-size: var(--text-4xl); color: var(--slate); margin-bottom: var(--space-1); }
+    .tier-card__freq { font-size: var(--text-sm); color: var(--ash); margin-bottom: var(--space-6); }
+    .tier-card .feature-list { flex: 1; margin-bottom: var(--space-6); }
+    .shield-layout { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
+    @media (max-width: 768px) { .shield-layout { grid-template-columns: 1fr; } }
+    .cta-dark { background: var(--slate); color: var(--white); padding: var(--space-16) 0; }
+    .cta-dark__inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .cta-dark h2 { color: var(--white); margin-bottom: var(--space-6); }
+    .cta-dark p { color: rgba(255,255,255,0.7); margin-bottom: var(--space-8); }
+    .footer__logo-text { font-family: var(--font-heading); font-size: var(--text-xl); color: var(--white); letter-spacing: -0.03em; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="milo-icon.svg" alt="" class="nav__logo-icon">
+        <span class="nav__logo-text">milo</span>
+      </a>
+      <div class="nav__links">
+        <a href="/agents" class="nav__link">AI Agents</a>
+        <a href="/industries" class="nav__link">Industries</a>
+        <a href="/security" class="nav__link nav__link--active" style="color: var(--copper); font-weight: 600;">Security</a>
+        <a href="/blog" class="nav__link">Guides</a>
+        <a href="/agents" class="btn btn--primary btn--sm">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="security-hero">
+    <div class="container">
+      <div class="security-hero__content">
+        <div class="caption mb-6">Security Services</div>
+        <h1 class="mb-6">Your AI agents are only as secure as their config.</h1>
+        <p class="lead mb-8">OpenClaw and NanoClaw security hardening. From a free scan to a done-for-you secure deployment. We find the vulnerabilities, fix the configs, and walk away.</p>
+        <div style="display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;">
+          <a href="/scanner" class="btn btn--primary btn--lg">Free Security Scan</a>
+          <a href="#tiers" class="btn btn--outline btn--lg">See All Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--sm" style="border-bottom: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="stats">
+        <div class="stat"><div class="stat__number">500+</div><div class="stat__label">Configs audited</div></div>
+        <div class="stat"><div class="stat__number">2,000+</div><div class="stat__label">Issues found and fixed</div></div>
+        <div class="stat"><div class="stat__number">20+</div><div class="stat__label">Vulnerability patterns checked</div></div>
+        <div class="stat"><div class="stat__number">48hr</div><div class="stat__label">Audit turnaround</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center mb-4">Three things most configs get wrong</h2>
+      <p class="lead text-center text-narrow mb-12">They don't throw errors. They don't crash. They just silently cost you money and security.</p>
+      <div class="grid grid--3">
+        <div style="background: var(--warm-gray); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: var(--space-6);">
+          <h3 style="margin-bottom: var(--space-3);">Memory leaks in multi-agent setups</h3>
+          <p style="font-size: var(--text-sm); color: var(--graphite);">Agents sharing context without cleanup. Your deployment slows to a crawl after a few hundred messages. Our audit catches this in the first 5 minutes.</p>
+        </div>
+        <div style="background: var(--warm-gray); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: var(--space-6);">
+          <h3 style="margin-bottom: var(--space-3);">Token waste from unoptimized context</h3>
+          <p style="font-size: var(--text-sm); color: var(--graphite);">Default context windows load everything. You are paying 3x what you should. We have saved clients 40-60% on API costs with config changes alone.</p>
+        </div>
+        <div style="background: var(--warm-gray); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: var(--space-6);">
+          <h3 style="margin-bottom: var(--space-3);">Silent skill failures that corrupt data</h3>
+          <p style="font-size: var(--text-sm); color: var(--graphite);">A misconfigured skill returns empty results. Your agent keeps running. Your data is wrong. Our scanner detects 40+ patterns like this automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--sm section--tinted">
+    <div class="container">
+      <div class="shield-layout">
+        <div>
+          <div class="caption mb-4">Milo Shield — $29</div>
+          <h2 class="mb-4">Automated security hardening</h2>
+          <p class="lead mb-6">Install Shield, run a scan, get a clear A-F score with exactly what to fix — and auto-generated fixes for most of it.</p>
+          <ul class="feature-list mb-8">
+            <li>Scans your entire config in under 60 seconds</li>
+            <li>Detects 40+ vulnerability patterns</li>
+            <li>Auto-generates fixes you review before applying</li>
+            <li>Scheduled monitoring via cron</li>
+            <li>CVE database references</li>
+            <li>Free updates as new threats emerge</li>
+          </ul>
+          <a href="https://buy.stripe.com/6oUdR870h1YraRQ1pYfIs00" class="btn btn--primary btn--lg">Buy Milo Shield — $29</a>
+        </div>
+        <div>
+          <div class="terminal">
+            <div class="terminal__dots">
+              <span class="terminal__dot terminal__dot--red"></span>
+              <span class="terminal__dot terminal__dot--yellow"></span>
+              <span class="terminal__dot terminal__dot--green"></span>
+            </div>
+            <div><span class="terminal__prompt">$</span> milo-shield scan</div>
+            <div class="terminal__dim">Scanning config.json...</div>
+            <br>
+            <div class="terminal__success">&#10003; Scan complete (1.2s)</div>
+            <br>
+            <div class="terminal__warn">&#9888; Found 7 issues (3 high, 4 medium)</div>
+            <br>
+            <div>HIGH: Memory leak in agent context</div>
+            <div class="terminal__indent terminal__dim">&#8594; Missing context cleanup in multi-agent flow</div>
+            <div class="terminal__indent terminal__dim">&#8594; Auto-fix available</div>
+            <br>
+            <div><span class="terminal__prompt">$</span> milo-shield fix --auto</div>
+            <div class="terminal__success">&#10003; Applied 7 fixes</div>
+            <div class="terminal__success">&#10003; New score: A (was D)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tiers" class="section">
+    <div class="container">
+      <h2 class="text-center mb-4">Security services — pick your level</h2>
+      <p class="lead text-center text-narrow mb-12">All paths lead to a secure deployment. We set it up, you walk away.</p>
+      <div class="tier-grid--4 tier-grid">
+        <div class="tier-card">
+          <div class="card__badge mb-4">Free</div>
+          <h3 class="mb-3">Security Scanner</h3>
+          <p style="font-size: var(--text-sm); color: var(--graphite); margin-bottom: var(--space-6);">Paste your config, get an A-F grade with specific issues. 100% client-side.</p>
+          <div class="tier-card__price">$0</div>
+          <div class="tier-card__freq">Always free</div>
+          <ul class="feature-list"><li>20+ vulnerability checks</li><li>A-F security grade</li><li>Specific fix recommendations</li><li>Nothing stored or sent</li></ul>
+          <a href="/scanner" class="btn btn--secondary btn--full">Open Scanner</a>
+        </div>
+        <div class="tier-card">
+          <div class="card__badge mb-4">Self-Service</div>
+          <h3 class="mb-3">Milo Shield</h3>
+          <p style="font-size: var(--text-sm); color: var(--graphite); margin-bottom: var(--space-6);">Automated scanning and fixing tool. Run locally, get auto-generated fixes.</p>
+          <div class="tier-card__price">$29</div>
+          <div class="tier-card__freq">One-time</div>
+          <ul class="feature-list"><li>40+ vulnerability patterns</li><li>Auto-generated fixes</li><li>Cron monitoring</li><li>CVE database</li><li>Free updates</li></ul>
+          <a href="https://buy.stripe.com/6oUdR870h1YraRQ1pYfIs00" class="btn btn--secondary btn--full">Buy Shield — $29</a>
+        </div>
+        <div class="tier-card tier-card--featured">
+          <div class="card__badge card__badge--featured mb-4">Most Popular</div>
+          <h3 class="mb-3">Expert Audit</h3>
+          <p style="font-size: var(--text-sm); color: var(--graphite); margin-bottom: var(--space-6);">We review your entire setup and deliver a detailed report with specific fixes.</p>
+          <div class="tier-card__price">$199</div>
+          <div class="tier-card__freq">One-time — 48hr delivery</div>
+          <ul class="feature-list"><li>Full config review</li><li>8-point security assessment</li><li>Token usage audit</li><li>10-15 page report</li><li>Prioritized fix list</li><li>Optional walkthrough call</li></ul>
+          <a href="https://buy.stripe.com/00w3cu84l8mP5xwc4CfIs04" class="btn btn--primary btn--full">Book Audit — $199</a>
+        </div>
+        <div class="tier-card">
+          <div class="card__badge mb-4">Done For You</div>
+          <h3 class="mb-3">Secure Build</h3>
+          <p style="font-size: var(--text-sm); color: var(--graphite); margin-bottom: var(--space-6);">We build your production deployment from scratch. Secure, optimized, monitored.</p>
+          <div class="tier-card__price">$399</div>
+          <div class="tier-card__freq">One-time — we set up, you walk away</div>
+          <ul class="feature-list"><li>Fresh server install</li><li>Security hardening</li><li>Memory architecture</li><li>Channel integration</li><li>Gateway watchdog</li><li>Daily backups</li><li>30 days support</li></ul>
+          <a href="https://buy.stripe.com/5kQcN484l32vgcac4CfIs05" class="btn btn--secondary btn--full">Get Secure Build — $399</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--sm section--tinted">
+    <div class="container">
+      <h2 class="text-center mb-8">Security guides</h2>
+      <div class="grid grid--3">
+        <a href="/blog/top-openclaw-problems-how-to-fix-them" style="background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: var(--space-6); text-decoration: none; display: block;">
+          <span style="display: inline-block; font-size: var(--text-xs); font-weight: 500; color: var(--graphite); background: var(--warm-gray); padding: 2px 8px; border-radius: var(--radius-sm); margin-bottom: var(--space-3);">Troubleshooting</span>
+          <h4 style="font-size: var(--text-base); color: var(--slate); margin-bottom: var(--space-3);">The 20 Biggest OpenClaw Problems in 2026</h4>
+          <p style="font-size: var(--text-sm); color: var(--graphite);">We analyzed 3,400+ GitHub issues to find what actually breaks in production.</p>
+        </a>
+        <a href="/blog/openclaw-memory-management" style="background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: var(--space-6); text-decoration: none; display: block;">
+          <span style="display: inline-block; font-size: var(--text-xs); font-weight: 500; color: var(--graphite); background: var(--warm-gray); padding: 2px 8px; border-radius: var(--radius-sm); margin-bottom: var(--space-3);">Memory</span>
+          <h4 style="font-size: var(--text-base); color: var(--slate); margin-bottom: var(--space-3);">OpenClaw Memory Is Broken By Default</h4>
+          <p style="font-size: var(--text-sm); color: var(--graphite);">Your agent forgets everything between sessions because memory is misconfigured out of the box.</p>
+        </a>
+        <a href="/blog/openclaw-silent-failures" style="background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: var(--space-6); text-decoration: none; display: block;">
+          <span style="display: inline-block; font-size: var(--text-xs); font-weight: 500; color: var(--graphite); background: var(--warm-gray); padding: 2px 8px; border-radius: var(--radius-sm); margin-bottom: var(--space-3);">Debugging</span>
+          <h4 style="font-size: var(--text-base); color: var(--slate); margin-bottom: var(--space-3);">5 Silent Failures Killing Your OpenClaw Agent</h4>
+          <p style="font-size: var(--text-sm); color: var(--graphite);">Your agent looks fine. But five invisible failure modes are degrading it silently.</p>
+        </a>
+      </div>
+      <div class="text-center mt-6">
+        <a href="/blog" class="btn btn--ghost">View all guides</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-dark">
+    <div class="container">
+      <div class="cta-dark__inner">
+        <h2>Start with a free scan. Fix everything from there.</h2>
+        <p>Free security score in 60 seconds. No signup. Or jump straight to an expert audit.</p>
+        <div style="display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;">
+          <a href="/scanner" class="btn btn--primary btn--lg">Free Security Scan</a>
+          <a href="https://buy.stripe.com/00w3cu84l8mP5xwc4CfIs04" class="btn btn--outline btn--lg" style="border-color: rgba(255,255,255,0.3); color: var(--white);">Book Expert Audit — $199</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <img src="milo-icon.svg" alt="" class="footer__logo-icon">
+            <span class="footer__logo-text">milo</span>
+          </div>
+          <p class="footer__brand-text">AI agent agency for small business. We build it. You own it.</p>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul class="footer__links">
+            <li><a href="/agents">AI Agent Teams</a></li>
+            <li><a href="/security">Security Hardening</a></li>
+            <li><a href="/ainative">AI Native Setup</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer__links">
+            <li><a href="/blog">Guides</a></li>
+            <li><a href="/scanner">Free Security Scanner</a></li>
+            <li><a href="https://github.com/getmilodev">GitHub</a></li>
+            <li><a href="https://x.com/getmilo_dev">@getmilo_dev</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Milo</span>
+        <span>Privacy &middot; Terms</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
