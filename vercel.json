@@ -55,7 +55,8 @@
     { "source": "/blog/how-much-does-ai-agent-cost", "destination": "/content/blog-how-much-does-ai-agent-cost.html" },
     { "source": "/blog/ai-agent-team-cost-2026", "destination": "/content/blog-ai-agent-team-cost-2026.html" },
     { "source": "/blog/ai-agent-team-small-business", "destination": "/content/blog-ai-agent-team-small-business.html" },
-    { "source": "/blog/how-to-automate-business-with-ai", "destination": "/content/blog-how-to-automate-business-with-ai.html" }
+    { "source": "/blog/how-to-automate-business-with-ai", "destination": "/content/blog-how-to-automate-business-with-ai.html" },
+    { "source": "/blog/ai-for-executives-cost-2026", "destination": "/content/blog-ai-for-executives-cost-2026.html" }
   ],
   "headers": [
     {
