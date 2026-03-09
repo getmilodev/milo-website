@@ -8,267 +8,597 @@
   <meta property="og:title" content="AI Receptionist Alternatives Compared | Milo">
   <meta property="og:description" content="Side-by-side comparisons of Milo vs 11 AI receptionist services. See the real pricing, features, and what you actually own.">
   <link rel="canonical" href="https://getmilo.dev/compare">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/milo-design-system.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; line-height: 1.6; }
-    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
-    nav { padding: 16px 0; border-bottom: 1px solid #eee; }
-    nav .container { display: flex; justify-content: space-between; align-items: center; }
-    nav a { text-decoration: none; color: #1a1a1a; font-weight: 600; }
-    .breadcrumb { font-size: 0.9rem; color: #888; }
-    .breadcrumb a { color: #555; text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .hero { padding: 80px 0 40px; text-align: center; }
-    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
-    .hero .subtitle { font-size: 1.25rem; color: #555; max-width: 650px; margin: 0 auto 16px; }
-    .hero .meta { font-size: 0.9rem; color: #888; }
-    .summary { padding: 40px 0 60px; }
-    .summary-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 32px; text-align: center; }
-    .summary-box h2 { font-size: 1.5rem; font-weight: 700; color: #166534; margin-bottom: 8px; }
-    .summary-box p { font-size: 1.1rem; color: #444; }
-    .summary-box .price { font-size: 2.5rem; font-weight: 700; color: #166534; margin: 16px 0; }
-    .summary-box .vs { font-size: 1rem; color: #888; }
-    .competitors { padding: 0 0 60px; }
-    .competitors h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 32px; text-align: center; }
-    .comp-card { display: flex; align-items: flex-start; gap: 24px; padding: 32px; border: 1px solid #e5e5e5; border-radius: 12px; margin-bottom: 16px; text-decoration: none; color: #1a1a1a; transition: border-color 0.2s, box-shadow 0.2s; }
-    .comp-card:hover { border-color: #22c55e; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-    .comp-info { flex: 1; }
-    .comp-info h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 4px; }
-    .comp-info .tagline { font-size: 0.95rem; color: #555; margin-bottom: 8px; }
-    .comp-info .pricing { font-size: 0.85rem; color: #888; }
-    .comp-info .pricing strong { color: #e53e3e; }
-    .comp-savings { text-align: right; min-width: 140px; }
-    .comp-savings .save { font-size: 1.25rem; font-weight: 700; color: #166534; }
-    .comp-savings .period { font-size: 0.8rem; color: #888; }
-    .section { padding: 60px 0; border-top: 1px solid #eee; }
-    .section h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 24px; }
-    .section p, .section li { font-size: 1.05rem; color: #444; margin-bottom: 12px; }
-    .section ul { padding-left: 24px; }
-    .section a { color: #1a1a1a; }
-    .verticals { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-top: 16px; }
-    .verticals a { display: block; padding: 16px; background: #f9f9f9; border-radius: 8px; text-decoration: none; color: #1a1a1a; font-weight: 500; transition: background 0.2s; }
-    .verticals a:hover { background: #f0f0f0; }
-    .verticals a span { display: block; font-size: 0.85rem; color: #888; font-weight: 400; margin-top: 2px; }
-    .cta-btn { display: inline-block; background: #1a1a1a; color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: background 0.2s; }
-    .cta-btn:hover { background: #333; }
-    .bottom-cta { padding: 80px 0; text-align: center; background: #f9f9f9; }
-    .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
-    .bottom-cta p { font-size: 1.15rem; color: #555; margin-bottom: 32px; }
-    .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px; }
-    footer { padding: 40px 0; text-align: center; font-size: 0.9rem; color: #888; border-top: 1px solid #eee; }
-    footer a { color: #555; text-decoration: none; margin: 0 12px; }
-    @media (max-width: 640px) { .hero h1 { font-size: 1.75rem; } .comp-card { flex-direction: column; gap: 12px; } .comp-savings { text-align: left; } .verticals { grid-template-columns: 1fr; } }
+    /* Page-specific: compare hub */
+    .compare-hero {
+      padding: clamp(120px, 14vh, 170px) 0 var(--sp-6);
+    }
+    .compare-hero__title {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: 400;
+      color: var(--text-1);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      margin-bottom: var(--sp-3);
+    }
+    .compare-hero__subtitle {
+      font-size: var(--text-lg);
+      color: var(--text-2);
+      max-width: 640px;
+      line-height: 1.55;
+    }
+    .compare-hero__meta {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      margin-top: var(--sp-3);
+    }
+
+    /* Pricing callout */
+    .pricing-callout {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8) var(--sp-6);
+      margin-bottom: var(--sp-10);
+      text-align: center;
+    }
+    .pricing-callout__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--sp-2);
+    }
+    .pricing-callout__price {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 400;
+      color: var(--text-1);
+      line-height: 1.1;
+      margin-bottom: var(--sp-2);
+    }
+    .pricing-callout__desc {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      margin-bottom: var(--sp-1);
+    }
+    .pricing-callout__vs {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+    }
+
+    /* Competitor list */
+    .comp-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-12);
+    }
+    .comp-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: var(--sp-6);
+      padding: var(--sp-6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--text-1);
+      transition: border-color 0.2s var(--ease-out-quart), background 0.2s var(--ease-out-quart);
+    }
+    .comp-item:hover {
+      border-color: var(--gold);
+      background: color-mix(in oklch, var(--gold), transparent 95%);
+    }
+    .comp-item__name {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 400;
+      margin-bottom: var(--sp-1);
+    }
+    .comp-item__tagline {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      margin-bottom: var(--sp-2);
+      line-height: 1.5;
+    }
+    .comp-item__pricing {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+    }
+    .comp-item__pricing strong {
+      color: var(--text-1);
+    }
+    .comp-item__savings {
+      text-align: right;
+      white-space: nowrap;
+    }
+    .comp-item__save-amount {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      color: var(--gold-text);
+    }
+    .comp-item__save-period {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+    }
+
+    /* Why switch section */
+    .why-section {
+      padding: var(--sp-12) 0;
+      border-top: 1px solid var(--border);
+    }
+    .why-section__title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      color: var(--text-1);
+      margin-bottom: var(--sp-4);
+    }
+    .why-section p {
+      font-size: var(--text-base);
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: var(--sp-4);
+    }
+    .why-section ul {
+      padding-left: var(--sp-5);
+      margin-bottom: var(--sp-4);
+    }
+    .why-section li {
+      font-size: var(--text-base);
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: var(--sp-2);
+    }
+    .why-section li strong {
+      color: var(--text-1);
+    }
+    .why-section__links {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+    }
+    .why-section__links a {
+      color: var(--text-2);
+    }
+    .why-section__links a:hover {
+      color: var(--text-1);
+    }
+
+    /* Industry verticals */
+    .verticals-section {
+      padding: var(--sp-12) 0;
+      border-top: 1px solid var(--border);
+    }
+    .verticals-section__title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      color: var(--text-1);
+      margin-bottom: var(--sp-2);
+    }
+    .verticals-section p {
+      font-size: var(--text-base);
+      color: var(--text-2);
+      margin-bottom: var(--sp-6);
+    }
+    .verticals-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+    .vertical-link {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      padding: var(--sp-4) var(--sp-5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--text-1);
+      transition: border-color 0.2s var(--ease-out-quart), background 0.2s var(--ease-out-quart);
+    }
+    .vertical-link:hover {
+      border-color: var(--gold);
+      background: color-mix(in oklch, var(--gold), transparent 95%);
+    }
+    .vertical-link svg {
+      width: 20px;
+      height: 20px;
+      color: var(--gold-text);
+      flex-shrink: 0;
+    }
+    .vertical-link__text {
+      flex: 1;
+    }
+    .vertical-link__name {
+      font-weight: 500;
+      font-size: var(--text-base);
+    }
+    .vertical-link__desc {
+      font-size: var(--text-sm);
+      color: var(--text-3);
+    }
+
+    @media (max-width: 640px) {
+      .comp-item {
+        grid-template-columns: 1fr;
+        gap: var(--sp-3);
+      }
+      .comp-item__savings {
+        text-align: left;
+      }
+    }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="container">
-    <a href="/">milo</a>
-    <span class="breadcrumb"><a href="/">Home</a> › AI Receptionist Alternatives</span>
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link">Services</a>
+      <a href="/security" class="nav__link">Security</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<div class="hero">
-  <div class="container">
-    <h1>Milo vs Every AI Receptionist Service</h1>
-    <p class="subtitle">Side-by-side comparisons with real pricing, real features, and real savings. See why businesses switch to Milo's one-time model.</p>
-    <p class="meta">11 competitors compared · Updated March 2026</p>
-  </div>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/agents">Services</a>
+  <a href="/security">Security</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
 </div>
 
-<div class="summary">
-  <div class="container">
-    <div class="summary-box">
-      <h2>Milo: One-Time Setup, You Own Everything</h2>
-      <div class="price">$399</div>
-      <p>One-time setup fee. ~$40/mo ongoing infrastructure costs paid directly to API providers.</p>
-      <p class="vs">vs $29–$1,500/mo for every competitor below</p>
+<main id="main">
+
+  <!-- HERO -->
+  <section class="compare-hero reveal">
+    <div class="wrap">
+      <div class="section-marker">
+        <span class="spec-label">COMP:000</span>
+        <span class="spec-coord">// Comparison Hub</span>
+      </div>
+      <h1 class="compare-hero__title">Milo vs Every AI Receptionist Service</h1>
+      <p class="compare-hero__subtitle">Side-by-side comparisons with real pricing, real features, and real savings. See why businesses switch to Milo's one-time model.</p>
+      <p class="compare-hero__meta">11 competitors compared · Updated March 2026</p>
     </div>
-  </div>
-</div>
+  </section>
 
-<div class="competitors">
-  <div class="container">
-    <h2>Choose a Competitor to Compare</h2>
-
-    <a href="/compare/smith-ai" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs Smith.ai</h3>
-        <div class="tagline">The most expensive option in the market. Great service, painful pricing.</div>
-        <div class="pricing">Smith.ai charges <strong>$600–$1,500+/mo</strong> with $4–$8 per-call fees</div>
+  <!-- PRICING CALLOUT -->
+  <section class="reveal" data-delay="1">
+    <div class="wrap">
+      <div class="pricing-callout">
+        <p class="pricing-callout__label">Milo: one-time setup, you own everything</p>
+        <p class="pricing-callout__price">$399</p>
+        <p class="pricing-callout__desc">One-time setup fee. ~$40/mo ongoing infrastructure costs paid directly to API providers.</p>
+        <p class="pricing-callout__vs">vs $29–$1,500/mo for every competitor below</p>
       </div>
-      <div class="comp-savings">
-        <div class="save">Save $6,321</div>
-        <div class="period">in year one</div>
-      </div>
-    </a>
-
-    <a href="/compare/abby-connect" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs Abby Connect</h3>
-        <div class="tagline">Per-minute billing model with 50-minute caps on the cheapest plan.</div>
-        <div class="pricing">Abby Connect charges <strong>$99–$1,380/mo</strong> with $1.38–$3.29/min overages</div>
-      </div>
-      <div class="comp-savings">
-        <div class="save">Save $1,101+</div>
-        <div class="period">in year one</div>
-      </div>
-    </a>
-
-    <a href="/compare/goodcall" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs Goodcall</h3>
-        <div class="tagline">Google-backed with "unlimited minutes" — but customer caps and per-agent pricing.</div>
-        <div class="pricing">Goodcall charges <strong>$79–$249/mo per agent</strong> + $0.50 per customer over cap</div>
-      </div>
-      <div class="comp-savings">
-        <div class="save">Save $561</div>
-        <div class="period">in year one</div>
-      </div>
-    </a>
-
-    <a href="/compare/ruby-receptionists" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs Ruby Receptionists</h3>
-        <div class="tagline">Premium virtual receptionist service with human agents and high price tags.</div>
-        <div class="pricing">Ruby charges <strong>$235–$1,640/mo</strong> for human receptionists</div>
-      </div>
-      <div class="comp-savings">
-        <div class="save">Save $1,941+</div>
-        <div class="period">in year one</div>
-      </div>
-    </a>
-
-    <a href="/compare/answerconnect" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs AnswerConnect</h3>
-        <div class="tagline">24/7 live answering with per-minute billing that scales with your call volume.</div>
-        <div class="pricing">AnswerConnect charges <strong>$325–$475+/mo</strong> with per-minute rates</div>
-      </div>
-      <div class="comp-savings">
-        <div class="save">Save $3,021+</div>
-        <div class="period">in year one</div>
-      </div>
-    </a>
-
-    <a href="/compare/my-ai-front-desk" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs My AI Front Desk</h3>
-        <div class="tagline">AI receptionist SaaS with monthly subscription model.</div>
-        <div class="pricing">My AI Front Desk charges <strong>$65–$200/mo</strong> subscription</div>
-      </div>
-      <div class="comp-savings">
-        <div class="save">Save $381+</div>
-        <div class="period">in year one</div>
-      </div>
-    </a>
-
-    <a href="/compare/trillet" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs Trillet</h3>
-        <div class="tagline">150-minute cap on the $49/mo plan. Need more calls? Pay $98–$245/mo. Overages at $0.20/min.</div>
-        <div class="pricing">Trillet charges <strong>$49–$245/mo</strong> with 150–750 minute caps + per-minute overages</div>
-      </div>
-      <div class="comp-savings">
-        <div class="save">Save $1,689</div>
-        <div class="period">over 3 years vs 300-min plan</div>
-      </div>
-    </a>
-
-    <a href="/compare/ring-eden" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs Ring Eden</h3>
-        <div class="tagline">Their Plus plan costs $400/year — the same as Milo's one-time price. But they charge it every year.</div>
-        <div class="pricing">Ring Eden charges <strong>$33–$300+/mo</strong> with annual billing lock-in</div>
-      </div>
-      <div class="comp-savings">
-        <div class="save">Save $1,149+</div>
-        <div class="period">over 3 years vs Pro plan</div>
-      </div>
-    </a>
-
-    <a href="/compare/dialzara" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs Dialzara</h3>
-        <div class="tagline">Starts at $29/mo — but minute caps mean most businesses hit overages or upgrade fast.</div>
-        <div class="pricing">Dialzara charges <strong>$29–$199/mo</strong> with per-minute overages on lower tiers</div>
-      </div>
-      <div class="comp-savings">
-        <div class="save">Own it</div>
-        <div class="period">no minute caps, no overages</div>
-      </div>
-    </a>
-
-    <a href="/compare/rosie" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs Rosie</h3>
-        <div class="tagline">$49/mo sounds reasonable — until you realize that's $588/year, every year, forever.</div>
-        <div class="pricing">Rosie charges <strong>$49/mo</strong> with no path to ownership</div>
-      </div>
-      <div class="comp-savings">
-        <div class="save">Own it</div>
-        <div class="period">stop renting your AI</div>
-      </div>
-    </a>
-
-    <a href="/compare/callbird" class="comp-card">
-      <div class="comp-info">
-        <h3>Milo vs CallBird AI</h3>
-        <div class="tagline">Heavy on SEO marketing, light on pricing transparency. Monthly subscription model.</div>
-        <div class="pricing">CallBird charges <strong>monthly subscription</strong> — cancel and lose everything</div>
-      </div>
-      <div class="comp-savings">
-        <div class="save">Own it</div>
-        <div class="period">your AI, your infrastructure</div>
-      </div>
-    </a>
-  </div>
-</div>
-
-<div class="section">
-  <div class="container">
-    <h2>Why Businesses Switch to Milo</h2>
-    <p>Every AI receptionist above charges monthly — $29 to $1,500+ — for technology that costs pennies per minute to run. Milo is the only option where you pay once and own the infrastructure.</p>
-    <ul>
-      <li><strong>$399 one-time</strong> — not $399/month. One payment, done.</li>
-      <li><strong>~$40/mo infrastructure</strong> — paid directly to Twilio and AI providers, not through us</li>
-      <li><strong>Cancel and keep everything</strong> — your agents keep running, your data stays yours</li>
-      <li><strong>No per-call, per-minute, or per-customer charges</strong> — your costs don't scale with success</li>
-    </ul>
-    <p style="margin-top: 16px;">Read more: <a href="/blog/ai-receptionist-pricing-comparison">Complete AI Receptionist Pricing Comparison (2026)</a> · <a href="/blog/ai-receptionist-no-monthly-fee">AI Receptionist With No Monthly Fee</a> · <a href="/why-so-cheap">Why Is Milo So Cheap?</a></p>
-  </div>
-</div>
-
-<div class="section">
-  <div class="container">
-    <h2>Built for Your Industry</h2>
-    <p>Milo builds custom AI agents for specific business types. No generic templates.</p>
-    <div class="verticals">
-      <a href="/dental">🏥 Dental Practices <span>Never lose a patient to voicemail again</span></a>
-      <a href="/law-firms">⚖️ Law Firms <span>Capture every intake call, even after hours</span></a>
-      <a href="/hvac">🔧 HVAC & Plumbing <span>Win emergency jobs by answering first</span></a>
-      <a href="/veterinary">🐾 Veterinary Clinics <span>Reassure pet owners 24/7</span></a>
-      <a href="/accountants">🏦 CPA & Accounting <span>Handle tax season call volume</span></a>
     </div>
-  </div>
-</div>
+  </section>
 
-<div class="bottom-cta">
-  <div class="container">
-    <span class="promo">Use code EARLYMILO25 for 25% off</span>
-    <h2>Done comparing? Ready to own your AI receptionist?</h2>
-    <p>One-time setup. You own everything. No monthly fees to us. Ever.</p>
-    <a href="/buy/starter" class="cta-btn">Get Started — $399 One-Time</a>
-  </div>
-</div>
+  <!-- COMPETITOR LIST -->
+  <section class="reveal" data-delay="2">
+    <div class="wrap">
+      <div class="section-marker">
+        <span class="spec-label">COMP:001</span>
+        <span class="spec-coord">// Choose a Competitor</span>
+      </div>
 
-<footer>
-  <div class="container">
-    <a href="/">Milo</a> · <a href="/blog">Guides</a> · <a href="/agents">AI Agent Teams</a> · <a href="/receptionist">AI Receptionist</a>
-    <p style="margin-top: 12px;">© 2026 Milo. AI agents for small business.</p>
+      <div class="comp-list">
+        <a href="/compare/smith-ai" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs Smith.ai</div>
+            <div class="comp-item__tagline">The most expensive option in the market. Great service, painful pricing.</div>
+            <div class="comp-item__pricing">Smith.ai charges <strong>$600–$1,500+/mo</strong> with $4–$8 per-call fees</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Save $6,321</div>
+            <div class="comp-item__save-period">in year one</div>
+          </div>
+        </a>
+
+        <a href="/compare/abby-connect" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs Abby Connect</div>
+            <div class="comp-item__tagline">Per-minute billing model with 50-minute caps on the cheapest plan.</div>
+            <div class="comp-item__pricing">Abby Connect charges <strong>$99–$1,380/mo</strong> with $1.38–$3.29/min overages</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Save $1,101+</div>
+            <div class="comp-item__save-period">in year one</div>
+          </div>
+        </a>
+
+        <a href="/compare/goodcall" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs Goodcall</div>
+            <div class="comp-item__tagline">Google-backed with "unlimited minutes" — but customer caps and per-agent pricing.</div>
+            <div class="comp-item__pricing">Goodcall charges <strong>$79–$249/mo per agent</strong> + $0.50 per customer over cap</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Save $561</div>
+            <div class="comp-item__save-period">in year one</div>
+          </div>
+        </a>
+
+        <a href="/compare/ruby-receptionists" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs Ruby Receptionists</div>
+            <div class="comp-item__tagline">Premium virtual receptionist service with human agents and high price tags.</div>
+            <div class="comp-item__pricing">Ruby charges <strong>$235–$1,640/mo</strong> for human receptionists</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Save $1,941+</div>
+            <div class="comp-item__save-period">in year one</div>
+          </div>
+        </a>
+
+        <a href="/compare/answerconnect" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs AnswerConnect</div>
+            <div class="comp-item__tagline">24/7 live answering with per-minute billing that scales with your call volume.</div>
+            <div class="comp-item__pricing">AnswerConnect charges <strong>$325–$475+/mo</strong> with per-minute rates</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Save $3,021+</div>
+            <div class="comp-item__save-period">in year one</div>
+          </div>
+        </a>
+
+        <a href="/compare/my-ai-front-desk" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs My AI Front Desk</div>
+            <div class="comp-item__tagline">AI receptionist SaaS with monthly subscription model.</div>
+            <div class="comp-item__pricing">My AI Front Desk charges <strong>$65–$200/mo</strong> subscription</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Save $381+</div>
+            <div class="comp-item__save-period">in year one</div>
+          </div>
+        </a>
+
+        <a href="/compare/trillet" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs Trillet</div>
+            <div class="comp-item__tagline">150-minute cap on the $49/mo plan. Need more calls? Pay $98–$245/mo. Overages at $0.20/min.</div>
+            <div class="comp-item__pricing">Trillet charges <strong>$49–$245/mo</strong> with 150–750 minute caps + per-minute overages</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Save $1,689</div>
+            <div class="comp-item__save-period">over 3 years vs 300-min plan</div>
+          </div>
+        </a>
+
+        <a href="/compare/ring-eden" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs Ring Eden</div>
+            <div class="comp-item__tagline">Their Plus plan costs $400/year — the same as Milo's one-time price. But they charge it every year.</div>
+            <div class="comp-item__pricing">Ring Eden charges <strong>$33–$300+/mo</strong> with annual billing lock-in</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Save $1,149+</div>
+            <div class="comp-item__save-period">over 3 years vs Pro plan</div>
+          </div>
+        </a>
+
+        <a href="/compare/dialzara" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs Dialzara</div>
+            <div class="comp-item__tagline">Starts at $29/mo — but minute caps mean most businesses hit overages or upgrade fast.</div>
+            <div class="comp-item__pricing">Dialzara charges <strong>$29–$199/mo</strong> with per-minute overages on lower tiers</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Own it</div>
+            <div class="comp-item__save-period">no minute caps, no overages</div>
+          </div>
+        </a>
+
+        <a href="/compare/rosie" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs Rosie</div>
+            <div class="comp-item__tagline">$49/mo sounds reasonable — until you realize that's $588/year, every year, forever.</div>
+            <div class="comp-item__pricing">Rosie charges <strong>$49/mo</strong> with no path to ownership</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Own it</div>
+            <div class="comp-item__save-period">stop renting your AI</div>
+          </div>
+        </a>
+
+        <a href="/compare/callbird" class="comp-item">
+          <div>
+            <div class="comp-item__name">Milo vs CallBird AI</div>
+            <div class="comp-item__tagline">Heavy on SEO marketing, light on pricing transparency. Monthly subscription model.</div>
+            <div class="comp-item__pricing">CallBird charges <strong>monthly subscription</strong> — cancel and lose everything</div>
+          </div>
+          <div class="comp-item__savings">
+            <div class="comp-item__save-amount">Own it</div>
+            <div class="comp-item__save-period">your AI, your infrastructure</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY SWITCH -->
+  <section class="why-section reveal">
+    <div class="wrap">
+      <div class="section-marker">
+        <span class="spec-label">COMP:002</span>
+        <span class="spec-coord">// Why Switch</span>
+      </div>
+      <h2 class="why-section__title">Why Businesses Switch to Milo</h2>
+      <p>Every AI receptionist above charges monthly — $29 to $1,500+ — for technology that costs pennies per minute to run. Milo is the only option where you pay once and own the infrastructure.</p>
+      <ul>
+        <li><strong>$399 one-time</strong> — not $399/month. One payment, done.</li>
+        <li><strong>~$40/mo infrastructure</strong> — paid directly to Twilio and AI providers, not through us</li>
+        <li><strong>Cancel and keep everything</strong> — your agents keep running, your data stays yours</li>
+        <li><strong>No per-call, per-minute, or per-customer charges</strong> — your costs don't scale with success</li>
+      </ul>
+      <p class="why-section__links">Read more: <a href="/blog/ai-receptionist-pricing-comparison">Complete AI Receptionist Pricing Comparison (2026)</a> · <a href="/blog/ai-receptionist-no-monthly-fee">AI Receptionist With No Monthly Fee</a> · <a href="/why-so-cheap">Why Is Milo So Cheap?</a></p>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section class="verticals-section reveal">
+    <div class="wrap">
+      <div class="section-marker">
+        <span class="spec-label">COMP:003</span>
+        <span class="spec-coord">// Industry Solutions</span>
+      </div>
+      <h2 class="verticals-section__title">Built for Your Industry</h2>
+      <p>Milo builds custom AI agents for specific business types. No generic templates.</p>
+
+      <div class="verticals-list">
+        <a href="/dental" class="vertical-link">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2c-2 0-3.5 1-4 2.5S5 7 5 9c0 2.5.5 4 1 5.5S7.5 18 8 18c.5 0 1-.5 1.2-1.5.3-1 .5-2 .8-2s.5 1 .8 2c.2 1 .7 1.5 1.2 1.5s1.5-2 2-3.5S15 11.5 15 9c0-2-.5-3.5-1-4.5S12 2 10 2z"/></svg>
+          <div class="vertical-link__text">
+            <div class="vertical-link__name">Dental Practices</div>
+            <div class="vertical-link__desc">Never lose a patient to voicemail again</div>
+          </div>
+        </a>
+        <a href="/law-firms" class="vertical-link">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2L2 6h16L10 2z"/><path d="M4 6v8M8 6v8M12 6v8M16 6v8"/><path d="M2 14h16M3 17h14"/></svg>
+          <div class="vertical-link__text">
+            <div class="vertical-link__name">Law Firms</div>
+            <div class="vertical-link__desc">Capture every intake call, even after hours</div>
+          </div>
+        </a>
+        <a href="/hvac" class="vertical-link">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a4.5 4.5 0 00-9 0"/><path d="M10 1v3M6 5l1.5 2M14 5l-1.5 2"/><path d="M4 10h12M5 13h10M4 16h12"/></svg>
+          <div class="vertical-link__text">
+            <div class="vertical-link__name">HVAC &amp; Plumbing</div>
+            <div class="vertical-link__desc">Win emergency jobs by answering first</div>
+          </div>
+        </a>
+        <a href="/veterinary" class="vertical-link">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="7" cy="4" rx="1.5" ry="2"/><ellipse cx="13" cy="4" rx="1.5" ry="2"/><ellipse cx="4" cy="9" rx="1.5" ry="2"/><ellipse cx="16" cy="9" rx="1.5" ry="2"/><path d="M7.5 14c0-2.5 2-4 2.5-4s2.5 1.5 2.5 4a2.5 2.5 0 01-5 0z"/></svg>
+          <div class="vertical-link__text">
+            <div class="vertical-link__name">Veterinary Clinics</div>
+            <div class="vertical-link__desc">Reassure pet owners 24/7</div>
+          </div>
+        </a>
+        <a href="/accountants" class="vertical-link">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="2" width="14" height="16" rx="2"/><path d="M7 6h6M7 9h6M7 12h3"/></svg>
+          <div class="vertical-link__text">
+            <div class="vertical-link__name">CPA &amp; Accounting</div>
+            <div class="vertical-link__desc">Handle tax season call volume</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <div class="wrap">
+      <div class="section-marker section-marker--cta">
+        <span class="spec-label spec-label--on-dark">COMP:004</span>
+      </div>
+      <div class="cta-section__inner">
+        <h2 class="cta-section__title">Done comparing?</h2>
+        <p class="cta-section__text">One-time setup. You own everything. No monthly fees to us. Ever.</p>
+        <a href="/build" class="btn btn--inv">Build your agent team</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/security">Security</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
   </div>
 </footer>
+
+<script>
+  // Scroll reveal
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { observer.observe(el); });
+
+  // Mobile menu
+  var toggle = document.querySelector('.nav__toggle');
+  var menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', function() {
+    var open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !open);
+    menu.classList.toggle('open');
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  menu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+  // Focus trap + Escape for mobile menu
+  document.addEventListener('keydown', function(e) {
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+      toggle.focus();
+      return;
+    }
+    if (e.key === 'Tab') {
+      var focusable = [toggle].concat(Array.prototype.slice.call(menu.querySelectorAll('a')));
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+</script>
 
 </body>
 </html>

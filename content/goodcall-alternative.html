@@ -13,7 +13,7 @@
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; line-height: 1.6; }
     .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
     .hero { padding: 80px 0 60px; text-align: center; }
-    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: var(--sp-4); letter-spacing: -0.5px; }
     .hero h1 span { color: #e53e3e; }
     .hero .subtitle { font-size: 1.25rem; color: #555; max-width: 600px; margin: 0 auto 32px; }
     .cta-btn { display: inline-block; background: #1a1a1a; color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: background 0.2s; }
@@ -22,15 +22,15 @@
     .comparison h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 32px; text-align: center; }
     table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
     th, td { padding: 16px 20px; text-align: left; border-bottom: 1px solid #eee; }
-    th { background: #f9f9f9; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; }
+    th { background: #f9f9f9; font-weight: 600; font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.5px; color: #666; }
     td:first-child { font-weight: 500; }
     .check { color: #22c55e; font-weight: 700; }
     .x { color: #e53e3e; font-weight: 700; }
     .warn { color: #d97706; font-weight: 600; }
     .section { padding: 60px 0; border-top: 1px solid #eee; }
     .section h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 24px; }
-    .section h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; margin-top: 32px; }
-    .section p, .section li { font-size: 1.05rem; color: #444; margin-bottom: 12px; }
+    .section h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: var(--sp-3); margin-top: 32px; }
+    .section p, .section li { font-size: var(--text-base); color: #444; margin-bottom: var(--sp-3); }
     .section ul { padding-left: 24px; }
     .section a { color: #1a1a1a; }
     .section a:hover { color: #555; }
@@ -43,25 +43,25 @@
     .faq { padding: 60px 0; border-top: 1px solid #eee; }
     .faq h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 32px; }
     .faq-item { margin-bottom: 24px; }
-    .faq-item h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .faq-item h3 { font-size: var(--text-lg); font-weight: 600; margin-bottom: 8px; }
     .faq-item p { color: #555; }
     .bottom-cta { padding: 80px 0; text-align: center; background: #f9f9f9; }
-    .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
+    .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: var(--sp-4); }
     .bottom-cta p { font-size: 1.15rem; color: #555; margin-bottom: 32px; }
-    .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px; }
-    .compare-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin-top: 16px; }
+    .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 6px; font-size: var(--text-sm); font-weight: 600; margin-bottom: 24px; }
+    .compare-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--sp-3); margin-top: var(--sp-4); }
     .compare-grid a { display: block; padding: 12px 16px; background: #f9f9f9; border-radius: 8px; text-decoration: none; color: #1a1a1a; font-weight: 500; transition: background 0.2s; }
     .compare-grid a:hover { background: #f0f0f0; }
     .compare-grid a span { display: block; font-size: 0.85rem; color: #888; font-weight: 400; margin-top: 2px; }
     nav { padding: 16px 0; border-bottom: 1px solid #eee; }
     nav .container { display: flex; justify-content: space-between; align-items: center; }
     nav a { text-decoration: none; color: #1a1a1a; font-weight: 600; }
-    .breadcrumb { font-size: 0.9rem; color: #888; }
+    .breadcrumb { font-size: var(--text-sm); color: #888; }
     .breadcrumb a { color: #555; text-decoration: none; }
     .breadcrumb a:hover { text-decoration: underline; }
-    footer { padding: 40px 0; text-align: center; font-size: 0.9rem; color: #888; border-top: 1px solid #eee; }
+    footer { padding: 40px 0; text-align: center; font-size: var(--text-sm); color: #888; border-top: 1px solid #eee; }
     footer a { color: #555; text-decoration: none; margin: 0 12px; }
-    @media (max-width: 640px) { .hero h1 { font-size: 1.75rem; } table { font-size: 0.9rem; } th, td { padding: 12px; } .compare-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .hero h1 { font-size: 1.75rem; } table { font-size: var(--text-sm); } th, td { padding: var(--sp-3); } .compare-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -135,7 +135,7 @@
       <h3>The 12-Month Comparison</h3>
       <p><strong>Goodcall (single agent, realistic usage):</strong> ~$120/mo × 12 = <span class="number">$1,440</span></p>
       <p><strong>Milo:</strong> $399 setup + ($40/mo × 12) = <span class="number">$879</span></p>
-      <p style="margin-top: 16px; font-size: 1.1rem;"><strong>You save $561 in year one. $1,440/year every year after.</strong></p>
+      <p style="margin-top: var(--sp-4); font-size: var(--text-lg);"><strong>You save $561 in year one. $1,440/year every year after.</strong></p>
     </div>
 
     <h3>7 Days of Data and Then It's Gone</h3>
@@ -155,7 +155,7 @@
       <li><strong>Self-serve setup:</strong> Their skill and flow builder lets non-technical users configure call handling</li>
       <li><strong>14-day free trial:</strong> Full-featured trial to test before committing</li>
     </ul>
-    <p style="margin-top: 16px;">If you're testing whether AI phone answering works for your business, Goodcall's trial is a solid starting point. But once you're running your business on it, the per-agent fees and customer caps become the dominant cost.</p>
+    <p style="margin-top: var(--sp-4);">If you're testing whether AI phone answering works for your business, Goodcall's trial is a solid starting point. But once you're running your business on it, the per-agent fees and customer caps become the dominant cost.</p>
   </div>
 </div>
 
@@ -169,7 +169,7 @@
       <li><strong>You care about data</strong> — 7 days of retention isn't enough for any serious business. Your data should be yours, forever</li>
       <li><strong>You want real integrations</strong> — API access from day one, not locked behind the $129/mo tier</li>
     </ul>
-    <p style="margin-top: 16px;">Milo is especially popular with <a href="/dental">dental practices</a>, <a href="/law-firms">law firms</a>, <a href="/hvac">HVAC companies</a>, and <a href="/veterinary">veterinary clinics</a> — businesses where every missed call is a missed customer.</p>
+    <p style="margin-top: var(--sp-4);">Milo is especially popular with <a href="/dental">dental practices</a>, <a href="/law-firms">law firms</a>, <a href="/hvac">HVAC companies</a>, and <a href="/veterinary">veterinary clinics</a> — businesses where every missed call is a missed customer.</p>
   </div>
 </div>
 
@@ -229,7 +229,7 @@
       <a href="/compare/trillet">Milo vs Trillet <span>No recurring platform fees</span></a>
       <a href="/compare/ring-eden">Milo vs Ring Eden <span>Own your AI receptionist outright</span></a>
     </div>
-    <p style="margin-top: 24px;"><strong>📖 More reading:</strong></p>
+    <p style="margin-top: var(--sp-6);"><strong>📖 More reading:</strong></p>
     <ul>
       <li><a href="/blog/ai-receptionist-pricing-comparison">Complete AI Receptionist Pricing Comparison (2026)</a></li>
       <li><a href="/blog/ai-receptionist-no-monthly-fee">AI Receptionist With No Monthly Fee</a></li>
@@ -250,7 +250,7 @@
 <footer>
   <div class="container">
     <a href="/">Milo</a> · <a href="/blog">Guides</a> · <a href="/agents">AI Agent Teams</a> · <a href="/receptionist">AI Receptionist</a>
-    <p style="margin-top: 12px;">© 2026 Milo. AI agents for small business.</p>
+    <p style="margin-top: var(--sp-3);">© 2026 Milo. AI agents for small business.</p>
   </div>
 </footer>
 

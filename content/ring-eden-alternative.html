@@ -11,27 +11,27 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; line-height: 1.6; }
-    .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 var(--sp-6); }
     .hero { padding: 80px 0 60px; text-align: center; }
-    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
-    .hero h1 span { color: #e53e3e; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: var(--sp-4); letter-spacing: -0.5px; }
+    .hero h1 span { color: var(--error); }
     .hero .subtitle { font-size: 1.25rem; color: #555; max-width: 600px; margin: 0 auto 32px; }
     .cta-btn { display: inline-block; background: #1a1a1a; color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: background 0.2s; }
     .cta-btn:hover { background: #333; }
     .comparison { padding: 60px 0; }
     .comparison h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 32px; text-align: center; }
     table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
-    th, td { padding: 16px 20px; text-align: left; border-bottom: 1px solid #eee; }
-    th { background: #f9f9f9; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; }
+    th, td { padding: var(--sp-4) var(--sp-6); text-align: left; border-bottom: 1px solid #eee; }
+    th { background: #f9f9f9; font-weight: 600; font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.5px; color: #666; }
     td:first-child { font-weight: 500; }
-    .check { color: #22c55e; font-weight: 700; }
-    .x { color: #e53e3e; font-weight: 700; }
-    .warn { color: #d97706; font-weight: 600; }
+    .check { color: var(--success); font-weight: 700; }
+    .x { color: var(--error); font-weight: 700; }
+    .warn { color: var(--gold-text); font-weight: 600; }
     .section { padding: 60px 0; border-top: 1px solid #eee; }
-    .section h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 24px; }
-    .section h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; margin-top: 32px; }
-    .section p, .section li { font-size: 1.05rem; color: #444; margin-bottom: 12px; }
-    .section ul { padding-left: 24px; }
+    .section h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: var(--sp-6); }
+    .section h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: var(--sp-3); margin-top: 32px; }
+    .section p, .section li { font-size: 1.05rem; color: #444; margin-bottom: var(--sp-3); }
+    .section ul { padding-left: var(--sp-6); }
     .math { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 32px; margin: 32px 0; }
     .math h3 { color: #166534; margin-top: 0; }
     .math .number { font-size: 2rem; font-weight: 700; color: #166534; }
@@ -42,20 +42,20 @@
     .highlight-box h3 { color: #1e40af; margin-top: 0; }
     .faq { padding: 60px 0; border-top: 1px solid #eee; }
     .faq h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 32px; }
-    .faq-item { margin-bottom: 24px; }
-    .faq-item h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .faq-item { margin-bottom: var(--sp-6); }
+    .faq-item h3 { font-size: var(--text-lg); font-weight: 600; margin-bottom: 8px; }
     .faq-item p { color: #555; }
     .bottom-cta { padding: 80px 0; text-align: center; background: #f9f9f9; }
-    .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
+    .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: var(--sp-4); }
     .bottom-cta p { font-size: 1.15rem; color: #555; margin-bottom: 32px; }
-    .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px; }
-    .tier-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 32px 0; }
-    .tier-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 24px; text-align: center; }
-    .tier-card .plan { font-weight: 600; font-size: 0.9rem; color: #666; margin-bottom: 8px; }
+    .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px var(--sp-4); border-radius: 6px; font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--sp-6); }
+    .tier-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--sp-4); margin: 32px 0; }
+    .tier-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: var(--sp-6); text-align: center; }
+    .tier-card .plan { font-weight: 600; font-size: var(--text-sm); color: #666; margin-bottom: 8px; }
     .tier-card .price { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
     .tier-card .detail { font-size: 0.85rem; color: #888; }
-    .tier-card.milo { border-color: #22c55e; background: #f0fdf4; }
-    @media (max-width: 640px) { .hero h1 { font-size: 1.75rem; } table { font-size: 0.9rem; } th, td { padding: 12px; } }
+    .tier-card.milo { border-color: var(--success); background: #f0fdf4; }
+    @media (max-width: 640px) { .hero h1 { font-size: 1.75rem; } table { font-size: var(--text-sm); } th, td { padding: var(--sp-3); } }
   </style>
 </head>
 <body>
@@ -103,8 +103,8 @@
 
     <div class="highlight-box">
       <h3>The $400 Coincidence</h3>
-      <p style="color: #1e3a5f;">Ring Eden Plus costs <strong>$399.90 per year</strong>. Milo costs <strong>$399 once</strong>. Almost the exact same number — but one keeps charging forever and one doesn't.</p>
-      <p style="color: #1e3a5f; margin-top: 12px;">After year one, every dollar Ring Eden charges is money you wouldn't be spending with Milo.</p>
+      <p style="color: var(--text-1);">Ring Eden Plus costs <strong>$399.90 per year</strong>. Milo costs <strong>$399 once</strong>. Almost the exact same number — but one keeps charging forever and one doesn't.</p>
+      <p style="color: var(--text-1); margin-top: var(--sp-3);">After year one, every dollar Ring Eden charges is money you wouldn't be spending with Milo.</p>
     </div>
 
     <h3>Ring Eden Plus vs Milo — The Honest Math</h3>
@@ -114,22 +114,22 @@
     <div class="tier-cards">
       <div class="tier-card">
         <div class="plan">Year 1</div>
-        <div class="price" style="color: #e53e3e;">Eden wins</div>
+        <div class="price" style="color: var(--error);">Eden wins</div>
         <div class="detail">Eden: $400<br>Milo: $879</div>
       </div>
       <div class="tier-card">
         <div class="plan">Year 2</div>
-        <div class="price" style="color: #d97706;">Close</div>
+        <div class="price" style="color: var(--gold-text);">Close</div>
         <div class="detail">Eden: $800<br>Milo: $1,359</div>
       </div>
       <div class="tier-card milo">
         <div class="plan">Year 3</div>
-        <div class="price" style="color: #22c55e;">Milo gains</div>
+        <div class="price" style="color: var(--success);">Milo gains</div>
         <div class="detail">Eden: $1,200<br>Milo: $1,839</div>
       </div>
       <div class="tier-card milo">
         <div class="plan">Year 5</div>
-        <div class="price" style="color: #22c55e;">Milo wins</div>
+        <div class="price" style="color: var(--success);">Milo wins</div>
         <div class="detail">Eden: $2,000<br>Milo: $2,799</div>
       </div>
     </div>
@@ -139,7 +139,7 @@
     <div class="warning-box">
       <h3>Ring Eden Plus Doesn't Book Appointments</h3>
       <p>The $400/yr Plus plan takes messages and answers questions. It does <strong>not</strong> book appointments, transfer calls, or send SMS during calls. For those features, you need <strong>Ring Eden Pro at $1,000/year</strong>.</p>
-      <p style="margin-top: 12px;">Milo includes appointment booking, call transfers, and SMS from day one — for $399 total.</p>
+      <p style="margin-top: var(--sp-3);">Milo includes appointment booking, call transfers, and SMS from day one — for $399 total.</p>
     </div>
 
     <h3>Ring Eden Pro vs Milo — Where Milo Wins Immediately</h3>
@@ -149,9 +149,9 @@
       <h3>The 3-Year Comparison (with booking)</h3>
       <p><strong>Ring Eden Pro:</strong></p>
       <p>$999.90/yr × 3 = <span class="number">$2,999.70</span></p>
-      <p style="margin-top: 16px;"><strong>Milo (includes booking):</strong></p>
+      <p style="margin-top: var(--sp-4);"><strong>Milo (includes booking):</strong></p>
       <p>$399 setup + ($40/mo × 36) = <span class="number">$1,839</span></p>
-      <p style="margin-top: 16px; font-size: 1.1rem;"><strong>You save $1,161 over three years — and you own everything.</strong></p>
+      <p style="margin-top: var(--sp-4); font-size: var(--text-lg);"><strong>You save $1,161 over three years — and you own everything.</strong></p>
     </div>
   </div>
 </div>
@@ -169,7 +169,7 @@
       <li><strong>English & Spanish built-in:</strong> Bilingual from day one on every plan</li>
       <li><strong>Clean, modern interface:</strong> Well-designed dashboard with call logs and transcripts</li>
     </ul>
-    <p style="margin-top: 16px;">If you want the simplest possible self-serve setup and don't mind paying annually, Ring Eden Plus is a legitimate option — especially for the first year. But the moment you need booking or call transfers, the math shifts dramatically in Milo's favor.</p>
+    <p style="margin-top: var(--sp-4);">If you want the simplest possible self-serve setup and don't mind paying annually, Ring Eden Plus is a legitimate option — especially for the first year. But the moment you need booking or call transfers, the math shifts dramatically in Milo's favor.</p>
   </div>
 </div>
 

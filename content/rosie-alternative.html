@@ -13,7 +13,7 @@
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; line-height: 1.6; }
     .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
     .hero { padding: 80px 0 60px; text-align: center; }
-    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: var(--sp-4); letter-spacing: -0.5px; }
     .hero h1 span { color: #e53e3e; }
     .hero .subtitle { font-size: 1.25rem; color: #555; max-width: 600px; margin: 0 auto 32px; }
     .cta-btn { display: inline-block; background: #1a1a1a; color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: background 0.2s; }
@@ -22,15 +22,15 @@
     .comparison h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 32px; text-align: center; }
     table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
     th, td { padding: 16px 20px; text-align: left; border-bottom: 1px solid #eee; }
-    th { background: #f9f9f9; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; }
+    th { background: #f9f9f9; font-weight: 600; font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.5px; color: #666; }
     td:first-child { font-weight: 500; }
     .check { color: #22c55e; font-weight: 700; }
     .x { color: #e53e3e; font-weight: 700; }
     .warn { color: #d97706; font-weight: 600; }
     .section { padding: 60px 0; border-top: 1px solid #eee; }
     .section h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 24px; }
-    .section h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; margin-top: 32px; }
-    .section p, .section li { font-size: 1.05rem; color: #444; margin-bottom: 12px; }
+    .section h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: var(--sp-3); margin-top: 32px; }
+    .section p, .section li { font-size: var(--text-base); color: #444; margin-bottom: var(--sp-3); }
     .section ul { padding-left: 24px; }
     .math { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 32px; margin: 32px 0; }
     .math h3 { color: #166534; margin-top: 0; }
@@ -41,19 +41,19 @@
     .faq { padding: 60px 0; border-top: 1px solid #eee; }
     .faq h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 32px; }
     .faq-item { margin-bottom: 24px; }
-    .faq-item h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .faq-item h3 { font-size: var(--text-lg); font-weight: 600; margin-bottom: 8px; }
     .faq-item p { color: #555; }
     .bottom-cta { padding: 80px 0; text-align: center; background: #f9f9f9; }
-    .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
+    .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: var(--sp-4); }
     .bottom-cta p { font-size: 1.15rem; color: #555; margin-bottom: 32px; }
-    .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px; }
+    .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 6px; font-size: var(--text-sm); font-weight: 600; margin-bottom: 24px; }
     .tier-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
     .tier-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 24px; text-align: center; }
-    .tier-card .plan { font-weight: 600; font-size: 0.9rem; color: #666; margin-bottom: 8px; }
+    .tier-card .plan { font-weight: 600; font-size: var(--text-sm); color: #666; margin-bottom: 8px; }
     .tier-card .price { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
     .tier-card .detail { font-size: 0.85rem; color: #888; }
     .tier-card.milo { border-color: #22c55e; background: #f0fdf4; }
-    @media (max-width: 640px) { .hero h1 { font-size: 1.75rem; } table { font-size: 0.9rem; } th, td { padding: 12px; } .tier-cards { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .hero h1 { font-size: 1.75rem; } table { font-size: var(--text-sm); } th, td { padding: var(--sp-3); } .tier-cards { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -124,10 +124,10 @@
     <div class="warning-box">
       <h3>What $49/mo Actually Gets You</h3>
       <p>On Rosie's Professional plan, here's what happens when a caller wants to book an appointment:</p>
-      <p style="margin-top:12px;"><strong>Caller:</strong> "I'd like to schedule a cleaning for next Tuesday."</p>
+      <p style="margin-top:var(--sp-3);"><strong>Caller:</strong> "I'd like to schedule a cleaning for next Tuesday."</p>
       <p><strong>Rosie (Professional):</strong> Takes a message. Sends you a notification. The caller waits for a callback.</p>
-      <p style="margin-top:12px;"><strong>With Milo:</strong> Books the appointment directly into your calendar. Confirms the time with the caller. Texts you a summary. Done.</p>
-      <p style="margin-top:12px;">The caller who wanted Tuesday might call someone else while waiting for your callback. You just lost revenue because your $49/mo plan couldn't close the booking.</p>
+      <p style="margin-top:var(--sp-3);"><strong>With Milo:</strong> Books the appointment directly into your calendar. Confirms the time with the caller. Texts you a summary. Done.</p>
+      <p style="margin-top:var(--sp-3);">The caller who wanted Tuesday might call someone else while waiting for your callback. You just lost revenue because your $49/mo plan couldn't close the booking.</p>
     </div>
 
     <h3>Minute Caps Still Apply</h3>
@@ -141,9 +141,9 @@
       <h3>The 12-Month Comparison</h3>
       <p><strong>Rosie Scale (the plan that actually books appointments):</strong></p>
       <p>$149/mo × 12 = <span class="number">$1,788/year</span></p>
-      <p style="margin-top: 16px;"><strong>Milo Starter:</strong></p>
+      <p style="margin-top: var(--sp-4);"><strong>Milo Starter:</strong></p>
       <p>$399 setup + ($40/mo × 12) = <span class="number">$879/year</span></p>
-      <p style="margin-top: 16px; font-size: 1.1rem;"><strong>You save $909 in year one. $1,788/year every year after that.</strong></p>
+      <p style="margin-top: var(--sp-4); font-size: var(--text-lg);"><strong>You save $909 in year one. $1,788/year every year after that.</strong></p>
     </div>
   </div>
 </div>
@@ -161,7 +161,7 @@
       <li><strong>Zapier integration:</strong> Connect to 1,000+ apps via Zapier on all plans</li>
       <li><strong>Industry-specific templates:</strong> Pre-built setups for home services, law firms, property management, salons, and more</li>
     </ul>
-    <p style="margin-top: 16px;">If you just need a smarter voicemail replacement and don't need appointment booking or call transfers, Rosie's $49/mo Professional plan is a solid choice. But if you want a receptionist that actually takes action — books appointments, transfers calls, handles complex conversations — you're looking at $149-299/mo, and that's where the economics shift in Milo's favor.</p>
+    <p style="margin-top: var(--sp-4);">If you just need a smarter voicemail replacement and don't need appointment booking or call transfers, Rosie's $49/mo Professional plan is a solid choice. But if you want a receptionist that actually takes action — books appointments, transfers calls, handles complex conversations — you're looking at $149-299/mo, and that's where the economics shift in Milo's favor.</p>
   </div>
 </div>
 

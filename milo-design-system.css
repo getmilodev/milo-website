@@ -184,7 +184,7 @@ main dd a:hover {
 
 .spec-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--text-xs);
   font-weight: 500;
   color: var(--text-on-dark-muted);
   background: var(--text-1);
@@ -500,7 +500,7 @@ pre {
 
 .terminal {
   background: var(--dark-surface);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 .terminal__bar {
@@ -518,7 +518,7 @@ pre {
 }
 .terminal__title {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-on-dark-muted);
   margin-left: var(--sp-2);
 }
@@ -545,7 +545,7 @@ pre {
 /* Config block (YAML-style) */
 .config-block {
   background: var(--dark-surface);
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 .config-block__bar {
@@ -563,7 +563,7 @@ pre {
 }
 .config-block__title {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-on-dark-muted);
   margin-left: var(--sp-2);
 }
