@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>See Milo For Your Firm — Free Personalized Demo</title>
-<meta name="description" content="Request a free personalized demo of Milo AI Receptionist. No payment, no commitment. Ready in 24 hours.">
+<title>Start a Project — Free Strategy Call | Milo</title>
+<meta name="description" content="Book a free strategy call with Milo. We'll map your operations and show you exactly what AI agent teams or executive enablement looks like for your situation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="milo-design-system.css">
@@ -154,11 +154,11 @@
 <section class="page-hero">
   <div class="wrap">
     <div class="section-marker reveal">
-      <span class="spec-label">DEMO</span>
-      <span class="spec-coord">// personalized trial</span>
+      <span class="spec-label">START</span>
+      <span class="spec-coord">// strategy call</span>
     </div>
-    <h1 class="page-hero__title reveal" data-delay="1">See Milo answer calls for <span class="accent">your firm</span></h1>
-    <p class="page-hero__subtitle reveal" data-delay="2">We build a personalized demo in 24 hours. No payment. No commitment. Just see it work.</p>
+    <h1 class="page-hero__title reveal" data-delay="1">Let's map what AI looks like for <span class="accent">your operation</span></h1>
+    <p class="page-hero__subtitle reveal" data-delay="2">30-minute strategy call. We'll identify what's automatable, what it costs, and what results to expect — before you spend a dollar.</p>
   </div>
 </section>
 
@@ -170,13 +170,13 @@
       <!-- LEFT: sidebar context -->
       <div class="demo-sidebar reveal" data-delay="2">
         <h3 style="font-size: var(--text-lg); margin-bottom: var(--sp-2);">What happens next</h3>
-        <p style="font-size: var(--text-sm); color: var(--text-2); line-height: 1.7; margin-bottom: var(--sp-6);">We take your firm details, configure a Milo instance tuned to your practice type, and send you a working demo within 24 hours.</p>
+        <p style="font-size: var(--text-sm); color: var(--text-2); line-height: 1.7; margin-bottom: var(--sp-6);">We review your situation, schedule a 30-minute call, and come prepared with specific recommendations for your use case.</p>
         <ul class="demo-sidebar__promises">
           <li>No payment required</li>
           <li>No commitment</li>
-          <li>Ready in 24 hours</li>
-          <li>Configured for your practice</li>
-          <li>You own the recording</li>
+          <li>We respond within 24 hours</li>
+          <li>Specific to your business</li>
+          <li>You decide what happens next</li>
         </ul>
       </div>
 
@@ -189,31 +189,29 @@
               <input class="input" type="text" id="field-name" name="name" required placeholder="Jane Smith" autocomplete="name">
             </div>
             <div class="form-group">
-              <label class="label" for="field-email">Business email</label>
+              <label class="label" for="field-email">Email</label>
               <input class="input" type="email" id="field-email" name="email" required autocomplete="email">
             </div>
             <div class="form-group">
-              <label class="label" for="field-firm">Firm name</label>
-              <input class="input" type="text" id="field-firm" name="firm" required placeholder="Smith and Associates" autocomplete="organization">
+              <label class="label" for="field-firm">Company or role</label>
+              <input class="input" type="text" id="field-firm" name="firm" required placeholder="Acme Corp / VP of Operations" autocomplete="organization">
             </div>
             <div class="form-group">
-              <label class="label" for="field-vertical">Type of practice</label>
+              <label class="label" for="field-vertical">What are you interested in?</label>
               <select class="select" id="field-vertical" name="vertical">
                 <option value="">Select one...</option>
-                <option value="cpa">CPA / Accounting</option>
-                <option value="law">Law / Personal Injury</option>
-                <option value="vet">Veterinary</option>
-                <option value="medical">Medical / Dental</option>
-                <option value="other">Other</option>
+                <option value="agents">AI Agent Teams — automate business workflows</option>
+                <option value="exec">AI for Executives — personal AI enablement</option>
+                <option value="both">Both / not sure yet</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="label" for="field-message">Biggest phone headache? <span class="label__opt">(optional)</span></label>
-              <textarea class="textarea" id="field-message" name="message" rows="3" placeholder="e.g. Missing calls during busy season, after-hours voicemails..." style="min-height: 100px;"></textarea>
+              <label class="label" for="field-message">What's eating your time? <span class="label__opt">(optional)</span></label>
+              <textarea class="textarea" id="field-message" name="message" rows="3" placeholder="e.g. Follow-ups I never get to, 10 hours/week on scheduling, want to understand AI better..." style="min-height: 100px;"></textarea>
             </div>
             <input type="hidden" name="ref" id="ref-field" value="">
-            <button type="submit" class="btn btn--dark btn--full btn--lg">Request My Demo</button>
-            <p class="trust-line">no payment &middot; no commitment &middot; ready in 24 hours</p>
+            <button type="submit" class="btn btn--dark btn--full btn--lg">Book My Strategy Call</button>
+            <p class="trust-line">no payment &middot; no commitment &middot; we respond in 24 hours</p>
           </form>
         </div>
 
@@ -223,7 +221,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" class="success-check-anim"></polyline></svg>
             </div>
             <h2>You're in.</h2>
-            <p>We'll have a personalized demo ready for <span class="firm-name" id="echo-firm"></span> within 24 hours. Check your inbox.</p>
+            <p>We'll review your situation and reach out to <span class="firm-name" id="echo-firm"></span> within 24 hours to schedule your strategy call.</p>
           </div>
         </div>
       </div>
@@ -305,7 +303,7 @@
   });
 </script>
 
-<!-- Form submission — preserved exactly -->
+<!-- Form submission -->
 <script>
 (function() {
   var D = 'join.getmilo.dev';
@@ -324,13 +322,13 @@
     fd.forEach(function(v, k) { d[k] = v; });
 
     var ts = new Date().toISOString();
-    var vMap = { cpa: 'CPA/Accounting', law: 'Law/PI', vet: 'Veterinary', medical: 'Medical/Dental', other: 'Other' };
+    var vMap = { agents: 'AI Agent Teams', exec: 'AI for Executives', both: 'Both / not sure' };
     var lines = [
-      'DEMO REQUEST',
+      'PROJECT INQUIRY',
       'Name: ' + d.name,
       'Email: ' + d.email,
-      'Firm: ' + d.firm,
-      'Type: ' + (vMap[d.vertical] || 'not specified'),
+      'Company/Role: ' + d.firm,
+      'Interest: ' + (vMap[d.vertical] || 'not specified'),
       'Source: ' + (d.ref || 'direct'),
       'Time: ' + ts
     ];
@@ -343,7 +341,7 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         to: dest,
-        subject: 'LEAD: ' + d.name + ' at ' + d.firm,
+        subject: 'LEAD: ' + d.name + ' — ' + (d.firm || 'no company'),
         text: lines.join('\n'),
         from: 'Milo Leads <leads' + String.fromCharCode(64) + D + '>'
       })
@@ -351,17 +349,17 @@
     .then(function(res) {
       if (res.ok) {
         document.getElementById('form-card').classList.add('hide');
-        document.getElementById('echo-firm').textContent = d.firm;
+        document.getElementById('echo-firm').textContent = d.email;
         document.getElementById('success-card').classList.remove('hide');
       } else {
         btn.disabled = false;
-        btn.textContent = 'Request My Demo';
+        btn.textContent = 'Book My Strategy Call';
         alert('Something went wrong. Please try again.');
       }
     })
     .catch(function() {
       btn.disabled = false;
-      btn.textContent = 'Request My Demo';
+      btn.textContent = 'Book My Strategy Call';
       alert('Connection error. Please try again.');
     });
   });
