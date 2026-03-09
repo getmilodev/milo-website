@@ -102,7 +102,7 @@
     </button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -288,7 +288,7 @@
 
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-1">How does Milo compare to AnswerConnect's live chat feature?</button>
-      <div class="faq__answer" id="faq-1" aria-hidden="true">
+      <div class="faq__answer" id="faq-1" hidden>
         <div class="faq__answer-inner">
           <p>Milo handles both voice calls and can be extended to live chat on your website. Same AI, same training, same consistency — across channels. AnswerConnect charges separately for chat.</p>
         </div>
@@ -296,7 +296,7 @@
     </div>
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-2">Can I switch from AnswerConnect without losing call coverage?</button>
-      <div class="faq__answer" id="faq-2" aria-hidden="true">
+      <div class="faq__answer" id="faq-2" hidden>
         <div class="faq__answer-inner">
           <p>Yes. We set up and test your Milo agents while AnswerConnect is still active. Once confirmed, you redirect call forwarding. Total transition time: minutes. Zero gap in coverage.</p>
         </div>
@@ -304,7 +304,7 @@
     </div>
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-3">What if my call volume is very low?</button>
-      <div class="faq__answer" id="faq-3" aria-hidden="true">
+      <div class="faq__answer" id="faq-3" hidden>
         <div class="faq__answer-inner">
           <p>If you're getting fewer than 30 calls a month, AnswerConnect's base plan might be cost-competitive short term. But Milo still wins on ownership — you're building an asset, not renting a service. And as your business grows, the savings compound.</p>
         </div>
@@ -312,7 +312,7 @@
     </div>
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-4">Do I need to be technical?</button>
-      <div class="faq__answer" id="faq-4" aria-hidden="true">
+      <div class="faq__answer" id="faq-4" hidden>
         <div class="faq__answer-inner">
           <p>Not at all. We handle the entire setup — AI configuration, phone integration, testing, deployment. You tell us how you want calls handled, and we build it. Takes about 10 minutes of your time.</p>
         </div>
@@ -425,7 +425,7 @@
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', !expanded);
       const answer = document.getElementById(btn.getAttribute('aria-controls'));
-      answer.setAttribute('aria-hidden', expanded);
+      answer.hidden = expanded;
     });
   });
 </script>

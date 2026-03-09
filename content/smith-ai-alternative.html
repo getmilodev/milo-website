@@ -99,7 +99,7 @@
     </button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -302,7 +302,7 @@
 
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-1">Is the AI as good as Smith.ai's?</button>
-      <div class="faq__answer" id="faq-1" aria-hidden="true">
+      <div class="faq__answer" id="faq-1" hidden>
         <div class="faq__answer-inner">
           <p>The underlying AI models (Claude, GPT-4) are the same ones powering most modern AI services. The difference is deployment model: Smith.ai wraps them in a subscription. We configure them and hand you the keys.</p>
         </div>
@@ -310,7 +310,7 @@
     </div>
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-2">What if I need changes after setup?</button>
-      <div class="faq__answer" id="faq-2" aria-hidden="true">
+      <div class="faq__answer" id="faq-2" hidden>
         <div class="faq__answer-inner">
           <p>Our Team plan ($2,499 one-time) includes ongoing optimization. Or you can modify the agents yourself — you have full access to everything.</p>
         </div>
@@ -318,7 +318,7 @@
     </div>
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-3">Do I need technical skills?</button>
-      <div class="faq__answer" id="faq-3" aria-hidden="true">
+      <div class="faq__answer" id="faq-3" hidden>
         <div class="faq__answer-inner">
           <p>No. We handle all the technical setup. You just tell us how you want calls handled, and we build it.</p>
         </div>
@@ -326,7 +326,7 @@
     </div>
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-4">What are the ~$40/mo running costs?</button>
-      <div class="faq__answer" id="faq-4" aria-hidden="true">
+      <div class="faq__answer" id="faq-4" hidden>
         <div class="faq__answer-inner">
           <p>API usage (AI model calls), phone number hosting, and telephony minutes. These go directly to providers like Twilio and Anthropic — not to us. Actual cost depends on call volume.</p>
         </div>
@@ -334,7 +334,7 @@
     </div>
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-5">Can I switch from Smith.ai without downtime?</button>
-      <div class="faq__answer" id="faq-5" aria-hidden="true">
+      <div class="faq__answer" id="faq-5" hidden>
         <div class="faq__answer-inner">
           <p>Yes. We set up your Milo agents in parallel. Once tested, you switch your phone forwarding. Zero downtime.</p>
         </div>
@@ -447,7 +447,7 @@
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', !expanded);
       const answer = document.getElementById(btn.getAttribute('aria-controls'));
-      answer.setAttribute('aria-hidden', expanded);
+      answer.hidden = expanded;
     });
   });
 </script>

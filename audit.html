@@ -288,32 +288,37 @@
     .delay--bad { color: var(--error); }
     .delay--good { color: var(--success); }
 
-    /* Stat trio */
+    /* Cost ledger */
     .cost-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: var(--sp-1); margin-bottom: var(--sp-6);
+      display: grid; grid-template-columns: 1fr;
+      gap: var(--sp-3); margin-bottom: var(--sp-6);
     }
     .cost-stat {
-      padding: var(--sp-6); background: var(--surface);
-      border: 1px solid var(--border-subtle);
-    }
-    .cost-stat:first-child { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
-    .cost-stat:last-child {
-      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-      background: var(--text-1); border-color: var(--text-1);
+      display: grid; grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--sp-4); align-items: end;
+      padding: var(--sp-5); background: var(--surface-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 12px 28px rgba(10, 10, 26, 0.05);
     }
     .cost-stat__number {
       font-family: var(--font-display); font-size: var(--text-2xl);
-      color: var(--gold-text); font-weight: 400; line-height: 1.1;
-      margin-bottom: var(--sp-2); font-variant-numeric: tabular-nums;
+      color: var(--text-1); font-weight: 400; line-height: 1.1;
+      font-variant-numeric: tabular-nums; text-align: right;
     }
-    .cost-stat:last-child .cost-stat__number { color: var(--gold); }
-    .cost-stat__label { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-3); }
-    .cost-stat:last-child .cost-stat__label { color: var(--text-on-dark-muted); }
+    .cost-stat:last-child .cost-stat__number { color: var(--gold-text); }
+    .cost-stat__label {
+      font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-2);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .cost-stat:last-child .cost-stat__label { color: var(--gold-text); }
+    .cost-stat:last-child {
+      background: var(--gold-light);
+      border-color: color-mix(in oklch, var(--gold), var(--border) 35%);
+    }
     @media (max-width: 640px) {
-      .cost-stats { grid-template-columns: 1fr; }
-      .cost-stat:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
-      .cost-stat:last-child { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+      .cost-stat { grid-template-columns: 1fr; }
+      .cost-stat__number { text-align: left; }
     }
 
     /* DIY roadmap */
@@ -464,7 +469,7 @@
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -501,9 +506,9 @@
     <div class="step active" id="step1">
       <div class="step-heading">
         <div class="step-heading__label">Step 1 of 4</div>
-        <h2 class="step-heading__title">What kind of business do you run?</h2>
+        <h2 class="step-heading__title" id="step1Title" tabindex="-1">What kind of business do you run?</h2>
       </div>
-      <div class="option-grid" id="industryGrid" role="radiogroup" aria-label="Select your industry">
+      <div class="option-grid" id="industryGrid" role="radiogroup" aria-labelledby="step1Title" aria-label="Select your industry">
         <div class="option" data-value="law" tabindex="0" role="radio" aria-checked="false">
           <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v16"/><path d="M4 6h12"/><path d="M2 12l2-6 2 6"/><path d="M14 12l2-6 2 6"/></svg></div>
           <h3>Law Firm</h3>
@@ -551,12 +556,12 @@
     <div class="step" id="step2">
       <div class="step-heading">
         <div class="step-heading__label">Step 2 of 4</div>
-        <h2 class="step-heading__title">Tell us about your scale</h2>
+        <h2 class="step-heading__title" id="step2Title" tabindex="-1">Tell us about your scale</h2>
       </div>
 
       <div class="step-sub">
-        <div class="step-sub__label">Team size</div>
-        <div class="option-grid" id="sizeGrid" role="radiogroup" aria-label="Select team size">
+        <div class="step-sub__label" id="sizeGridLabel">Team size</div>
+        <div class="option-grid" id="sizeGrid" role="radiogroup" aria-labelledby="sizeGridLabel" aria-label="Select team size">
           <div class="option" data-value="solo" tabindex="0" role="radio" aria-checked="false">
             <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="3"/></svg></div>
             <h3>Just me</h3>
@@ -581,8 +586,8 @@
       </div>
 
       <div class="step-sub">
-        <div class="step-sub__label">Annual revenue</div>
-        <div class="option-grid" id="revenueGrid" role="radiogroup" aria-label="Select revenue range">
+        <div class="step-sub__label" id="revenueGridLabel">Annual revenue</div>
+        <div class="option-grid" id="revenueGrid" role="radiogroup" aria-labelledby="revenueGridLabel" aria-label="Select revenue range">
           <div class="option" data-value="under250k" tabindex="0" role="radio" aria-checked="false">
             <h3>Under $250K</h3>
             <p>Early stage or side business</p>
@@ -612,10 +617,10 @@
     <div class="step" id="step3">
       <div class="step-heading">
         <div class="step-heading__label">Step 3 of 4</div>
-        <h2 class="step-heading__title">Where are your workflows breaking?</h2>
-        <p class="step-heading__hint">Pick all that apply. Be honest — this shapes your report.</p>
+        <h2 class="step-heading__title" id="step3Title" tabindex="-1">Where are your workflows breaking?</h2>
+        <p class="step-heading__hint" id="step3Hint">Pick all that apply. Be honest — this shapes your report.</p>
       </div>
-      <div class="checkbox-grid" id="painGrid">
+      <div class="checkbox-grid" id="painGrid" role="group" aria-labelledby="step3Title" aria-describedby="step3Hint">
         <div class="checkbox-option" data-value="leads" tabindex="0" role="checkbox" aria-checked="false">
           <div class="check"></div>
           <div><span class="cb-text">Leads go cold before anyone follows up</span><span class="cb-detail">Hours pass between inquiry and first response</span></div>
@@ -659,9 +664,9 @@
     <div class="step" id="step4">
       <div class="step-heading">
         <div class="step-heading__label">Step 4 of 4</div>
-        <h2 class="step-heading__title">How much AI do you use today?</h2>
+        <h2 class="step-heading__title" id="step4Title" tabindex="-1">How much AI do you use today?</h2>
       </div>
-      <div class="option-grid" id="aiGrid" role="radiogroup" aria-label="Select AI maturity level">
+      <div class="option-grid" id="aiGrid" role="radiogroup" aria-labelledby="step4Title" aria-label="Select AI maturity level">
         <div class="option" data-value="none" tabindex="0" role="radio" aria-checked="false">
           <h3>None</h3>
           <p>We don't use any AI tools yet</p>
@@ -692,7 +697,7 @@
           <span class="spec-coord">// audit results</span>
         </div>
         <div class="result-header__badge">Audit complete</div>
-        <h2 class="result-header__title" id="resultTitle">Your AI Operations Audit</h2>
+        <h2 class="result-header__title" id="resultTitle" tabindex="-1">Your AI Operations Audit</h2>
         <p class="result-header__subtitle" id="resultSubtitle"></p>
       </div>
 
@@ -784,6 +789,25 @@
 <script>
 /* ===== STATE ===== */
 var state = { industry: null, size: null, revenue: null, pains: [], aiUsage: null };
+var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function focusTarget(el) {
+  if (!el) return;
+  requestAnimationFrame(function() {
+    el.focus({ preventScroll: true });
+  });
+}
+
+function scrollToSection(el) {
+  if (!el) return;
+  el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+}
+
+function syncRadioTabOrder(gridId, activeEl) {
+  document.querySelectorAll('#' + gridId + ' .option').forEach(function(option) {
+    option.tabIndex = option === activeEl ? 0 : -1;
+  });
+}
 
 /* ===== DATA ===== */
 var industryDB = {
@@ -1047,6 +1071,7 @@ function selectOption(gridId, el, stateKey) {
   });
   el.classList.add('selected');
   el.setAttribute('aria-checked', 'true');
+  syncRadioTabOrder(gridId, el);
   state[stateKey] = el.dataset.value;
 }
 
@@ -1104,7 +1129,8 @@ document.querySelectorAll('#aiGrid .option').forEach(function(el) {
 
 function goStep(n) {
   document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
-  document.getElementById('step' + n).classList.add('active');
+  var step = document.getElementById('step' + n);
+  step.classList.add('active');
   document.querySelector('.wizard__steps').setAttribute('aria-valuenow', n);
   for (var i = 1; i <= 4; i++) {
     var dot = document.getElementById('dot' + i);
@@ -1112,7 +1138,8 @@ function goStep(n) {
     if (i < n) dot.classList.add('wizard__step--done');
     if (i === n) dot.classList.add('wizard__step--active');
   }
-  window.scrollTo({ top: document.querySelector('.wizard').offsetTop - 80, behavior: 'smooth' });
+  scrollToSection(step);
+  focusTarget(step.querySelector('.step-heading__title'));
 }
 
 /* ===== RESULTS ===== */
@@ -1317,10 +1344,10 @@ function showResults() {
 
   // Show results
   document.getElementById('resultSection').classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  scrollToSection(document.getElementById('resultSection'));
+  focusTarget(document.getElementById('resultTitle'));
 
   // Count-up animations
-  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
     animateCountUp('monthlyCostNum', monthlyCost, '$');
     animateCountUp('annualCostNum', annualCost, '$');
@@ -1464,7 +1491,57 @@ document.addEventListener('keydown', function(e) {
 
 /* ===== KEYBOARD SUPPORT ===== */
 
-document.querySelectorAll('.option, .checkbox-option').forEach(function(el) {
+function moveRadioFocus(gridId, currentEl, direction, stateKey, onMove, boundary) {
+  var options = Array.prototype.slice.call(document.querySelectorAll('#' + gridId + ' .option'));
+  var currentIndex = options.indexOf(currentEl);
+  if (currentIndex === -1) return;
+  var nextIndex;
+  if (boundary === 'start') nextIndex = 0;
+  else if (boundary === 'end') nextIndex = options.length - 1;
+  else nextIndex = (currentIndex + direction + options.length) % options.length;
+  var nextOption = options[nextIndex];
+  selectOption(gridId, nextOption, stateKey);
+  if (typeof onMove === 'function') onMove();
+  nextOption.focus();
+}
+
+function attachRadioKeyboard(gridId, stateKey, onMove) {
+  document.querySelectorAll('#' + gridId + ' .option').forEach(function(el) {
+    el.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        moveRadioFocus(gridId, el, 1, stateKey, onMove);
+        return;
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        moveRadioFocus(gridId, el, -1, stateKey, onMove);
+        return;
+      }
+      if (e.key === 'Home') {
+        e.preventDefault();
+        moveRadioFocus(gridId, el, 0, stateKey, onMove, 'start');
+        return;
+      }
+      if (e.key === 'End') {
+        e.preventDefault();
+        moveRadioFocus(gridId, el, 0, stateKey, onMove, 'end');
+        return;
+      }
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.click();
+      }
+    });
+  });
+}
+
+attachRadioKeyboard('industryGrid', 'industry');
+attachRadioKeyboard('sizeGrid', 'size', checkStep2);
+attachRadioKeyboard('revenueGrid', 'revenue', checkStep2);
+attachRadioKeyboard('aiGrid', 'aiUsage');
+
+document.querySelectorAll('#painGrid .checkbox-option').forEach(function(el) {
   el.addEventListener('keydown', function(e) {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -1472,6 +1549,11 @@ document.querySelectorAll('.option, .checkbox-option').forEach(function(el) {
     }
   });
 });
+
+syncRadioTabOrder('industryGrid', document.querySelector('#industryGrid .option[aria-checked="true"]') || document.querySelector('#industryGrid .option'));
+syncRadioTabOrder('sizeGrid', document.querySelector('#sizeGrid .option[aria-checked="true"]') || document.querySelector('#sizeGrid .option'));
+syncRadioTabOrder('revenueGrid', document.querySelector('#revenueGrid .option[aria-checked="true"]') || document.querySelector('#revenueGrid .option'));
+syncRadioTabOrder('aiGrid', document.querySelector('#aiGrid .option[aria-checked="true"]') || document.querySelector('#aiGrid .option'));
 </script>
 
 </body>

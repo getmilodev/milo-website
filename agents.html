@@ -97,6 +97,18 @@
     @media (max-width: 768px) {
       .agents-hero__grid { grid-template-columns: 1fr; gap: var(--sp-8); }
       .agents-hero__sidebar { margin-top: var(--sp-4); }
+      .agents-hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .agents-hero__actions .btn {
+        justify-content: center;
+      }
+      .agents-hero__sidebar-row .key,
+      .agents-hero__sidebar-row .val {
+        display: block;
+        min-width: 0;
+      }
     }
 
     /* How it works — 3-step editorial */
@@ -190,7 +202,7 @@
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -499,7 +511,7 @@
 
     <div class="faq-item reveal">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-1">"Is this only for agencies?"</button>
-      <div class="faq__answer" id="faq-1" aria-hidden="true">
+      <div class="faq__answer" id="faq-1" hidden>
         <div class="faq__answer-inner">
           <p>No. Agencies are the clearest fit, but the same model works for lean professional-service firms with recurring workflow drag around proposals, reporting, follow-up, and research.</p>
         </div>
@@ -508,7 +520,7 @@
 
     <div class="faq-item reveal" data-delay="1">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-2">"We already use ChatGPT. Why pay for this?"</button>
-      <div class="faq__answer" id="faq-2" aria-hidden="true">
+      <div class="faq__answer" id="faq-2" hidden>
         <div class="faq__answer-inner">
           <p>Because using AI casually is not the same as having a dependable workflow. Most firms already have prompts, tabs, and scattered experiments. They do not have a tested system with approvals, integrations, ownership, and handoff.</p>
         </div>
@@ -517,7 +529,7 @@
 
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-3">"What happens if I stop working with you?"</button>
-      <div class="faq__answer" id="faq-3" aria-hidden="true">
+      <div class="faq__answer" id="faq-3" hidden>
         <div class="faq__answer-inner">
           <p>The system keeps running on your infrastructure. You keep the operating logic, the docs, and the handoff material. That is the point of building it this way.</p>
         </div>
@@ -526,7 +538,7 @@
 
     <div class="faq-item reveal">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-4">"What does it actually cost me per month after setup?"</button>
-      <div class="faq__answer" id="faq-4" aria-hidden="true">
+      <div class="faq__answer" id="faq-4" hidden>
         <div class="faq__answer-inner">
           <p>Usually around $30 to $60 per month in hosting and model usage, depending on volume and tools. Milo does not charge recurring software fees after delivery.</p>
         </div>
@@ -535,7 +547,7 @@
 
     <div class="faq-item reveal" data-delay="1">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-5">"What if the system does something I don't want it to?"</button>
-      <div class="faq__answer" id="faq-5" aria-hidden="true">
+      <div class="faq__answer" id="faq-5" hidden>
         <div class="faq__answer-inner">
           <p>Guardrails, approvals, and escalation rules are part of the build. High-risk client-facing actions can stay behind approval. Lower-risk internal work can run with more autonomy. The workflow gets tuned to the actual risk of the task.</p>
         </div>
@@ -544,7 +556,7 @@
 
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-6">"Can I see what you would build first?"</button>
-      <div class="faq__answer" id="faq-6" aria-hidden="true">
+      <div class="faq__answer" id="faq-6" hidden>
         <div class="faq__answer-inner">
           <p>Yes. <a href="/build" style="color: var(--gold-text); text-decoration: underline;">Map your first workflow</a> or <a href="/demo" style="color: var(--gold-text); text-decoration: underline;">book a project call</a>. We will tell you where we would start, what the workflow boundary should be, and whether the scoped sprint or the larger build makes more sense.</p>
         </div>
@@ -659,12 +671,12 @@
         if (other !== btn) {
           other.setAttribute('aria-expanded', 'false');
           const otherAnswer = document.getElementById(other.getAttribute('aria-controls'));
-          if (otherAnswer) otherAnswer.setAttribute('aria-hidden', 'true');
+          if (otherAnswer) otherAnswer.hidden = true;
         }
       });
 
       btn.setAttribute('aria-expanded', !expanded);
-      answer.setAttribute('aria-hidden', expanded);
+      answer.hidden = expanded;
     });
   });
 </script>

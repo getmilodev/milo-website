@@ -137,7 +137,7 @@
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -321,7 +321,7 @@
 
     <div class="faq-item reveal" data-delay="1">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-1">Do I need to be technical?</button>
-      <div class="faq__answer" id="faq-1" aria-hidden="true">
+      <div class="faq__answer" id="faq-1" hidden>
         <div class="faq__answer-inner">
           <p>No. That is the entire point. If you can use email and Google Docs, you can use what we set up. We handle everything technical.</p>
         </div>
@@ -330,7 +330,7 @@
 
     <div class="faq-item reveal" data-delay="1">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-2">What is Claude?</button>
-      <div class="faq__answer" id="faq-2" aria-hidden="true">
+      <div class="faq__answer" id="faq-2" hidden>
         <div class="faq__answer-inner">
           <p>Claude is an AI assistant made by Anthropic — think of it as a brilliant colleague who has read everything and works instantly. We configure it to understand your specific job and company.</p>
         </div>
@@ -339,7 +339,7 @@
 
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-3">How long does the setup take?</button>
-      <div class="faq__answer" id="faq-3" aria-hidden="true">
+      <div class="faq__answer" id="faq-3" hidden>
         <div class="faq__answer-inner">
           <p>About 2 hours. We do it live together over video. By the end, you will have a fully configured workspace and know exactly how to use it.</p>
         </div>
@@ -348,7 +348,7 @@
 
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-4">What if I want to set up my whole team?</button>
-      <div class="faq__answer" id="faq-4" aria-hidden="true">
+      <div class="faq__answer" id="faq-4" hidden>
         <div class="faq__answer-inner">
           <p><a href="#" id="faq-team-link">Email us</a> and we will scope it out. Most team packages run $5,000 to $15,000 depending on size.</p>
         </div>
@@ -357,7 +357,7 @@
 
     <div class="faq-item reveal" data-delay="3">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-5">Will I need to pay for anything else?</button>
-      <div class="faq__answer" id="faq-5" aria-hidden="true">
+      <div class="faq__answer" id="faq-5" hidden>
         <div class="faq__answer-inner">
           <p>You will need a Claude Pro subscription ($20/month from Anthropic). That is it. Our setup fee is one-time — no recurring charges from us.</p>
         </div>
@@ -366,7 +366,7 @@
 
     <div class="faq-item reveal" data-delay="3">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-6">What kinds of roles does this work for?</button>
-      <div class="faq__answer" id="faq-6" aria-hidden="true">
+      <div class="faq__answer" id="faq-6" hidden>
         <div class="faq__answer-inner">
           <p>Operations, marketing, finance, strategy, HR, legal, sales leadership — anyone who does knowledge work. If your job involves reading, writing, analyzing, or deciding, this makes you faster.</p>
         </div>
@@ -375,7 +375,7 @@
 
     <div class="faq-item reveal" data-delay="3">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-7">Can my company expense this?</button>
-      <div class="faq__answer" id="faq-7" aria-hidden="true">
+      <div class="faq__answer" id="faq-7" hidden>
         <div class="faq__answer-inner">
           <p>Yes. You will get a receipt from Stripe immediately. Most clients expense it as professional development or technology services.</p>
         </div>
@@ -463,7 +463,7 @@
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       const answer = document.getElementById(btn.getAttribute('aria-controls'));
       btn.setAttribute('aria-expanded', !expanded);
-      answer.setAttribute('aria-hidden', expanded);
+      answer.hidden = expanded;
     });
   });
 

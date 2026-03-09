@@ -102,7 +102,6 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   font-kerning: normal;
-  overflow-x: hidden;
 }
 
 img, svg { display: block; max-width: 100%; }
@@ -163,10 +162,8 @@ main dd a:hover {
    =========================================== */
 
 .reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 550ms var(--ease-out-expo),
-              transform 550ms var(--ease-out-expo);
+  opacity: 1;
+  transform: none;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal[data-delay="1"] { transition-delay: 70ms; }
@@ -723,14 +720,8 @@ pre {
   transform: rotate(45deg);
 }
 
-.faq__answer {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 300ms var(--ease-out-expo);
-}
-.faq__answer[aria-hidden="false"] {
-  grid-template-rows: 1fr;
-}
+.faq__answer[hidden] { display: none; }
+.faq__answer { display: block; }
 .faq__answer-inner {
   overflow: hidden;
 }
@@ -810,12 +801,20 @@ pre {
 }
 .range-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--text-1);
   cursor: pointer;
   border: 3px solid var(--bg);
+  box-shadow: 0 1px 4px color-mix(in oklch, var(--text-1), transparent 80%);
+}
+.range-slider::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--bg);
+  border-radius: 50%;
+  background: var(--text-1);
   box-shadow: 0 1px 4px color-mix(in oklch, var(--text-1), transparent 80%);
 }
 
@@ -1219,12 +1218,15 @@ pre {
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 1.5px;
   background: var(--gold);
-  transition: width 250ms var(--ease-out-expo);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms var(--ease-out-expo);
 }
-.nav__link:hover::after { width: 100%; }
+.nav__link:hover::after,
+.nav__link:focus-visible::after { transform: scaleX(1); }
 
 /* Buttons — satisfying press depth */
 .btn:active {
@@ -1261,13 +1263,7 @@ pre {
 }
 
 /* Footer dot — slow idle pulse */
-.footer__dot {
-  animation: footer-pulse 3s ease-in-out infinite alternate;
-}
-@keyframes footer-pulse {
-  from { opacity: 0.5; }
-  to   { opacity: 0.9; }
-}
+.footer__dot { opacity: 0.9; }
 
 /* Terminal cursor blink */
 .terminal__cursor {
@@ -1294,11 +1290,11 @@ pre {
 
 /* CTA hover lift for the whole section */
 .cta-section {
-  transition: transform 400ms var(--ease-out-expo), box-shadow 400ms;
+  transition: border-color 200ms var(--ease-out-expo), background-color 200ms var(--ease-out-expo);
 }
 .cta-section:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 40px color-mix(in oklch, var(--text-1), transparent 85%);
+  transform: none;
+  box-shadow: none;
 }
 
 /* Gold line — shimmer on scroll reveal */

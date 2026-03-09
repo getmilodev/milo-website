@@ -444,7 +444,7 @@
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -481,9 +481,9 @@
     <div class="step active" id="step1">
       <div class="step-heading">
         <div class="step-heading__label">Step 1 of 3</div>
-        <h2 class="step-heading__title">What kind of firm is this?</h2>
+        <h2 class="step-heading__title" id="step1Title" tabindex="-1">What kind of firm is this?</h2>
       </div>
-      <div class="option-grid" id="industryGrid" role="radiogroup" aria-label="Select your industry">
+      <div class="option-grid" id="industryGrid" role="radiogroup" aria-labelledby="step1Title" aria-label="Select your industry">
         <div class="option" data-value="agency" onclick="selectIndustry(this)" tabindex="0" role="radio" aria-checked="false">
           <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M10 3v3M10 14v3M3 10h3M14 10h3"/></svg></div>
           <h3>Agency</h3>
@@ -531,9 +531,9 @@
     <div class="step" id="step2">
       <div class="step-heading">
         <div class="step-heading__label">Step 2 of 3</div>
-        <h2 class="step-heading__title">How big is your team?</h2>
+        <h2 class="step-heading__title" id="step2Title" tabindex="-1">How big is your team?</h2>
       </div>
-      <div class="option-grid" id="sizeGrid" role="radiogroup" aria-label="Select your team size">
+      <div class="option-grid" id="sizeGrid" role="radiogroup" aria-labelledby="step2Title" aria-label="Select your team size">
         <div class="option" data-value="solo" onclick="selectSize(this)" tabindex="0" role="radio" aria-checked="false">
           <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="3"/></svg></div>
           <h3>Just me</h3>
@@ -564,10 +564,10 @@
     <div class="step" id="step3">
       <div class="step-heading">
         <div class="step-heading__label">Step 3 of 3</div>
-        <h2 class="step-heading__title">Where does the workflow keep breaking?</h2>
-        <p class="step-heading__hint">Pick all that apply. This shapes the first system we would build.</p>
+        <h2 class="step-heading__title" id="step3Title" tabindex="-1">Where does the workflow keep breaking?</h2>
+        <p class="step-heading__hint" id="step3Hint">Pick all that apply. This shapes the first system we would build.</p>
       </div>
-      <div class="checkbox-grid" id="painGrid">
+      <div class="checkbox-grid" id="painGrid" role="group" aria-labelledby="step3Title" aria-describedby="step3Hint">
         <div class="checkbox-option" data-value="proposal" onclick="togglePain(this)" tabindex="0" role="checkbox" aria-checked="false">
           <div class="check"></div>
           <span>Proposal turnaround is slow</span>
@@ -615,7 +615,7 @@
           <span class="spec-coord">// blueprint output</span>
         </div>
         <div class="result-header__badge">Workflow blueprint ready</div>
-        <h2 class="result-header__title" id="resultTitle">Your workflow blueprint</h2>
+        <h2 class="result-header__title" id="resultTitle" tabindex="-1">Your workflow blueprint</h2>
         <p class="result-header__subtitle" id="resultSubtitle">Based on your answers, here are the systems we would prioritize first.</p>
       </div>
       <div id="agentCards"></div>
@@ -669,27 +669,54 @@
 
 <script>
 let state = { industry: null, size: null, pains: [] };
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function selectIndustry(el) {
+function focusTarget(el) {
+  if (!el) return;
+  requestAnimationFrame(() => {
+    el.focus({ preventScroll: true });
+  });
+}
+
+function scrollToSection(el) {
+  if (!el) return;
+  el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+}
+
+function syncRadioTabOrder(gridId, activeEl) {
+  document.querySelectorAll('#' + gridId + ' .option').forEach(option => {
+    option.tabIndex = option === activeEl ? 0 : -1;
+  });
+}
+
+function selectIndustry(el, options = {}) {
+  const { advance = true } = options;
   document.querySelectorAll('#industryGrid .option').forEach(o => {
     o.classList.remove('selected');
     o.setAttribute('aria-checked', 'false');
   });
   el.classList.add('selected');
   el.setAttribute('aria-checked', 'true');
+  syncRadioTabOrder('industryGrid', el);
   state.industry = el.dataset.value;
-  setTimeout(() => goStep(2), 300);
+  if (advance) {
+    setTimeout(() => goStep(2), 300);
+  }
 }
 
-function selectSize(el) {
+function selectSize(el, options = {}) {
+  const { advance = true } = options;
   document.querySelectorAll('#sizeGrid .option').forEach(o => {
     o.classList.remove('selected');
     o.setAttribute('aria-checked', 'false');
   });
   el.classList.add('selected');
   el.setAttribute('aria-checked', 'true');
+  syncRadioTabOrder('sizeGrid', el);
   state.size = el.dataset.value;
-  setTimeout(() => goStep(3), 300);
+  if (advance) {
+    setTimeout(() => goStep(3), 300);
+  }
 }
 
 function togglePain(el) {
@@ -707,7 +734,8 @@ function togglePain(el) {
 
 function goStep(n) {
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step' + n).classList.add('active');
+  const step = document.getElementById('step' + n);
+  step.classList.add('active');
   document.querySelector('.wizard__steps').setAttribute('aria-valuenow', n);
   for (let i = 1; i <= 3; i++) {
     const dot = document.getElementById('dot' + i);
@@ -715,6 +743,8 @@ function goStep(n) {
     if (i < n) dot.classList.add('wizard__step--done');
     if (i === n) dot.classList.add('wizard__step--active');
   }
+  scrollToSection(step);
+  focusTarget(step.querySelector('.step-heading__title'));
 }
 
 const agentDB = {
@@ -811,7 +841,7 @@ function showResults() {
   };
   const biz = industryNames[state.industry] || 'firm';
 
-  document.getElementById('resultTitle').innerHTML = 'Your ' + count + '-Workflow Blueprint';
+  document.getElementById('resultTitle').textContent = 'Your ' + count + '-Workflow Blueprint';
   document.getElementById('resultSubtitle').textContent = 'Built for your ' + biz + '. We would start with the workflow that removes the most repeated manual work first.';
   document.getElementById('agentCount').textContent = count;
   document.getElementById('hoursSaved').textContent = totalHours + '+';
@@ -831,8 +861,10 @@ function showResults() {
   }).join('');
 
   document.getElementById('agentCards').innerHTML = cardsHTML;
-  document.getElementById('resultSection').classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const resultSection = document.getElementById('resultSection');
+  resultSection.classList.add('active');
+  scrollToSection(resultSection);
+  focusTarget(document.getElementById('resultTitle'));
 }
 
 // Scroll reveal
@@ -887,8 +919,82 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Keyboard support for option cards and checkboxes
-document.querySelectorAll('.option, .checkbox-option').forEach(el => {
+function moveRadioFocus(gridId, currentEl, direction, selectFn, boundary) {
+  const options = Array.from(document.querySelectorAll('#' + gridId + ' .option'));
+  const currentIndex = options.indexOf(currentEl);
+  if (currentIndex === -1) return;
+  let nextIndex;
+  if (boundary === 'start') {
+    nextIndex = 0;
+  } else if (boundary === 'end') {
+    nextIndex = options.length - 1;
+  } else {
+    nextIndex = (currentIndex + direction + options.length) % options.length;
+  }
+  const nextOption = options[nextIndex];
+  selectFn(nextOption, { advance: false });
+  nextOption.focus();
+}
+
+document.querySelectorAll('#industryGrid .option').forEach(el => {
+  el.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      moveRadioFocus('industryGrid', el, 1, selectIndustry);
+      return;
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      moveRadioFocus('industryGrid', el, -1, selectIndustry);
+      return;
+    }
+    if (e.key === 'Home') {
+      e.preventDefault();
+      moveRadioFocus('industryGrid', el, 0, selectIndustry, 'start');
+      return;
+    }
+    if (e.key === 'End') {
+      e.preventDefault();
+      moveRadioFocus('industryGrid', el, 0, selectIndustry, 'end');
+      return;
+    }
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+
+document.querySelectorAll('#sizeGrid .option').forEach(el => {
+  el.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      moveRadioFocus('sizeGrid', el, 1, selectSize);
+      return;
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      moveRadioFocus('sizeGrid', el, -1, selectSize);
+      return;
+    }
+    if (e.key === 'Home') {
+      e.preventDefault();
+      moveRadioFocus('sizeGrid', el, 0, selectSize, 'start');
+      return;
+    }
+    if (e.key === 'End') {
+      e.preventDefault();
+      moveRadioFocus('sizeGrid', el, 0, selectSize, 'end');
+      return;
+    }
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+
+document.querySelectorAll('#painGrid .checkbox-option').forEach(el => {
   el.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -896,6 +1002,9 @@ document.querySelectorAll('.option, .checkbox-option').forEach(el => {
     }
   });
 });
+
+syncRadioTabOrder('industryGrid', document.querySelector('#industryGrid .option[aria-checked="true"]') || document.querySelector('#industryGrid .option'));
+syncRadioTabOrder('sizeGrid', document.querySelector('#sizeGrid .option[aria-checked="true"]') || document.querySelector('#sizeGrid .option'));
 </script>
 
 </body>

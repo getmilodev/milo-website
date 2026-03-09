@@ -8,6 +8,7 @@
 <meta property="og:title" content="Why Is Milo So Cheap? | The Real Cost of AI Agents">
 <meta property="og:description" content="DIY costs $10K-$500K. Agencies charge $5K-$50K. Milo is $399. Here's why — no tricks, no catch.">
 <link rel="canonical" href="https://getmilo.dev/why-so-cheap">
+<link rel="stylesheet" href="/milo-design-system.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text-1);line-height:1.7;background:#fafafa}
@@ -62,9 +63,47 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;c
 .final-cta{background:linear-gradient(135deg,#0a0a1a 0%,#1a1a3e 100%);color:var(--text-inv);text-align:center;padding:70px var(--sp-6)}
 .final-cta h2{font-size:2rem;margin-bottom:15px}
 .final-cta p{max-width:540px;margin:0 auto var(--sp-8);opacity:0.85;font-size:var(--text-base)}
+
+:root{color-scheme:light}
+body{font-family:var(--font-body);color:var(--text-2);background:var(--bg)}
+main,.legacy-nav-shell{position:relative;z-index:1;display:block}
+.legacy-nav-shell{border-bottom:1px solid var(--border);background:rgba(255,255,255,0.8);backdrop-filter:blur(12px)}
+.legacy-nav{max-width:960px;margin:0 auto;padding:16px clamp(20px,4vw,28px);display:flex;justify-content:space-between;align-items:center;gap:var(--sp-4);flex-wrap:wrap}
+.legacy-brand{color:var(--text-1);font-weight:700;text-decoration:none}
+.breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:var(--text-sm);color:var(--text-3)}
+.breadcrumb a{color:var(--text-2);text-decoration:none}
+.hero h1,.section h2,.final-cta h2{font-family:var(--font-display);font-weight:600;letter-spacing:-0.03em;color:var(--text-1)}
+.hero{padding:clamp(72px,12vw,104px) var(--sp-6) clamp(56px,9vw,72px)}
+.hero h1{font-size:clamp(2.3rem,6vw,3.8rem);line-height:1.05}
+.hero h1 span{color:var(--gold-text)}
+.hero p,.section p,.section li{color:var(--text-2)}
+.section{max-width:960px;padding:clamp(48px,8vw,72px) clamp(20px,4vw,28px);border-top:1px solid var(--border-subtle)}
+.section:first-of-type{border-top:none}
+.compare-col,.why-card,.objection{border:1px solid var(--border);box-shadow:0 12px 28px rgba(10,10,26,0.05)}
+.compare-col.highlight{border-color:var(--gold)}
+.compare-col .tag{background:var(--gold);color:var(--text-1)}
+.compare-col h3,.compare-col .ongoing,.why-card p,.math-row .label,.objection p{color:var(--text-2)}
+.compare-col li{border-bottom-color:var(--border-subtle);color:var(--text-2)}
+.math{background:var(--surface-raised);border:1px solid var(--border);box-shadow:0 12px 28px rgba(10,10,26,0.05)}
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:var(--text-1);color:var(--text-inv);box-shadow:0 12px 24px rgba(10,10,26,0.12)}
+.cta-btn:hover{box-shadow:0 14px 28px rgba(10,10,26,0.16)}
+.final-cta{position:relative;z-index:1}
+a:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+@media(max-width:700px){.legacy-nav{align-items:flex-start}.hero h1{font-size:2.5rem}}
 </style>
 </head>
 <body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+<header class="legacy-nav-shell">
+<nav class="legacy-nav" aria-label="Breadcrumb">
+<a class="legacy-brand" href="/">milo</a>
+<p class="breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Why Milo costs less</span></p>
+</nav>
+</header>
+
+<main id="main">
 
 <div class="hero">
 <h1>Why Is Milo <span>So Cheap?</span></h1>
@@ -215,6 +254,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;c
 <a href="https://getmilo.dev/demo" class="cta-btn">See It Working — Free Demo</a>
 <p style="margin-top:var(--sp-8);opacity:0.6;font-size:var(--text-sm)">Or just grab it: <a href="https://getmilo.dev/agents" style="color:var(--gold-text)">$399 one-time</a> with code EARLYMILO25 for 25% off</p>
 </div>
+
+</main>
 
 </body>
 </html>

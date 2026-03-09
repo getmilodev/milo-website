@@ -91,6 +91,11 @@
     @media (max-width: 768px) {
       .exec-hero__grid { grid-template-columns: 1fr; gap: var(--sp-8); }
       .exec-hero__sidebar { margin-top: var(--sp-4); }
+      .exec-hero__sidebar-row .key,
+      .exec-hero__sidebar-row .val {
+        display: block;
+        min-width: 0;
+      }
     }
   </style>
 </head>
@@ -119,7 +124,7 @@
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -367,7 +372,7 @@
 
     <div class="faq-item reveal">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-1">"I'm not technical. Will I actually use this?"</button>
-      <div class="faq__answer" id="faq-1" aria-hidden="true">
+      <div class="faq__answer" id="faq-1" hidden>
         <div class="faq__answer-inner">
           <p>That's exactly who this is for. We don't teach you to code. We configure tools that work within your existing workflow — email, docs, calendar, messaging. If you can use a smartphone, you can use what we build. The technical part is our job.</p>
         </div>
@@ -376,7 +381,7 @@
 
     <div class="faq-item reveal" data-delay="1">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-2">"Is this confidential?"</button>
-      <div class="faq__answer" id="faq-2" aria-hidden="true">
+      <div class="faq__answer" id="faq-2" hidden>
         <div class="faq__answer-inner">
           <p>Completely. We work with senior leaders who can't afford to look like they're "learning AI." Everything is private, 1-on-1, and under NDA if you want it. Your board doesn't need to know. Your team just sees better output.</p>
         </div>
@@ -385,7 +390,7 @@
 
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-3">"How is this different from hiring an AI consultant?"</button>
-      <div class="faq__answer" id="faq-3" aria-hidden="true">
+      <div class="faq__answer" id="faq-3" hidden>
         <div class="faq__answer-inner">
           <p>Consultants write reports. We build capability. After our engagement, you're independently AI-capable — you don't need us to use what we built. No dependency, no ongoing obligation. We transfer the skill, not just the tool.</p>
         </div>
@@ -394,7 +399,7 @@
 
     <div class="faq-item reveal">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-4">"I've tried ChatGPT. It wasn't that useful."</button>
-      <div class="faq__answer" id="faq-4" aria-hidden="true">
+      <div class="faq__answer" id="faq-4" hidden>
         <div class="faq__answer-inner">
           <p>Default ChatGPT is like buying a piano and pressing random keys. Of course it wasn't useful. We tune the instrument to your specific work — custom instructions, specific workflows, integrations with your actual tools. The difference between "AI is a toy" and "AI changed how I work" is configuration.</p>
         </div>
@@ -507,11 +512,11 @@
         if (other !== btn) {
           other.setAttribute('aria-expanded', 'false');
           var otherAnswer = document.getElementById(other.getAttribute('aria-controls'));
-          if (otherAnswer) otherAnswer.setAttribute('aria-hidden', 'true');
+          if (otherAnswer) otherAnswer.hidden = true;
         }
       });
       btn.setAttribute('aria-expanded', !expanded);
-      answer.setAttribute('aria-hidden', expanded);
+      answer.hidden = expanded;
     });
   });
 </script>

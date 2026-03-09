@@ -8,6 +8,7 @@
   <meta property="og:title" content="My AI Front Desk Alternative That You Actually Own | Milo">
   <meta property="og:description" content="One-time $399 setup vs $99-149/mo forever. No minute caps. No overage fees. You own the infrastructure.">
   <link rel="canonical" href="https://getmilo.dev/alternative/my-ai-front-desk">
+  <link rel="stylesheet" href="/milo-design-system.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; line-height: 1.6; }
@@ -47,10 +48,57 @@
     .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: var(--sp-4); }
     .bottom-cta p { font-size: 1.15rem; color: #555; margin-bottom: 32px; }
     .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 6px; font-size: var(--text-sm); font-weight: 600; margin-bottom: 24px; }
-    @media (max-width: 640px) { .hero h1 { font-size: 1.75rem; } table { font-size: var(--text-sm); } th, td { padding: var(--sp-3); } }
+    :root { color-scheme: light; }
+    body { font-family: var(--font-body); color: var(--text-2); line-height: 1.7; background: var(--bg); }
+    main, .legacy-nav-shell { position: relative; z-index: 1; display: block; }
+    .container { max-width: 820px; padding: 0 clamp(20px, 4vw, 28px); }
+    .legacy-nav-shell { border-bottom: 1px solid var(--border); background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+    .legacy-nav { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-4); padding: 16px 0; flex-wrap: wrap; }
+    .legacy-brand { color: var(--text-1); font-weight: 700; }
+    .breadcrumb { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: var(--text-sm); color: var(--text-3); }
+    .breadcrumb a { color: var(--text-2); }
+    .hero { padding: clamp(64px, 12vw, 96px) 0 clamp(48px, 8vw, 64px); }
+    .hero h1, .comparison h2, .section h2, .faq h2, .bottom-cta h2 { font-family: var(--font-display); color: var(--text-1); letter-spacing: -0.03em; }
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 600; line-height: 1.05; }
+    .hero h1 span { color: var(--gold-text); }
+    .hero .subtitle, .section p, .section li, .faq-item p, .bottom-cta p { color: var(--text-2); }
+    .cta-btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 30px; border-radius: 999px; background: var(--text-1); color: var(--text-inv); box-shadow: 0 12px 24px rgba(10, 10, 26, 0.12); }
+    .cta-btn:hover { background: var(--dark-surface); }
+    .comparison, .section, .faq, .bottom-cta { padding: clamp(48px, 8vw, 72px) 0; }
+    .comparison h2, .section h2, .faq h2, .bottom-cta h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 600; }
+    .section, .faq { border-top-color: var(--border-subtle); }
+    .section h3, .faq-item h3, strong { color: var(--text-1); }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 40px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-raised); box-shadow: 0 12px 28px rgba(10, 10, 26, 0.05); }
+    .table-scroll table { min-width: 680px; margin-bottom: 0; }
+    table { width: 100%; }
+    th, td { border-bottom-color: var(--border-subtle); }
+    th { background: var(--surface); color: var(--text-2); }
+    td:first-child { color: var(--text-1); }
+    .check { color: var(--success); }
+    .x { color: var(--error); }
+    .warn { color: var(--gold-text); }
+    .math, .warning-box { border-color: var(--border); box-shadow: 0 12px 28px rgba(10, 10, 26, 0.05); }
+    .math { background: var(--surface-raised); }
+    .warning-box { background: var(--gold-light); }
+    .math h3, .warning-box h3, .warning-box p, .math .number { color: var(--text-1); }
+    .promo { background: var(--gold-light); color: var(--gold-text); }
+    .bottom-cta { background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 100%); }
+    a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+    @media (max-width: 640px) { .legacy-nav { align-items: flex-start; } .hero h1 { font-size: 2.2rem; } table { font-size: var(--text-sm); } th, td { padding: var(--sp-3); } }
   </style>
 </head>
 <body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+<header class="legacy-nav-shell">
+  <nav class="legacy-nav container" aria-label="Breadcrumb">
+    <a class="legacy-brand" href="/">milo</a>
+    <p class="breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>My AI Front Desk Alternative</span></p>
+  </nav>
+</header>
+
+<main id="main">
 
 <div class="hero">
   <div class="container">
@@ -63,6 +111,7 @@
 <div class="comparison">
   <div class="container">
     <h2>Milo vs My AI Front Desk — Side by Side</h2>
+    <div class="table-scroll">
     <table>
       <thead>
         <tr><th>Feature</th><th>Milo (AI Agent Team)</th><th>My AI Front Desk</th></tr>
@@ -84,6 +133,7 @@
         <tr><td>Team Members</td><td class="check">Unlimited</td><td class="warn">2-5 depending on plan</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 </div>
 
@@ -192,6 +242,8 @@
     <a href="/agents" class="cta-btn">Get Started — $399 One-Time</a>
   </div>
 </div>
+
+</main>
 
 </body>
 </html>

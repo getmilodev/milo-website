@@ -38,6 +38,29 @@
       align-items: center;
     }
     .calc-input-row .range-slider { flex: 1; }
+    .calc-form .range-slider {
+      width: 100%;
+      min-height: 44px;
+      touch-action: pan-y;
+    }
+    .calc-form .range-slider::-webkit-slider-runnable-track {
+      height: 10px;
+      border-radius: 999px;
+    }
+    .calc-form .range-slider::-webkit-slider-thumb {
+      width: 36px;
+      height: 36px;
+      margin-top: -13px;
+    }
+    .calc-form .range-slider::-moz-range-track {
+      height: 10px;
+      border-radius: 999px;
+    }
+    .calc-form .range-slider::-moz-range-thumb {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
     .calc-value-display {
       font-family: var(--font-mono);
       font-size: var(--text-lg);
@@ -84,45 +107,49 @@
       margin-bottom: var(--sp-2);
     }
 
-    /* Stats trio */
+    /* Results ledger */
     .results-stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--sp-1);
+      grid-template-columns: 1fr;
+      gap: var(--sp-3);
       margin-bottom: var(--sp-8);
     }
     .result-stat {
-      padding: var(--sp-6);
-      background: var(--surface);
-      border: 1px solid var(--border-subtle);
-    }
-    .result-stat:first-child {
-      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
-    }
-    .result-stat:last-child {
-      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-      background: var(--text-1);
-      border-color: var(--text-1);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--sp-4);
+      align-items: end;
+      padding: var(--sp-5);
+      background: var(--surface-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 12px 28px rgba(10, 10, 26, 0.05);
     }
     .result-stat__number {
       font-family: var(--font-display);
       font-size: var(--text-2xl);
-      color: var(--gold-text);
+      color: var(--text-1);
       font-weight: 400;
       line-height: 1.1;
-      margin-bottom: var(--sp-2);
       font-variant-numeric: tabular-nums;
+      text-align: right;
     }
     .result-stat:last-child .result-stat__number {
-      color: var(--gold);
+      color: var(--gold-text);
     }
     .result-stat__label {
       font-family: var(--font-mono);
       font-size: var(--text-xs);
-      color: var(--text-3);
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
     .result-stat:last-child .result-stat__label {
-      color: var(--text-on-dark-muted);
+      color: var(--gold-text);
+    }
+    .result-stat:last-child {
+      background: var(--gold-light);
+      border-color: color-mix(in oklch, var(--gold), var(--border) 35%);
     }
 
     /* Breakdown */
@@ -221,6 +248,12 @@
       border-color: var(--gold);
       box-shadow: 0 0 0 3px color-mix(in oklch, var(--gold), transparent 80%);
     }
+    .form-feedback {
+      margin-top: var(--sp-3);
+      font-size: var(--text-xs);
+      color: var(--text-on-dark-muted);
+      min-height: 1.2em;
+    }
 
     /* Social proof */
     .social-proof {
@@ -277,14 +310,27 @@
       }
     }
     @media (max-width: 640px) {
-      .results-stats {
+      .calc-step {
+        padding: var(--sp-5) 0;
+      }
+      .calc-input-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--sp-3);
+      }
+      .calc-value-display {
+        min-width: 0;
+        text-align: left;
+      }
+      .slider-labels {
+        font-size: 11px;
+        gap: var(--sp-2);
+      }
+      .result-stat {
         grid-template-columns: 1fr;
       }
-      .result-stat:first-child {
-        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      }
-      .result-stat:last-child {
-        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      .result-stat__number {
+        text-align: left;
       }
       .email-capture {
         flex-direction: column;
@@ -317,7 +363,7 @@
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -349,12 +395,12 @@
     </div>
 
     <div class="calc-layout">
-      <div class="calc-form reveal" data-delay="1" id="calculator">
+      <form class="calc-form reveal" data-delay="1" id="calculatorForm">
 
         <div class="calc-step">
           <label class="label" for="industry">What industry are you in?</label>
           <p class="calc-step__hint">This helps us estimate industry-specific savings.</p>
-          <select class="select" id="industry">
+          <select class="select" id="industry" name="industry" required>
             <option value="">Select your industry...</option>
             <option value="dental">Dental / Medical Practice</option>
             <option value="hvac">HVAC / Home Services</option>
@@ -373,8 +419,8 @@
           <label class="label" for="teamSize">How many people work in your business?</label>
           <p class="calc-step__hint">Include yourself. This estimates how much total time is spent on admin.</p>
           <div class="calc-input-row">
-            <input type="range" class="range-slider" id="teamSize" min="1" max="50" value="3">
-            <div class="calc-value-display" id="teamSizeDisplay">3</div>
+            <input type="range" class="range-slider" id="teamSize" name="teamSize" min="1" max="50" value="3">
+            <output class="calc-value-display" id="teamSizeDisplay" for="teamSize">3</output>
           </div>
           <div class="slider-labels"><span>Just me</span><span>10</span><span>25</span><span>50+</span></div>
         </div>
@@ -383,8 +429,8 @@
           <label class="label" for="adminHours">How many hours per week do you or your team spend on these tasks?</label>
           <p class="calc-step__hint">Scheduling, follow-ups, data entry, answering routine questions, sending reminders, outreach, reporting.</p>
           <div class="calc-input-row">
-            <input type="range" class="range-slider" id="adminHours" min="5" max="80" value="20">
-            <div class="calc-value-display" id="adminHoursDisplay">20 hrs</div>
+            <input type="range" class="range-slider" id="adminHours" name="adminHours" min="5" max="80" value="20">
+            <output class="calc-value-display" id="adminHoursDisplay" for="adminHours">20 hrs</output>
           </div>
           <div class="slider-labels"><span>5 hrs</span><span>20 hrs</span><span>40 hrs</span><span>80+ hrs</span></div>
         </div>
@@ -393,8 +439,8 @@
           <label class="label" for="hourlyRate">What do you estimate that time costs per hour?</label>
           <p class="calc-step__hint">Include salary, benefits, and opportunity cost.</p>
           <div class="calc-input-row">
-            <input type="range" class="range-slider" id="hourlyRate" min="15" max="150" value="35" step="5">
-            <div class="calc-value-display" id="hourlyRateDisplay">$35/hr</div>
+            <input type="range" class="range-slider" id="hourlyRate" name="hourlyRate" min="15" max="150" value="35" step="5">
+            <output class="calc-value-display" id="hourlyRateDisplay" for="hourlyRate">$35/hr</output>
           </div>
           <div class="slider-labels"><span>$15/hr</span><span>$50/hr</span><span>$100/hr</span><span>$150/hr</span></div>
         </div>
@@ -403,8 +449,8 @@
           <label class="label" for="lostLeads">How many leads or customers do you lose per month to slow follow-up?</label>
           <p class="calc-step__hint">Be honest. If you don't know, that is a sign it is more than you think.</p>
           <div class="calc-input-row">
-            <input type="range" class="range-slider" id="lostLeads" min="0" max="50" value="5">
-            <div class="calc-value-display" id="lostLeadsDisplay">5</div>
+            <input type="range" class="range-slider" id="lostLeads" name="lostLeads" min="0" max="50" value="5">
+            <output class="calc-value-display" id="lostLeadsDisplay" for="lostLeads">5</output>
           </div>
           <div class="slider-labels"><span>0</span><span>10</span><span>25</span><span>50+</span></div>
         </div>
@@ -414,13 +460,13 @@
           <p class="calc-step__hint">Average revenue per customer, per year.</p>
           <div class="currency-row">
             <span class="currency-sign">$</span>
-            <input type="number" class="input" id="customerValue" value="500" min="50" max="100000" step="50">
+            <input type="number" class="input" id="customerValue" name="customerValue" value="500" min="50" max="100000" step="50" required inputmode="numeric">
           </div>
         </div>
 
-        <button class="btn btn--dark btn--lg btn--full" id="calculateBtn" style="margin-top: var(--sp-6);">Show Me What I Am Losing</button>
+        <button class="btn btn--dark btn--lg btn--full" id="calculateBtn" type="submit" style="margin-top: var(--sp-6);">Show Me What I Am Losing</button>
 
-      </div>
+      </form>
 
       <div class="calc-sidebar reveal" data-delay="2">
         <div class="calc-sidebar__inner">
@@ -452,7 +498,7 @@
       </div>
 
       <div class="results-header" style="margin-top: var(--sp-6);">
-        <h2>Here is what manual work costs you</h2>
+        <h2 id="resultsTitle" tabindex="-1">Here is what manual work costs you</h2>
         <p class="form-helper" style="font-size: var(--text-sm);">Based on your numbers, not ours.</p>
       </div>
 
@@ -513,11 +559,12 @@
       <div class="results-cta-secondary">
         <h3>Or get a free blueprint first</h3>
         <p style="margin-bottom: var(--sp-6);">No pitch. No commitment. A custom AI agent plan for your business. We send it within 24 hours.</p>
-        <div class="email-capture">
+        <form class="email-capture" id="blueprintForm">
           <label for="captureEmail" class="sr-only">Your email address</label>
-          <input type="email" class="input" id="captureEmail" placeholder="you at your company dot com">
-          <button class="btn btn--gold" id="getBlueprintBtn">Send My Free Blueprint</button>
-        </div>
+          <input type="email" class="input" id="captureEmail" name="email" placeholder="you at your company dot com" autocomplete="email" inputmode="email" required>
+          <button class="btn btn--gold" id="getBlueprintBtn" type="submit">Send My Free Blueprint</button>
+        </form>
+        <p class="form-feedback" id="blueprintStatus" role="status" aria-live="polite"></p>
         <p class="disclaimer" style="margin-top: var(--sp-3); font-size: var(--text-xs);">No spam. No sales pressure. Just your custom blueprint.</p>
       </div>
 
@@ -624,6 +671,15 @@
     }
   });
 
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function focusTarget(el) {
+    if (!el) return;
+    requestAnimationFrame(function() {
+      el.focus({ preventScroll: true });
+    });
+  }
+
   // Calculator sliders
   var sliders = [
     { id: 'teamSize', display: 'teamSizeDisplay', format: function(v) { return v; } },
@@ -652,9 +708,11 @@
 
   function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
 
-  document.getElementById('calculateBtn').addEventListener('click', function() {
+  var calculatorForm = document.getElementById('calculatorForm');
+  calculatorForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    if (!calculatorForm.reportValidity()) return;
     var industry = document.getElementById('industry').value;
-    if (!industry) { alert('Please select your industry first.'); return; }
     var teamSize = parseInt(document.getElementById('teamSize').value);
     var adminHours = parseInt(document.getElementById('adminHours').value);
     var hourlyRate = parseInt(document.getElementById('hourlyRate').value);
@@ -684,7 +742,6 @@
     var end = totalSaved;
     var duration = 600;
     var startTime = null;
-    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       totalEl.textContent = fmt(end) + '/month';
     } else {
@@ -700,17 +757,22 @@
     document.getElementById('roiTimeline').textContent = fmt(setupCost) + ' — pays for itself in ' + roiWeeks + ' week' + (roiWeeks > 1 ? 's' : '');
     var results = document.getElementById('results');
     results.classList.add('visible');
-    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    results.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+    focusTarget(document.getElementById('resultsTitle'));
   });
 
-  document.getElementById('getBlueprintBtn').addEventListener('click', function() {
+  var blueprintForm = document.getElementById('blueprintForm');
+  blueprintForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    if (!blueprintForm.reportValidity()) return;
     var email = document.getElementById('captureEmail').value.trim();
-    if (!email || email.indexOf('@') === -1) { alert('Please enter a valid email address.'); return; }
-    var btn = this;
+    var btn = document.getElementById('getBlueprintBtn');
+    var status = document.getElementById('blueprintStatus');
     btn.textContent = 'Generating your blueprint...';
     btn.disabled = true;
     btn.style.opacity = '0.7';
     document.getElementById('captureEmail').disabled = true;
+    status.textContent = 'Generating your blueprint...';
     var leadData = {
       email: email,
       industry: document.getElementById('industry').value,
@@ -724,10 +786,12 @@
     fetch('/api/calculator-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) })
       .then(function(r) { return r.json(); })
       .then(function(data) {
+        status.textContent = 'Redirecting to your blueprint...';
         if (data.reportUrl) { window.location.href = data.reportUrl; }
         else { var params = new URLSearchParams(leadData); params.delete('email'); params.delete('timestamp'); window.location.href = '/report?' + params.toString(); }
       })
       .catch(function() {
+        status.textContent = 'Using the quick report fallback...';
         var params = new URLSearchParams({ industry: leadData.industry, teamSize: leadData.teamSize, adminHours: leadData.adminHours, hourlyRate: leadData.hourlyRate, lostLeads: leadData.lostLeads, customerValue: leadData.customerValue });
         window.location.href = '/report?' + params.toString();
       });

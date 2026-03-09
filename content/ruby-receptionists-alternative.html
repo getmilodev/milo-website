@@ -102,7 +102,7 @@
     </button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -293,7 +293,7 @@
 
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-1">Will callers know they're talking to AI?</button>
-      <div class="faq__answer" id="faq-1" aria-hidden="true">
+      <div class="faq__answer" id="faq-1" hidden>
         <div class="faq__answer-inner">
           <p>Modern AI voice agents sound natural and conversational. Most callers don't notice or don't mind — they'd rather get an immediate, helpful answer than wait on hold for a human.</p>
         </div>
@@ -301,7 +301,7 @@
     </div>
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-2">Can Milo handle what Ruby's receptionists handle?</button>
-      <div class="faq__answer" id="faq-2" aria-hidden="true">
+      <div class="faq__answer" id="faq-2" hidden>
         <div class="faq__answer-inner">
           <p>For 90%+ of inbound calls — absolutely. Answering FAQs, booking appointments, qualifying leads, routing urgent calls, taking messages. The 10% that needs genuine human judgment gets routed straight to you.</p>
         </div>
@@ -309,7 +309,7 @@
     </div>
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-3">What if I'm currently on Ruby and want to switch?</button>
-      <div class="faq__answer" id="faq-3" aria-hidden="true">
+      <div class="faq__answer" id="faq-3" hidden>
         <div class="faq__answer-inner">
           <p>We set up your Milo agents in parallel while you're still on Ruby. Test everything, make sure you're happy, then switch your forwarding. Zero gap in coverage.</p>
         </div>
@@ -317,7 +317,7 @@
     </div>
     <div class="faq-item reveal" data-delay="2">
       <button class="faq__question" aria-expanded="false" aria-controls="faq-4">What are the ~$40/mo running costs?</button>
-      <div class="faq__answer" id="faq-4" aria-hidden="true">
+      <div class="faq__answer" id="faq-4" hidden>
         <div class="faq__answer-inner">
           <p>AI model API calls (~$20-40/mo depending on volume), phone number hosting (~$2/mo), and telephony minutes (~$5-15/mo). Paid directly to Twilio, Anthropic, etc. — not to us.</p>
         </div>
@@ -430,7 +430,7 @@
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', !expanded);
       const answer = document.getElementById(btn.getAttribute('aria-controls'));
-      answer.setAttribute('aria-hidden', expanded);
+      answer.hidden = expanded;
     });
   });
 </script>

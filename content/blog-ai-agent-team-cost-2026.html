@@ -68,14 +68,90 @@
     .footer-simple { border-top: 1px solid #eee; padding: 40px 24px; text-align: center; color: #888; font-size: 0.9rem; margin-top: 40px; }
     .footer-simple a { color: #555; text-decoration: none; }
     @media (max-width: 640px) { h1 { font-size: 1.6rem; } .compare-table { font-size: 0.85rem; } .compare-table td, .compare-table th { padding: 8px 10px; } }
+
+    :root { color-scheme: light; }
+    body { font-family: var(--font-body); color: var(--text-2); line-height: 1.7; background: var(--bg); }
+    .nav-simple, article, .footer-simple, main { position: relative; z-index: 1; display: block; }
+    .nav-simple {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      padding: 16px clamp(20px, 4vw, 28px);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(12px);
+    }
+    .nav-simple a { color: var(--text-1); }
+    .nav-simple span { color: var(--text-3); }
+    .container { max-width: 760px; padding: 0 clamp(20px, 4vw, 28px); }
+    article { padding: clamp(56px, 8vw, 72px) 0 clamp(72px, 10vw, 96px); }
+    h1, h2, .cta-box h2 { font-family: var(--font-display); letter-spacing: -0.03em; color: var(--text-1); font-weight: 600; }
+    h1 { font-size: clamp(2.3rem, 6vw, 3.8rem); line-height: 1.05; }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); }
+    h3, strong { color: var(--text-1); }
+    .meta, p, li { color: var(--text-2); }
+    .highlight, .toc, .verdict, .agent-card, .cta-box {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 28px rgba(10, 10, 26, 0.05);
+    }
+    .highlight { background: var(--gold-light); border-left: 4px solid var(--gold); }
+    .toc { background: color-mix(in oklch, var(--surface-raised), white 18%); }
+    .toc a, .footer-simple a { color: var(--gold-text); }
+    .verdict { background: color-mix(in oklch, var(--success), white 92%); }
+    .verdict h3 { color: var(--text-1); }
+    .agent-card { background: var(--surface-raised); }
+    .agent-card .role { color: var(--gold-text); }
+    .cta-box { background: var(--text-1); }
+    .cta-box p { color: var(--text-on-dark-muted); }
+    .cta-box a {
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 999px; background: var(--gold); color: var(--text-1);
+    }
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface-raised);
+      box-shadow: 0 12px 28px rgba(10, 10, 26, 0.05);
+    }
+    .compare-table {
+      width: 100%;
+      min-width: 640px;
+      margin: 0;
+      display: table;
+      overflow: visible;
+    }
+    .compare-table th { background: var(--surface); color: var(--text-2); border-bottom-color: var(--border-subtle); }
+    .compare-table td { color: var(--text-2); border-bottom-color: var(--border-subtle); }
+    .compare-table td:first-child { color: var(--text-1); }
+    .footer-simple {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border-subtle);
+      padding: 40px clamp(20px, 4vw, 28px);
+      text-align: center;
+      color: var(--text-3);
+      background: rgba(255, 255, 255, 0.55);
+    }
+    a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+    @media (max-width: 640px) {
+      h1 { font-size: 2.15rem; }
+      .compare-table { min-width: 560px; font-size: var(--text-sm); }
+      .compare-table td, .compare-table th { padding: 10px 12px; }
+    }
+
   </style>
 </head>
 <body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
 
 <div class="nav-simple">
   <a href="/">milo</a> <span>›</span> <a href="/blog">Guides</a>
 </div>
 
+<main id="main">
 <article>
   <div class="container">
     <h1>AI Agent Team Cost in 2026: Real Pricing From Setup to Monthly Operations</h1>
@@ -130,6 +206,8 @@
 
     <h2 id="setup-costs">Setup Costs</h2>
 
+    <div class="table-scroll">
+
     <table class="compare-table">
       <thead>
         <tr>
@@ -171,6 +249,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <p><em>*DIY dollar cost is $0, but time cost is 80-300+ hours depending on team size. At $50/hr, that's $4,000-15,000 in opportunity cost.</em></p>
 
     <h3>Why team setup costs more than single agents</h3>
@@ -188,6 +267,7 @@
 
     <h3>1. AI API costs</h3>
     <p>Each agent uses an LLM (like Claude or GPT) for reasoning. Cost scales with usage:</p>
+    <div class="table-scroll">
     <table class="compare-table">
       <thead>
         <tr>
@@ -218,6 +298,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <p>Good news: API costs have dropped 90%+ since 2024 and continue falling. A query that cost $0.10 two years ago costs $0.005 today. This trend is accelerating.</p>
 
     <h3>2. Hosting</h3>
@@ -302,6 +383,8 @@
 
     <p>For a 4-agent team over 3 years:</p>
 
+    <div class="table-scroll">
+
     <table class="compare-table">
       <thead>
         <tr>
@@ -338,6 +421,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <p><em>*DIY setup cost = 150 hours × $50/hr opportunity cost</em></p>
 
     <h2 id="start">Where to Start</h2>
@@ -361,6 +445,7 @@
 
   </div>
 </article>
+</main>
 
 <div class="footer-simple">
   <p><a href="/">Milo</a> · <a href="/blog">More Guides</a> · <a href="/agents">AI Agent Teams</a> · <a href="/calculator">ROI Calculator</a></p>

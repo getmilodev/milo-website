@@ -36,7 +36,7 @@
     }
     .hero__grid {
       display: grid;
-      grid-template-columns: 64px 1fr 320px;
+      grid-template-columns: minmax(44px, 64px) minmax(0, 1fr) minmax(260px, 320px);
       gap: var(--sp-6);
       align-items: start;
     }
@@ -108,7 +108,7 @@
     .hero__sidebar-divider { height: 1px; background: var(--border); margin: var(--sp-3) 0; }
     .config-grid {
       display: grid;
-      grid-template-columns: 1.3fr 0.7fr;
+      grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
       gap: var(--sp-8);
       align-items: start;
     }
@@ -138,6 +138,11 @@
     }
     @media (max-width: 768px) {
       .config-grid { grid-template-columns: 1fr; }
+      .hero__sidebar-row .key,
+      .hero__sidebar-row .val {
+        display: block;
+        min-width: 0;
+      }
     }
   </style>
 </head>
@@ -166,7 +171,7 @@
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -302,7 +307,7 @@ System <span class="t-accent">"client-ops"</span> live. Cost: <span class="t-num
       <div class="config-aside reveal visible" data-delay="2" style="display: flex; flex-direction: column; gap: var(--sp-6);">
         <div class="config-aside__fig">FIG.01</div>
         <div class="config-aside__image">
-          <img src="/mockups/d2-hands.png" alt="Master architect's hands working a brass compass over architectural drawings" loading="eager" fetchpriority="high" width="640" height="360">
+          <img src="/mockups/d2-hands.svg" alt="An architect's hands guiding drafting tools across a blueprint table" loading="eager" fetchpriority="high" width="640" height="360">
         </div>
         <p class="config-aside__caption">Precision instruments, deliberate craft — the same discipline applied to every agent we deploy.</p>
       </div>
