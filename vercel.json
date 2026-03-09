@@ -31,6 +31,7 @@
     { "source": "/compare/callbird", "destination": "/content/callbird-alternative.html" },
     { "source": "/compare/trillet", "destination": "/content/trillet-alternative.html" },
     { "source": "/compare/ring-eden", "destination": "/content/ring-eden-alternative.html" },
+    { "source": "/compare/abby-connect", "destination": "/content/abby-connect-alternative.html" },
     { "source": "/blog/best-ai-receptionist", "destination": "/content/blog-best-ai-receptionist.html" },
     { "source": "/blog/ai-native-agencies", "destination": "/content/blog-ai-native-agencies.html" },
     { "source": "/blog/ai-agents-small-business", "destination": "/content/blog-ai-agents-small-business.html" },
