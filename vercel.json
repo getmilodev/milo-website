@@ -44,7 +44,8 @@
     { "source": "/blog/ai-receptionist-law-firms", "destination": "/content/blog-ai-receptionist-law-firms.html" },
     { "source": "/blog/ai-receptionist-veterinary-clinics", "destination": "/content/blog-ai-receptionist-veterinary-clinics.html" },
     { "source": "/blog/ai-agent-team-small-business", "destination": "/content/blog-ai-agent-team-small-business.html" },
-    { "source": "/blog/how-to-automate-business-with-ai", "destination": "/content/blog-how-to-automate-business-with-ai.html" }
+    { "source": "/blog/how-to-automate-business-with-ai", "destination": "/content/blog-how-to-automate-business-with-ai.html" },
+    { "source": "/blog/ai-receptionist-no-monthly-fee", "destination": "/content/blog-ai-receptionist-no-monthly-fee.html" }
   ],
   "headers": [
     {
