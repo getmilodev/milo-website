@@ -1,0 +1,17 @@
+; Zone file for hellomilo.co
+; AgentMail email infrastructure
+; Generated 2026-03-09
+
+; DKIM
+agentmail._domainkey IN TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3LC3fSoRMfhdavdWHgTY/6Q6RmmnlQhAELXneygYpEUbEXRP2ZfnkNHci0w/igZGZ/+xW4uuXYPOJ4kiJi4IrlIV6kN0R6gitycihdowb5Y6E93WQH1kc4jiS8Ps1tm1UnIBJIEfOFW5/CI0YBf36GfvsFl78afVZeQL0V8GBOIUVl6kByUo46lREq6cJz71xhhp/Mds70ntN60PCcNd1D3UxnwAlGoUIfRnwR78Fk//z22FHnL7eyZQNuUSGryjlI4DN1P/eMa6ABH38Wqds0dbu2iDQHKPxh9XSctnLTj1KU5dy9CqBV+ISxvgGmqEDyuGWdNctxBL1PuDitw4EQIDAQAB"
+
+; MX Records
+@    IN MX 10 inbound-smtp.us-east-1.amazonaws.com.
+mail IN MX 10 feedback-smtp.us-east-1.amazonses.com.
+
+; SPF
+mail IN TXT "v=spf1 include:amazonses.com -all"
+
+; DMARC
+; NOTE: Replace DOMAIN below with hellomilo.co
+_dmarc IN TXT "v=DMARC1; p=reject; rua=mailto:dmarc@DOMAIN"
