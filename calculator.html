@@ -685,14 +685,19 @@
     var end = totalSaved;
     var duration = 600;
     var startTime = null;
-    function animateCount(ts) {
-      if (!startTime) startTime = ts;
-      var progress = Math.min((ts - startTime) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
-      totalEl.textContent = fmt(Math.round(start + (end - start) * eased)) + '/month';
-      if (progress < 1) requestAnimationFrame(animateCount);
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      totalEl.textContent = fmt(end) + '/month';
+    } else {
+      function animateCount(ts) {
+        if (!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        totalEl.textContent = fmt(Math.round(start + (end - start) * eased)) + '/month';
+        if (progress < 1) requestAnimationFrame(animateCount);
+      }
+      requestAnimationFrame(animateCount);
     }
-    requestAnimationFrame(animateCount);
     document.getElementById('roiTimeline').textContent = fmt(setupCost) + ' — pays for itself in ' + roiWeeks + ' week' + (roiWeeks > 1 ? 's' : '');
     var results = document.getElementById('results');
     results.classList.add('visible');

@@ -38,7 +38,7 @@ Pages in `/content/` are served via Vercel rewrites at nested paths (`/blog/*`, 
       <a href="/security" class="nav__link">Security</a>
       <a href="/calculator" class="nav__link">Calculator</a>
       <a href="/build" class="nav__link">Build</a>
-      <a href="/contact" class="nav__cta">Start a project</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
     </div>
     <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
@@ -58,7 +58,7 @@ Pages in `/content/` are served via Vercel rewrites at nested paths (`/blog/*`, 
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
   <a href="/build">Build</a>
-  <a href="/contact">Start a project</a>
+  <a href="/demo">Start a project</a>
 </div>
 ```
 

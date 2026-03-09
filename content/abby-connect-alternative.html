@@ -13,7 +13,7 @@
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; line-height: 1.6; }
     .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
     .hero { padding: 80px 0 60px; text-align: center; }
-    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: var(--sp-4); letter-spacing: -0.5px; }
     .hero h1 span { color: #e53e3e; }
     .hero .subtitle { font-size: 1.25rem; color: #555; max-width: 620px; margin: 0 auto 32px; }
     .cta-btn { display: inline-block; background: #1a1a1a; color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: background 0.2s; }
@@ -29,8 +29,8 @@
     .warn { color: #d97706; font-weight: 600; }
     .section { padding: 60px 0; border-top: 1px solid #eee; }
     .section h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 24px; }
-    .section h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; margin-top: 32px; }
-    .section p, .section li { font-size: 1.05rem; color: #444; margin-bottom: 12px; }
+    .section h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: var(--sp-3); margin-top: 32px; }
+    .section p, .section li { font-size: var(--text-base); color: #444; margin-bottom: var(--sp-3); }
     .section ul { padding-left: 24px; }
     .math { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 32px; margin: 32px 0; }
     .math h3 { color: #166534; margin-top: 0; }
@@ -41,25 +41,25 @@
     .faq { padding: 60px 0; border-top: 1px solid #eee; }
     .faq h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 32px; }
     .faq-item { margin-bottom: 24px; }
-    .faq-item h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .faq-item h3 { font-size: var(--text-lg); font-weight: 600; margin-bottom: 8px; }
     .faq-item p { color: #555; }
     .bottom-cta { padding: 80px 0; text-align: center; background: #f9f9f9; }
-    .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
+    .bottom-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: var(--sp-4); }
     .bottom-cta p { font-size: 1.15rem; color: #555; margin-bottom: 32px; }
-    .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px; }
+    .promo { display: inline-block; background: #fef3c7; color: #92400e; padding: 8px 16px; border-radius: 6px; font-size: var(--text-sm); font-weight: 600; margin-bottom: 24px; }
     .tier-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 32px 0; }
     .tier-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 24px; text-align: center; }
-    .tier-card .plan { font-weight: 600; font-size: 0.9rem; color: #666; margin-bottom: 8px; }
+    .tier-card .plan { font-weight: 600; font-size: var(--text-sm); color: #666; margin-bottom: 8px; }
     .tier-card .price { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
     .tier-card .detail { font-size: 0.85rem; color: #888; }
     .tier-card.milo { border-color: #22c55e; background: #f0fdf4; }
     nav { padding: 16px 0; border-bottom: 1px solid #eee; }
     nav .container { display: flex; justify-content: space-between; align-items: center; }
     nav a { text-decoration: none; color: #1a1a1a; font-weight: 600; }
-    .breadcrumb { font-size: 0.9rem; color: #888; }
+    .breadcrumb { font-size: var(--text-sm); color: #888; }
     .breadcrumb a { color: #555; text-decoration: none; }
     .breadcrumb a:hover { text-decoration: underline; }
-    footer { padding: 40px 0; text-align: center; font-size: 0.9rem; color: #888; border-top: 1px solid #eee; }
+    footer { padding: 40px 0; text-align: center; font-size: var(--text-sm); color: #888; border-top: 1px solid #eee; }
     footer a { color: #555; text-decoration: none; margin: 0 12px; }
     @media (max-width: 768px) { .hero h1 { font-size: 1.75rem; } table { font-size: 0.85rem; } th, td { padding: 10px 8px; } .tier-cards { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .tier-cards { grid-template-columns: 1fr; } }
@@ -162,12 +162,12 @@
     <div class="warning-box">
       <h3>What 50 Minutes Actually Looks Like</h3>
       <p>Abby Connect's cheapest AI plan gives you 50 minutes for $99/month. Here's the reality for a typical service business:</p>
-      <p style="margin-top:12px;"><strong>Average call length:</strong> 2–3 minutes</p>
+      <p style="margin-top:var(--sp-3);"><strong>Average call length:</strong> 2–3 minutes</p>
       <p><strong>That gives you:</strong> 17–25 calls per month. About 1 call per business day.</p>
-      <p style="margin-top:12px;"><strong>Week 1:</strong> You get 8 calls (24 minutes used). Things look fine.</p>
+      <p style="margin-top:var(--sp-3);"><strong>Week 1:</strong> You get 8 calls (24 minutes used). Things look fine.</p>
       <p><strong>Week 2:</strong> 7 more calls. You've used 45 of your 50 minutes. It's the 10th of the month.</p>
       <p><strong>Weeks 3–4:</strong> Every call costs ~$1.98/min in overages. A 3-minute call = $5.94 extra. Your $99 plan becomes $150, $200, $250.</p>
-      <p style="margin-top:12px;"><strong>Or you upgrade:</strong> $165/mo for 100 minutes. $299/mo for 200 minutes. $690/mo for 500 minutes. The "affordable AI plan" isn't so affordable anymore.</p>
+      <p style="margin-top:var(--sp-3);"><strong>Or you upgrade:</strong> $165/mo for 100 minutes. $299/mo for 200 minutes. $690/mo for 500 minutes. The "affordable AI plan" isn't so affordable anymore.</p>
     </div>
 
     <h3>Per-Minute Billing Punishes Growth</h3>
@@ -178,13 +178,13 @@
       <h3>The 12-Month Comparison</h3>
       <p><strong>Abby Connect AI — Essential plan (100 min/mo):</strong></p>
       <p>$165/mo × 12 = <span class="number">$1,980/year</span></p>
-      <p style="margin-top: 12px;"><strong>Abby Connect AI — Professional plan (200 min/mo):</strong></p>
+      <p style="margin-top: var(--sp-3);"><strong>Abby Connect AI — Professional plan (200 min/mo):</strong></p>
       <p>$299/mo × 12 = <span class="number">$3,588/year</span></p>
-      <p style="margin-top: 12px;"><strong>Abby Connect Human — Essential plan (100 min/mo):</strong></p>
+      <p style="margin-top: var(--sp-3);"><strong>Abby Connect Human — Essential plan (100 min/mo):</strong></p>
       <p>$329/mo × 12 = <span class="number">$3,948/year</span></p>
-      <p style="margin-top: 16px;"><strong>Milo:</strong></p>
+      <p style="margin-top: var(--sp-4);"><strong>Milo:</strong></p>
       <p>$399 setup + ($40/mo × 12) = <span class="number">$879/year</span></p>
-      <p style="margin-top: 16px; font-size: 1.1rem;"><strong>You save $1,101–$3,069 in year one.</strong> And the gap grows every year after — because the $399 setup is a one-time cost.</p>
+      <p style="margin-top: var(--sp-4); font-size: var(--text-lg);"><strong>You save $1,101–$3,069 in year one.</strong> And the gap grows every year after — because the $399 setup is a one-time cost.</p>
     </div>
   </div>
 </div>
@@ -202,7 +202,7 @@
       <li><strong>HIPAA compliance:</strong> Available on human plans for medical and legal practices.</li>
       <li><strong>20 years of call data:</strong> They know how to handle calls. Scripts, escalation, difficult callers — they've seen it all.</li>
     </ul>
-    <p style="margin-top: 16px;">If you need <strong>live human receptionists with a personal touch</strong> and budget isn't the primary constraint, Abby Connect's human plans are among the best in the industry. The question is whether that human touch is worth 4–15x the cost.</p>
+    <p style="margin-top: var(--sp-4);">If you need <strong>live human receptionists with a personal touch</strong> and budget isn't the primary constraint, Abby Connect's human plans are among the best in the industry. The question is whether that human touch is worth 4–15x the cost.</p>
   </div>
 </div>
 
@@ -309,7 +309,7 @@
 <footer>
   <div class="container">
     <a href="/">Milo</a> · <a href="/blog">Guides</a> · <a href="/agents">AI Agent Teams</a> · <a href="/receptionist">AI Receptionist</a>
-    <p style="margin-top: 12px;">© 2026 Milo. AI agents for small business.</p>
+    <p style="margin-top: var(--sp-3);">© 2026 Milo. AI agents for small business.</p>
   </div>
 </footer>
 
