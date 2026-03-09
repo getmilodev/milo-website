@@ -1,0 +1,17 @@
+# Internal strategy/ops docs — sensitive, never deploy
+ops/
+mockups/
+research/
+content/*.md
+
+# Local dev files
+CLAUDE.local.md
+.claude/
+.vercelignore
+middleware.js
+
+# Misc
+a1b2c3d4e5f6g7h8.txt
+node_modules/
+.env
+.env.*
