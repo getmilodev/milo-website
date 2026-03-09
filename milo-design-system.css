@@ -1198,6 +1198,159 @@ pre {
 }
 
 /* ===========================================
+   DELIGHT — Micro-interactions & personality
+   =========================================== */
+
+/* Nav logo dot — breathes on hover */
+.nav__logo:hover .nav__dot {
+  animation: dot-breathe 1.2s var(--ease-out-expo) infinite alternate;
+}
+@keyframes dot-breathe {
+  from { transform: scale(1); opacity: 1; }
+  to   { transform: scale(1.6); opacity: 0.6; }
+}
+
+/* Nav links — gold underline slides in from left */
+.nav__link {
+  position: relative;
+}
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--gold);
+  transition: width 250ms var(--ease-out-expo);
+}
+.nav__link:hover::after { width: 100%; }
+
+/* Buttons — satisfying press depth */
+.btn:active {
+  transform: translateY(1px);
+  transition-duration: 50ms;
+}
+
+/* Spec labels — subtle gold glow on hover */
+.spec-label {
+  transition: box-shadow 200ms;
+}
+.section-marker:hover .spec-label {
+  box-shadow: 0 0 12px color-mix(in oklch, var(--gold), transparent 70%);
+}
+
+/* Stacked list numbers — gold shift on row hover */
+.stacked-item:hover .stacked-item__num {
+  color: var(--gold);
+  transition: color 200ms;
+}
+
+/* Input focus — gold ring bloom */
+.input:focus, .select:focus, .textarea:focus {
+  animation: focus-bloom 300ms var(--ease-out-expo);
+}
+@keyframes focus-bloom {
+  from { box-shadow: 0 0 0 0px color-mix(in oklch, var(--gold), transparent 60%); }
+  to   { box-shadow: 0 0 0 3px color-mix(in oklch, var(--gold), transparent 85%); }
+}
+
+/* FAQ question — arrow has spring feel */
+.faq__question::after {
+  transition: transform 300ms var(--ease-out-expo);
+}
+
+/* Footer dot — slow idle pulse */
+.footer__dot {
+  animation: footer-pulse 3s ease-in-out infinite alternate;
+}
+@keyframes footer-pulse {
+  from { opacity: 0.5; }
+  to   { opacity: 0.9; }
+}
+
+/* Terminal cursor blink */
+.terminal__cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background: var(--gold);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: cursor-blink 1s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Pull quote — entrance glow */
+.pull-quote__inner {
+  transition: border-color 600ms;
+}
+.pull-quote .reveal.visible .pull-quote__inner {
+  border-color: var(--gold-light);
+}
+
+/* CTA hover lift for the whole section */
+.cta-section {
+  transition: transform 400ms var(--ease-out-expo), box-shadow 400ms;
+}
+.cta-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px color-mix(in oklch, var(--text-1), transparent 85%);
+}
+
+/* Gold line — shimmer on scroll reveal */
+.gold-line.reveal.visible {
+  background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
+  background-size: 200% 100%;
+  animation: gold-shimmer 2s var(--ease-out-expo) forwards;
+}
+@keyframes gold-shimmer {
+  from { background-position: 100% 0; }
+  to   { background-position: 0% 0; }
+}
+
+/* Comparison table — row highlight on hover */
+.comparison-table tr:hover td {
+  background: color-mix(in oklch, var(--gold-light), transparent 60%);
+  transition: background 150ms;
+}
+
+/* Pricing tier — gold accent on hover */
+.pricing-tier:hover .pricing-tier__name {
+  color: var(--gold-text);
+  transition: color 200ms;
+}
+
+/* Feature list checkmarks — gold pulse on hover */
+.feature-list li:hover::before {
+  color: var(--gold);
+  transition: color 150ms;
+}
+
+/* Success checkmark draw animation */
+@keyframes check-draw {
+  to { stroke-dashoffset: 0; }
+}
+.success-check-anim {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: check-draw 500ms var(--ease-out-expo) 200ms forwards;
+}
+
+/* Reduce all delight for users who prefer */
+@media (prefers-reduced-motion: reduce) {
+  .nav__logo:hover .nav__dot,
+  .footer__dot,
+  .terminal__cursor { animation: none; }
+  .cta-section:hover { transform: none; }
+  .gold-line.reveal.visible { animation: none; }
+  .input:focus, .select:focus, .textarea:focus { animation: none; }
+}
+
+/* ===========================================
    RESPONSIVE UTILITIES
    =========================================== */
 

@@ -679,7 +679,20 @@
     document.getElementById('timeSaved').textContent = fmt(timeSaved) + '/month';
     document.getElementById('leadsRecovered').textContent = leadsRecovered + '/month';
     document.getElementById('revRecovered').textContent = fmt(revRecovered) + '/month';
-    document.getElementById('totalSavings').textContent = fmt(totalSaved) + '/month';
+    // Animate total savings count-up
+    var totalEl = document.getElementById('totalSavings');
+    var start = 0;
+    var end = totalSaved;
+    var duration = 600;
+    var startTime = null;
+    function animateCount(ts) {
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      totalEl.textContent = fmt(Math.round(start + (end - start) * eased)) + '/month';
+      if (progress < 1) requestAnimationFrame(animateCount);
+    }
+    requestAnimationFrame(animateCount);
     document.getElementById('roiTimeline').textContent = fmt(setupCost) + ' — pays for itself in ' + roiWeeks + ' week' + (roiWeeks > 1 ? 's' : '');
     var results = document.getElementById('results');
     results.classList.add('visible');

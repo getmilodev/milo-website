@@ -100,6 +100,15 @@
     .option.selected {
       border-color: var(--gold);
       background: var(--gold-light);
+      animation: option-select 300ms var(--ease-out-expo);
+    }
+    @keyframes option-select {
+      0% { transform: scale(1); }
+      40% { transform: scale(0.97); }
+      100% { transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .option.selected { animation: none; }
     }
     .option-icon {
       font-size: 1.3rem;

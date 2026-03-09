@@ -95,6 +95,10 @@
     @media (max-width: 480px) {
       .stats-grid { grid-template-columns: 1fr; }
     }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -460,7 +464,9 @@
   // === ORIGINAL SCRIPTS (preserved exactly) ===
   (function() {
     if (window.location.search.includes('success=true')) {
-      document.getElementById('successBanner').style.display = 'block';
+      var banner = document.getElementById('successBanner');
+      banner.style.display = 'block';
+      banner.style.animation = 'stepIn 500ms var(--ease-out-expo)';
       window.scrollTo(0, 0);
     }
     var u = 'milo';
