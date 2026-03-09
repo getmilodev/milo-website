@@ -26,6 +26,7 @@
     { "source": "/agents", "destination": "/agents.html" },
     { "source": "/build", "destination": "/build.html" },
     { "source": "/calculator", "destination": "/calculator.html" },
+    { "source": "/audit", "destination": "/audit.html" },
     { "source": "/security", "destination": "/security.html" },
     { "source": "/industries", "destination": "/industries.html" },
     { "source": "/blog", "destination": "/blog.html" },
@@ -67,7 +68,7 @@
       ]
     },
     {
-      "source": "/(executives|demo|ainative|agents|build|calculator|security|why-so-cheap|industries|blog)",
+      "source": "/(executives|demo|ainative|agents|build|calculator|audit|security|why-so-cheap|industries|blog)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
