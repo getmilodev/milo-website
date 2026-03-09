@@ -70,6 +70,34 @@
       gap: var(--sp-3);
       flex-wrap: wrap;
     }
+    .agents-hero__alt {
+      margin-top: var(--sp-8);
+      max-width: 540px;
+      padding-top: var(--sp-5);
+      border-top: 1px solid var(--border);
+    }
+    .agents-hero__alt-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold-text);
+      margin-bottom: var(--sp-2);
+    }
+    .agents-hero__alt-title {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: var(--sp-2);
+    }
+    .agents-hero__alt-copy {
+      font-size: var(--text-sm);
+      line-height: 1.65;
+      color: var(--text-2);
+      margin-bottom: var(--sp-4);
+      max-width: 520px;
+    }
     .agents-hero__sidebar {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -102,6 +130,10 @@
         align-items: stretch;
       }
       .agents-hero__actions .btn {
+        justify-content: center;
+      }
+      .agents-hero__alt .btn {
+        width: 100%;
         justify-content: center;
       }
       .agents-hero__sidebar-row .key,
@@ -226,6 +258,12 @@
         <div class="agents-hero__actions reveal visible" data-delay="2">
           <a href="#pricing" class="btn btn--dark btn--lg">Start With One Workflow</a>
           <a href="/build" class="btn btn--ghost">See What We Build</a>
+        </div>
+        <div class="agents-hero__alt reveal" data-delay="3">
+          <div class="agents-hero__alt-label">Alternate fit</div>
+          <div class="agents-hero__alt-title">Founder or senior operator?</div>
+          <p class="agents-hero__alt-copy">We also build private 1-on-1 AI systems for writing, planning, research, and decision support. Same Milo discipline, different scope.</p>
+          <a href="/executives" class="btn btn--outline">See Executive AI</a>
         </div>
       </div>
       <div class="agents-hero__sidebar reveal" data-delay="3">
@@ -496,7 +534,7 @@
       </div>
     </div>
 
-    <p class="promo-note reveal"><strong>Separate offer:</strong> <a href="/executives" style="color: var(--gold-text);">AI for Executives</a> is for founders and senior operators who want a personal AI operating system for writing, planning, research, and decision support.</p>
+    <p class="promo-note reveal"><strong>Different buyer, same discipline:</strong> <a href="/executives" style="color: var(--gold-text);">AI for Executives</a> is a private 1-on-1 engagement for founders and senior operators who want a personal AI system for writing, planning, research, and decision support.</p>
   </div>
 </section>
 
