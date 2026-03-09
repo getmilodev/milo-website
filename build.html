@@ -793,12 +793,10 @@ function showResults() {
   const count = agents.length;
 
   let tier, price, link;
-  if (count <= 2) {
-    tier = 'Starter'; price = '$299'; link = '/buy/starter';
-  } else if (count <= 5) {
-    tier = 'Team'; price = '$2,499'; link = '/buy/team';
+  if (count <= 3) {
+    tier = 'Per Agent'; price = '$399/agent'; link = '/buy/starter';
   } else {
-    tier = 'Managed'; price = '$999/mo'; link = '/buy/managed';
+    tier = 'Full Team (4+)'; price = '$2,499'; link = '/buy/team';
   }
 
   const industryNames = {
