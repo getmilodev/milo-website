@@ -71,7 +71,7 @@ Running a {employee_count}-person plumbing shop means you're probably on a job s
 
 We built an AI that answers when you can't. It sounds like a real person, gets the caller's name and what they need, and texts you a summary. You call them back within the hour with full context.
 
-{company}'s been around since {founded_year} — {years_in_business} years of reputation shouldn't be undermined by a missed call. This costs $49/mo and takes 15 minutes to set up.
+{company}'s been around since {founded_year} — {years_in_business} years of reputation shouldn't be undermined by a missed call. It's a one-time $399 setup, then about $40/mo in running costs — no monthly subscription to us. Takes 15 minutes to get going.
 
 Want me to send you a quick demo?
 
@@ -92,7 +92,7 @@ Here's a stat that probably won't surprise you: about 60% of patients who call a
 
 We built an AI receptionist specifically for dental practices. It answers your phone when your front desk is busy or after hours, confirms your business hours, answers common questions ("do you take Delta Dental?"), and captures the patient's info so your team can follow up.
 
-{company}'s been serving {city} for over {years_in_business} years — this just makes sure no new patient slips through the cracks. It's $49/mo and takes about 15 minutes to set up.
+{company}'s been serving {city} for over {years_in_business} years — this just makes sure no new patient slips through the cracks. It's a one-time $399 setup, then about $40/mo in running costs. Takes about 15 minutes to get going.
 
 Would a quick 2-minute demo be useful?
 
