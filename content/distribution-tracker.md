@@ -1,11 +1,11 @@
 # Milo Distribution Tracker
-*Last updated: 2026-03-08 (late evening)*
+*Last updated: 2026-03-09*
 
 ## Site Content Summary
-- **Comparison pages:** 5 (Smith.ai, AnswerConnect, Ruby Receptionists, My AI Front Desk, Goodcall)
-- **Blog posts:** 17
+- **Comparison pages:** 7 (Smith.ai, AnswerConnect, Ruby Receptionists, My AI Front Desk, Goodcall, Dialzara, Rosie)
+- **Blog posts:** 17+
 - **Vertical landing pages:** 5 (dental, law firms, HVAC, veterinary, accountants)
-- **Total sitemap URLs:** 38
+- **Total sitemap URLs:** 40
 - **Revenue:** $49
 
 ## Awesome List Submissions (GitHub)
@@ -16,8 +16,8 @@
 | mahseema/awesome-ai-tools | 4,541 | Issue #745 | ⏳ Open | [Link](https://github.com/mahseema/awesome-ai-tools/issues/745) |
 | jim-schwoebel/awesome_ai_agents | 1,456 | Issue #83 | ⏳ Open | [Link](https://github.com/jim-schwoebel/awesome_ai_agents/issues/83) |
 | slavakurilyak/awesome-ai-agents | 1,304 | Issue #101 | ⏳ Open | [Link](https://github.com/slavakurilyak/awesome-ai-agents/issues/101) |
-| JStumpp/awesome-chatbots | 544 | Issue #52 | ⏳ Open (NEW) | [Link](https://github.com/JStumpp/awesome-chatbots/issues/52) |
-| GetStream/awesome-saas-services | 551 | Issue #76 | ⏳ Open (NEW) | [Link](https://github.com/GetStream/awesome-saas-services/issues/76) |
+| JStumpp/awesome-chatbots | 544 | Issue #52 | ⏳ Open | [Link](https://github.com/JStumpp/awesome-chatbots/issues/52) |
+| GetStream/awesome-saas-services | 551 | Issue #76 | ⏳ Open | [Link](https://github.com/GetStream/awesome-saas-services/issues/76) |
 | kyrolabs/awesome-agents | 1,868 | SKIPPED | ❌ Requires open-source | N/A |
 | Ibexoft/awesome-startup-tools-list | 956 | SKIPPED | ❌ Issues disabled, needs PR | N/A |
 
@@ -31,20 +31,30 @@
 | Ruby Receptionists | /compare/ruby-receptionists | Human service costs vs AI ownership |
 | My AI Front Desk | /compare/my-ai-front-desk | Minute caps, overage fees (pricing ~$79-119/mo actual) |
 | Goodcall | /compare/goodcall | $0.50/customer overage, per-agent pricing |
+| Dialzara | /compare/dialzara | Per-minute add-ons vs ownership |
+| Rosie | /compare/rosie | SaaS rental vs one-time ownership |
 
 ## AI Agent Directories (Priority - agent-specific)
-| Directory | URL | Submission | Status |
-|-----------|-----|------------|--------|
-| AI Agents Directory | aiagentsdirectory.com | Web form /register | 🔲 Not started |
-| AI Agent Store | aiagentstore.ai | Web form /register + /ai-agencies | 🔲 Not started |
-| Find Your Agent | findyouragent.ai | Web form | 🔲 Not started |
-| AI Agents Live | aiagentslive.com | TBD | 🔲 Not started |
-| AI Agents Marketplace | trillionagent.com | TBD | 🔲 Not started |
-| AI Agents Verse | aiagentsverse.com | TBD | 🔲 Not started |
-| AI Agents Base | aiagentsbase.com | TBD | 🔲 Not started |
-| AI Agents List | aiagentslist.com | TBD | 🔲 Not started |
-| AgentHunter | agenthunter.io | TBD | 🔲 Not started |
-| Add AI Directory | addaidirectory.com | TBD | 🔲 Not started |
+
+### ⏳ AWAITING OWNER ACTION — 4 submissions across 3 directories
+
+| Directory | Submit URL | Type | Status | Notes |
+|-----------|-----------|------|--------|-------|
+| AI Agent Store | [aiagentstore.ai/register](https://aiagentstore.ai/register) | AI Agent listing | ⏳ Owner action needed | Email+password signup, then list agent |
+| AI Agent Store | [aiagentstore.ai/agency-register](https://aiagentstore.ai/agency-register) | AI Agency listing | ⏳ Owner action needed | Separate agency registration for /ai-agencies page |
+| AI Agents Directory | [aiagentsdirectory.com/submit-agent](https://aiagentsdirectory.com/submit-agent) | Free agent listing | ⏳ Owner action needed | Create account → sign in → submit. Free = permanent listing + dedicated page. Requires backlink. $29 one-time for do-follow SEO boost. |
+| Find Your Agent | [findyouragent.ai/users/sign_up](https://findyouragent.ai/users/sign_up) | AI Agent listing | ⏳ Owner action needed | Sign up (email/password or Google), then go to /agents/new to submit |
+
+### Other Directories (Not yet researched)
+| Directory | URL | Status |
+|-----------|-----|--------|
+| AI Agents Live | aiagentslive.com | 🔲 Not started |
+| AI Agents Marketplace | trillionagent.com | 🔲 Not started |
+| AI Agents Verse | aiagentsverse.com | 🔲 Not started |
+| AI Agents Base | aiagentsbase.com | 🔲 Not started |
+| AI Agents List | aiagentslist.com | 🔲 Not started |
+| AgentHunter | agenthunter.io | 🔲 Not started |
+| Add AI Directory | addaidirectory.com | 🔲 Not started |
 
 ## General AI Tool Directories (High DA)
 | Directory | URL | Status |
