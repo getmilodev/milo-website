@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intuit Is Building AI Agents for Your Accountant — Here's What That Means for You | Milo</title>
+  <meta name="description" content="Intuit and Anthropic partnered to bring custom AI agents to mid-market businesses via Claude Agent SDK. Here's what accounting firms need to know — and why platform lock-in isn't your only option.">
+  <meta property="og:title" content="Intuit Is Building AI Agents for Your Accountant — Here's What That Means for You">
+  <meta property="og:description" content="Intuit + Anthropic are bringing custom AI agents to accounting. What this means for your firm, the platform lock-in risk, and the independent alternative.">
+  <link rel="canonical" href="https://www.getmilo.dev/blog/intuit-ai-agents-accountants">
+  <link rel="stylesheet" href="/milo-design-system.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Intuit Is Building AI Agents for Your Accountant — Here's What That Means for You",
+    "description": "Analysis of the Intuit-Anthropic AI agents partnership and what it means for accounting firms considering AI adoption.",
+    "author": {"@type": "Organization", "name": "Milo", "url": "https://www.getmilo.dev"},
+    "publisher": {"@type": "Organization", "name": "Milo"},
+    "datePublished": "2026-03-09",
+    "dateModified": "2026-03-09"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What did Intuit and Anthropic announce about AI agents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On February 24, 2026, Intuit and Anthropic announced a multi-year partnership to bring custom AI agents to mid-market businesses via Claude Agent SDK on the Intuit platform. Businesses will be able to build industry-specific AI agents for compliant workflows. Rolling out spring 2026."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will Intuit's AI agents work outside of the Intuit platform?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The AI agents built through this partnership operate within Intuit's platform and ecosystem. They require Intuit's infrastructure and are tied to Intuit products like QuickBooks and Intuit Enterprise Suite."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there alternatives to Intuit's AI agents for accounting firms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Independent AI agent providers build custom AI agent systems that run on your infrastructure, not a vendor's platform. These agents work across any software stack and you own everything with no ongoing platform dependency."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; line-height: 1.7; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    article { padding: 60px 0 80px; }
+    h1 { font-size: 2.25rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .meta { color: #888; font-size: 0.9rem; margin-bottom: 40px; }
+    h2 { font-size: 1.5rem; font-weight: 700; margin: 48px 0 16px; }
+    h3 { font-size: 1.2rem; font-weight: 600; margin: 32px 0 12px; }
+    p { font-size: 1.05rem; color: #333; margin-bottom: 16px; }
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
+    li { font-size: 1.05rem; color: #333; margin-bottom: 8px; }
+    strong { color: #1a1a1a; }
+    a { color: #0369a1; }
+    .highlight { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px 24px; margin: 24px 0; border-radius: 0 8px 8px 0; }
+    .highlight p { margin-bottom: 0; }
+    .cta-box { background: #1a1a1a; color: #fff; border-radius: 12px; padding: 40px; margin: 48px 0; text-align: center; }
+    .cta-box h2 { color: #fff; margin-top: 0; }
+    .cta-box p { color: #ccc; }
+    .cta-box a.primary-link { display: inline-block; background: #fff; color: #1a1a1a; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 16px; }
+    .cta-box a.secondary-link { display: block; color: #999; font-size: 0.9rem; margin-top: 12px; text-decoration: underline; }
+    .toc { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 24px; margin: 32px 0; }
+    .toc h3 { margin-top: 0; font-size: 1rem; }
+    .toc ol { margin-bottom: 0; }
+    .toc a { color: #0369a1; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .info-card { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 24px; margin: 24px 0; }
+    .info-card h3 { margin-top: 0; color: #059669; }
+    .info-card p { margin-bottom: 8px; }
+    .info-card p:last-child { margin-bottom: 0; }
+    .warning-card { background: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 24px; margin: 24px 0; }
+    .warning-card h3 { margin-top: 0; color: #dc2626; }
+    .warning-card p { margin-bottom: 8px; }
+    .warning-card p:last-child { margin-bottom: 0; }
+    .compare-card { background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 12px; padding: 24px; margin: 24px 0; }
+    .compare-card h3 { margin-top: 0; color: #7c3aed; }
+    .compare-card p { margin-bottom: 8px; }
+    .compare-card p:last-child { margin-bottom: 0; }
+    .compare-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.95rem; }
+    .compare-table th { background: #f9fafb; text-align: left; padding: 12px 16px; border-bottom: 2px solid #e5e7eb; font-weight: 600; }
+    .compare-table td { padding: 12px 16px; border-bottom: 1px solid #f3f4f6; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .nav-simple { padding: 16px 24px; border-bottom: 1px solid #eee; }
+    .nav-simple a { color: #1a1a1a; text-decoration: none; font-weight: 600; font-size: 1.1rem; }
+    .nav-simple span { color: #888; margin: 0 8px; }
+    .footer-simple { border-top: 1px solid #eee; padding: 40px 24px; text-align: center; color: #888; font-size: 0.9rem; margin-top: 40px; }
+    .footer-simple a { color: #555; text-decoration: none; }
+    .source-list { font-size: 0.9rem; color: #666; }
+    .source-list a { color: #0369a1; }
+    @media (max-width: 640px) { h1 { font-size: 1.6rem; } .compare-table { font-size: 0.85rem; } .compare-table td, .compare-table th { padding: 8px 10px; } }
+  </style>
+</head>
+<body>
+
+<div class="nav-simple">
+  <a href="/">milo</a> <span>›</span> <a href="/blog">Guides</a>
+</div>
+
+<article>
+  <div class="container">
+    <h1>Intuit Is Building AI Agents for Your Accountant — Here's What That Means for You</h1>
+    <p class="meta">March 9, 2026 · 8 min read</p>
+
+    <p>On February 24, Intuit and Anthropic announced a multi-year partnership to bring custom AI agents to mid-market businesses. The agents will run on Intuit's platform, powered by Anthropic's Claude, and begin rolling out this spring.</p>
+
+    <p>If you run an accounting firm — or any professional services business that touches Intuit's ecosystem — this announcement deserves your attention. Not because it's alarming, but because it changes the competitive landscape in ways that matter for how you think about AI adoption.</p>
+
+    <div class="highlight">
+      <p><strong>The headline:</strong> Intuit is embedding AI agents directly into its platform. Your accounting software vendor is about to become your AI vendor too. Whether that's a good thing depends entirely on how much control you want over your own technology.</p>
+    </div>
+
+    <div class="toc">
+      <h3>What we'll cover</h3>
+      <ol>
+        <li><a href="#announcement">What Intuit and Anthropic actually announced</a></li>
+        <li><a href="#matters">Why this matters for accounting firms</a></li>
+        <li><a href="#money">$100M+ flowing into AI for accounting</a></li>
+        <li><a href="#lock-in">The platform lock-in question</a></li>
+        <li><a href="#alternative">The alternative: AI agents you own</a></li>
+        <li><a href="#decision">Making the right decision for your firm</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ol>
+    </div>
+
+    <h2 id="announcement">What Intuit and Anthropic Actually Announced</h2>
+
+    <p>Here's what the <a href="https://investors.intuit.com/news-events/press-releases/detail/1305/">official press release</a> says:</p>
+
+    <ul>
+      <li><strong>Custom AI agents for mid-market businesses.</strong> Anthropic's Claude Agent SDK will be integrated directly into the Intuit platform. Businesses can build and deploy AI agents "customized with industry-specific skills" — no technical expertise required.</li>
+      <li><strong>Intuit's financial intelligence inside Claude.</strong> TurboTax, Credit Karma, QuickBooks, and Mailchimp will surface directly inside Anthropic's products (Cowork, Claude for Enterprise, Claude.ai) through MCP integrations.</li>
+      <li><strong>Spring 2026 rollout.</strong> These experiences "will begin rolling out to Intuit customers and Anthropic users in spring 2026."</li>
+      <li><strong>Intuit Enterprise Suite focus.</strong> The press release highlights Intuit Intelligence for Enterprise Suite — their mid-market product — as the initial platform. It's currently in beta.</li>
+      <li><strong>Claude Code for Intuit engineering.</strong> Intuit is also deploying Claude Code internally to accelerate its own development.</li>
+    </ul>
+
+    <p>The examples Intuit gave are telling. A regional restaurant group using AI to analyze margins across 15 locations. A construction subcontractor managing $50M in project volume using agents to flag billing gaps and compliance deadlines. These aren't small-business chatbots — they're workflow-integrated AI agents for mid-market operations.</p>
+
+    <p>This is also Intuit's <em>second</em> major AI partnership in months. They announced an <a href="https://www.pymnts.com/artificial-intelligence-2/2025/openai-and-intuit-aim-to-turn-chatgpt-into-financial-guru/">OpenAI integration</a> in November 2025 that brought Intuit tools into ChatGPT. The Anthropic deal goes further — it enables building and deploying custom agents on the platform itself.</p>
+
+    <p>As Intuit CTO Alex Balazs put it: "We're delivering something customers haven't had before: custom AI agents that truly understand their finances, their workflows, and their industry, and can take action on their behalf."</p>
+
+    <h2 id="matters">Why This Matters for Accounting Firms</h2>
+
+    <p>If you're a CPA firm or accounting practice, here's why you should care:</p>
+
+    <h3>1. Your competitors will have access to this</h3>
+
+    <p>Every firm using QuickBooks Online Accountant or Intuit Enterprise Suite will eventually get access to these AI agent capabilities. The firms that adopt early will have a meaningful efficiency advantage — at least temporarily.</p>
+
+    <h3>2. Client expectations are about to shift</h3>
+
+    <p>When Intuit starts marketing "AI-powered accounting" to the businesses your clients run, those business owners will start asking their accountants: "Are you using AI too?" The bar for what clients expect from their accounting firm is rising.</p>
+
+    <h3>3. The mid-market is the battleground</h3>
+
+    <p>Intuit specifically called out the mid-market — businesses too large for basic QuickBooks but not enterprise enough for Oracle or SAP. If that's where your clients sit, you're in the direct path of this shift.</p>
+
+    <div class="info-card">
+      <h3>💡 The market validation angle</h3>
+      <p>This announcement is actually <em>good news</em> for anyone already investing in AI for professional services. When Intuit — a $170B+ market cap company — makes AI agents a core product strategy, it validates the entire category.</p>
+      <p>The question isn't <em>whether</em> accounting firms need AI agents. Intuit just answered that. The question is <strong>where those AI agents should live</strong>.</p>
+    </div>
+
+    <h2 id="money">$100M+ Is Flowing Into AI for Accounting</h2>
+
+    <p>Intuit's announcement isn't happening in isolation. On the same day — February 24, 2026 — AI accounting startup <a href="https://www.pymnts.com/news/investment-tracker/2026/basis-raises-100-million-to-build-up-ai-in-accounting/">Basis raised $100 million</a> in Series B funding at a <a href="https://www.reuters.com/business/ai-accounting-startup-basis-raises-100-million-115-billion-valuation-2026-02-24/">$1.15 billion valuation</a>, specifically to build AI agents for accounting firms. Basis is already used by approximately 30% of the top 25 accounting firms.</p>
+
+    <p>That's a unicorn-valued startup and one of the largest software companies on Earth both betting heavily on AI agents for accounting — in the same week.</p>
+
+    <p>The capital flowing into this space sends a clear signal: <strong>AI agents for accounting aren't a future trend. They're a current investment thesis.</strong> Firms that wait 12-18 months to evaluate will be competing against firms that started today.</p>
+
+    <h2 id="lock-in">The Platform Lock-In Question</h2>
+
+    <p>Now let's talk about what the press release <em>doesn't</em> highlight.</p>
+
+    <p>When Intuit says "businesses will be able to build and deploy secure AI agents on Intuit's platform," the key phrase is <strong>on Intuit's platform</strong>. These agents:</p>
+
+    <ul>
+      <li>Live inside Intuit's ecosystem</li>
+      <li>Run on Intuit's infrastructure</li>
+      <li>Access data through Intuit's platform</li>
+      <li>Operate within Intuit's compliance framework</li>
+    </ul>
+
+    <p>This isn't inherently bad. Intuit has strong security and compliance infrastructure. But it does mean something important for your firm:</p>
+
+    <div class="warning-card">
+      <h3>⚠️ The lock-in calculation</h3>
+      <p>If your AI agents — the tools that automate your workflows, manage your client communications, and drive your efficiency gains — all live inside Intuit's platform, then <strong>your AI capability is tied to your Intuit subscription</strong>.</p>
+      <p>Switch accounting platforms? Your AI agents don't come with you. Intuit changes pricing? You're paying for your software <em>and</em> your AI capability in one bundled bill. Want to connect AI to non-Intuit tools? You're limited to what the platform supports.</p>
+    </div>
+
+    <p>Think of the analogy: it's like building your entire marketing operation inside one social media platform. It works — until the platform changes its algorithm, raises its prices, or deprioritizes your use case.</p>
+
+    <h3>What "compliant workflows" actually means</h3>
+
+    <p>Intuit emphasizes that agents are "engineered for compliant workflows." This is genuinely important for accounting — you can't have AI agents making mistakes with financial data. But compliance guardrails also mean the agents do what Intuit allows them to do, the way Intuit allows them to do it.</p>
+
+    <p>For some firms, that structure is exactly what they want. For others — especially firms that value independence and flexibility — it's a constraint worth examining.</p>
+
+    <h2 id="alternative">The Alternative: AI Agents You Actually Own</h2>
+
+    <p>Here's what Intuit's announcement makes clearer than ever: <strong>accounting firms need AI agents</strong>. That debate is over. But you have a choice in how you get them.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>Platform AI (Intuit)</th>
+          <th>Independent AI (Own Infrastructure)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Where agents live</strong></td>
+          <td>Intuit's platform</td>
+          <td>Your infrastructure</td>
+        </tr>
+        <tr>
+          <td><strong>Vendor dependency</strong></td>
+          <td>Tied to Intuit subscription</td>
+          <td>Works with any software stack</td>
+        </tr>
+        <tr>
+          <td><strong>Customization</strong></td>
+          <td>Within platform limits</td>
+          <td>Fully customizable</td>
+        </tr>
+        <tr>
+          <td><strong>Data access</strong></td>
+          <td>Intuit ecosystem data</td>
+          <td>Any data source you authorize</td>
+        </tr>
+        <tr>
+          <td><strong>Pricing model</strong></td>
+          <td>Ongoing platform subscription</td>
+          <td>One-time setup, you own it</td>
+        </tr>
+        <tr>
+          <td><strong>Portability</strong></td>
+          <td>Agents stay on Intuit</td>
+          <td>Agents go wherever you go</td>
+        </tr>
+        <tr>
+          <td><strong>Timeline</strong></td>
+          <td>Spring 2026 (announced, not shipped)</td>
+          <td>Available now</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The independent approach works like this: a team builds AI agents configured specifically for your firm's workflows — client onboarding, document processing, email triage, report generation, whatever eats your time. Those agents run on your infrastructure or a simple cloud setup you control. You own the configuration, the automations, and the data flows. No platform dependency.</p>
+
+    <div class="compare-card">
+      <h3>🔧 What independent AI agents look like in practice</h3>
+      <p><strong>Client intake agent:</strong> Processes new client documents, extracts key information, populates your systems — works with any practice management software, not just Intuit's.</p>
+      <p><strong>Email triage agent:</strong> Categorizes, prioritizes, and drafts responses to client emails. Connected to your email, your calendar, your CRM — regardless of vendor.</p>
+      <p><strong>Workflow coordinator:</strong> Routes work across your team, tracks deadlines, flags exceptions. Integrates with whatever tools your firm actually uses.</p>
+      <p><strong>Research agent:</strong> Pulls tax code updates, regulatory changes, and client-specific information from any source — not limited to one vendor's data.</p>
+    </div>
+
+    <p>This is what we build at <a href="/agents">Milo</a>. One-time setup. You own everything. No ongoing platform fees for the AI itself — just the underlying tools you'd be paying for anyway.</p>
+
+    <h2 id="decision">Making the Right Decision for Your Firm</h2>
+
+    <p>We're not going to tell you Intuit's approach is wrong. For some firms, it might be the right move. Here's how to think about it:</p>
+
+    <h3>Intuit's AI agents might be right for you if:</h3>
+
+    <ul>
+      <li>Your firm is already all-in on the Intuit ecosystem</li>
+      <li>You want the simplest possible path to AI (built into tools you already use)</li>
+      <li>You're comfortable with Intuit controlling the AI capabilities and guardrails</li>
+      <li>You don't need AI agents that work outside of accounting workflows</li>
+    </ul>
+
+    <h3>Independent AI agents might be right for you if:</h3>
+
+    <ul>
+      <li>You use a mix of tools — not just Intuit products</li>
+      <li>You want AI that works across your entire operation, not just accounting</li>
+      <li>You value owning your technology infrastructure</li>
+      <li>You don't want your AI capability tied to a single vendor's roadmap</li>
+      <li>You want AI agents now, not "spring 2026" — which in enterprise time could mean H2 2026 at best</li>
+    </ul>
+
+    <p>The worst choice is no choice at all. The firms that wait for Intuit to ship, then wait to evaluate, then wait for budget approval — they'll be 12-18 months behind firms that started building AI capability today.</p>
+
+    <div class="cta-box">
+      <h2>Build AI agents your firm actually owns</h2>
+      <p>One-time setup. Your infrastructure. No vendor lock-in.<br>Ready now — not "rolling out spring 2026."</p>
+      <a href="/demo" class="primary-link">Book a Strategy Call</a>
+      <a href="/ainative" class="secondary-link">Or explore AI Native Setup ($2,500) →</a>
+    </div>
+
+    <h2 id="faq">Frequently Asked Questions</h2>
+
+    <h3>What did Intuit and Anthropic announce about AI agents?</h3>
+    <p>On February 24, 2026, Intuit and Anthropic announced a multi-year partnership to integrate Anthropic's Claude Agent SDK into the Intuit platform. This will allow mid-market businesses to build and deploy custom, industry-specific AI agents for compliant workflows. Intuit's financial intelligence (TurboTax, QuickBooks, Credit Karma, Mailchimp) will also be accessible inside Claude products through MCP integrations. The rollout begins spring 2026.</p>
+
+    <h3>Will Intuit's AI agents replace accountants?</h3>
+    <p>No. These agents are designed to support workflows, not replace professionals. Think of them as specialized assistants that handle data processing, pattern recognition, and routine analysis — freeing accountants to focus on advisory work and client relationships. The firms that use AI agents will outperform those that don't, but the agents are tools, not replacements.</p>
+
+    <h3>Can I build AI agents without being locked into Intuit?</h3>
+    <p>Yes. Independent AI agent providers build custom agent systems that run on your infrastructure — not a vendor's platform. These agents work across any software stack, not just one vendor's products. You own the configuration and the automations, with no ongoing platform dependency.</p>
+
+    <h3>How much does an independent AI agent setup cost?</h3>
+    <p>Milo's <a href="/ainative">AI Native Setup</a> starts at $2,500 as a one-time investment. You get a configured AI agent system tailored to your firm's workflows, running on your infrastructure, with complete documentation and ownership. No ongoing AI platform fees.</p>
+
+    <h3>Should I wait for Intuit's AI agents to launch?</h3>
+    <p>That depends on your priorities. Intuit's announcement says "spring 2026" — and enterprise rollouts frequently ship later than announced. Intuit Intelligence is currently in beta for Enterprise Suite only. If you want AI capability now, waiting for a platform rollout means losing months of competitive advantage. If you're committed to the Intuit ecosystem and comfortable waiting, it may be worth evaluating when it ships.</p>
+
+    <div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid #eee;">
+      <p class="source-list"><strong>Sources:</strong><br>
+        <a href="https://investors.intuit.com/news-events/press-releases/detail/1305/">Intuit Investor Relations — Partnership Announcement</a> (Feb 24, 2026)<br>
+        <a href="https://www.pymnts.com/partnerships/2026/intuit-and-anthropic-to-launch-customizable-ai-agents/">PYMNTS — Intuit and Anthropic to Launch Customizable AI Agents</a> (Feb 24, 2026)<br>
+        <a href="https://www.intuit.com/anthropic/">Intuit — Anthropic Partnership Page</a><br>
+        <a href="https://www.pymnts.com/news/investment-tracker/2026/basis-raises-100-million-to-build-up-ai-in-accounting/">PYMNTS — Basis Raises $100 Million for AI in Accounting</a> (Feb 2026)<br>
+        <a href="https://www.reuters.com/business/ai-accounting-startup-basis-raises-100-million-115-billion-valuation-2026-02-24/">Reuters — Basis $100M Series B at $1.15B Valuation</a> (Feb 24, 2026)
+      </p>
+    </div>
+
+  </div>
+</article>
+
+<div class="footer-simple">
+  <p><a href="/">Milo</a> · <a href="/blog">More Guides</a> · <a href="/agents">Services</a> · <a href="/demo">Book a Call</a></p>
+  <p style="margin-top: 12px;">&copy; 2026 Milo. AI agents you own.</p>
+</div>
+
+</body>
+</html>

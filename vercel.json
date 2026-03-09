@@ -57,7 +57,8 @@
     { "source": "/blog/ai-agent-team-cost-2026", "destination": "/content/blog-ai-agent-team-cost-2026.html" },
     { "source": "/blog/ai-agent-team-small-business", "destination": "/content/blog-ai-agent-team-small-business.html" },
     { "source": "/blog/how-to-automate-business-with-ai", "destination": "/content/blog-how-to-automate-business-with-ai.html" },
-    { "source": "/blog/ai-for-executives-cost-2026", "destination": "/content/blog-ai-for-executives-cost-2026.html" }
+    { "source": "/blog/ai-for-executives-cost-2026", "destination": "/content/blog-ai-for-executives-cost-2026.html" },
+    { "source": "/blog/intuit-ai-agents-accountants", "destination": "/content/blog-intuit-ai-agents-accountants.html" }
   ],
   "headers": [
     {
