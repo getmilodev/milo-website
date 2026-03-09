@@ -27,6 +27,7 @@
     { "source": "/compare/my-ai-front-desk", "destination": "/content/my-ai-front-desk-alternative.html" },
     { "source": "/compare/goodcall", "destination": "/content/goodcall-alternative.html" },
     { "source": "/compare/dialzara", "destination": "/content/dialzara-alternative.html" },
+    { "source": "/compare/rosie", "destination": "/content/rosie-alternative.html" },
     { "source": "/blog/best-ai-receptionist", "destination": "/content/blog-best-ai-receptionist.html" },
     { "source": "/blog/ai-native-agencies", "destination": "/content/blog-ai-native-agencies.html" },
     { "source": "/blog/ai-agents-small-business", "destination": "/content/blog-ai-agents-small-business.html" },
