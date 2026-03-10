@@ -7,13 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Replace www URLs with non-www in remaining files
+      - name: Replace www URLs with non-www in ALL HTML files
         run: |
-          sed -i 's|https://www.getmilo.dev|https://getmilo.dev|g' index.html blog.html executives.html
+          echo "Before:"
+          grep -rl 'www.getmilo.dev' --include='*.html' . | wc -l
+          find . -name '*.html' -exec sed -i 's|https://www.getmilo.dev|https://getmilo.dev|g' {} +
+          echo "After:"
+          grep -rl 'www.getmilo.dev' --include='*.html' . | wc -l || echo "0 files with www remaining"
+          echo "Changed files:"
           git diff --stat
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --staged --quiet || (git commit -m "fix: update remaining canonical and Schema.org URLs to non-www" && git push)
+          git diff --staged --quiet || (git commit -m "fix: replace www.getmilo.dev with getmilo.dev in ALL HTML files (canonical, schema, links)" && git push)
