@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free AI Operations Audit — See What's Costing You | Milo</title>
-  <meta name="description" content="Get a personalized AI operations audit for your business. See broken workflows, automation opportunities, and a DIY roadmap — free, no signup required.">
-  <meta property="og:title" content="Free AI Operations Audit | Milo">
-  <meta property="og:description" content="Answer 4 questions. Get a personalized operations report showing where you're losing time and money — and how to fix it.">
+  <title>AI Systems Assessment — preview your highest-leverage implementation target | Milo</title>
+  <meta name="description" content="Preview the Milo AI Systems Assessment for agencies, operators, and service firms. Answer 4 questions to see workflow pressure, implementation opportunities, and the likely next build.">
+  <meta property="og:title" content="AI Systems Assessment | Milo">
+  <meta property="og:description" content="Answer 4 questions to preview where workflow pressure is costing time and what Milo would likely implement first.">
   <link rel="canonical" href="https://getmilo.dev/audit">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,13 @@
       font-size: var(--text-lg);
       color: var(--text-2);
       max-width: 520px;
+      line-height: 1.6;
+    }
+    .audit-hero__note {
+      margin-top: var(--sp-4);
+      max-width: 640px;
+      font-size: var(--text-sm);
+      color: var(--text-3);
       line-height: 1.6;
     }
 
@@ -480,8 +487,9 @@
       <span class="spec-label">SPEC:020</span>
       <span class="spec-coord">// operations audit</span>
     </div>
-    <h1 class="audit-hero__title reveal" data-delay="1">Free AI operations <span class="accent">audit</span></h1>
-    <p class="audit-hero__subtitle reveal" data-delay="2">Answer 4 questions. Get a personalized report showing exactly where you're losing time and money — and how to fix it. No signup required.</p>
+    <h1 class="audit-hero__title reveal" data-delay="1">AI Systems <span class="accent">Assessment</span></h1>
+    <p class="audit-hero__subtitle reveal" data-delay="2">Answer 4 questions to preview where manual workflow pressure is costing time, what an implementation path could look like, and whether Milo is the right team to build it.</p>
+    <p class="audit-hero__note reveal" data-delay="3">This page is the self-serve preview. The paid $500 assessment is the operator-facing version: scoped diagnosis, priority recommendation, and a clear implementation path into AI Native Setup or a larger build.</p>
   </div>
 </section>
 
@@ -500,7 +508,7 @@
     <div class="step active" id="step1">
       <div class="step-heading">
         <div class="step-heading__label">Step 1 of 4</div>
-        <h2 class="step-heading__title">What kind of business do you run?</h2>
+        <h2 class="step-heading__title">What kind of firm are we assessing?</h2>
       </div>
       <div class="option-grid" id="industryGrid" role="radiogroup" aria-label="Select your industry">
         <div class="option" data-value="law" tabindex="0" role="radio" aria-checked="false">
@@ -550,7 +558,7 @@
     <div class="step" id="step2">
       <div class="step-heading">
         <div class="step-heading__label">Step 2 of 4</div>
-        <h2 class="step-heading__title">Tell us about your scale</h2>
+        <h2 class="step-heading__title">Tell us about the operating context</h2>
       </div>
 
       <div class="step-sub">
@@ -611,8 +619,8 @@
     <div class="step" id="step3">
       <div class="step-heading">
         <div class="step-heading__label">Step 3 of 4</div>
-        <h2 class="step-heading__title">Where are your workflows breaking?</h2>
-        <p class="step-heading__hint">Pick all that apply. Be honest — this shapes your report.</p>
+        <h2 class="step-heading__title">Where is workflow pressure showing up?</h2>
+        <p class="step-heading__hint">Pick all that apply. This shapes the assessment preview.</p>
       </div>
       <div class="checkbox-grid" id="painGrid">
         <div class="checkbox-option" data-value="leads" tabindex="0" role="checkbox" aria-checked="false">
@@ -650,7 +658,7 @@
       </div>
       <div class="btn-row">
         <button class="btn btn-back" onclick="goStep(2)">Back</button>
-        <button class="btn btn-primary" id="auditBtn" disabled onclick="goStep(4)">Run my audit</button>
+        <button class="btn btn-primary" id="auditBtn" disabled onclick="goStep(4)">Continue to assessment</button>
       </div>
     </div>
 
@@ -690,8 +698,8 @@
           <span class="spec-label">SPEC:021</span>
           <span class="spec-coord">// audit results</span>
         </div>
-        <div class="result-header__badge">Audit complete</div>
-        <h2 class="result-header__title" id="resultTitle">Your AI Operations Audit</h2>
+        <div class="result-header__badge">Assessment preview complete</div>
+        <h2 class="result-header__title" id="resultTitle">Your AI Systems Assessment</h2>
         <p class="result-header__subtitle" id="resultSubtitle"></p>
       </div>
 
@@ -704,8 +712,8 @@
           <span class="spec-label">SPEC:022</span>
           <span class="spec-coord">// automation map</span>
         </div>
-        <h3 class="audit-section__title">Automation Map</h3>
-        <p class="audit-section__subtitle">How each broken workflow becomes an automated one.</p>
+        <h3 class="audit-section__title">Implementation Map</h3>
+        <p class="audit-section__subtitle">How each strained workflow could become a dependable AI-assisted one.</p>
         <div id="workflowCards"></div>
       </div>
 
@@ -727,8 +735,8 @@
           <span class="spec-label">SPEC:024</span>
           <span class="spec-coord">// diy roadmap</span>
         </div>
-        <h3 class="audit-section__title">DIY Roadmap</h3>
-        <p class="audit-section__subtitle">How to build this yourself, step by step.</p>
+        <h3 class="audit-section__title">If you build it yourself</h3>
+        <p class="audit-section__subtitle">A realistic look at the DIY path, step by step.</p>
         <div id="diyCards"></div>
         <div id="diyTotals"></div>
       </div>
@@ -740,17 +748,17 @@
           <span class="spec-coord">// honest comparison</span>
         </div>
         <h3 class="audit-section__title">DIY vs. Milo</h3>
-        <p class="audit-section__subtitle">No spin — just the numbers.</p>
+        <p class="audit-section__subtitle">No spin — just the path from assessment to implementation.</p>
         <div id="comparisonTable"></div>
       </div>
 
       <!-- S6: Soft CTA -->
       <div class="soft-cta" id="softCta">
-        <h3>Want us to build this for you?</h3>
-        <p>We'll handle the entire automation — you just keep running your business.</p>
+        <h3>Want the real assessment?</h3>
+        <p>We will review your workflows with you, identify the best first implementation target, and tell you whether to proceed with the $500 assessment, move into implementation, or keep it in-house.</p>
         <div class="soft-cta__actions">
-          <a class="cta-btn" id="ctaLink" href="/demo">Book a free strategy call</a>
-          <button class="cta-secondary" onclick="window.print()">Print this audit</button>
+          <a class="cta-btn" id="ctaLink" href="/demo?offer=assessment">Book an assessment call</a>
+          <button class="cta-secondary" onclick="window.print()">Print this assessment</button>
           <button class="cta-secondary" id="copyBtn" onclick="copyAudit()">Copy as text</button>
           <span class="copy-feedback" id="copyFeedback">Copied!</span>
         </div>
@@ -1130,9 +1138,9 @@ function showResults() {
   var hourlyRate = ind.avgHourlyRate;
 
   // Title
-  document.getElementById('resultTitle').textContent = 'Your AI Operations Audit';
+  document.getElementById('resultTitle').textContent = 'Your AI Systems Assessment';
   document.getElementById('resultSubtitle').textContent =
-    'Custom report for a ' + sz.label + '-person ' + ind.name.toLowerCase() +
+    'Assessment preview for a ' + sz.label + '-person ' + ind.name.toLowerCase() +
     ' at ' + rev.label + ' revenue.';
 
   // === S1: Grade ===
@@ -1289,8 +1297,7 @@ function showResults() {
     '</div>';
 
   // === S5: Comparison Table ===
-  var miloSetup = painCount <= 3 ? (painCount * 399) : 2499;
-  var miloSetupLabel = painCount <= 3 ? (painCount + ' x $399') : '$2,499 (team)';
+  var miloSetupLabel = '$500 assessment → implementation scoped after review';
 
   document.getElementById('comparisonTable').innerHTML =
     '<table class="comparison-table">' +
@@ -1300,17 +1307,17 @@ function showResults() {
         '<th>Milo</th>' +
       '</tr></thead>' +
       '<tbody>' +
-        '<tr><td>Build time</td><td>~' + totalDiyHours + ' hours</td><td class="milo-col">2-5 days (we do it)</td></tr>' +
-        '<tr><td>Setup cost</td><td>$0 (your time)</td><td class="milo-col">' + miloSetupLabel + '</td></tr>' +
+        '<tr><td>Build time</td><td>~' + totalDiyHours + ' hours</td><td class="milo-col">Assessment first, then implementation in days or a scoped sprint</td></tr>' +
+        '<tr><td>Starting cost</td><td>$0 (your time)</td><td class="milo-col">' + miloSetupLabel + '</td></tr>' +
         '<tr><td>Monthly cost</td><td>~' + fmt(totalDiyMonthlyCost) + '/mo</td><td class="milo-col">~$30-50/mo (hosting + AI)</td></tr>' +
-        '<tr><td>Maintenance</td><td>You fix what breaks</td><td class="milo-col">We handle updates</td></tr>' +
-        '<tr><td>Expertise needed</td><td>APIs, Zapier, prompt engineering</td><td class="milo-col">None</td></tr>' +
-        '<tr><td>Time to first result</td><td>Weeks to months</td><td class="milo-col">Days</td></tr>' +
+        '<tr><td>Maintenance</td><td>You fix what breaks</td><td class="milo-col">You own the system after handoff</td></tr>' +
+        '<tr><td>Expertise needed</td><td>APIs, Zapier, prompt engineering</td><td class="milo-col">Operator context, not tool obsession</td></tr>' +
+        '<tr><td>Time to first result</td><td>Weeks to months</td><td class="milo-col">Assessment call first, then a clear build path</td></tr>' +
       '</tbody>' +
     '</table>';
 
   // === S6: CTA link ===
-  var demoUrl = '/demo?ref=audit&industry=' + encodeURIComponent(state.industry) +
+  var demoUrl = '/demo?offer=assessment&ref=audit&industry=' + encodeURIComponent(state.industry) +
     '&pains=' + encodeURIComponent(state.pains.join(','));
   document.getElementById('ctaLink').href = demoUrl;
 
@@ -1362,7 +1369,7 @@ function copyAudit() {
   var monthlyCost = totalHours * hourlyRate * 4.33;
 
   var lines = [
-    'AI OPERATIONS AUDIT — getmilo.dev/audit',
+    'AI SYSTEMS ASSESSMENT PREVIEW — getmilo.dev/audit',
     '==========================================',
     '',
     'Business: ' + ind.name + ' | ' + sz.label + ' people | ' + rev.label + ' revenue',
@@ -1399,7 +1406,7 @@ function copyAudit() {
     lines.push('');
   });
 
-  lines.push('Want Milo to build this for you? getmilo.dev/demo');
+  lines.push('Want the real assessment? getmilo.dev/demo?offer=assessment');
 
   navigator.clipboard.writeText(lines.join('\n')).then(function() {
     var fb = document.getElementById('copyFeedback');

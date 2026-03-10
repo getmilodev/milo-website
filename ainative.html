@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Native Setup — Go AI-Native in One Afternoon | Milo</title>
-  <meta name="description" content="Custom AI workspace built around your actual work. One session, you own everything. Walk away as the most dangerous person in your office.">
+  <title>AI Native Setup — for operators, COOs, and service firms under workflow pressure | Milo</title>
+  <meta name="description" content="Done-for-you AI Native Setup for operators, COOs, agencies, and professional-service firms. We implement a custom AI workspace around your real workflows and walk you through it live.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="milo-design-system.css">
   <style>
-    /* Page-specific: highlight callout */
     .callout {
       border-left: 3px solid var(--gold);
       padding: var(--sp-6) var(--sp-8);
@@ -22,7 +21,6 @@
       font-style: italic;
     }
 
-    /* Stats grid for outcomes */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -46,7 +44,6 @@
       line-height: 1.5;
     }
 
-    /* Pricing feature list on dark surface */
     .cta-features {
       list-style: none;
       padding: 0;
@@ -68,7 +65,6 @@
       margin-top: 1px;
     }
 
-    /* Talk-link styling */
     .talk-link {
       color: var(--gold-text);
       text-decoration: underline;
@@ -81,7 +77,6 @@
     }
     .talk-link--on-dark:hover { color: var(--text-inv); }
 
-    /* FAQ link inside answers */
     .faq__answer-inner a {
       color: var(--gold-text);
       text-decoration: underline;
@@ -89,8 +84,62 @@
     }
     .faq__answer-inner a:hover { color: var(--text-1); }
 
+    .founder-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: var(--sp-8);
+      align-items: start;
+    }
+    .founder-card__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--gold-text);
+      margin-bottom: var(--sp-2);
+    }
+    .founder-card__name {
+      font-size: var(--text-xl);
+      color: var(--text-1);
+      margin-bottom: var(--sp-2);
+    }
+    .founder-card__role {
+      font-size: var(--text-sm);
+      color: var(--text-3);
+      margin-bottom: var(--sp-4);
+    }
+    .founder-card__avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      color: var(--text-1);
+      background: var(--gold-light);
+    }
+    .founder-points {
+      list-style: none;
+      padding: 0;
+      margin-top: var(--sp-4);
+      display: grid;
+      gap: var(--sp-2);
+    }
+    .founder-points li {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
     @media (max-width: 768px) {
       .stats-grid { grid-template-columns: 1fr 1fr; }
+      .founder-card { grid-template-columns: 1fr; }
+      .founder-card__avatar { max-width: 120px; }
     }
     @media (max-width: 480px) {
       .stats-grid { grid-template-columns: 1fr; }
@@ -112,12 +161,6 @@
 <div class="grid-bg" aria-hidden="true"></div>
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<!-- SUCCESS BANNER -->
-<div class="success-banner" id="successBanner" role="alert" style="display:none;">
-  You're in. Check your inbox — we'll reach out within 24 hours to schedule your setup session.
-</div>
-
-<!-- NAV -->
 <nav class="nav" role="navigation" aria-label="Main">
   <div class="wrap">
     <a href="/" class="nav__logo">
@@ -129,7 +172,7 @@
       <a href="/security" class="nav__link">Security</a>
       <a href="/calculator" class="nav__link">Calculator</a>
       <a href="/build" class="nav__link">Build</a>
-      <a href="/demo" class="nav__cta">Start a project</a>
+      <a href="/demo" class="nav__cta">Book a call</a>
     </div>
     <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
@@ -142,31 +185,32 @@
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
   <a href="/build">Build</a>
-  <a href="/demo">Start a project</a>
+  <a href="/demo">Book a call</a>
 </div>
 
 <main id="main">
 
-<!-- HERO — SPEC:010 -->
 <section class="page-hero">
   <div class="wrap">
     <div class="section-marker reveal">
       <span class="spec-label">SPEC:010</span>
       <span class="spec-coord">// ai-native setup</span>
     </div>
-    <h1 class="page-hero__title reveal" data-delay="1">Go AI-Native<br>in One Afternoon</h1>
-    <p class="page-hero__subtitle reveal" data-delay="2">A custom AI workspace built around your actual work. One session. You own everything. Walk away ahead of everyone in your office.</p>
+    <h1 class="page-hero__title reveal" data-delay="1">AI Native Setup<br>for operators under workflow pressure</h1>
+    <p class="page-hero__subtitle reveal" data-delay="2">For COOs, founder-operators, agencies, and lean professional-service firms that already know AI matters — but still need a dependable operating layer for proposals, client reporting, follow-up, research, and internal execution.</p>
     <div class="reveal" data-delay="3" style="margin-top: var(--sp-8); display: flex; gap: var(--sp-3); flex-wrap: wrap; align-items: center;">
-      <a href="https://buy.stripe.com/aFa7sKckB5aD4ts0lUfIs0d" class="btn btn--dark btn--lg">Book Your Setup — $2,500</a>
-      <span style="font-size: var(--text-sm); color: var(--text-3);">One-time. No subscriptions.</span>
+      <a href="/demo?ref=ainative" class="btn btn--dark btn--lg">Book a strategy/demo call</a>
+      <a href="https://buy.stripe.com/aFa7sKckB5aD4ts0lUfIs0d" class="btn btn--outline btn--lg">Buy direct — $2,500</a>
     </div>
     <p class="reveal" data-delay="3" style="margin-top: var(--sp-3); font-size: var(--text-sm); color: var(--text-3);">
-      <a href="#" id="hero-talk-link" class="talk-link">Prefer to talk first?</a>
+      Book-first for most buyers. Direct checkout is there if you already know you want the setup.
+    </p>
+    <p class="reveal" data-delay="3" style="margin-top: var(--sp-3); font-size: var(--text-sm); color: var(--text-2); max-width: 640px;">
+      Practical implementation, operator-led scoping, and full handoff. No course. No abstract AI strategy deck. No monthly dependency required to keep the system usable.
     </p>
   </div>
 </section>
 
-<!-- PROBLEM — SPEC:011 -->
 <section class="section">
   <div class="wrap wrap--narrow">
     <div class="section-marker reveal">
@@ -174,16 +218,16 @@
       <span class="spec-coord">// the problem</span>
     </div>
     <div class="editorial reveal" data-delay="1" style="display: block;">
-      <h2 style="font-size: var(--text-2xl); margin-bottom: var(--sp-6);">You know AI matters. You just don't know where to start.</h2>
+      <h2 style="font-size: var(--text-2xl); margin-bottom: var(--sp-6);">You do not need more AI ideas. You need a working setup.</h2>
       <div class="editorial__body">
-        <p>Your CEO mentions it in every meeting. Your team is asking about it. LinkedIn is full of people who suddenly became AI experts overnight.</p>
-        <p>Meanwhile, you're sitting there thinking: <em>I should probably be using this. But I don't have time to figure out prompt engineering, or which tools to use, or how to make any of this actually useful for my job.</em></p>
+        <p>If you run operations inside an agency or lean service firm, the pain is usually obvious: proposals still take too long, client reporting still gets rebuilt by hand, follow-up slips, internal research starts from scratch every week, and AI usage lives in disconnected pockets.</p>
+        <p>You may already be using AI casually. Your team may even have a few good prompts. But casual usage is not the same thing as a dependable operating layer a COO or founder can rely on.</p>
       </div>
       <div class="callout">
-        The first person at your company who figures this out gets an unfair advantage. Not eventually — right now. The question is whether that person is you or someone else.
+        AI Native Setup closes the implementation gap between “we use AI sometimes” and “this is now part of how the firm runs.”
       </div>
       <div class="editorial__body">
-        <p>You don't need a course. You don't need to learn to code. You need someone who already knows this stuff to set you up and hand you the keys.</p>
+        <p>You do not need a course, a prompt library, or another vendor deck. You need someone to configure the workspace around your real workflows, pressure-test the setup with you, and hand it over in usable form.</p>
         <p style="font-weight: 600; color: var(--text-1);">That's what we do.</p>
       </div>
     </div>
@@ -192,7 +236,6 @@
 
 <div class="wrap"><div class="gold-line"></div></div>
 
-<!-- WHAT YOU GET — SPEC:012 -->
 <section class="section">
   <div class="wrap">
     <div class="section-marker reveal">
@@ -204,7 +247,7 @@
         <h2 class="editorial__title">What you get</h2>
       </div>
       <div class="editorial__body">
-        <p>Everything built around your role, your workflows, your actual work — not generic templates.</p>
+        <p>Everything is configured around the work your firm already does — not generic templates and not abstract automation promises.</p>
       </div>
     </div>
     <ul class="stacked-list reveal" data-delay="2">
@@ -212,42 +255,65 @@
         <div class="stacked-item__num">01</div>
         <div>
           <div class="stacked-item__title">Custom AI Workspace</div>
-          <div class="stacked-item__body">Claude projects configured specifically for what you do. Your company context, your frameworks, your terminology — already loaded and ready.</div>
+          <div class="stacked-item__body">Claude projects and working environment configured for your role, your clients, your service model, and your internal language.</div>
         </div>
       </li>
       <li class="stacked-item">
         <div class="stacked-item__num">02</div>
         <div>
           <div class="stacked-item__title">Tailored Prompts and Workflows</div>
-          <div class="stacked-item__body">The analyses, reports, emails, and decisions you make every week — turned into prompts that give you better output in minutes instead of hours.</div>
+          <div class="stacked-item__body">The analyses, proposals, reports, and follow-up steps you repeat every week — turned into dependable workflows that save time immediately.</div>
         </div>
       </li>
       <li class="stacked-item">
         <div class="stacked-item__num">03</div>
         <div>
           <div class="stacked-item__title">Your Knowledge Base</div>
-          <div class="stacked-item__body">Internal docs, playbooks, competitive intel, past work — organized so your AI actually understands your business, not just the internet.</div>
+          <div class="stacked-item__body">Internal docs, playbooks, prior work, client context, and reusable frameworks organized so the system understands your firm, not just public web content.</div>
         </div>
       </li>
       <li class="stacked-item">
         <div class="stacked-item__num">04</div>
         <div>
           <div class="stacked-item__title">Hands-On Walkthrough</div>
-          <div class="stacked-item__body">Not a PDF. Not a video. A live session where we build it together and you leave knowing exactly how to use everything.</div>
+          <div class="stacked-item__body">A live operator session where we walk through the setup together so you leave with a system you can use the same day.</div>
         </div>
       </li>
       <li class="stacked-item">
         <div class="stacked-item__num">05</div>
         <div>
           <div class="stacked-item__title">30 Days of Follow-Up</div>
-          <div class="stacked-item__body">Questions after the session? New use cases? We are available for 30 days to tune and adjust as you start using it for real.</div>
+          <div class="stacked-item__body">Questions after the session? New edge cases? We stay available for tuning as the setup moves from theory into real operating use.</div>
         </div>
       </li>
     </ul>
   </div>
 </section>
 
-<!-- OUTCOMES — SPEC:013 -->
+<section class="section--sm" style="padding-top: 0; padding-bottom: var(--sp-20);">
+  <div class="wrap wrap--narrow">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:012A</span>
+      <span class="spec-coord">// founder layer</span>
+    </div>
+    <div class="founder-card reveal" data-delay="1">
+      <div class="founder-card__avatar" aria-hidden="true">CP</div>
+      <div>
+        <div class="founder-card__label">FOUNDER / OPERATOR</div>
+        <h2 class="founder-card__name">Callias Pulcher</h2>
+        <p class="founder-card__role">Founder, Milo</p>
+        <p style="color: var(--text-2); line-height: 1.7;">This is an operator-led implementation offer, not a packaged AI course. Callias works directly with clients to diagnose workflow pressure, configure the setup around real operating work, and make sure the first system is usable immediately.</p>
+        <ul class="founder-points">
+          <li>Best fit for buyers who are already under delivery pressure and need a credible first implementation target fast.</li>
+          <li>Built for buyers who already feel AI pressure but do not have time to become the in-house AI translator.</li>
+          <li>Focused on practical operator workflows: proposals, reporting, follow-up, and internal research.</li>
+          <li>Ownership and handoff are part of the product — the goal is a system your firm can keep using without dependency.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section--sm" style="padding-bottom: var(--sp-20);">
   <div class="wrap">
     <div class="section-marker reveal">
@@ -258,25 +324,24 @@
     <div class="stats-grid reveal" data-delay="2">
       <div class="stats-grid__item">
         <div class="stats-grid__num">10x</div>
-        <div class="stats-grid__label">Faster on the work that used to eat your afternoons</div>
+        <div class="stats-grid__label">Faster turnaround on the work that keeps getting rebuilt by hand</div>
       </div>
       <div class="stats-grid__item">
-        <div class="stats-grid__num">2 hrs</div>
-        <div class="stats-grid__label">Average time from start to fully AI-native</div>
+        <div class="stats-grid__num">1-2</div>
+        <div class="stats-grid__label">Priority workflows configured first so the team gets a real win quickly</div>
       </div>
       <div class="stats-grid__item">
         <div class="stats-grid__num">100%</div>
-        <div class="stats-grid__label">Yours. No subscriptions, no lock-in, no dependencies</div>
+        <div class="stats-grid__label">Yours. Workspace, prompts, docs, and operating logic stay with your firm</div>
       </div>
       <div class="stats-grid__item">
-        <div class="stats-grid__num">3+</div>
-        <div class="stats-grid__label">Colleagues who will ask you "how are you doing that?"</div>
+        <div class="stats-grid__num">30 min</div>
+        <div class="stats-grid__label">Strategy/demo call to map the right first workflow before purchase</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA / PRICING — dark inset -->
 <section class="cta-section">
   <div class="section-marker section-marker--cta reveal">
     <span class="spec-label spec-label--on-dark">SPEC:014</span>
@@ -284,33 +349,33 @@
   </div>
   <div class="cta__inner">
     <div>
-      <h2 class="cta__title reveal">Simple pricing. <span class="accent">One session.</span></h2>
-      <p class="cta__body reveal" data-delay="1">Everything included. Nothing recurring. You own it all.</p>
+      <h2 class="cta__title reveal">Start with a call. <span class="accent">Buy direct only if you are ready.</span></h2>
+      <p class="cta__body reveal" data-delay="1">The right flow for most buyers is a short strategy/demo call first. We will map the first implementation target, tell you honestly whether this is the right fit, and only move forward if the scope is clear.</p>
       <ul class="cta-features reveal" data-delay="1">
         <li>Custom AI workspace built for your role</li>
         <li>Tailored prompts for your actual workflows</li>
         <li>Knowledge base loaded with your docs</li>
         <li>Live hands-on setup session</li>
         <li>30 days of follow-up support</li>
-        <li>Works for any department or function</li>
+        <li>Best fit for operators, agencies, and lean service firms</li>
       </ul>
       <div class="reveal" data-delay="2" style="margin-top: var(--sp-8);">
-        <a href="https://buy.stripe.com/aFa7sKckB5aD4ts0lUfIs0d" class="btn btn--gold-on-dark btn--lg">Book Your Setup</a>
+        <a href="/demo?ref=ainative" class="btn btn--gold-on-dark btn--lg">Book a strategy/demo call</a>
       </div>
       <p class="reveal" data-delay="2" style="margin-top: var(--sp-4); font-size: var(--text-sm); color: var(--text-on-dark-muted);">
-        Prefer to talk first? <a href="#" id="pricing-talk-link" class="talk-link--on-dark">Email us</a> — we reply within a few hours.
+        Already decided? <a href="https://buy.stripe.com/aFa7sKckB5aD4ts0lUfIs0d" class="talk-link--on-dark">Buy direct here</a>.
       </p>
     </div>
     <div class="cta__pricing reveal" data-delay="2">
       <strong>$2,500</strong><br>
       one-time setup<br><br>
+      Operator-led implementation.<br>
       You own everything.<br>
-      $0/month to us after delivery.
+      Call first in most cases.
     </div>
   </div>
 </section>
 
-<!-- FAQ — SPEC:015 -->
 <section class="section">
   <div class="wrap wrap--narrow">
     <div class="section-marker reveal">
@@ -323,16 +388,16 @@
       <button class="faq__question" aria-expanded="false" aria-controls="faq-1">Do I need to be technical?</button>
       <div class="faq__answer" id="faq-1" aria-hidden="true">
         <div class="faq__answer-inner">
-          <p>No. That is the entire point. If you can use email and Google Docs, you can use what we set up. We handle everything technical.</p>
+          <p>No. That is the point. We build this for operators and service firms that want leverage, not for teams that want to become AI hobbyists.</p>
         </div>
       </div>
     </div>
 
     <div class="faq-item reveal" data-delay="1">
-      <button class="faq__question" aria-expanded="false" aria-controls="faq-2">What is Claude?</button>
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-2">What tools do you use?</button>
       <div class="faq__answer" id="faq-2" aria-hidden="true">
         <div class="faq__answer-inner">
-          <p>Claude is an AI assistant made by Anthropic — think of it as a brilliant colleague who has read everything and works instantly. We configure it to understand your specific job and company.</p>
+          <p>Usually Claude plus the supporting workspace, knowledge, and prompt structure needed for your use case. The point is not the tool stack by itself. The point is configuring it around how your firm actually works.</p>
         </div>
       </div>
     </div>
@@ -341,7 +406,7 @@
       <button class="faq__question" aria-expanded="false" aria-controls="faq-3">How long does the setup take?</button>
       <div class="faq__answer" id="faq-3" aria-hidden="true">
         <div class="faq__answer-inner">
-          <p>About 2 hours. We do it live together over video. By the end, you will have a fully configured workspace and know exactly how to use it.</p>
+          <p>The initial strategy/demo call is 30 minutes. The setup itself is typically completed in one focused working session, with follow-up afterward as your team starts using it for real.</p>
         </div>
       </div>
     </div>
@@ -350,7 +415,7 @@
       <button class="faq__question" aria-expanded="false" aria-controls="faq-4">What if I want to set up my whole team?</button>
       <div class="faq__answer" id="faq-4" aria-hidden="true">
         <div class="faq__answer-inner">
-          <p><a href="#" id="faq-team-link">Email us</a> and we will scope it out. Most team packages run $5,000 to $15,000 depending on size.</p>
+          <p><a href="/demo?ref=ainative-team">Book a call</a> and we will scope it out. Team buildouts usually follow the first workflow once the operating pattern is clear.</p>
         </div>
       </div>
     </div>
@@ -359,7 +424,7 @@
       <button class="faq__question" aria-expanded="false" aria-controls="faq-5">Will I need to pay for anything else?</button>
       <div class="faq__answer" id="faq-5" aria-hidden="true">
         <div class="faq__answer-inner">
-          <p>You will need a Claude Pro subscription ($20/month from Anthropic). That is it. Our setup fee is one-time — no recurring charges from us.</p>
+          <p>You will need the underlying software subscriptions that fit your setup, usually Claude. Our fee is for the implementation, configuration, and handoff.</p>
         </div>
       </div>
     </div>
@@ -368,7 +433,7 @@
       <button class="faq__question" aria-expanded="false" aria-controls="faq-6">What kinds of roles does this work for?</button>
       <div class="faq__answer" id="faq-6" aria-hidden="true">
         <div class="faq__answer-inner">
-          <p>Operations, marketing, finance, strategy, HR, legal, sales leadership — anyone who does knowledge work. If your job involves reading, writing, analyzing, or deciding, this makes you faster.</p>
+          <p>Operators, agency owners, COOs, client service leads, firm partners, and other knowledge-work roles where proposals, reporting, follow-up, or research create recurring drag.</p>
         </div>
       </div>
     </div>
@@ -377,7 +442,7 @@
       <button class="faq__question" aria-expanded="false" aria-controls="faq-7">Can my company expense this?</button>
       <div class="faq__answer" id="faq-7" aria-hidden="true">
         <div class="faq__answer-inner">
-          <p>Yes. You will get a receipt from Stripe immediately. Most clients expense it as professional development or technology services.</p>
+          <p>Yes. You will get a receipt from Stripe immediately. Most clients expense it as professional services, training, or technology implementation.</p>
         </div>
       </div>
     </div>
@@ -387,7 +452,6 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="wrap">
     <div class="footer__logo">
@@ -405,7 +469,6 @@
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -417,7 +480,6 @@
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => observer.observe(el));
 
-  // Mobile menu
   const toggle = document.querySelector('.nav__toggle');
   const menu = document.getElementById('mobile-menu');
   toggle.addEventListener('click', () => {
@@ -433,7 +495,6 @@
       document.body.style.overflow = '';
     });
   });
-  // Focus trap + Escape for mobile menu
   document.addEventListener('keydown', (e) => {
     if (!menu.classList.contains('open')) return;
     if (e.key === 'Escape') {
@@ -457,7 +518,6 @@
     }
   });
 
-  // FAQ accordion
   document.querySelectorAll('.faq__question').forEach(btn => {
     btn.addEventListener('click', () => {
       const expanded = btn.getAttribute('aria-expanded') === 'true';
@@ -467,26 +527,6 @@
     });
   });
 
-  // === ORIGINAL SCRIPTS (preserved exactly) ===
-  (function() {
-    if (window.location.search.includes('success=true')) {
-      var banner = document.getElementById('successBanner');
-      banner.style.display = 'block';
-      banner.style.animation = 'stepIn 500ms var(--ease-out-expo)';
-      window.scrollTo(0, 0);
-    }
-    var u = 'milo';
-    var d = 'getmilo.dev';
-    var a = u + String.fromCharCode(64) + d;
-    var s1 = 'AI%20Native%20Setup%20%E2%80%94%20Quick%20Question';
-    var s2 = 'Team%20AI%20Native%20Setup';
-    var el1 = document.getElementById('hero-talk-link');
-    var el2 = document.getElementById('pricing-talk-link');
-    var el3 = document.getElementById('faq-team-link');
-    if (el1) el1.href = 'mailto:' + a + '?subject=' + s1;
-    if (el2) el2.href = 'mailto:' + a + '?subject=' + s1;
-    if (el3) el3.href = 'mailto:' + a + '?subject=' + s2;
-  })();
 </script>
 
 </body>
