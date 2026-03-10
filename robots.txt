@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.getmilo.dev/sitemap.xml
+Sitemap: https://getmilo.dev/sitemap.xml
