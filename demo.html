@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Request a Strategy Call — AI Native Setup | Milo</title>
-<meta name="description" content="Request a 30-minute strategy/demo call with Milo to map the right AI Native workflow for your agency, operator team, or professional-service firm.">
+<title>Book a 30-Minute Strategy Call — AI Native Setup | Milo</title>
+<meta name="description" content="Book a 30-minute strategy call with Milo and choose a time instantly to map the right first AI Native workflow for your team.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="milo-design-system.css">
 <style>
-  /* Page-specific: form layout */
+  /* Page-specific: booking layout */
   .demo-form-section {
     padding: 0 0 var(--sp-24);
     margin-top: calc(-1 * var(--sp-8));
@@ -43,66 +43,29 @@
     color: var(--gold-text);
     flex-shrink: 0;
   }
-  .form-group {
-    margin-bottom: var(--sp-6);
+  .booking-card {
+    background: color-mix(in oklch, var(--surface-1), transparent 4%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-2xl);
+    padding: var(--sp-3);
+    box-shadow: var(--shadow-soft);
   }
-  .form-group:last-of-type {
-    margin-bottom: var(--sp-8);
+  .booking-frame {
+    width: 100%;
+    min-height: 780px;
+    border: 0;
+    border-radius: calc(var(--radius-2xl) - 4px);
+    background: #fff;
   }
-  .label__opt {
-    font-weight: 400;
-    color: var(--text-3);
-    font-size: var(--text-xs);
-    margin-left: var(--sp-1);
-  }
-  .trust-line {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--text-3);
+  .booking-fallback {
+    margin-top: var(--sp-5);
     text-align: center;
-    margin-top: var(--sp-4);
-    letter-spacing: 0.02em;
   }
-
-  /* Success state */
-  .success-panel {
-    text-align: center;
-    padding: var(--sp-12) var(--sp-6);
-  }
-  .success-panel__icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: color-mix(in oklch, var(--success), transparent 90%);
-    border: 1.5px solid color-mix(in oklch, var(--success), transparent 70%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: var(--sp-6);
-  }
-  .success-panel__icon svg {
-    width: 24px;
-    height: 24px;
-    stroke: var(--success);
-    stroke-width: 2.5;
-    fill: none;
-  }
-  .success-panel h2 {
-    font-size: var(--text-2xl);
+  .booking-fallback p {
+    color: var(--text-3);
+    font-size: var(--text-sm);
     margin-bottom: var(--sp-3);
   }
-  .success-panel p {
-    color: var(--text-2);
-    font-size: var(--text-base);
-    max-width: 380px;
-    margin: 0 auto;
-    line-height: 1.65;
-  }
-  .success-panel .firm-name {
-    color: var(--gold-text);
-    font-weight: 600;
-  }
-  .hide { display: none; }
 
   @media (max-width: 768px) {
     .demo-grid {
@@ -133,7 +96,7 @@
       <a href="/security" class="nav__link">Security</a>
       <a href="/calculator" class="nav__link">Calculator</a>
       <a href="/build" class="nav__link">Build</a>
-      <a href="/demo" class="nav__cta">Request a call</a>
+      <a href="/demo" class="nav__cta">Book a call</a>
     </div>
     <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
@@ -145,7 +108,7 @@
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
   <a href="/build">Build</a>
-  <a href="/demo">Request a call</a>
+  <a href="/demo">Book a call</a>
 </div>
 
 <main id="main">
@@ -155,10 +118,10 @@
   <div class="wrap">
     <div class="section-marker reveal">
       <span class="spec-label">START</span>
-      <span class="spec-coord">// strategy call</span>
+      <span class="spec-coord">// instant booking</span>
     </div>
-    <h1 class="page-hero__title reveal" data-delay="1">Request a short <span class="accent">AI-native strategy call</span></h1>
-    <p class="page-hero__subtitle reveal" data-delay="2">Request a 30-minute strategy/demo call for operators, agencies, and lean professional-service firms. We review the fit, then follow up within 24 hours to schedule the session.</p>
+    <h1 class="page-hero__title reveal" data-delay="1">Book a short <span class="accent">AI-native strategy call</span></h1>
+    <p class="page-hero__subtitle reveal" data-delay="2">Choose a time for a 30-minute strategy/demo call. We use the session to map the right first workflow for your team and confirm whether Milo is the right fit.</p>
   </div>
 </section>
 
@@ -169,61 +132,31 @@
 
       <!-- LEFT: sidebar context -->
       <div class="demo-sidebar reveal" data-delay="2">
-        <h3 style="font-size: var(--text-lg); margin-bottom: var(--sp-2);">What happens next</h3>
-        <p style="font-size: var(--text-sm); color: var(--text-2); line-height: 1.7; margin-bottom: var(--sp-6);">We review your situation and come prepared to talk through the workflow pressure behind your proposals, reporting, follow-up, research, or adjacent operational work.</p>
+        <h3 style="font-size: var(--text-lg); margin-bottom: var(--sp-2);">What to expect</h3>
+        <p style="font-size: var(--text-sm); color: var(--text-2); line-height: 1.7; margin-bottom: var(--sp-6);">Pick a time instantly. On the call, we identify the highest-leverage workflow to fix first and whether Milo is the right implementation partner for it.</p>
         <ul class="demo-sidebar__promises">
+          <li>Book instantly</li>
+          <li>30-minute session</li>
           <li>No payment required</li>
-          <li>No commitment</li>
-          <li>We respond within 24 hours</li>
-          <li>Specific to your firm</li>
+          <li>Specific to your workflow</li>
           <li>Operator-first recommendations</li>
         </ul>
       </div>
 
-      <!-- RIGHT: the form -->
+      <!-- RIGHT: booking embed -->
       <div>
-        <div id="form-card">
-          <form id="demo-form">
-            <div class="form-group">
-              <label class="label" for="field-name">Your name</label>
-              <input class="input" type="text" id="field-name" name="name" required placeholder="Jane Smith" autocomplete="name">
-            </div>
-            <div class="form-group">
-              <label class="label" for="field-email">Email</label>
-              <input class="input" type="email" id="field-email" name="email" required autocomplete="email">
-            </div>
-            <div class="form-group">
-              <label class="label" for="field-firm">Company and role</label>
-              <input class="input" type="text" id="field-firm" name="firm" required placeholder="Acme Corp / VP of Operations" autocomplete="organization">
-            </div>
-            <div class="form-group">
-              <label class="label" for="field-vertical">What are you trying to fix first?</label>
-              <select class="select" id="field-vertical" name="vertical">
-                <option value="">Select one...</option>
-                <option value="ainative">AI Native Setup — operator workspace and workflow implementation</option>
-                <option value="proposal-reporting">Proposals / reporting / client delivery workflows</option>
-                <option value="followup-research">Follow-up / research / internal ops workflows</option>
-                <option value="not-sure">Not sure yet</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="label" for="field-message">What's eating your time? <span class="label__opt">(optional)</span></label>
-              <textarea class="textarea" id="field-message" name="message" rows="3" placeholder="e.g. proposals take too long, client reporting is still manual, follow-up slips, our team uses AI inconsistently..." style="min-height: 100px;"></textarea>
-            </div>
-            <input type="hidden" name="ref" id="ref-field" value="">
-            <button type="submit" class="btn btn--dark btn--full btn--lg">Request My Strategy Call</button>
-            <p class="trust-line">no payment &middot; no commitment &middot; we respond in 24 hours</p>
-          </form>
+        <div class="booking-card reveal" data-delay="3">
+          <iframe
+            id="cal-booking-frame"
+            class="booking-frame"
+            title="Book a 30-minute strategy call"
+            src="https://cal.com/getmilodev/30min?embed=true"
+            loading="lazy"
+          ></iframe>
         </div>
-
-        <div class="hide" id="success-card">
-          <div class="success-panel">
-            <div class="success-panel__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" class="success-check-anim"></polyline></svg>
-            </div>
-            <h2>Request received.</h2>
-            <p>We'll review your situation and reach out to <span class="firm-name" id="echo-firm"></span> within 24 hours to schedule your strategy call.</p>
-          </div>
+        <div class="booking-fallback reveal" data-delay="4">
+          <p>Prefer a direct booking page?</p>
+          <a id="cal-booking-link" href="https://cal.com/getmilodev/30min" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg">Open booking page in a new tab</a>
         </div>
       </div>
 
@@ -304,71 +237,17 @@
   });
 </script>
 
-<!-- Form submission -->
+<!-- Cal.com booking forwarding -->
 <script>
 (function() {
-  var D = 'join.getmilo.dev';
-  var params = new URLSearchParams(window.location.search);
-  var refEl = document.getElementById('ref-field');
-  if (params.get('ref')) refEl.value = params.get('ref');
+  var params = window.location.search || '';
+  if (!params) return;
 
-  document.getElementById('demo-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = e.target.querySelector('button');
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-
-    var fd = new FormData(e.target);
-    var d = {};
-    fd.forEach(function(v, k) { d[k] = v; });
-
-    var ts = new Date().toISOString();
-    var vMap = {
-      ainative: 'AI Native Setup',
-      'proposal-reporting': 'Proposals / reporting / client delivery workflows',
-      'followup-research': 'Follow-up / research / internal ops workflows',
-      'not-sure': 'Not sure yet'
-    };
-    var lines = [
-      'PROJECT INQUIRY',
-      'Name: ' + d.name,
-      'Email: ' + d.email,
-      'Company/Role: ' + d.firm,
-      'Interest: ' + (vMap[d.vertical] || 'not specified'),
-      'Source: ' + (d.ref || 'direct'),
-      'Time: ' + ts
-    ];
-    if (d.message) lines.push('Notes: ' + d.message);
-
-    var dest = 'leads' + String.fromCharCode(64) + D;
-
-    fetch('/api/send', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        to: dest,
-        subject: 'LEAD: ' + d.name + ' — ' + (d.firm || 'no company'),
-        text: lines.join('\n'),
-        from: 'Milo Leads <leads' + String.fromCharCode(64) + D + '>'
-      })
-    })
-    .then(function(res) {
-      if (res.ok) {
-        document.getElementById('form-card').classList.add('hide');
-        document.getElementById('echo-firm').textContent = d.email;
-        document.getElementById('success-card').classList.remove('hide');
-      } else {
-        btn.disabled = false;
-        btn.textContent = 'Book My Strategy Call';
-        alert('Something went wrong. Please try again.');
-      }
-    })
-    .catch(function() {
-      btn.disabled = false;
-      btn.textContent = 'Book My Strategy Call';
-      alert('Connection error. Please try again.');
-    });
-  });
+  var frame = document.getElementById('cal-booking-frame');
+  var link = document.getElementById('cal-booking-link');
+  var separator = frame.src.indexOf('?') === -1 ? '?' : '&';
+  frame.src = frame.src + separator + params.replace(/^\?/, '');
+  link.href = link.href + params;
 })();
 </script>
 </body>
