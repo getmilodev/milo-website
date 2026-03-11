@@ -107,12 +107,9 @@ async function githubRequest(path, options = {}) {
 
 async function findOrCreateThreadIssue(inbound, senderKind, intentKind) {
   const key = threadKey(inbound);
-  const search = encodeURIComponent(`repo:${PRIVATE_REPO} in:title [thread:${key}]`);
-  const searchData = await githubRequest(`/search/issues?q=${search}`);
-  const existing = (searchData.items || [])[0];
-  if (existing) {
-    return { issue: existing, created: false, key };
-  }
+  const issues = await githubRequest(`/repos/${PRIVATE_REPO}/issues?state=all&labels=inbound-email&per_page=100`);
+  const existing = (issues || []).find(issue => (issue.title || '').includes(`[thread:${key}]`));
+  if (existing) return { issue: existing, created: false, key };
 
   const issueBody = [
     `Thread key: ${key}`,
@@ -159,6 +156,7 @@ function inboundCommentBody(inbound, senderKind, intentKind) {
     `sender_kind: ${senderKind}`,
     `intent_kind: ${intentKind}`,
     `message_id: ${inbound.messageId || ''}`,
+    `thread_id: ${inbound.threadId || ''}`,
     `from: ${inbound.from || ''}`,
     `to: ${inbound.to || ''}`,
     '',
@@ -194,7 +192,7 @@ function buildThreadTranscript(issueBody = '', comments = []) {
 
 async function generateReplyWithGemini(inbound, senderKind, intentKind, threadTranscript) {
   const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) return { mode: 'fallback', action: 'reply', reason: 'missing_gemini_key' };
+  if (!apiKey) return null;
 
   const prompt = `You are Callias Pulcher, founder of Milo. Write a concise, warm, direct business email reply.
 
@@ -231,17 +229,18 @@ ${threadTranscript}`;
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.5,
-        responseMimeType: 'application/json'
-      }
+      generationConfig: { temperature: 0.5, responseMimeType: 'application/json' }
     })
   });
   const data = await res.json();
   const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
-  let parsed;
-  try { parsed = JSON.parse(text); } catch (e) { parsed = { action: 'hold', reason: 'invalid_model_json', raw: text }; }
-  return { mode: 'gemini', ...parsed };
+  try {
+    const parsed = JSON.parse(text);
+    if (!parsed.subject || !parsed.text) return null;
+    return { mode: 'gemini', ...parsed };
+  } catch (e) {
+    return null;
+  }
 }
 
 function fallbackReply(inbound, intentKind) {
@@ -250,6 +249,7 @@ function fallbackReply(inbound, intentKind) {
   const bookingLink = 'https://cal.com/getmilodev/30min';
   if (intentKind === 'booking') {
     return {
+      mode: 'fallback',
       action: 'reply',
       reason: 'fallback_booking',
       subject,
@@ -259,6 +259,7 @@ function fallbackReply(inbound, intentKind) {
   }
   if (intentKind === 'pricing') {
     return {
+      mode: 'fallback',
       action: 'reply',
       reason: 'fallback_pricing',
       subject,
@@ -266,7 +267,18 @@ function fallbackReply(inbound, intentKind) {
       html: `<p>Hi ${firstName},</p><p>Milo starts with a <strong>$500 assessment</strong>. AI Native Setup starts from <strong>$2,500</strong> once the right first leverage point is clear.</p><p>If useful, book here and we can scope the next move: <a href="${bookingLink}">${bookingLink}</a></p><p>— Callias<br>Milo</p>`
     };
   }
+  if (intentKind === 'support') {
+    return {
+      mode: 'fallback',
+      action: 'reply',
+      reason: 'fallback_support',
+      subject,
+      text: `Hi ${firstName},\n\nGot this. If there is a deadline, blocker, or exact failure mode I should know about, reply here with that detail and I will use it.\n\n— Callias\nMilo`,
+      html: `<p>Hi ${firstName},</p><p>Got this. If there is a deadline, blocker, or exact failure mode I should know about, reply here with that detail and I will use it.</p><p>— Callias<br>Milo</p>`
+    };
+  }
   return {
+    mode: 'fallback',
     action: 'reply',
     reason: 'fallback_general',
     subject,
@@ -318,35 +330,34 @@ async function autonomousReply(inbound, senderKind, intentKind, issue, comments)
   }
 
   const transcript = buildThreadTranscript(issue.body || '', comments);
-  let generated = await generateReplyWithGemini(inbound, senderKind, intentKind, transcript);
-  if (!generated || generated.action !== 'reply') {
-    if (generated?.action === 'hold') {
-      await addIssueComment(issue.number, [
-        '## auto_reply_hold',
-        `held_at: ${new Date().toISOString()}`,
-        `reason: ${generated.reason || 'model_hold'}`,
-        `inbound_message_id: ${inbound.messageId || ''}`
-      ].join('\n'));
-      return { sent: false, suppressed: false, held: true, reason: generated.reason || 'model_hold' };
-    }
-    generated = fallbackReply(inbound, intentKind);
+  const generated = await generateReplyWithGemini(inbound, senderKind, intentKind, transcript);
+  const reply = generated && generated.action === 'reply' ? generated : (generated && generated.action === 'hold' ? generated : fallbackReply(inbound, intentKind));
+
+  if (reply.action === 'hold') {
+    await addIssueComment(issue.number, [
+      '## auto_reply_hold',
+      `held_at: ${new Date().toISOString()}`,
+      `reason: ${reply.reason || 'model_hold'}`,
+      `inbound_message_id: ${inbound.messageId || ''}`
+    ].join('\n'));
+    return { sent: false, suppressed: false, held: true, reason: reply.reason || 'model_hold', mode: reply.mode || 'gemini' };
   }
 
-  const sendResult = await sendReply(inbound, senderKind, generated);
+  const sendResult = await sendReply(inbound, senderKind, reply);
   if (sendResult.sent) {
     await addIssueComment(issue.number, [
       '## auto_reply',
       `sent_at: ${new Date().toISOString()}`,
-      `mode: ${generated.mode || 'fallback'}`,
-      `reason: ${generated.reason || ''}`,
+      `mode: ${reply.mode || 'fallback'}`,
+      `reason: ${reply.reason || ''}`,
       `inbound_message_id: ${inbound.messageId || ''}`,
       '',
-      `subject: ${generated.subject}`,
+      `subject: ${reply.subject}`,
       '',
-      generated.text || ''
+      reply.text || ''
     ].join('\n'));
   }
-  return { ...sendResult, mode: generated.mode || 'fallback', reason: generated.reason || '' };
+  return { ...sendResult, mode: reply.mode || 'fallback', reason: reply.reason || '' };
 }
 
 export default async function handler(req, res) {
