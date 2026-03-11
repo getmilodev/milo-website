@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="milo-design-system.css">
+  <script src="/milo-analytics.js" defer></script>
   <style>
     /* Page-specific — build wizard */
     .build-hero {
@@ -419,7 +420,7 @@
     }
   </style>
 </head>
-<body>
+<body data-page-type="build">
 
 <div class="grid-bg" aria-hidden="true"></div>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -637,7 +638,7 @@
           </div>
         </div>
         <div class="summary-actions">
-          <a class="cta-btn" id="ctaLink" href="/buy/team">Start this build</a>
+          <a class="cta-btn" id="ctaLink" href="/buy/team" data-track="build_result_cta" data-track-location="result_primary">Start this build</a>
           <a class="cta-secondary" href="/agents">Compare all plans</a>
         </div>
       </div>
@@ -848,6 +849,16 @@ function showResults() {
   document.getElementById('investmentAmount').textContent = price;
   document.getElementById('ctaLink').href = link;
   document.getElementById('ctaLink').textContent = ctaText;
+
+  if (window.miloTrack) {
+    window.miloTrack('build_blueprint_generated', {
+      industry: state.industry || '',
+      pains: state.pains || [],
+      count: count,
+      estimated_investment: price,
+      cta_destination: link
+    });
+  }
 
   const cardsHTML = agents.map(a => {
     return '<div class="agent-card">' +

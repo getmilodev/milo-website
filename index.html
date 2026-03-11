@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="milo-design-system.css">
+  <script src="/milo-analytics.js" defer></script>
   <link rel="canonical" href="https://www.getmilo.dev/">
   <script type="application/ld+json">
   {
@@ -140,7 +141,7 @@
     }
   </style>
 </head>
-<body>
+<body data-page-type="homepage">
 
 <div class="grid-bg" aria-hidden="true"></div>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -157,7 +158,7 @@
       <a href="/security" class="nav__link">Security</a>
       <a href="/calculator" class="nav__link">Calculator</a>
       <a href="/build" class="nav__link">Build</a>
-      <a href="/demo?offer=assessment" class="nav__cta">Book an assessment call</a>
+      <a href="/demo?offer=assessment" class="nav__cta" data-track="assessment_cta" data-track-location="header">Book an assessment call</a>
     </div>
     <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
@@ -170,7 +171,7 @@
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
   <a href="/build">Build</a>
-  <a href="/demo?offer=assessment">Book an assessment call</a>
+  <a href="/demo?offer=assessment" data-track="assessment_cta" data-track-location="mobile_menu">Book an assessment call</a>
 </div>
 
 <main id="main">
@@ -194,8 +195,8 @@
         <h1 class="hero__title reveal">Stop dabbling with AI. <span class="accent">Start getting ahead with it.</span></h1>
         <p class="hero__body reveal" data-delay="1">If you feel like other people are pulling away with AI and you still do not know how to use it properly, Milo helps founders and executives turn it into real output, better decisions, and business leverage.</p>
         <div class="hero__actions reveal" data-delay="2">
-          <a href="/demo?offer=assessment" class="btn btn--dark">Book an assessment call</a>
-          <a href="/ainative" class="btn btn--outline">See AI Native Setup</a>
+          <a href="/demo?offer=assessment" class="btn btn--dark" data-track="assessment_cta" data-track-location="hero_primary">Book an assessment call</a>
+          <a href="/ainative" class="btn btn--outline" data-track="ainative_cta" data-track-location="hero_secondary">See AI Native Setup</a>
         </div>
         <div class="hero__phases reveal" data-delay="3">
           <div><span class="num">I.</span> <span class="name">AI Systems Assessment</span> <span class="note">— find where AI can create real leverage first</span></div>
@@ -418,7 +419,7 @@ Workspace <span class="t-accent">"founder-hq"</span> ready for live working sess
       <h2 class="cta__title reveal">Feel like everyone else got the AI memo before you did?</h2>
       <p class="cta__body reveal" data-delay="1">Start with the AI Systems Assessment. We will show you where the real leverage is, then help you turn it into something you can actually use.</p>
       <div class="reveal" data-delay="2">
-        <a href="/demo?offer=assessment" class="btn btn--gold-on-dark">Book an assessment call</a>
+        <a href="/demo?offer=assessment" class="btn btn--gold-on-dark" data-track="assessment_cta" data-track-location="footer_primary">Book an assessment call</a>
       </div>
     </div>
     <div class="cta__pricing reveal" data-delay="2">

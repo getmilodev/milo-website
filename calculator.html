@@ -6,10 +6,11 @@
   <title>How Much Is Manual Work Costing You? — Free AI Savings Calculator | Milo</title>
   <meta name="description" content="Find out exactly how much time and money your business loses to manual tasks every month. Free calculator — no signup required.">
   <meta property="og:title" content="How Much Is Manual Work Costing You? — Free AI Savings Calculator">
-  <meta property="og:description" content="Most small businesses waste thousands per month on tasks AI handles better. See your exact number in 60 seconds.">
+  <meta property="og:description" content="Most small business owners underestimate this number by 3-5x. Plug in your real numbers and find out.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="milo-design-system.css">
+  <script src="/milo-analytics.js" defer></script>
   <link rel="canonical" href="https://getmilo.dev/calculator">
   <style>
     /* Calculator form layout */
@@ -338,7 +339,7 @@
     }
   </style>
 </head>
-<body>
+<body data-page-type="calculator">
 
 <div class="grid-bg" aria-hidden="true"></div>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -759,6 +760,16 @@
     results.classList.add('visible');
     results.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
     focusTarget(document.getElementById('resultsTitle'));
+    if (window.miloTrack) {
+      window.miloTrack('calculator_result_viewed', {
+        industry: document.getElementById('industry').value,
+        team_size: document.getElementById('teamSize').value,
+        admin_hours: document.getElementById('adminHours').value,
+        hourly_rate: document.getElementById('hourlyRate').value,
+        lost_leads: document.getElementById('lostLeads').value,
+        customer_value: document.getElementById('customerValue').value
+      });
+    }
   });
 
   var blueprintForm = document.getElementById('blueprintForm');
@@ -781,8 +792,19 @@
       hourlyRate: document.getElementById('hourlyRate').value,
       lostLeads: document.getElementById('lostLeads').value,
       customerValue: document.getElementById('customerValue').value,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      attribution: window.miloAttribution || {}
     };
+    if (window.miloTrack) {
+      window.miloTrack('calculator_blueprint_requested', {
+        industry: leadData.industry,
+        team_size: leadData.teamSize,
+        admin_hours: leadData.adminHours,
+        hourly_rate: leadData.hourlyRate,
+        lost_leads: leadData.lostLeads,
+        customer_value: leadData.customerValue
+      });
+    }
     fetch('/api/calculator-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) })
       .then(function(r) { return r.json(); })
       .then(function(data) {

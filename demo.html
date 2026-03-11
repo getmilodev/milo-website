@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="milo-design-system.css">
+<script src="/milo-analytics.js" defer></script>
 <style>
   /* Page-specific: booking layout */
   .demo-form-section {
@@ -104,7 +105,7 @@
   }
 </style>
 </head>
-<body>
+<body data-page-type="demo">
 
 <div class="grid-bg" aria-hidden="true"></div>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -180,8 +181,8 @@
             <li><strong>Step 3:</strong> Leave with a recommendation on where AI Native should start</li>
           </ul>
           <div class="booking-card__actions">
-            <a id="cal-booking-link" href="https://cal.com/getmilodev/30min" target="_blank" rel="noopener noreferrer" class="btn btn--dark btn--lg">Open booking page</a>
-            <a href="/ainative" class="btn btn--outline btn--lg">See AI Native Setup</a>
+            <a id="cal-booking-link" href="https://cal.com/getmilodev/30min" target="_blank" rel="noopener noreferrer" class="btn btn--dark btn--lg" data-track="assessment_booking_open" data-track-location="primary">Open booking page</a>
+            <a href="/ainative" class="btn btn--outline btn--lg" data-track="ainative_cta" data-track-location="demo_secondary">See AI Native Setup</a>
           </div>
           <p class="booking-card__note">You will talk directly with Callias. If the booking page does not open cleanly, copy this link into a new tab: cal.com/getmilodev/30min</p>
         </div>

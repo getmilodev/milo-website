@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="milo-design-system.css">
+  <script src="/milo-analytics.js" defer></script>
   <link rel="canonical" href="https://getmilo.dev/agents">
   <script type="application/ld+json">
   {
@@ -209,7 +210,7 @@
     }
   </style>
 </head>
-<body>
+<body data-page-type="agents">
 
 <div class="grid-bg" aria-hidden="true"></div>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -226,7 +227,7 @@
       <a href="/security" class="nav__link">Security</a>
       <a href="/calculator" class="nav__link">Calculator</a>
       <a href="/build" class="nav__link">Build</a>
-      <a href="/demo?offer=assessment" class="nav__cta">Book an assessment call</a>
+      <a href="/demo?offer=assessment" class="nav__cta" data-track="assessment_cta" data-track-location="header">Book an assessment call</a>
     </div>
     <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
@@ -239,7 +240,7 @@
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
   <a href="/build">Build</a>
-  <a href="/demo?offer=assessment">Book an assessment call</a>
+  <a href="/demo?offer=assessment" data-track="assessment_cta" data-track-location="mobile_menu">Book an assessment call</a>
 </div>
 
 <main id="main">
@@ -256,14 +257,14 @@
         <h1 class="page-hero__title reveal">AI Native for <span class="accent">operator-led teams</span></h1>
         <p class="agents-hero__body reveal" data-delay="1">Start with the workflow or responsibility that keeps costing your team time, money, or follow-through. Then turn AI into a real first win.</p>
         <div class="agents-hero__actions reveal visible" data-delay="2">
-          <a href="/demo?offer=assessment" class="btn btn--dark btn--lg">Book an assessment call</a>
-          <a href="/build" class="btn btn--ghost">See What We Build</a>
+          <a href="/demo?offer=assessment" class="btn btn--dark btn--lg" data-track="assessment_cta" data-track-location="hero_primary">Book an assessment call</a>
+          <a href="/build" class="btn btn--ghost" data-track="build_cta" data-track-location="hero_secondary">See What We Build</a>
         </div>
         <div class="agents-hero__alt reveal" data-delay="3">
           <div class="agents-hero__alt-label">Also available</div>
           <div class="agents-hero__alt-title">Founder or executive lens</div>
           <p class="agents-hero__alt-copy">Same AI Native product. If the first leverage point lives with a founder or executive rather than the wider team, start there instead.</p>
-          <a href="/ainative" class="talk-link">See AI Native Setup</a>
+          <a href="/ainative" class="talk-link" data-track="ainative_cta" data-track-location="alternate_fit">See AI Native Setup</a>
         </div>
       </div>
       <div class="agents-hero__sidebar reveal" data-delay="3">
@@ -504,8 +505,8 @@
           <li>Best when the goal is proof before expansion</li>
         </ul>
         <div class="pricing-tier__cta">
-          <a href="/demo?offer=assessment" class="btn btn--dark">Book an assessment call</a>
-          <a href="/build" class="btn btn--ghost" style="margin-top: var(--sp-2); display: inline-block;">Map it first</a>
+          <a href="/demo?offer=assessment" class="btn btn--dark" data-track="assessment_cta" data-track-location="pricing_assessment">Book an assessment call</a>
+          <a href="/build" class="btn btn--ghost" style="margin-top: var(--sp-2); display: inline-block;" data-track="build_cta" data-track-location="pricing_map_first">Map it first</a>
         </div>
       </div>
     </div>
@@ -528,8 +529,8 @@
           <li>Tested on real workflow paths before delivery</li>
         </ul>
         <div class="pricing-tier__cta">
-          <a href="/demo?offer=assessment" class="btn btn--gold btn--lg">Book an assessment call</a>
-          <a href="/ainative" class="btn btn--ghost" style="margin-top: var(--sp-2); display: inline-block;">See AI Native Setup</a>
+          <a href="/demo?offer=assessment" class="btn btn--gold btn--lg" data-track="assessment_cta" data-track-location="pricing_setup">Book an assessment call</a>
+          <a href="/ainative" class="btn btn--ghost" style="margin-top: var(--sp-2); display: inline-block;" data-track="ainative_cta" data-track-location="pricing_secondary">See AI Native Setup</a>
         </div>
       </div>
     </div>
@@ -596,7 +597,7 @@
       <button class="faq__question" aria-expanded="false" aria-controls="faq-6">"Can I see what you would build first?"</button>
       <div class="faq__answer" id="faq-6" hidden>
         <div class="faq__answer-inner">
-          <p>Yes. <a href="/build" style="color: var(--gold-text); text-decoration: underline;">Map your first workflow</a> or <a href="/demo?offer=assessment" style="color: var(--gold-text); text-decoration: underline;">book an assessment call</a>. We will tell you where we would start, what the first win should be, and whether AI Native is the right next move.</p>
+          <p>Yes. <a href="/build" style="color: var(--gold-text); text-decoration: underline;" data-track="build_cta" data-track-location="faq">Map your first workflow</a> or <a href="/demo?offer=assessment" style="color: var(--gold-text); text-decoration: underline;" data-track="assessment_cta" data-track-location="faq">book an assessment call</a>. We will tell you where we would start, what the first win should be, and whether AI Native is the right next move.</p>
         </div>
       </div>
     </div>
@@ -614,7 +615,7 @@
       <h2 class="cta__title reveal">If the work repeats every week, your team should not be rebuilding it by hand.</h2>
       <p class="cta__body reveal" data-delay="1">Start with the assessment, identify the best first gain, and use AI Native to turn it into something the team can actually use and expand from.</p>
       <div class="reveal" data-delay="2">
-        <a href="/demo?offer=assessment" class="btn btn--gold-on-dark btn--lg">Book an Assessment Call</a>
+        <a href="/demo?offer=assessment" class="btn btn--gold-on-dark btn--lg" data-track="assessment_cta" data-track-location="footer_primary">Book an Assessment Call</a>
       </div>
     </div>
     <div class="cta__pricing reveal" data-delay="2">
