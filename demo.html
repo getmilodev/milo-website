@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book a 30-Minute Strategy Call — AI Native Setup | Milo</title>
-<meta name="description" content="Book a 30-minute strategy call with Milo and choose a time instantly to map the right first AI Native workflow for your team.">
+<title>Book an Assessment Call — AI Native Setup | Milo</title>
+<meta name="description" content="Book a short assessment call to identify where AI can create the clearest leverage for you or your team before moving into AI Native Setup.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="milo-design-system.css">
@@ -47,24 +47,49 @@
     background: color-mix(in oklch, var(--surface-1), transparent 4%);
     border: 1px solid var(--line);
     border-radius: var(--radius-2xl);
-    padding: var(--sp-3);
+    padding: var(--sp-8);
     box-shadow: var(--shadow-soft);
   }
-  .booking-frame {
-    width: 100%;
-    min-height: 780px;
-    border: 0;
-    border-radius: calc(var(--radius-2xl) - 4px);
-    background: #fff;
+  .booking-card__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold-text);
+    margin-bottom: var(--sp-3);
   }
-  .booking-fallback {
+  .booking-card__title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--sp-3);
+  }
+  .booking-card__body {
+    color: var(--text-2);
+    line-height: 1.75;
+    margin-bottom: var(--sp-6);
+  }
+  .booking-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--sp-8) 0;
+    display: grid;
+    gap: var(--sp-3);
+  }
+  .booking-card__list li {
+    border-top: 1px solid var(--border);
+    padding-top: var(--sp-3);
+    color: var(--text-2);
+  }
+  .booking-card__actions {
+    display: flex;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .booking-card__note {
     margin-top: var(--sp-5);
-    text-align: center;
-  }
-  .booking-fallback p {
     color: var(--text-3);
     font-size: var(--text-sm);
-    margin-bottom: var(--sp-3);
+    line-height: 1.7;
   }
 
   @media (max-width: 768px) {
@@ -96,7 +121,7 @@
       <a href="/security" class="nav__link">Security</a>
       <a href="/calculator" class="nav__link">Calculator</a>
       <a href="/build" class="nav__link">Build</a>
-      <a href="/demo" class="nav__cta">Book a call</a>
+      <a href="/demo?offer=assessment" class="nav__cta">Book an assessment call</a>
     </div>
     <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
@@ -108,7 +133,7 @@
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
   <a href="/build">Build</a>
-  <a href="/demo">Book a call</a>
+  <a href="/demo?offer=assessment">Book an assessment call</a>
 </div>
 
 <main id="main">
@@ -118,10 +143,10 @@
   <div class="wrap">
     <div class="section-marker reveal">
       <span class="spec-label">START</span>
-      <span class="spec-coord">// instant booking</span>
+      <span class="spec-coord">// assessment booking</span>
     </div>
-    <h1 class="page-hero__title reveal" data-delay="1">Book a short <span class="accent">AI-native strategy call</span></h1>
-    <p class="page-hero__subtitle reveal" data-delay="2">Choose a time for a 30-minute strategy/demo call. We use the session to map the right first workflow for your team and confirm whether Milo is the right fit.</p>
+    <h1 class="page-hero__title reveal" data-delay="1">Book a short <span class="accent">assessment call</span></h1>
+    <p class="page-hero__subtitle reveal" data-delay="2">This is the fastest way to figure out where AI can create real leverage for you or your team before moving into AI Native Setup.</p>
   </div>
 </section>
 
@@ -133,30 +158,32 @@
       <!-- LEFT: sidebar context -->
       <div class="demo-sidebar reveal" data-delay="2">
         <h3 style="font-size: var(--text-lg); margin-bottom: var(--sp-2);">What to expect</h3>
-        <p style="font-size: var(--text-sm); color: var(--text-2); line-height: 1.7; margin-bottom: var(--sp-6);">Pick a time instantly. On the call, we identify the highest-leverage workflow to fix first and whether Milo is the right implementation partner for it.</p>
+        <p style="font-size: var(--text-sm); color: var(--text-2); line-height: 1.7; margin-bottom: var(--sp-6);">Pick a time. On the call, we identify the clearest first gain, pressure-test fit, and tell you whether AI Native is the right next move.</p>
         <ul class="demo-sidebar__promises">
-          <li>Book instantly</li>
-          <li>30-minute session</li>
-          <li>No payment required</li>
-          <li>Specific to your workflow</li>
-          <li>Operator-first recommendations</li>
+          <li>30-minute assessment</li>
+          <li>No payment required to book</li>
+          <li>Specific to your real work</li>
+          <li>Clear next-step recommendation</li>
+          <li>No vague AI theater</li>
         </ul>
       </div>
 
-      <!-- RIGHT: booking embed -->
+      <!-- RIGHT: booking CTA -->
       <div>
         <div class="booking-card reveal" data-delay="3">
-          <iframe
-            id="cal-booking-frame"
-            class="booking-frame"
-            title="Book a 30-minute strategy call"
-            src="https://cal.com/getmilodev/30min?embed=true"
-            loading="lazy"
-          ></iframe>
-        </div>
-        <div class="booking-fallback reveal" data-delay="4">
-          <p>Prefer a direct booking page?</p>
-          <a id="cal-booking-link" href="https://cal.com/getmilodev/30min" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg">Open booking page in a new tab</a>
+          <div class="booking-card__eyebrow">Assessment booking</div>
+          <h2 class="booking-card__title">Start with the clearest leverage point.</h2>
+          <p class="booking-card__body">We are using a direct booking link here instead of an embedded calendar so the page stays fast, clean, and reliable. Book the call, then we will use the session to determine what AI should actually do for you first.</p>
+          <ul class="booking-card__list">
+            <li><strong>Step 1:</strong> Book your assessment call on Cal.com</li>
+            <li><strong>Step 2:</strong> Bring the work that currently feels slow, repetitive, or unclear</li>
+            <li><strong>Step 3:</strong> Leave with a recommendation on where AI Native should start</li>
+          </ul>
+          <div class="booking-card__actions">
+            <a id="cal-booking-link" href="https://cal.com/getmilodev/30min" target="_blank" rel="noopener noreferrer" class="btn btn--dark btn--lg">Open booking page</a>
+            <a href="/ainative" class="btn btn--outline btn--lg">See AI Native Setup</a>
+          </div>
+          <p class="booking-card__note">If the booking page does not open cleanly, copy this link into a new tab: cal.com/getmilodev/30min</p>
         </div>
       </div>
 
@@ -237,17 +264,13 @@
   });
 </script>
 
-<!-- Cal.com booking forwarding -->
 <script>
 (function() {
   var params = window.location.search || '';
   if (!params) return;
-
-  var frame = document.getElementById('cal-booking-frame');
   var link = document.getElementById('cal-booking-link');
-  var separator = frame.src.indexOf('?') === -1 ? '?' : '&';
-  frame.src = frame.src + separator + params.replace(/^\?/, '');
-  link.href = link.href + params;
+  if (!link) return;
+  link.href = link.href + (link.href.indexOf('?') === -1 ? '?' : '&') + params.replace(/^\?/, '');
 })();
 </script>
 </body>
