@@ -16,7 +16,7 @@ jobs:
               try {
                 await github.rest.issues.update({
                   owner: 'getmilodev',
-                  repo: 'milo-inbox',
+                  repo: 'milo-website',
                   issue_number: num,
                   state: 'closed',
                   body: '_Content removed — moved to internal docs._'
