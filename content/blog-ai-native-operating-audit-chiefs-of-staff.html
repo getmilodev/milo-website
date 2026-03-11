@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Native Operating Audit for Chiefs of Staff | Milo</title>
+  <meta name="description" content="A practical 7-part operating audit for Chiefs of Staff and operators who want to reduce coordination drag and turn scattered AI usage into a reliable operating cadence.">
+  <meta property="og:title" content="AI Native Operating Audit for Chiefs of Staff">
+  <meta property="og:description" content="A practical way to score intake, decision memos, follow-through, knowledge retrieval, and executive leverage before you buy more AI tools.">
+  <link rel="canonical" href="https://getmilo.dev/blog/ai-native-operating-audit-chiefs-of-staff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/milo-design-system.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI Native Operating Audit for Chiefs of Staff",
+    "description": "A practical 7-part operating audit for Chiefs of Staff and operators who want to reduce coordination drag and turn scattered AI usage into a reliable operating cadence.",
+    "datePublished": "2026-03-11",
+    "dateModified": "2026-03-11",
+    "publisher": { "@type": "Organization", "name": "Milo", "url": "https://getmilo.dev" }
+  }
+  </script>
+  <style>
+    .article-body p,
+    .article-body li { font-size: var(--text-lg); }
+    .article-body ul,
+    .article-body ol { padding-left: var(--sp-6); margin-bottom: var(--sp-4); }
+    .article-body li { margin-bottom: var(--sp-2); }
+    .article-body h2 { margin-top: var(--sp-16); margin-bottom: var(--sp-4); }
+    .article-body h3 { margin-top: var(--sp-8); margin-bottom: var(--sp-3); }
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      margin: var(--sp-8) 0;
+    }
+    .toc h3 { margin-bottom: var(--sp-3); }
+    .toc ol { margin-bottom: 0; }
+    .callout {
+      background: var(--gold-light);
+      border-left: 4px solid var(--gold);
+      padding: var(--sp-6);
+      margin: var(--sp-6) 0;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+    .callout p:last-child { margin-bottom: 0; }
+    .score-band-grid,
+    .friction-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--sp-4);
+      margin: var(--sp-6) 0;
+    }
+    .friction-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .score-band,
+    .friction-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+    }
+    .score-band strong,
+    .friction-card strong {
+      display: block;
+      margin-bottom: var(--sp-2);
+      color: var(--text-1);
+    }
+    .friction-card ul { margin-bottom: 0; }
+    .mini-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold-text);
+      margin-bottom: var(--sp-3);
+    }
+    .step-list {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      margin: var(--sp-6) 0;
+    }
+    .step-list ol { margin-bottom: 0; }
+    @media (max-width: 720px) {
+      .score-band-grid,
+      .friction-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link">Services</a>
+      <a href="/security" class="nav__link">Security</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
+  <a href="/agents">Services</a>
+  <a href="/security">Security</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
+</div>
+
+<main id="main">
+  <article>
+    <div class="wrap wrap--narrow">
+      <section class="page-hero">
+        <div class="section-marker reveal">
+          <span class="spec-label">GUIDE:011</span>
+        </div>
+        <h1 class="page-hero__title reveal" data-delay="1">AI Native Operating Audit for Chiefs of Staff</h1>
+        <p class="caption reveal" data-delay="2"><time datetime="2026-03-11">March 11, 2026</time> &middot; 8 min read</p>
+      </section>
+
+      <div class="article-body">
+        <p class="lead reveal">Most operators do not have an AI-awareness problem. They have a coordination problem that AI is supposed to solve but usually doesn't.</p>
+        <p class="reveal">The usual pattern is familiar: the team has ChatGPT, maybe Claude, a few automations, and a lot of excitement. But requests still disappear. Decision memos still start from scratch. Meeting follow-up still depends on one diligent human. Status updates still get rebuilt every week.</p>
+        <p class="reveal">So before buying another tool, run a harder test: where is your operating cadence still manual, fragile, or dependent on heroic memory?</p>
+
+        <div class="toc reveal">
+          <h3>What this audit covers</h3>
+          <ol>
+            <li><a href="#how-to-use">How to use the audit</a></li>
+            <li><a href="#frictions">The 7 friction points</a></li>
+            <li><a href="#score">How to interpret your score</a></li>
+            <li><a href="#next-30">What to fix in the next 30 days</a></li>
+          </ol>
+        </div>
+
+        <h2 id="how-to-use" class="reveal">How to use the audit</h2>
+        <p class="reveal">Score each friction point from 1 to 5.</p>
+        <ul class="reveal">
+          <li><strong>1</strong> = manual, inconsistent, or hidden inside someone's head</li>
+          <li><strong>3</strong> = partly standardized, but still human-heavy and easy to break</li>
+          <li><strong>5</strong> = reliable, visible, and supported by clear tooling or automation</li>
+        </ul>
+        <div class="callout reveal">
+          <p><strong>The point is not to get a perfect score.</strong> The point is to find the few places where operator time is being burned on coordination instead of judgment.</p>
+        </div>
+
+        <h2 id="frictions" class="reveal">The 7 friction points blocking an AI-native operating cadence</h2>
+
+        <h3 class="reveal">1. Intake friction</h3>
+        <p class="reveal"><strong>Question:</strong> When requests arrive through email, Slack, meetings, or DMs, how often do they vanish, stall, or require manual cleanup before they become work?</p>
+        <div class="friction-grid reveal">
+          <div class="friction-card">
+            <div class="mini-label">Score 1</div>
+            <strong>Requests live in scattered channels</strong>
+            <ul>
+              <li>Asks depend on memory</li>
+              <li>Ownership is unclear</li>
+              <li>Follow-up starts only when someone remembers</li>
+            </ul>
+          </div>
+          <div class="friction-card">
+            <div class="mini-label">AI-native target</div>
+            <strong>Requests get structured on arrival</strong>
+            <ul>
+              <li>Common request types are tagged and routed</li>
+              <li>Owners and deadlines are visible</li>
+              <li>Nothing important depends on heroic triage</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="reveal">2. Decision memo friction</h3>
+        <p class="reveal"><strong>Question:</strong> How much time is still spent turning notes, threads, and source material into a usable executive brief?</p>
+        <p class="reveal">If every memo starts from a blank page, you don't have an AI stack. You have a writing tax.</p>
+        <ul class="reveal">
+          <li><strong>1:</strong> each brief is rebuilt manually</li>
+          <li><strong>3:</strong> templates exist, but synthesis is still operator-heavy</li>
+          <li><strong>5:</strong> source material rolls into a stable format with options, risks, and next steps already shaped</li>
+        </ul>
+
+        <h3 class="reveal">3. Cross-tool orchestration friction</h3>
+        <p class="reveal"><strong>Question:</strong> Where does work break between docs, project tools, CRM, spreadsheets, inboxes, and chat?</p>
+        <p class="reveal">The giveaway here is double entry. If the same information gets rewritten in three places, the operating system is leaking.</p>
+        <ul class="reveal">
+          <li><strong>1:</strong> handoffs break between tools and get manually repaired</li>
+          <li><strong>3:</strong> a few automations exist, but they are brittle or narrow</li>
+          <li><strong>5:</strong> status changes, summaries, and action items move downstream cleanly</li>
+        </ul>
+
+        <h3 class="reveal">4. Meeting-to-execution friction</h3>
+        <p class="reveal"><strong>Question:</strong> After a leadership meeting, how reliably do decisions become assigned work with context, owners, and due dates?</p>
+        <div class="callout reveal">
+          <p>One of the highest-value operator fixes is simple: decisions should become tracked work without needing a second cleanup pass later that night.</p>
+        </div>
+        <ul class="reveal">
+          <li><strong>1:</strong> action items are buried in notes</li>
+          <li><strong>3:</strong> action items are captured, but only through manual post-meeting work</li>
+          <li><strong>5:</strong> next steps become tasks automatically, with enough context for the assignee to move</li>
+        </ul>
+
+        <h3 class="reveal">5. Knowledge retrieval friction</h3>
+        <p class="reveal"><strong>Question:</strong> Can the team answer recurring questions without waiting for the one person who knows where everything is?</p>
+        <p class="reveal">A lot of operator pain is really retrieval pain in disguise.</p>
+        <ul class="reveal">
+          <li><strong>1:</strong> knowledge is tribal and slow to recover</li>
+          <li><strong>3:</strong> docs exist, but nobody fully trusts or uses them</li>
+          <li><strong>5:</strong> current operating knowledge is easy to retrieve and doesn't restart the same scavenger hunt every week</li>
+        </ul>
+
+        <h3 class="reveal">6. Governance friction</h3>
+        <p class="reveal"><strong>Question:</strong> Does the org have clear rules for where AI is useful, where it is not, who owns it, and what counts as acceptable handling?</p>
+        <ul class="reveal">
+          <li><strong>1:</strong> shadow usage and random experimentation</li>
+          <li><strong>3:</strong> norms exist informally, but they are not enforced</li>
+          <li><strong>5:</strong> approved workflows, boundaries, and ownership are explicit</li>
+        </ul>
+
+        <h3 class="reveal">7. Executive leverage friction</h3>
+        <p class="reveal"><strong>Question:</strong> How much operator time still disappears into chasing updates, formatting status reports, assembling briefs, or prepping recurring leadership materials?</p>
+        <p class="reveal">This is usually where teams feel the pain most clearly. Not because the work is hard. Because it is expensive, repetitive, and constant.</p>
+        <ul class="reveal">
+          <li><strong>1:</strong> leadership support depends on manual assembly every cycle</li>
+          <li><strong>3:</strong> prep is somewhat accelerated, but still operator-heavy</li>
+          <li><strong>5:</strong> repetitive prep compresses into review-ready drafts and clean update flows</li>
+        </ul>
+
+        <h2 id="score" class="reveal">How to interpret your score</h2>
+        <div class="score-band-grid reveal">
+          <div class="score-band">
+            <div class="mini-label">7–14</div>
+            <strong>Fragile manual cadence</strong>
+            <p>You probably have tools, but not a system. Coordination is person-dependent and expensive.</p>
+          </div>
+          <div class="score-band">
+            <div class="mini-label">15–24</div>
+            <strong>Partial automation, weak operating layer</strong>
+            <p>You have isolated wins, but the handoffs between them are still leaking time and trust.</p>
+          </div>
+          <div class="score-band">
+            <div class="mini-label">25–35</div>
+            <strong>Strong base, clear optimization room</strong>
+            <p>You are not starting from zero. The opportunity is tightening the highest-friction workflows and making them dependable.</p>
+          </div>
+        </div>
+
+        <h2 id="next-30" class="reveal">What to fix in the next 30 days</h2>
+        <p class="reveal">Do not try to "transform the whole org." Pick one recurring operator workflow and make it boringly reliable.</p>
+        <div class="step-list reveal">
+          <ol>
+            <li><strong>Choose one workflow with weekly pain.</strong> Good candidates: meeting follow-up, executive brief prep, intake triage, or recurring status synthesis.</li>
+            <li><strong>Map the failure points.</strong> Where does context get dropped, retyped, reformatted, or chased?</li>
+            <li><strong>Define the standard output.</strong> If the workflow succeeds, what exact draft, task packet, memo, or update should exist at the end?</li>
+            <li><strong>Connect the tools you already use.</strong> The goal is not novelty. The goal is dependable throughput.</li>
+            <li><strong>Assign an owner.</strong> "Everyone is experimenting" is not ownership.</li>
+          </ol>
+        </div>
+
+        <p class="reveal">That is the real test of becoming AI-native: not whether people talk about AI, but whether recurring work gets cleaner, faster, and easier to trust.</p>
+      </div>
+    </div>
+
+    <section class="cta-section reveal">
+      <div class="section-marker section-marker--cta">
+        <span class="spec-label spec-label--on-dark">CTA</span>
+      </div>
+      <div class="cta__inner">
+        <div>
+          <h2 class="cta__title">Turn one messy workflow into an <span class="accent">operating asset</span></h2>
+          <p class="cta__body">Milo's AI Native Setup is a $2,500 one-time build for teams that already use AI casually but want one workflow mapped, configured, and live fast.</p>
+          <a href="/ainative" class="btn btn--gold-on-dark btn--lg">See the AI Native Setup</a>
+        </div>
+        <div class="cta__pricing">
+          <strong>$2,500</strong> one-time<br>
+          workflow mapping<br>
+          configured handoff
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap wrap--narrow">
+      <div class="article-body">
+        <p class="reveal"><em>Milo helps operators turn scattered AI usage into dependable working systems across intake, reporting, follow-through, research, and executive support.</em></p>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/security">Security</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !open);
+    menu.classList.toggle('open');
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+      toggle.focus();
+      return;
+    }
+    if (e.key === 'Tab') {
+      const focusable = [toggle, ...menu.querySelectorAll('a')];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+</script>
+</body>
+</html>

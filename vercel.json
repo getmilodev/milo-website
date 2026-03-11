@@ -5,9 +5,9 @@
     { "source": "/buy/managed", "destination": "https://buy.stripe.com/bJe5kC2K18mP5xw7OmfIs0g", "statusCode": 307 },
     { "source": "/buy/sprint", "destination": "/buy/starter", "statusCode": 301 },
     { "source": "/contact", "destination": "/calculator", "statusCode": 301 },
+    { "source": "/services", "destination": "/agents", "statusCode": 301 },
     { "source": "/try", "destination": "/agents", "statusCode": 301 },
     { "source": "/scanner", "destination": "/security", "statusCode": 301 },
-    { "source": "/report", "destination": "/calculator", "statusCode": 301 },
     { "source": "/setup", "destination": "/agents", "statusCode": 301 },
     { "source": "/survival-guide", "destination": "/blog", "statusCode": 301 },
     { "source": "/ai-receptionist", "destination": "/agents", "statusCode": 301 },
@@ -35,6 +35,7 @@
     { "source": "/agents", "destination": "/agents.html" },
     { "source": "/build", "destination": "/build.html" },
     { "source": "/calculator", "destination": "/calculator.html" },
+    { "source": "/report", "destination": "/report.html" },
     { "source": "/audit", "destination": "/audit.html" },
     { "source": "/security", "destination": "/security.html" },
     { "source": "/industries", "destination": "/industries.html" },
@@ -68,7 +69,9 @@
     { "source": "/blog/how-to-automate-business-with-ai", "destination": "/content/blog-how-to-automate-business-with-ai.html" },
     { "source": "/blog/ai-for-executives-cost-2026", "destination": "/content/blog-ai-for-executives-cost-2026.html" },
     { "source": "/blog/intuit-ai-agents-accountants", "destination": "/content/blog-intuit-ai-agents-accountants.html" },
-    { "source": "/blog/ai-automation-small-business", "destination": "/content/blog-ai-automation-small-business.html" }
+    { "source": "/blog/ai-automation-small-business", "destination": "/content/blog-ai-automation-small-business.html" },
+    { "source": "/blog/ai-native-operating-audit-chiefs-of-staff", "destination": "/content/blog-ai-native-operating-audit-chiefs-of-staff.html" },
+    { "source": "/blog/first-90-days-coo-ai-audit", "destination": "/content/blog-first-90-days-coo-ai-audit.html" }
   ],
   "headers": [
     {

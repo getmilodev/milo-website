@@ -806,14 +806,17 @@
       });
     }
     fetch('/api/calculator-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) })
-      .then(function(r) { return r.json(); })
+      .then(function(r) {
+        if (!r.ok) { throw new Error('calculator lead unavailable'); }
+        return r.json();
+      })
       .then(function(data) {
-        status.textContent = 'Redirecting to your blueprint...';
+        status.textContent = 'Opening your blueprint...';
         if (data.reportUrl) { window.location.href = data.reportUrl; }
         else { var params = new URLSearchParams(leadData); params.delete('email'); params.delete('timestamp'); window.location.href = '/report?' + params.toString(); }
       })
       .catch(function() {
-        status.textContent = 'Using the quick report fallback...';
+        status.textContent = 'Opening your blueprint...';
         var params = new URLSearchParams({ industry: leadData.industry, teamSize: leadData.teamSize, adminHours: leadData.adminHours, hourlyRate: leadData.hourlyRate, lostLeads: leadData.lostLeads, customerValue: leadData.customerValue });
         window.location.href = '/report?' + params.toString();
       });
