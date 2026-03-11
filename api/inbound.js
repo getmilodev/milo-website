@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    return res.status(200).json({ status: 'ok', service: 'milo-inbox' });
+    return res.status(200).json({ status: 'ok', service: 'milo-website' });
   }
 
   if (req.method !== 'POST') {
@@ -52,7 +52,7 @@ export default async function handler(req, res) {
       '</details>'
     ].filter(line => line !== null).join('\n');
 
-    const ghRes = await fetch('https://api.github.com/repos/getmilodev/milo-inbox/issues', {
+    const ghRes = await fetch('https://api.github.com/repos/getmilodev/milo-website/issues', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${ghToken}`,

@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       const errors = [];
       for (const num of issueNums) {
         try {
-          const r = await fetch(`https://api.github.com/repos/getmilodev/milo-inbox/issues/${num}`, {
+          const r = await fetch(`https://api.github.com/repos/getmilodev/milo-website/issues/${num}`, {
             method: 'PATCH',
             headers: {
               'Authorization': `Bearer ${ghToken}`,

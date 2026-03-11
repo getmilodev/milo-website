@@ -1,4 +1,4 @@
-# milo-inbox
+# milo-website
 Inbound email capture and outbound sending for Getmilo outreach.
 
 ## Endpoints
