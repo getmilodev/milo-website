@@ -1,3 +1,7 @@
+const PRIVATE_REPO = 'getmilodev/milo-private-docs';
+const AUTO_REPLY_SUPPRESSION_HOURS = 6;
+const GITHUB_API = 'https://api.github.com';
+
 function classifySender(address = '') {
   const lower = String(address).toLowerCase();
   const internalDomains = ['getmilo.dev', 'hiremilo.co', 'usemilo.co', 'hellomilo.co', 'agentmail.to'];
@@ -66,106 +70,212 @@ function classifyIntent(inbound) {
   return 'general';
 }
 
-async function createPrivateIssue(inbound, senderKind, intentKind) {
-  const ghToken = process.env.GETMILO_GITHUB_TOKEN || process.env.GITHUB_TOKEN;
-  if (!ghToken) return { stored: false, reason: 'missing_github_token' };
+function firstNameFromSender(from = '') {
+  const m = String(from).match(/^\s*([^<\s"]+)/);
+  return m ? m[1].replace(/[",]/g, '') : 'there';
+}
 
-  const repo = 'getmilodev/milo-private-docs';
+function threadKey(inbound) {
+  return inbound.threadId || inbound.messageId || Buffer.from(`${inbound.from}|${inbound.subject}`).toString('base64').slice(0, 32);
+}
+
+function hoursSince(isoString) {
+  const t = Date.parse(isoString || '');
+  if (!t) return Infinity;
+  return (Date.now() - t) / (1000 * 60 * 60);
+}
+
+async function githubRequest(path, options = {}) {
+  const ghToken = process.env.GETMILO_GITHUB_TOKEN || process.env.GITHUB_TOKEN;
+  if (!ghToken) throw new Error('missing_github_token');
+  const res = await fetch(`${GITHUB_API}${path}`, {
+    method: options.method || 'GET',
+    headers: {
+      'Authorization': `Bearer ${ghToken}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/vnd.github.v3+json',
+      ...(options.headers || {})
+    },
+    body: options.body ? JSON.stringify(options.body) : undefined
+  });
+  const text = await res.text();
+  let data;
+  try { data = text ? JSON.parse(text) : {}; } catch (e) { data = { raw: text }; }
+  if (!res.ok) throw new Error(`github_${res.status}:${JSON.stringify(data).slice(0,300)}`);
+  return data;
+}
+
+async function findOrCreateThreadIssue(inbound, senderKind, intentKind) {
+  const key = threadKey(inbound);
+  const search = encodeURIComponent(`repo:${PRIVATE_REPO} in:title [thread:${key}]`);
+  const searchData = await githubRequest(`/search/issues?q=${search}`);
+  const existing = (searchData.items || [])[0];
+  if (existing) {
+    return { issue: existing, created: false, key };
+  }
+
   const issueBody = [
-    `**Source:** ${inbound.source}`,
-    `**Sender kind:** ${senderKind}`,
-    `**Intent:** ${intentKind}`,
-    `**From:** ${inbound.from || 'unknown'}`,
-    `**To:** ${inbound.to || 'unknown'}`,
-    inbound.cc ? `**CC:** ${inbound.cc}` : null,
-    inbound.replyTo ? `**Reply-To:** ${inbound.replyTo}` : null,
-    `**Subject:** ${inbound.subject}`,
-    inbound.inboxId ? `**Inbox:** ${inbound.inboxId}` : null,
-    inbound.threadId ? `**Thread ID:** ${inbound.threadId}` : null,
-    inbound.messageId ? `**Message ID:** ${inbound.messageId}` : null,
-    `**Received:** ${inbound.timestamp}`,
+    `Thread key: ${key}`,
+    `Source: ${inbound.source}`,
+    `Sender kind: ${senderKind}`,
+    `Intent: ${intentKind}`,
+    `From: ${inbound.from || 'unknown'}`,
+    `To: ${inbound.to || 'unknown'}`,
+    inbound.cc ? `CC: ${inbound.cc}` : null,
+    inbound.replyTo ? `Reply-To: ${inbound.replyTo}` : null,
+    `Inbox: ${inbound.inboxId || ''}`,
+    `Thread ID: ${inbound.threadId || ''}`,
+    `Created: ${inbound.timestamp}`,
     '',
-    '---',
+    'Private inbound thread state for autonomous handling.'
+  ].filter(Boolean).join('\n');
+
+  const created = await githubRequest(`/repos/${PRIVATE_REPO}/issues`, {
+    method: 'POST',
+    body: {
+      title: `📧 [thread:${key}] ${inbound.subject}`.substring(0, 200),
+      body: issueBody,
+      labels: ['inbound-email', `sender-${senderKind}`, `intent-${intentKind}`]
+    }
+  });
+  return { issue: created, created: true, key };
+}
+
+async function addIssueComment(issueNumber, body) {
+  return githubRequest(`/repos/${PRIVATE_REPO}/issues/${issueNumber}/comments`, {
+    method: 'POST',
+    body: { body }
+  });
+}
+
+async function listIssueComments(issueNumber) {
+  return githubRequest(`/repos/${PRIVATE_REPO}/issues/${issueNumber}/comments?per_page=100`);
+}
+
+function inboundCommentBody(inbound, senderKind, intentKind) {
+  return [
+    `## inbound_message`,
+    `received_at: ${inbound.timestamp}`,
+    `sender_kind: ${senderKind}`,
+    `intent_kind: ${intentKind}`,
+    `message_id: ${inbound.messageId || ''}`,
+    `from: ${inbound.from || ''}`,
+    `to: ${inbound.to || ''}`,
+    '',
+    `subject: ${inbound.subject}`,
     '',
     (inbound.text || inbound.preview || inbound.html || '').toString().substring(0, 12000),
     '',
-    '---',
-    '<details><summary>Raw payload</summary>',
+    '<details><summary>raw payload</summary>',
     '',
     '```json',
     JSON.stringify(inbound.raw, null, 2).substring(0, 18000),
     '```',
     '</details>'
-  ].filter(Boolean).join('\n');
-
-  const labels = ['inbound-email', `sender-${senderKind}`, `intent-${intentKind}`];
-  const ghRes = await fetch(`https://api.github.com/repos/${repo}/issues`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${ghToken}`,
-      'Content-Type': 'application/json',
-      'Accept': 'application/vnd.github.v3+json'
-    },
-    body: JSON.stringify({
-      title: `📧 ${intentKind} | ${inbound.subject}`.substring(0, 200),
-      body: issueBody,
-      labels
-    })
-  });
-
-  const ghData = await ghRes.json();
-  return { stored: ghRes.ok, issue: ghData.number || null, repo, details: ghData };
+  ].join('\n');
 }
 
-function buildReply(inbound, intentKind) {
-  const firstName = (() => {
-    const m = String(inbound.from || '').match(/^\s*([^<\s"]+)/);
-    return m ? m[1].replace(/[",]/g, '') : 'there';
-  })();
+function extractReplyHistory(comments = []) {
+  return comments
+    .filter(c => (c.body || '').includes('## auto_reply'))
+    .map(c => {
+      const body = c.body || '';
+      const sentAt = (body.match(/sent_at:\s*(.+)/) || [])[1] || c.created_at;
+      const messageId = (body.match(/inbound_message_id:\s*(.+)/) || [])[1] || '';
+      const mode = (body.match(/mode:\s*(.+)/) || [])[1] || '';
+      return { sentAt: sentAt.trim(), messageId: messageId.trim(), mode: mode.trim(), body };
+    });
+}
 
-  const senderName = firstName && firstName !== inbound.from ? firstName : 'there';
+function buildThreadTranscript(issueBody = '', comments = []) {
+  const recent = comments.slice(-12).map(c => `COMMENT ${c.created_at}\n${c.body || ''}`).join('\n\n');
+  return `${issueBody || ''}\n\n${recent}`.slice(0, 24000);
+}
+
+async function generateReplyWithGemini(inbound, senderKind, intentKind, threadTranscript) {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) return { mode: 'fallback', action: 'reply', reason: 'missing_gemini_key' };
+
+  const prompt = `You are Callias Pulcher, founder of Milo. Write a concise, warm, direct business email reply.
+
+Rules:
+- Never mention being an AI.
+- Sound like a sharp founder/operator.
+- Be useful, not verbose.
+- If the email is simple, answer directly.
+- If the best next step is a call, suggest the assessment call and include this link exactly: https://cal.com/getmilodev/30min
+- If the message is too sensitive, legal, abusive, unclear, or risky to answer automatically, return action HOLD.
+- Avoid hype and marketing fluff.
+
+Return strict JSON with keys:
+{
+  "action": "reply" | "hold",
+  "reason": "short string",
+  "subject": "string",
+  "text": "string",
+  "html": "string"
+}
+
+Context:
+Sender kind: ${senderKind}
+Intent kind: ${intentKind}
+Inbound from: ${inbound.from}
+Inbound subject: ${inbound.subject}
+Inbound text: ${(inbound.text || inbound.preview || '').slice(0, 6000)}
+
+Thread transcript:
+${threadTranscript}`;
+
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.5,
+        responseMimeType: 'application/json'
+      }
+    })
+  });
+  const data = await res.json();
+  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+  let parsed;
+  try { parsed = JSON.parse(text); } catch (e) { parsed = { action: 'hold', reason: 'invalid_model_json', raw: text }; }
+  return { mode: 'gemini', ...parsed };
+}
+
+function fallbackReply(inbound, intentKind) {
+  const firstName = firstNameFromSender(inbound.from);
+  const subject = inbound.subject && inbound.subject.toLowerCase().startsWith('re:') ? inbound.subject : `Re: ${inbound.subject}`;
   const bookingLink = 'https://cal.com/getmilodev/30min';
-
   if (intentKind === 'booking') {
     return {
-      subject: inbound.subject && inbound.subject.toLowerCase().startsWith('re:') ? inbound.subject : `Re: ${inbound.subject}`,
-      text: `Hi ${senderName},\n\nGot your note. The fastest next step is to book an assessment call here: ${bookingLink}\n\nOn that call, Callias will figure out where AI can create the clearest leverage first and whether AI Native is the right next move.\n\n— Callias\nMilo`,
-      html: `<p>Hi ${senderName},</p><p>Got your note. The fastest next step is to book an assessment call here: <a href="${bookingLink}">${bookingLink}</a></p><p>On that call, Callias will figure out where AI can create the clearest leverage first and whether AI Native is the right next move.</p><p>— Callias<br>Milo</p>`
+      action: 'reply',
+      reason: 'fallback_booking',
+      subject,
+      text: `Hi ${firstName},\n\nYes — the fastest next step is to book an assessment call here: ${bookingLink}\n\nOn that call, I will figure out where AI can create the clearest leverage first and whether AI Native is the right next move.\n\n— Callias\nMilo`,
+      html: `<p>Hi ${firstName},</p><p>Yes — the fastest next step is to book an assessment call here: <a href="${bookingLink}">${bookingLink}</a></p><p>On that call, I will figure out where AI can create the clearest leverage first and whether AI Native is the right next move.</p><p>— Callias<br>Milo</p>`
     };
   }
-
   if (intentKind === 'pricing') {
     return {
-      subject: inbound.subject && inbound.subject.toLowerCase().startsWith('re:') ? inbound.subject : `Re: ${inbound.subject}`,
-      text: `Hi ${senderName},\n\nQuick answer: Milo starts with a $500 assessment, then AI Native Setup starts from $2,500 once the right first leverage point is clear.\n\nIf you want, book an assessment call here and we can scope the best next move: ${bookingLink}\n\n— Callias\nMilo`,
-      html: `<p>Hi ${senderName},</p><p>Quick answer: Milo starts with a <strong>$500 assessment</strong>, then <strong>AI Native Setup starts from $2,500</strong> once the right first leverage point is clear.</p><p>If you want, book an assessment call here and we can scope the best next move: <a href="${bookingLink}">${bookingLink}</a></p><p>— Callias<br>Milo</p>`
+      action: 'reply',
+      reason: 'fallback_pricing',
+      subject,
+      text: `Hi ${firstName},\n\nMilo starts with a $500 assessment. AI Native Setup starts from $2,500 once the right first leverage point is clear.\n\nIf useful, book here and we can scope the next move: ${bookingLink}\n\n— Callias\nMilo`,
+      html: `<p>Hi ${firstName},</p><p>Milo starts with a <strong>$500 assessment</strong>. AI Native Setup starts from <strong>$2,500</strong> once the right first leverage point is clear.</p><p>If useful, book here and we can scope the next move: <a href="${bookingLink}">${bookingLink}</a></p><p>— Callias<br>Milo</p>`
     };
   }
-
-  if (intentKind === 'support') {
-    return {
-      subject: inbound.subject && inbound.subject.toLowerCase().startsWith('re:') ? inbound.subject : `Re: ${inbound.subject}`,
-      text: `Hi ${senderName},\n\nGot this. Callias has it in the queue now. If there is a deadline, blocker, or exact failure mode we should know about, reply here with that detail and we will use it.\n\n— Callias\nMilo`,
-      html: `<p>Hi ${senderName},</p><p>Got this. Callias has it in the queue now. If there is a deadline, blocker, or exact failure mode we should know about, reply here with that detail and we will use it.</p><p>— Callias<br>Milo</p>`
-    };
-  }
-
-  if (intentKind === 'security') {
-    return {
-      subject: inbound.subject && inbound.subject.toLowerCase().startsWith('re:') ? inbound.subject : `Re: ${inbound.subject}`,
-      text: `Hi ${senderName},\n\nReceived. We will review this with priority. If you want the fastest path, reply with any relevant deadline or risk context and we will handle from there.\n\n— Callias\nMilo`,
-      html: `<p>Hi ${senderName},</p><p>Received. We will review this with priority. If you want the fastest path, reply with any relevant deadline or risk context and we will handle from there.</p><p>— Callias<br>Milo</p>`
-    };
-  }
-
   return {
-    subject: inbound.subject && inbound.subject.toLowerCase().startsWith('re:') ? inbound.subject : `Re: ${inbound.subject}`,
-    text: `Hi ${senderName},\n\nGot your note — Callias has it and will review it shortly.\n\nIf there is a concrete deadline or context we should have, just reply to this thread and include it. If the best next move is a call, you can book here: ${bookingLink}\n\n— Callias\nMilo`,
-    html: `<p>Hi ${senderName},</p><p>Got your note — Callias has it and will review it shortly.</p><p>If there is a concrete deadline or context we should have, just reply to this thread and include it. If the best next move is a call, you can book here: <a href="${bookingLink}">${bookingLink}</a></p><p>— Callias<br>Milo</p>`
+    action: 'reply',
+    reason: 'fallback_general',
+    subject,
+    text: `Hi ${firstName},\n\nGot your note — I saw it. If the best next step is a call, you can book here: ${bookingLink}\n\nIf there is a deadline or context I should have before replying in more detail, send that over.\n\n— Callias\nMilo`,
+    html: `<p>Hi ${firstName},</p><p>Got your note — I saw it. If the best next step is a call, you can book here: <a href="${bookingLink}">${bookingLink}</a></p><p>If there is a deadline or context I should have before replying in more detail, send that over.</p><p>— Callias<br>Milo</p>`
   };
 }
 
-async function autonomousReply(inbound, senderKind, intentKind) {
+async function sendReply(inbound, senderKind, reply) {
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) return { sent: false, reason: 'missing_resend_key' };
   if (senderKind !== 'external') return { sent: false, reason: 'not_external' };
@@ -174,7 +284,6 @@ async function autonomousReply(inbound, senderKind, intentKind) {
   const recipientInbox = (inbound.to || '').split(',')[0].trim() || process.env.DEFAULT_FROM;
   if (!replyTarget || !recipientInbox) return { sent: false, reason: 'missing_addresses' };
 
-  const reply = buildReply(inbound, intentKind);
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -192,21 +301,58 @@ async function autonomousReply(inbound, senderKind, intentKind) {
   });
 
   const data = await response.json();
-  return { sent: response.ok, id: data.id || null, intent: intentKind, details: data };
+  return { sent: response.ok, id: data.id || null, details: data };
+}
+
+async function autonomousReply(inbound, senderKind, intentKind, issue, comments) {
+  if (senderKind !== 'external') return { sent: false, suppressed: true, reason: 'not_external' };
+
+  const priorReplies = extractReplyHistory(comments);
+  if (priorReplies.some(r => r.messageId && r.messageId === inbound.messageId)) {
+    return { sent: false, suppressed: true, reason: 'message_already_replied' };
+  }
+
+  const recentReply = priorReplies.find(r => hoursSince(r.sentAt) < AUTO_REPLY_SUPPRESSION_HOURS);
+  if (recentReply) {
+    return { sent: false, suppressed: true, reason: 'thread_recently_replied' };
+  }
+
+  const transcript = buildThreadTranscript(issue.body || '', comments);
+  let generated = await generateReplyWithGemini(inbound, senderKind, intentKind, transcript);
+  if (!generated || generated.action !== 'reply') {
+    if (generated?.action === 'hold') {
+      await addIssueComment(issue.number, [
+        '## auto_reply_hold',
+        `held_at: ${new Date().toISOString()}`,
+        `reason: ${generated.reason || 'model_hold'}`,
+        `inbound_message_id: ${inbound.messageId || ''}`
+      ].join('\n'));
+      return { sent: false, suppressed: false, held: true, reason: generated.reason || 'model_hold' };
+    }
+    generated = fallbackReply(inbound, intentKind);
+  }
+
+  const sendResult = await sendReply(inbound, senderKind, generated);
+  if (sendResult.sent) {
+    await addIssueComment(issue.number, [
+      '## auto_reply',
+      `sent_at: ${new Date().toISOString()}`,
+      `mode: ${generated.mode || 'fallback'}`,
+      `reason: ${generated.reason || ''}`,
+      `inbound_message_id: ${inbound.messageId || ''}`,
+      '',
+      `subject: ${generated.subject}`,
+      '',
+      generated.text || ''
+    ].join('\n'));
+  }
+  return { ...sendResult, mode: generated.mode || 'fallback', reason: generated.reason || '' };
 }
 
 export default async function handler(req, res) {
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  if (req.method === 'GET') {
-    return res.status(200).json({ status: 'ok', service: 'milo-website-inbound' });
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method === 'GET') return res.status(200).json({ status: 'ok', service: 'milo-website-inbound' });
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
     const inbound = extractInbound(req.body || {});
@@ -216,8 +362,10 @@ export default async function handler(req, res) {
 
     const senderKind = classifySender(inbound.from);
     const intentKind = classifyIntent(inbound);
-    const privateResult = await createPrivateIssue(inbound, senderKind, intentKind);
-    const replyResult = await autonomousReply(inbound, senderKind, intentKind);
+    const threadState = await findOrCreateThreadIssue(inbound, senderKind, intentKind);
+    await addIssueComment(threadState.issue.number, inboundCommentBody(inbound, senderKind, intentKind));
+    const comments = await listIssueComments(threadState.issue.number);
+    const replyResult = await autonomousReply(inbound, senderKind, intentKind, threadState.issue, comments);
 
     console.log('INBOUND:', JSON.stringify({
       source: inbound.source,
@@ -228,9 +376,12 @@ export default async function handler(req, res) {
       subject: inbound.subject,
       inboxId: inbound.inboxId,
       threadId: inbound.threadId,
-      private_issue: privateResult.issue || null,
+      private_issue: threadState.issue.number,
       reply_sent: replyResult.sent || false,
-      reply_intent: replyResult.intent || null
+      reply_mode: replyResult.mode || null,
+      reply_reason: replyResult.reason || null,
+      suppressed: replyResult.suppressed || false,
+      held: replyResult.held || false
     }));
 
     return res.status(200).json({
@@ -238,10 +389,15 @@ export default async function handler(req, res) {
       source: inbound.source,
       sender_kind: senderKind,
       intent_kind: intentKind,
-      stored_privately: privateResult.stored,
-      private_repo: privateResult.repo || null,
-      private_issue: privateResult.issue || null,
-      autonomous_reply_sent: replyResult.sent || false
+      stored_privately: true,
+      private_repo: PRIVATE_REPO,
+      private_issue: threadState.issue.number,
+      thread_key: threadState.key,
+      autonomous_reply_sent: replyResult.sent || false,
+      autonomous_reply_mode: replyResult.mode || null,
+      reply_suppressed: replyResult.suppressed || false,
+      reply_held: replyResult.held || false,
+      reply_reason: replyResult.reason || null
     });
   } catch (err) {
     console.error('Error:', err.message);
