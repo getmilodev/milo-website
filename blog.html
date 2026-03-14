@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
   <title>AI Agents & Automation Guides for Small Business — Milo</title>
   <meta name="description" content="Practical guides on AI agents, business automation, pricing breakdowns, and building agent teams. Updated weekly.">
   <meta property="og:title" content="Guides & Resources — Milo">
@@ -50,72 +51,142 @@
       border-bottom: 1px solid var(--border-subtle);
     }
 
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--sp-4);
-    }
-    @media (max-width: 768px) {
-      .blog-grid { grid-template-columns: 1fr; }
-    }
-
-    .blog-card {
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: var(--sp-6);
-      transition: border-color 150ms var(--ease-out-quart),
-                  background 150ms var(--ease-out-quart);
+    /* Featured post — first in each section */
+    .blog-featured {
+      display: block;
       text-decoration: none;
       color: inherit;
-      display: block;
-      background: var(--surface-raised);
+      padding: var(--sp-8) 0;
+      margin-bottom: var(--sp-6);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: opacity 150ms var(--ease-out-quart);
     }
-    .blog-card:hover {
-      border-color: var(--gold);
-      background: var(--surface);
+    .blog-featured:hover {
+      opacity: 0.85;
     }
-    .blog-card:focus-visible {
+    .blog-featured:focus-visible {
       outline: 2px solid var(--gold);
-      outline-offset: 2px;
+      outline-offset: var(--sp-2);
     }
-    .blog-card__tag {
+    .blog-featured__tag {
       font-family: var(--font-mono);
       font-size: var(--text-xs);
       color: var(--gold-text);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: var(--sp-3);
+      margin-bottom: var(--sp-4);
     }
-    .blog-card h3 {
+    .blog-featured__title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 400;
+      color: var(--text-1);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-3);
+      max-width: 720px;
+    }
+    .blog-featured__excerpt {
       font-family: var(--font-body);
       font-size: var(--text-base);
-      font-weight: 600;
-      color: var(--text-1);
-      margin-bottom: var(--sp-2);
-      line-height: 1.35;
-    }
-    .blog-card p {
-      font-size: var(--text-sm);
       color: var(--text-2);
-      margin: 0 0 var(--sp-4);
-      line-height: 1.6;
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: var(--sp-4);
     }
-    .blog-card__meta {
+    .blog-featured__footer {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+    }
+    .blog-featured__meta {
       font-family: var(--font-mono);
       font-size: var(--text-xs);
       color: var(--text-3);
       letter-spacing: 0.02em;
     }
-    .blog-card__arrow {
+    .blog-featured__arrow {
+      font-family: var(--font-body);
       font-size: var(--text-sm);
       color: var(--gold-text);
       font-weight: 600;
+      transition: transform 150ms var(--ease-out-quart);
       display: inline-block;
-      margin-top: var(--sp-3);
+    }
+    .blog-featured:hover .blog-featured__arrow {
+      transform: translateX(3px);
+    }
+
+    /* Archive list — remaining posts */
+    .blog-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .blog-list-item {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .blog-list-item:last-child {
+      border-bottom: none;
+    }
+    .blog-list-item a {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      padding: var(--sp-5) 0;
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 150ms var(--ease-out-quart);
+    }
+    .blog-list-item a:hover {
+      opacity: 0.75;
+    }
+    .blog-list-item a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: var(--sp-1);
+    }
+    .blog-list-item__content {
+      flex: 1;
+      min-width: 0;
+    }
+    .blog-list-item__title {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--text-1);
+      line-height: 1.35;
+      margin-bottom: var(--sp-1);
+    }
+    .blog-list-item__meta {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      letter-spacing: 0.02em;
+    }
+    .blog-list-item__arrow {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--gold-text);
+      font-weight: 600;
+      flex-shrink: 0;
       transition: transform 150ms var(--ease-out-quart);
     }
-    .blog-card:hover .blog-card__arrow {
+    .blog-list-item a:hover .blog-list-item__arrow {
       transform: translateX(3px);
+    }
+
+    @media (max-width: 768px) {
+      .blog-featured__title {
+        font-size: var(--text-lg);
+      }
+      .blog-list-item a {
+        flex-direction: column;
+        gap: var(--sp-1);
+      }
+      .blog-list-item__arrow {
+        align-self: flex-start;
+      }
     }
 
     /* CTA section */
@@ -201,7 +272,7 @@
     </button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
@@ -227,17 +298,16 @@
 <section class="blog-section">
   <div class="wrap">
     <div class="blog-section__label reveal">// Industry Analysis</div>
-    <div class="blog-grid">
 
-      <a href="/blog/intuit-ai-agents-accountants" class="blog-card reveal">
-        <div class="blog-card__tag">New · Industry</div>
-        <h3>Intuit Is Building AI Agents for Your Accountant — Here's What That Means for You</h3>
-        <p>Intuit and Anthropic just partnered to bring custom AI agents to mid-market businesses. What accounting firms need to know about platform lock-in — and the independent alternative.</p>
-        <div class="blog-card__meta">March 2026 · 8 min read</div>
-        <span class="blog-card__arrow">Read analysis &#8594;</span>
+      <a href="/blog/intuit-ai-agents-accountants" class="blog-featured reveal">
+        <div class="blog-featured__tag">New · Industry</div>
+        <h3 class="blog-featured__title">Intuit Is Building AI Agents for Your Accountant — Here's What That Means for You</h3>
+        <p class="blog-featured__excerpt">Intuit and Anthropic just partnered to bring custom AI agents to mid-market businesses. What accounting firms need to know about platform lock-in — and the independent alternative.</p>
+        <div class="blog-featured__footer">
+          <span class="blog-featured__meta">March 2026 · 8 min read</span>
+          <span class="blog-featured__arrow">Read analysis &#8594;</span>
+        </div>
       </a>
-
-    </div>
   </div>
 </section>
 
@@ -245,49 +315,55 @@
 <section class="blog-section">
   <div class="wrap">
     <div class="blog-section__label reveal">// Pricing & Cost Guides</div>
-    <div class="blog-grid">
 
-      <a href="/blog/ai-for-executives-cost-2026" class="blog-card reveal">
-        <div class="blog-card__tag">New · Pricing</div>
-        <h3>How Much Does AI for Executives Cost in 2026? Real Pricing Breakdown</h3>
-        <p>From $50/mo chatbots to $12,500 consulting programs — what AI executive enablement actually costs and which option builds real capability.</p>
-        <div class="blog-card__meta">March 2026 · 9 min read</div>
-        <span class="blog-card__arrow">Read breakdown &#8594;</span>
+      <a href="/blog/ai-for-executives-cost-2026" class="blog-featured reveal">
+        <div class="blog-featured__tag">New · Pricing</div>
+        <h3 class="blog-featured__title">How Much Does AI for Executives Cost in 2026? Real Pricing Breakdown</h3>
+        <p class="blog-featured__excerpt">From $50/mo chatbots to $12,500 consulting programs — what AI executive enablement actually costs and which option builds real capability.</p>
+        <div class="blog-featured__footer">
+          <span class="blog-featured__meta">March 2026 · 9 min read</span>
+          <span class="blog-featured__arrow">Read breakdown &#8594;</span>
+        </div>
       </a>
 
-      <a href="/blog/how-much-does-ai-agent-cost" class="blog-card reveal">
-        <div class="blog-card__tag">Guide</div>
-        <h3>How Much Does an AI Agent Cost in 2026? The Complete Breakdown</h3>
-        <p>Every dollar you'll spend: setup fees ($0-$15K), monthly running costs ($10-800), hidden fees, and total cost of ownership across DIY, SaaS, and done-for-you.</p>
-        <div class="blog-card__meta">Updated March 2026 · 10 min read</div>
-        <span class="blog-card__arrow">Read guide &#8594;</span>
-      </a>
-
-      <a href="/blog/ai-agent-team-cost-2026" class="blog-card reveal">
-        <div class="blog-card__tag">Pricing</div>
-        <h3>AI Agent Team Cost in 2026: Real Pricing From Setup to Monthly</h3>
-        <p>What does an AI agent team actually cost? Setup fees, infrastructure, API usage, and the hidden costs nobody talks about. Real numbers, not estimates.</p>
-        <div class="blog-card__meta">March 2026 · 11 min read</div>
-        <span class="blog-card__arrow">Read breakdown &#8594;</span>
-      </a>
-
-      <a href="/blog/one-time-vs-monthly-ai-subscriptions" class="blog-card reveal">
-        <div class="blog-card__tag">Analysis</div>
-        <h3>One-Time vs Monthly AI Subscriptions: Which Actually Saves You Money?</h3>
-        <p>SaaS AI tools bleed you $200-800/month forever. One-time AI setup costs $399 once. We ran the real math over 1, 3, and 5 years.</p>
-        <div class="blog-card__meta">March 2026 · 10 min read</div>
-        <span class="blog-card__arrow">Read analysis &#8594;</span>
-      </a>
-
-      <a href="/blog/build-vs-buy-ai-agents" class="blog-card reveal">
-        <div class="blog-card__tag">Analysis</div>
-        <h3>Build vs. Buy: The Real Cost of DIY AI Agent Systems</h3>
-        <p>Thinking about building AI agents yourself with Make.com or n8n? Here's the honest time and cost breakdown — and when it makes more sense to pay $399.</p>
-        <div class="blog-card__meta">March 2026 · 10 min read</div>
-        <span class="blog-card__arrow">Read analysis &#8594;</span>
-      </a>
-
-    </div>
+      <ul class="blog-list">
+        <li class="blog-list-item reveal">
+          <a href="/blog/how-much-does-ai-agent-cost">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">How Much Does an AI Agent Cost in 2026? The Complete Breakdown</div>
+              <div class="blog-list-item__meta">Updated March 2026 · 10 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+        <li class="blog-list-item reveal" data-delay="1">
+          <a href="/blog/ai-agent-team-cost-2026">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">AI Agent Team Cost in 2026: Real Pricing From Setup to Monthly</div>
+              <div class="blog-list-item__meta">March 2026 · 11 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+        <li class="blog-list-item reveal" data-delay="2">
+          <a href="/blog/one-time-vs-monthly-ai-subscriptions">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">One-Time vs Monthly AI Subscriptions: Which Actually Saves You Money?</div>
+              <div class="blog-list-item__meta">March 2026 · 10 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+        <li class="blog-list-item reveal" data-delay="3">
+          <a href="/blog/build-vs-buy-ai-agents">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">Build vs. Buy: The Real Cost of DIY AI Agent Systems</div>
+              <div class="blog-list-item__meta">March 2026 · 10 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+      </ul>
   </div>
 </section>
 
@@ -296,73 +372,82 @@
 <section class="blog-section">
   <div class="wrap">
     <div class="blog-section__label reveal">// Practical Guides</div>
-    <div class="blog-grid">
 
-      <a href="/blog/ai-automation-small-business" class="blog-card reveal">
-        <div class="blog-card__tag">New · Guide</div>
-        <h3>AI Automation for Small Business: Why Most Tools Fail (And What Works)</h3>
-        <p>Most small businesses buy AI tools and abandon them within 90 days. Here's what actually works — by vertical, with specific numbers — and the two models for getting there.</p>
-        <div class="blog-card__meta">March 2026 · 12 min read</div>
-        <span class="blog-card__arrow">Read guide &#8594;</span>
+      <a href="/blog/ai-automation-small-business" class="blog-featured reveal">
+        <div class="blog-featured__tag">New · Guide</div>
+        <h3 class="blog-featured__title">AI Automation for Small Business: Why Most Tools Fail (And What Works)</h3>
+        <p class="blog-featured__excerpt">Most small businesses buy AI tools and abandon them within 90 days. Here's what actually works — by vertical, with specific numbers — and the two models for getting there.</p>
+        <div class="blog-featured__footer">
+          <span class="blog-featured__meta">March 2026 · 12 min read</span>
+          <span class="blog-featured__arrow">Read guide &#8594;</span>
+        </div>
       </a>
 
-      <a href="/blog/how-to-automate-business-with-ai" class="blog-card reveal">
-        <div class="blog-card__tag">Framework</div>
-        <h3>How to Automate Your Business With AI (Without Hiring a Developer)</h3>
-        <p>A step-by-step framework: audit what eats your time, identify what's automatable, and start with one agent. No coding required.</p>
-        <div class="blog-card__meta">Updated March 2026 · 10 min read</div>
-        <span class="blog-card__arrow">Read framework &#8594;</span>
-      </a>
-
-      <a href="/blog/ai-agent-team-small-business" class="blog-card reveal">
-        <div class="blog-card__tag">Guide</div>
-        <h3>AI Agent Team for Small Business: Why One Agent Isn't Enough</h3>
-        <p>Most AI tools give you one bot. Your business needs a team. How agent teams work, what they cost, and the 3-year math that makes single tools look expensive.</p>
-        <div class="blog-card__meta">March 2026 · 12 min read</div>
-        <span class="blog-card__arrow">Read guide &#8594;</span>
-      </a>
-
-      <a href="/blog/ai-agents-small-business" class="blog-card reveal">
-        <div class="blog-card__tag">Guide</div>
-        <h3>AI Agents for Small Business: The No-BS Guide</h3>
-        <p>Everything you need to know about AI agents — what they actually do, what they cost, and whether they're worth it for a business your size. No hype, just facts.</p>
-        <div class="blog-card__meta">Updated March 2026 · 12 min read</div>
-        <span class="blog-card__arrow">Read guide &#8594;</span>
-      </a>
-
-      <a href="/blog/ai-agent-system" class="blog-card reveal">
-        <div class="blog-card__tag">Case Study</div>
-        <h3>How We Built a $6M Pipeline with an AI Agent System</h3>
-        <p>The exact architecture, tools, and workflows behind our 12-agent system. Real numbers, real failures, and what actually moved the needle.</p>
-        <div class="blog-card__meta">March 2026 · 10 min read</div>
-        <span class="blog-card__arrow">Read case study &#8594;</span>
-      </a>
-
-      <a href="/blog/ai-native-agencies" class="blog-card reveal">
-        <div class="blog-card__tag">Industry</div>
-        <h3>AI-Native Agencies: The New Model</h3>
-        <p>Why the next generation of agencies will run on AI agent teams — and how to build one before the window closes.</p>
-        <div class="blog-card__meta">March 2026 · 7 min read</div>
-        <span class="blog-card__arrow">Read article &#8594;</span>
-      </a>
-
-      <a href="/blog/first-90-days-coo-ai-audit" class="blog-card reveal">
-        <div class="blog-card__tag">New · Operators</div>
-        <h3>First 90 Days COO AI Audit</h3>
-        <p>Six operating checks for new COOs and operators who need to turn scattered AI usage into dependable systems for reporting, follow-up, intake, and executive support.</p>
-        <div class="blog-card__meta">March 2026 · 8 min read</div>
-        <span class="blog-card__arrow">Read guide &#8594;</span>
-      </a>
-
-      <a href="/blog/ai-native-operating-audit-chiefs-of-staff" class="blog-card reveal">
-        <div class="blog-card__tag">New · Operators</div>
-        <h3>AI Native Operating Audit for Chiefs of Staff</h3>
-        <p>A practical 7-part audit to score intake, decision memos, meeting follow-through, knowledge retrieval, and executive leverage before adding more AI tools.</p>
-        <div class="blog-card__meta">March 2026 · 8 min read</div>
-        <span class="blog-card__arrow">Read guide &#8594;</span>
-      </a>
-
-    </div>
+      <ul class="blog-list">
+        <li class="blog-list-item reveal">
+          <a href="/blog/how-to-automate-business-with-ai">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">How to Automate Your Business With AI (Without Hiring a Developer)</div>
+              <div class="blog-list-item__meta">Updated March 2026 · 10 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+        <li class="blog-list-item reveal" data-delay="1">
+          <a href="/blog/ai-agent-team-small-business">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">AI Agent Team for Small Business: Why One Agent Isn't Enough</div>
+              <div class="blog-list-item__meta">March 2026 · 12 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+        <li class="blog-list-item reveal" data-delay="2">
+          <a href="/blog/ai-agents-small-business">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">AI Agents for Small Business: The No-BS Guide</div>
+              <div class="blog-list-item__meta">Updated March 2026 · 12 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+        <li class="blog-list-item reveal" data-delay="3">
+          <a href="/blog/ai-agent-system">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">How We Built a $6M Pipeline with an AI Agent System</div>
+              <div class="blog-list-item__meta">March 2026 · 10 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+        <li class="blog-list-item reveal" data-delay="1">
+          <a href="/blog/ai-native-agencies">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">AI-Native Agencies: The New Model</div>
+              <div class="blog-list-item__meta">March 2026 · 7 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+        <li class="blog-list-item reveal" data-delay="2">
+          <a href="/blog/first-90-days-coo-ai-audit">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">First 90 Days COO AI Audit</div>
+              <div class="blog-list-item__meta">March 2026 · 8 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+        <li class="blog-list-item reveal" data-delay="3">
+          <a href="/blog/ai-native-operating-audit-chiefs-of-staff">
+            <div class="blog-list-item__content">
+              <div class="blog-list-item__title">AI Native Operating Audit for Chiefs of Staff</div>
+              <div class="blog-list-item__meta">March 2026 · 8 min read</div>
+            </div>
+            <span class="blog-list-item__arrow">&#8594;</span>
+          </a>
+        </li>
+      </ul>
   </div>
 </section>
 

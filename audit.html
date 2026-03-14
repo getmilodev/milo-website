@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
   <title>AI Systems Assessment — preview your highest-leverage implementation target | Milo</title>
   <meta name="description" content="Preview the Milo AI Systems Assessment for agencies, operators, and service firms. Answer 4 questions to see workflow pressure, implementation opportunities, and the likely next build.">
   <meta property="og:title" content="AI Systems Assessment | Milo">
@@ -213,7 +214,7 @@
       margin-bottom: var(--sp-2);
     }
     .grade-A { color: var(--success); }
-    .grade-B { color: oklch(72% 0.12 155); }
+    .grade-B { color: var(--success); }
     .grade-C { color: var(--gold); }
     .grade-D { color: var(--warning); }
     .grade-F { color: var(--error); }
@@ -439,7 +440,7 @@
       body::after {
         content: 'getmilo.dev/audit';
         position: fixed; bottom: 12px; right: 16px;
-        font-size: 9px; color: #aaa; font-family: monospace;
+        font-size: var(--text-xs); color: var(--text-3); font-family: var(--font-mono);
       }
       .workflow-card, .diy-card { break-inside: avoid; }
     }

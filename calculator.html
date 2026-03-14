@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
   <title>How Much Is Manual Work Costing You? — Free AI Savings Calculator | Milo</title>
   <meta name="description" content="Find out exactly how much time and money your business loses to manual tasks every month. Free calculator — no signup required.">
   <meta property="og:title" content="How Much Is Manual Work Costing You? — Free AI Savings Calculator">
@@ -124,7 +125,7 @@
       background: var(--surface-raised);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      box-shadow: 0 12px 28px rgba(10, 10, 26, 0.05);
+      box-shadow: 0 12px 28px color-mix(in oklch, var(--text-1), transparent 95%);
     }
     .result-stat__number {
       font-family: var(--font-display);
@@ -364,7 +365,7 @@
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile">
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
   <a href="/agents">Services</a>
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>

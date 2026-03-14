@@ -162,8 +162,9 @@ main dd a:hover {
    =========================================== */
 
 .reveal {
-  opacity: 1;
-  transform: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal[data-delay="1"] { transition-delay: 70ms; }
@@ -231,6 +232,10 @@ main dd a:hover {
 
 .section--sm {
   padding: var(--sp-12) 0;
+}
+
+.section--flush-top {
+  padding-top: 0;
 }
 
 /* ===========================================
@@ -1194,6 +1199,51 @@ pre {
   padding: 0 clamp(24px, 5vw, 64px);
   max-width: 1100px;
   margin: 0 auto var(--sp-8);
+}
+
+/* ===========================================
+   SPEC SIDEBAR — monospace key/value panel
+   =========================================== */
+
+.spec-sidebar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-6);
+}
+.spec-sidebar__title {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: var(--sp-4);
+}
+.spec-sidebar__row {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 2.2;
+  color: var(--text-3);
+}
+.spec-sidebar__row .key {
+  display: inline-block;
+  min-width: 90px;
+}
+.spec-sidebar__row .val {
+  color: var(--text-1);
+  font-weight: 500;
+}
+.spec-sidebar__divider {
+  height: 1px;
+  background: var(--border);
+  margin: var(--sp-3) 0;
+}
+
+@media (max-width: 640px) {
+  .spec-sidebar__row .key,
+  .spec-sidebar__row .val {
+    display: block;
+    min-width: 0;
+  }
 }
 
 /* ===========================================

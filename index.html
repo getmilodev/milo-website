@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
   <title>Milo — Stop dabbling with AI. Start getting ahead with it.</title>
   <meta name="description" content="Everyone around you is shipping faster with AI. Milo helps founders and executives close the gap — real output, sharper decisions, lasting leverage.">
   <meta property="og:title" content="Milo — Stop dabbling with AI. Start getting ahead with it.">
@@ -36,19 +37,10 @@
     }
     .hero__grid {
       display: grid;
-      grid-template-columns: 64px 1fr 320px;
-      gap: var(--sp-6);
+      grid-template-columns: 1fr 320px;
+      gap: var(--sp-10);
       align-items: start;
     }
-    .hero__index {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--text-3);
-      line-height: 2.6;
-      padding-top: 50px;
-    }
-    .hero__index span { display: block; opacity: 0.4; }
-    .hero__index span.active { opacity: 1; color: var(--gold-text); }
     .hero__main { padding-top: var(--sp-2); }
     .hero__title {
       font-family: var(--font-display);
@@ -133,7 +125,6 @@
     }
     @media (max-width: 900px) {
       .hero__grid { grid-template-columns: 1fr; }
-      .hero__index { display: none; }
       .hero__sidebar { margin-top: var(--sp-8); }
     }
     @media (max-width: 768px) {
@@ -158,7 +149,7 @@
       <a href="/security" class="nav__link">Security</a>
       <a href="/calculator" class="nav__link">Calculator</a>
       <a href="/build" class="nav__link">Build</a>
-      <a href="/demo?offer=assessment" class="nav__cta" data-track="assessment_cta" data-track-location="header">Book an assessment call</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
     </div>
     <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
@@ -171,7 +162,7 @@
   <a href="/security">Security</a>
   <a href="/calculator">Calculator</a>
   <a href="/build">Build</a>
-  <a href="/demo?offer=assessment" data-track="assessment_cta" data-track-location="mobile_menu">Book an assessment call</a>
+  <a href="/demo">Start a project</a>
 </div>
 
 <main id="main">
@@ -184,13 +175,6 @@
       <span class="spec-coord">// ai-native operations</span>
     </div>
     <div class="hero__grid">
-      <div class="hero__index reveal" data-delay="2">
-        <span class="active">001</span>
-        <span>002</span>
-        <span>003</span>
-        <span>004</span>
-        <span>005</span>
-      </div>
       <div class="hero__main">
         <h1 class="hero__title reveal">Stop dabbling with AI. <span class="accent">Start getting ahead with it.</span></h1>
         <p class="hero__body reveal" data-delay="1">Everyone around you is shipping faster with AI. You&rsquo;re still copying things into ChatGPT. Milo closes that gap&mdash;real output, sharper decisions, lasting leverage.</p>
@@ -207,121 +191,20 @@
       </div>
       <div class="hero__sidebar reveal" data-delay="3">
         <div class="hero__sidebar-title">Quick specs</div>
-        <div class="hero__sidebar-row"><span class="key">buyer</span> <span class="val">founders + executives</span></div>
-        <div class="hero__sidebar-row"><span class="key">start here</span> <span class="val">$500 assessment</span></div>
-        <div class="hero__sidebar-row"><span class="key">then</span> <span class="val">$2,500+ implementation</span></div>
-        <div class="hero__sidebar-row"><span class="key">lock-in</span> <span class="val">none</span></div>
-        <div class="hero__sidebar-row"><span class="key">infra</span> <span class="val">yours</span></div>
-        <div class="hero__sidebar-row"><span class="key">source</span> <span class="val">open</span></div>
-        <div class="hero__sidebar-divider"></div>
-        <div class="hero__sidebar-row"><span class="key">outcomes</span> <span class="val">better decisions</span></div>
-        <div class="hero__sidebar-row"><span class="key">also</span> <span class="val">faster output, more leverage, less drag</span></div>
+        <div class="hero__sidebar-row"><span class="key">for</span> <span class="val">founders + executives</span></div>
+        <div class="hero__sidebar-row"><span class="key">start</span> <span class="val">$500 assessment</span></div>
+        <div class="hero__sidebar-row"><span class="key">setup</span> <span class="val">from $2,500</span></div>
+        <div class="hero__sidebar-row"><span class="key">lock-in</span> <span class="val">none — you own everything</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TERMINAL — SPEC:002 -->
-<section class="section--sm" style="padding: 0 0 var(--sp-24);">
-  <div class="wrap">
-    <div class="section-marker reveal">
-      <span class="spec-label">SPEC:002</span>
-      <span class="spec-coord">// the browser-tab trap</span>
-    </div>
-    <div class="terminal reveal" data-delay="1">
-      <div class="terminal__bar">
-        <span class="terminal__dot"></span>
-        <span class="terminal__dot"></span>
-        <span class="terminal__dot"></span>
-        <span class="terminal__title">milo — audit</span>
-      </div>
-      <div class="terminal__body"><span class="t-prompt">$</span> <span class="t-cmd">milo diagnose --firm ./ops</span>
-
-<span class="t-muted">Scanning where AI could create leverage across actual founder and executive work...</span>
-
-  <span class="t-accent">Writing</span>      <span class="t-bar">██████████</span><span class="t-bar-empty">░░░░</span>  <span class="t-num">5</span> delays     │  <span class="t-success">first drafts in minutes</span>
-  <span class="t-accent">Planning</span>     <span class="t-bar">████████</span><span class="t-bar-empty">░░░░░░</span>  <span class="t-num">3</span> bottlenecks │  <span class="t-success">clearer next moves</span>
-  <span class="t-accent">Decisions</span>    <span class="t-bar">███████</span><span class="t-bar-empty">░░░░░░░</span>  <span class="t-num">2</span> slow loops │  <span class="t-success">context faster</span>
-  <span class="t-accent">Research</span>     <span class="t-bar">██████</span><span class="t-bar-empty">░░░░░░░░</span>  <span class="t-num">2</span> repeats    │  <span class="t-success">better briefs in minutes</span>
-
-<span class="t-num">4</span> leverage points prioritized. Recommended: <span class="t-accent">AI Native Setup</span>.
-
-<span class="t-prompt">$</span> <span class="t-cmd">milo install --workspace callias-ops</span>
-<span class="t-success">✓</span> role-specific prompts loaded  <span class="t-muted">[1.9s]</span>
-<span class="t-success">✓</span> firm knowledge indexed        <span class="t-muted">[2.3s]</span>
-<span class="t-success">✓</span> reporting / follow-up flows live <span class="t-muted">[2.0s]</span>
-
-Workspace <span class="t-accent">"founder-hq"</span> ready for live working session.
-
-<span class="t-prompt">$</span> <span class="terminal__cursor"></span></div>
-    </div>
-  </div>
-</section>
-
-<!-- AGENT CONFIG — SPEC:003 -->
-<section style="padding: 0 0 var(--sp-20);">
-  <div class="wrap">
-    <div class="section-marker reveal">
-      <span class="spec-label">SPEC:003</span>
-      <span class="spec-coord">// what gets built</span>
-    </div>
-    <div class="config-grid">
-      <div class="config-block reveal" data-delay="1">
-        <div class="config-block__bar">
-          <span class="config-block__dot"></span>
-          <span class="config-block__dot"></span>
-          <span class="config-block__dot"></span>
-          <span class="config-block__title">operator-workspace.yaml</span>
-        </div>
-        <div class="config-block__body"><span class="c-comment"># AI Native setup — configured around real recurring work</span>
-
-<span class="c-key">workspace</span>: <span class="c-str">operator-hq</span>
-<span class="c-key">status</span>: <span class="c-str">active</span>
-<span class="c-key">owner</span>: <span class="c-str">client operator</span>
-
-<span class="c-key">workflows</span>:
-  <span class="c-key">proposal_builder</span>:
-    <span class="c-key">inputs</span>: [<span class="c-str">past scopes</span>, <span class="c-str">pricing rules</span>, <span class="c-str">client notes</span>]
-    <span class="c-key">output</span>: <span class="c-arrow">→ first draft in minutes</span>
-
-  <span class="c-key">client_reporting</span>:
-    <span class="c-key">inputs</span>: [<span class="c-str">source metrics</span>, <span class="c-str">account context</span>]
-    <span class="c-key">output</span>: <span class="c-arrow">→ ready-to-send update</span>
-
-  <span class="c-key">followup_engine</span>:
-    <span class="c-key">inputs</span>: [<span class="c-str">meeting notes</span>, <span class="c-str">open loops</span>]
-    <span class="c-key">output</span>: <span class="c-arrow">→ next-step drafts</span>
-
-  <span class="c-key">research_brief</span>:
-    <span class="c-key">inputs</span>: [<span class="c-str">internal docs</span>, <span class="c-str">market context</span>]
-    <span class="c-key">output</span>: <span class="c-arrow">→ operator-ready memo</span></div>
-      </div>
-      <div class="config-aside reveal" data-delay="2" style="display: flex; flex-direction: column; gap: var(--sp-6);">
-        <div class="config-aside__fig">FIG.01</div>
-        <div class="config-aside__image">
-          <img src="/mockups/d2-hands.png" alt="Milo AI Native blueprint showing assessment, setup, and expansion as a structured operating system" loading="lazy" width="640" height="360">
-        </div>
-        <p class="config-aside__caption">Assessment, setup, expansion — the point is to turn AI into a structured edge you can actually use.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PULL QUOTE -->
-<blockquote class="pull-quote">
-  <div class="wrap">
-    <div class="pull-quote__inner reveal">
-      <p class="pull-quote__text">Most people never get past a ChatGPT tab. The real gain starts when AI changes how you think, write, decide, and move.</p>
-      <cite class="pull-quote__attr">From the team that eats its own cooking</cite>
-    </div>
-  </div>
-</blockquote>
-
-<!-- SERVICES — SPEC:004 -->
+<!-- SERVICES — SPEC:002 -->
 <section style="padding: 0 0 var(--sp-24);">
   <div class="wrap">
     <div class="section-marker reveal">
-      <span class="spec-label">SPEC:004</span>
+      <span class="spec-label">SPEC:002</span>
       <span class="spec-coord">// services</span>
     </div>
     <div class="editorial reveal" data-delay="1">
@@ -365,6 +248,101 @@ Workspace <span class="t-accent">"founder-hq"</span> ready for live working sess
         </div>
       </li>
     </ul>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<blockquote class="pull-quote">
+  <div class="wrap">
+    <div class="pull-quote__inner reveal">
+      <p class="pull-quote__text">Most people never get past a ChatGPT tab. The real gain starts when AI changes how you think, write, decide, and move.</p>
+    </div>
+  </div>
+</blockquote>
+
+<!-- TERMINAL — SPEC:003 -->
+<section class="section--sm" style="padding: 0 0 var(--sp-24);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:003</span>
+      <span class="spec-coord">// what the assessment finds</span>
+    </div>
+    <div class="terminal reveal" data-delay="1">
+      <div class="terminal__bar">
+        <span class="terminal__dot"></span>
+        <span class="terminal__dot"></span>
+        <span class="terminal__dot"></span>
+        <span class="terminal__title">milo — audit</span>
+      </div>
+      <div class="terminal__body"><span class="t-prompt">$</span> <span class="t-cmd">milo diagnose --firm ./ops</span>
+
+<span class="t-muted">Scanning where AI could create leverage across actual founder and executive work...</span>
+
+  <span class="t-accent">Writing</span>      <span class="t-bar">██████████</span><span class="t-bar-empty">░░░░</span>  <span class="t-num">5</span> delays     │  <span class="t-success">first drafts in minutes</span>
+  <span class="t-accent">Planning</span>     <span class="t-bar">████████</span><span class="t-bar-empty">░░░░░░</span>  <span class="t-num">3</span> bottlenecks │  <span class="t-success">clearer next moves</span>
+  <span class="t-accent">Decisions</span>    <span class="t-bar">███████</span><span class="t-bar-empty">░░░░░░░</span>  <span class="t-num">2</span> slow loops │  <span class="t-success">context faster</span>
+  <span class="t-accent">Research</span>     <span class="t-bar">██████</span><span class="t-bar-empty">░░░░░░░░</span>  <span class="t-num">2</span> repeats    │  <span class="t-success">better briefs in minutes</span>
+
+<span class="t-num">4</span> leverage points prioritized. Recommended: <span class="t-accent">AI Native Setup</span>.
+
+<span class="t-prompt">$</span> <span class="t-cmd">milo install --workspace callias-ops</span>
+<span class="t-success">✓</span> role-specific prompts loaded  <span class="t-muted">[1.9s]</span>
+<span class="t-success">✓</span> firm knowledge indexed        <span class="t-muted">[2.3s]</span>
+<span class="t-success">✓</span> reporting / follow-up flows live <span class="t-muted">[2.0s]</span>
+
+Workspace <span class="t-accent">"founder-hq"</span> ready for live working session.
+
+<span class="t-prompt">$</span> <span class="terminal__cursor"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT CONFIG — SPEC:004 -->
+<section style="padding: 0 0 var(--sp-20);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:004</span>
+      <span class="spec-coord">// what gets built</span>
+    </div>
+    <div class="config-grid">
+      <div class="config-block reveal" data-delay="1">
+        <div class="config-block__bar">
+          <span class="config-block__dot"></span>
+          <span class="config-block__dot"></span>
+          <span class="config-block__dot"></span>
+          <span class="config-block__title">operator-workspace.yaml</span>
+        </div>
+        <div class="config-block__body"><span class="c-comment"># AI Native setup — configured around real recurring work</span>
+
+<span class="c-key">workspace</span>: <span class="c-str">operator-hq</span>
+<span class="c-key">status</span>: <span class="c-str">active</span>
+<span class="c-key">owner</span>: <span class="c-str">client operator</span>
+
+<span class="c-key">workflows</span>:
+  <span class="c-key">proposal_builder</span>:
+    <span class="c-key">inputs</span>: [<span class="c-str">past scopes</span>, <span class="c-str">pricing rules</span>, <span class="c-str">client notes</span>]
+    <span class="c-key">output</span>: <span class="c-arrow">→ first draft in minutes</span>
+
+  <span class="c-key">client_reporting</span>:
+    <span class="c-key">inputs</span>: [<span class="c-str">source metrics</span>, <span class="c-str">account context</span>]
+    <span class="c-key">output</span>: <span class="c-arrow">→ ready-to-send update</span>
+
+  <span class="c-key">followup_engine</span>:
+    <span class="c-key">inputs</span>: [<span class="c-str">meeting notes</span>, <span class="c-str">open loops</span>]
+    <span class="c-key">output</span>: <span class="c-arrow">→ next-step drafts</span>
+
+  <span class="c-key">research_brief</span>:
+    <span class="c-key">inputs</span>: [<span class="c-str">internal docs</span>, <span class="c-str">market context</span>]
+    <span class="c-key">output</span>: <span class="c-arrow">→ operator-ready memo</span></div>
+      </div>
+      <div class="config-aside reveal" data-delay="2" style="display: flex; flex-direction: column; gap: var(--sp-6);">
+        <div class="config-aside__fig">FIG.01</div>
+        <div class="config-aside__image">
+          <img src="/mockups/d2-hands.png" alt="Milo AI Native blueprint showing assessment, setup, and expansion as a structured operating system" loading="lazy" width="640" height="360">
+        </div>
+        <p class="config-aside__caption">Assessment, setup, expansion — the point is to turn AI into a structured edge you can actually use.</p>
+      </div>
+    </div>
   </div>
 </section>
 
