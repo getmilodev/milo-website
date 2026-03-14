@@ -16,6 +16,8 @@ Ongoing infrastructure: $30–60/mo (client's own hosting/model usage, not to Mi
 
 3-to-15-person professional-services firm (agencies, consulting, law, accounting) whose founder or operator knows AI should be making them faster but hasn't gotten past ChatGPT — and has at least one weekly workflow (proposals, reporting, follow-up, or research) that's still entirely manual.
 
+**Industry tiers:** Tier 1 (clearest fit): agencies, consulting. Tier 2: law, accounting. Tier 3: real estate, recruiting.
+
 ## Competitive Position
 
 - We build around real recurring workflows, not vague AI ambitions
@@ -24,13 +26,14 @@ Ongoing infrastructure: $30–60/mo (client's own hosting/model usage, not to Mi
 
 <important>
 HARD STOPS — things Claude must NEVER do in this project:
-1. Reference "AI receptionist", "phone answering", or "answering service" as Milo's product (deprecated — use "AI agent team")
-2. Use raw hex or OKLCH color values — always use CSS custom properties from the design system
-3. Use card grids, gradient text, glassmorphism, system fonts, or any anti-pattern from ref/design-system.md
-4. Push with `gh` CLI (smillunchick account has no access) — always use the getmilodev PAT
-5. Drop content when rewriting pages — every paragraph, link, JSON-LD, and meta tag must survive
-6. Use `--gold` for text — it fails WCAG AA. Use `--gold-text` instead
-7. Add the /security page to the nav — it's linked from within other pages only
+1. Reference "AI receptionist", "phone answering", or "answering service" as Milo's product
+2. Reference $399 or per-agent pricing — current pricing is $500 assessment / $2,500+ setup
+3. Use raw hex or OKLCH color values — always use CSS custom properties from the design system
+4. Use card grids, gradient text, glassmorphism, system fonts, or any anti-pattern from ref/design-system.md
+5. Push with `gh` CLI (smillunchick account has no access) — always use the getmilodev PAT
+6. Drop content when rewriting pages — every paragraph, link, JSON-LD, and meta tag must survive
+7. Use `--gold` for text — it fails WCAG AA. Use `--gold-text` instead
+8. Add /security to the nav — it's accessible by URL only, not promoted
 </important>
 
 ## Deploy Workflow
@@ -57,10 +60,10 @@ New pages require: rewrite in `vercel.json` + add route to cache header regex.
 - Static HTML, no build step, no bundler
 - All pages are single-file (inline CSS + JS)
 - Shared styles: `milo-design-system.css` (single source of truth)
-- Routes: `vercel.json` rewrites section
+- Routes: `vercel.json` rewrites section (redirects handle deprecated content)
 - API: `api/` directory (Vercel serverless functions)
-- Ops: `ops/` directory (internal docs, outreach plans — not served)
-- Content: `content/` directory (blog posts, industry landings, competitor comparisons)
+- Ops: `ops/` directory (internal docs — not served)
+- Content: `content/` directory (blog posts, industry landings)
 - Stripe checkout: redirects in `vercel.json` (`/buy/starter`, `/buy/team`)
 
 ## Nav Structure
@@ -71,16 +74,21 @@ Services(/agents), Audit(/audit), Calculator(/calculator), Build(/build), Start 
 
 | Page | Purpose |
 |------|---------|
-| index.html | Homepage — value prop, social proof |
-| agents.html | Services overview (AI Agent Teams) |
-| executives.html | AI for Executives offering |
-| build.html | 3-step wizard → custom agent team recommendation |
+| index.html | Homepage — value prop, editorial services overview, terminal proof |
+| agents.html | Services for operator-led teams (proposals, reporting, follow-up, research) |
+| executives.html | AI Native for founders/executives (1-on-1 personal advantage) |
+| ainative.html | Canonical product page — full AI Native Setup value prop |
+| audit.html | Free AI assessment wizard → personalized report (in nav) |
+| build.html | 3-step workflow configurator → blueprint |
 | calculator.html | ROI calculator → cost of manual work |
-| audit.html | Free AI ops audit → 4-step wizard, personalized report |
-| demo.html | Lead form (reads `ref` param from URL for attribution) |
-| security.html | Security services (OpenClaw/NanoClaw hardening) |
-| blog.html | Blog index |
-| industries.html | Industry overview (law, dental, HVAC, veterinary, accounting) |
+| demo.html | Lead form / assessment booking (reads `ref` param for attribution) |
+| blog.html | Blog index (featured + stacked list layout) |
+| industries.html | Industry overview (law, accounting + "your industry" catch-all) |
+| security.html | Security services — not in nav, accessible by URL only |
+
+## Deprecated Content (301 redirected)
+
+All competitor comparison pages (/compare/*), non-ICP industry landings (/dental, /hvac, /veterinary), /why-so-cheap, and 5 blog posts with old per-agent pricing are 301 redirected. See `vercel.json` redirects section for the full list. The HTML files still exist on disk but are never served.
 
 ## Design System
 
@@ -92,4 +100,4 @@ Read `@ref/page-structure.md` when creating new pages or modifying nav/footer �
 
 ## Verification
 
-When starting a new task, confirm you've read this file by mentioning "Milo" and the relevant product line.
+When starting a new task, confirm you've read this file by mentioning "Milo" and the relevant product context.
