@@ -150,3 +150,32 @@ seed_strategies:
       - "hardest thing about being a leader nobody tells you"
       - "behind the scenes of my career change struggle"
     signal_type: hand_raiser
+
+  # --- Client-derived moment signals (from actual Pathos client analysis) ---
+
+  - id: "pathos:corporate-to-indie-consulting"
+    source: exa_deep
+    objective: "LinkedIn posts about the journey from corporate career to independent consulting — the transition moment"
+    search_queries:
+      - "from corporate to indie consulting my career transition journey"
+      - "lessons learned 5 years of independent consulting"
+      - "is consulting right for you what to consider before leaving corporate"
+    signal_type: life_event
+
+  - id: "pathos:first-90-days-manager"
+    source: exa_deep
+    objective: "LinkedIn posts about surviving the first 90 days as a new manager or leader"
+    search_queries:
+      - "your first 90 days as a manager make or break"
+      - "learning to lead for the first time what I wish I knew"
+      - "new manager first 90 days overwhelmed"
+    signal_type: hand_raiser
+
+  - id: "pathos:senior-ic-to-leadership"
+    source: exa_deep
+    objective: "LinkedIn posts about the career pivot from senior individual contributor to leadership"
+    search_queries:
+      - "career pivot from engineering leader to product manager"
+      - "senior IC stepping into leadership role transition"
+      - "my product management career has not been linear"
+    signal_type: life_event
