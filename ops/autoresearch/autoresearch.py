@@ -639,9 +639,13 @@ def run_cycle(
         filter_prompt = (
             f"You are selecting LinkedIn posts to mine for {config['name']} prospect discovery.\n"
             f"ICP: {config['icp']['summary']}\n\n"
-            "Pick the 3 posts MOST LIKELY to have comments from ICP prospects.\n"
-            "Prefer: posts by operators/practitioners sharing personal experience (comments will be peers sharing theirs).\n"
-            "Avoid: LinkedIn articles/advice content (comments will be cheerleading), vendor posts, listicles.\n\n"
+            "Pick the 3 posts MOST LIKELY to have comments from ICP prospects.\n\n"
+            "RULES:\n"
+            "1. Pick from DIFFERENT industries/topics — do NOT pick 3 posts about the same thing.\n"
+            "   If there are agency, law, accounting, AND consulting posts, pick from different ones.\n"
+            "2. Prefer: posts by operators/practitioners sharing personal experience (comments will be peers sharing theirs).\n"
+            "3. Prefer: posts that seem like feed posts with engagement, not articles or advice listicles.\n"
+            "4. Avoid: vendor posts, how-to articles, listicles.\n\n"
             "POSTS:\n\n" + "\n\n".join(post_entries) +
             "\n\nRespond with a JSON array of the indices of the 3 best posts, e.g. [2, 7, 15].\n"
             "JSON array only:"
