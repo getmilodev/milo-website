@@ -626,33 +626,61 @@ def run_cycle(
         logger.info("No new posts found. Cycle complete.")
         return _empty_cycle_result(cycle_num, cycle_start, strategy_stats)
 
-    # --- Phase 1.5: Engagement Verification (Apify) ---
-    logger.info("Phase 1.5: Checking engagement on %d posts...", len(unique_posts))
-    try:
-        qualified_posts = filter_by_engagement(apify_client, unique_posts, seen_post_urls)
-    except Exception as exc:
-        if "usage hard limit" in str(exc).lower():
-            logger.error("Apify billing limit reached — aborting cycle")
-            return _empty_cycle_result(cycle_num, cycle_start, strategy_stats)
-        raise
+    # --- Phase 1.5: LLM Post Filter (free — replaces broken Apify engagement check) ---
+    # Pick the best posts to mine using claude -p on Exa preview text.
+    # Cost: $0 (OAuth). Replaces the $1/check Apify engagement check.
+    if len(unique_posts) > MAX_POSTS_TO_MINE:
+        logger.info("Phase 1.5: LLM picking best %d of %d posts to mine...",
+                    MAX_POSTS_TO_MINE, len(unique_posts))
+        post_entries = []
+        for i, p in enumerate(unique_posts[:30]):  # Cap at 30 to stay within prompt limits
+            post_entries.append(f"[{i}] AUTHOR: {p['author'][:60]}\nURL: {p['url'][:80]}\nPREVIEW: {p['preview'][:150]}")
 
-    logger.info("Phase 1.5 complete: %d posts with %d+ comments",
-                len(qualified_posts), MIN_COMMENTS_FOR_MINING)
+        filter_prompt = (
+            f"You are selecting LinkedIn posts to mine for {config['name']} prospect discovery.\n"
+            f"ICP: {config['icp']['summary']}\n\n"
+            "Pick the 3 posts MOST LIKELY to have comments from ICP prospects.\n"
+            "Prefer: posts by operators/practitioners sharing personal experience (comments will be peers sharing theirs).\n"
+            "Avoid: LinkedIn articles/advice content (comments will be cheerleading), vendor posts, listicles.\n\n"
+            "POSTS:\n\n" + "\n\n".join(post_entries) +
+            "\n\nRespond with a JSON array of the indices of the 3 best posts, e.g. [2, 7, 15].\n"
+            "JSON array only:"
+        )
+        try:
+            result = subprocess.run(
+                ["claude", "-p", "--output-format", "text", filter_prompt],
+                capture_output=True, text=True, timeout=60,
+                cwd=str(Path(__file__).resolve().parent),
+            )
+            raw = result.stdout.strip()
+            if raw.startswith("```"):
+                raw = "\n".join(raw.split("\n")[1:])
+            if raw.endswith("```"):
+                raw = "\n".join(raw.split("\n")[:-1])
+            raw = raw.strip()
+            start = raw.find("[")
+            end = raw.rfind("]")
+            if start != -1 and end != -1:
+                indices = json.loads(raw[start : end + 1])
+                qualified_posts = [unique_posts[i] for i in indices if isinstance(i, int) and 0 <= i < len(unique_posts)]
+                logger.info("LLM selected %d posts: %s", len(qualified_posts),
+                           ", ".join(p["author"][:30] for p in qualified_posts))
+            else:
+                qualified_posts = unique_posts[:MAX_POSTS_TO_MINE]
+                logger.warning("LLM post filter failed to parse — using first %d", MAX_POSTS_TO_MINE)
+        except Exception as exc:
+            qualified_posts = unique_posts[:MAX_POSTS_TO_MINE]
+            logger.warning("LLM post filter failed: %s — using first %d", exc, MAX_POSTS_TO_MINE)
+    else:
+        qualified_posts = unique_posts
 
     if dry_run:
         logger.info("DRY RUN: Would mine %d posts. Stopping here.", len(qualified_posts))
         for p in qualified_posts:
-            logger.info("  Would mine: %s (%d comments) — %s",
-                        p["author"][:40], p.get("comments", 0), p["url"][:60])
+            logger.info("  Would mine: %s — %s", p["author"][:40], p["url"][:60])
         result = _empty_cycle_result(cycle_num, cycle_start, strategy_stats)
         result["posts_discovered"] = len(unique_posts)
         result["posts_qualified"] = len(qualified_posts)
-        return result
-
-    if not qualified_posts:
-        logger.info("No posts with %d+ comments. Cycle complete.", MIN_COMMENTS_FOR_MINING)
-        result = _empty_cycle_result(cycle_num, cycle_start, strategy_stats)
-        result["posts_discovered"] = len(unique_posts)
         return result
 
     # --- Phase 2: Comment Mining (Apify) ---
@@ -778,17 +806,13 @@ def run_cycle(
             if sid in strategy_stats:
                 strategy_stats[sid]["regex_hits"] = strategy_stats[sid].get("regex_hits", 0) + 1
 
-    # --- Phase 4: Enrichment (only for .8+ leads) ---
-    if all_leads:
-        logger.info("Phase 4: Enriching %d approved leads...", len(all_leads))
-        for lead in all_leads:
-            profile_url = lead.get("profile_url", "")
-            if profile_url:
-                profile_data = enrich_profile(apify_client, profile_url)
-                if profile_data:
-                    lead["enriched"] = True
-                    lead["follower_count"] = profile_data.get("followerCount", 0)
-                    lead["connection_count"] = profile_data.get("connectionsCount", 0)
+    # --- Phase 4: Enrichment (skipped for now — comment mining gives name/headline/URL) ---
+    # TODO: Re-enable when budget allows. Each enrichment is ~$1.
+    # if all_leads:
+    #     for lead in all_leads:
+    #         profile_data = enrich_profile(apify_client, lead.get("profile_url", ""))
+    #         if profile_data:
+    #             lead["enriched"] = True
 
     all_leads.sort(key=lambda x: x.get("score", 0), reverse=True)
 
