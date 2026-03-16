@@ -1,0 +1,15 @@
+[
+  {
+    "index": 0,
+    "name": "Mark Avila",
+    "headline": "Stop starting every job search from scratch! I help Directors & HR leaders revive past applicants and turn them into quick hires. Building the recruitment-alternative | $100k in agency fees saved!",
+    "text": "Solid advice, I found myself in the same trap when I first started. I think most operators underestimate the marketing side of going out on your own, and having both levers moving.",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:career-transition-stories",
+    "llm_approved": false,
+    "llm_score": 0.45,
+    "llm_buyer_type": "recruiting/HR consultant",
+    "llm_reasoning": "Headline indicates they ARE a consultant who helps with hiring, and the comment is retrospective advice-giving about past experience starting out rather than describing a current forcing moment."
+  }
+]

@@ -1,0 +1,105 @@
+{
+  "cycle": 3,
+  "timestamp": "2026-03-16T14:55:46.967242+00:00",
+  "elapsed_seconds": 52.1,
+  "strategies_run": 15,
+  "posts_discovered": 339,
+  "posts_qualified": 3,
+  "posts_mined": 3,
+  "total_candidates": 4,
+  "regex_hits": 0,
+  "leads_found": 0,
+  "leads": [],
+  "strategy_stats": {
+    "pathos:career-transition-stories": {
+      "posts_found": 23,
+      "candidates": 4,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:speaking-fear-audience": {
+      "posts_found": 27,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:new-leadership-role": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:went-independent-pain": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:founder-sales-struggle": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:imposter-syndrome-leaders": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:first-90-days-executive": {
+      "posts_found": 28,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:board-presentation-fear": {
+      "posts_found": 29,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:career-pivot-40s": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:authority-gap-new-role": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:leadership-coach-audience": {
+      "posts_found": 29,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:executive-vulnerability-posts": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:corporate-to-indie-consulting": {
+      "posts_found": 28,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:first-90-days-manager": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:senior-ic-to-leadership": {
+      "posts_found": 28,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    }
+  }
+}

@@ -1,0 +1,93 @@
+[
+  {
+    "index": 0,
+    "name": "Jonathan Molina",
+    "headline": "AE @ Deel",
+    "text": "Happy 1st year! Love your content! \n\n\u00ab\u00a0Becoming a student of outbound again\u00a0\u00bb relate a lot to that! Since posting here, I\u2019ve also been learning a lot!",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:milestone-one-year-solo",
+    "llm_approved": false,
+    "llm_score": 0.15,
+    "llm_buyer_type": "junior_sales_rep",
+    "llm_reasoning": "AE-level role (not senior), cheerleading comment with no forcing moment \u2014 just celebrating someone else's anniversary."
+  },
+  {
+    "index": 1,
+    "name": "Emeric Ernoult",
+    "headline": "Co-founder & CEO of Agorapulse // Author: Chief Accountability Officer Saas // AI Student // Social Media // Sailor // Kitesurfing addict",
+    "text": "These are great learnings, and they make sense. I\u2019m happy this is working out for you.",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:milestone-one-year-solo",
+    "llm_approved": false,
+    "llm_score": 0.35,
+    "llm_buyer_type": "ceo_founder",
+    "llm_reasoning": "Senior title (Co-founder & CEO) but comment is pure cheerleading with no personal forcing moment or vulnerability described."
+  },
+  {
+    "index": 2,
+    "name": "Matei C.",
+    "headline": "Sales capability gaps cost you quota | Hire me as VP of Sales, Operating Partner",
+    "text": "Interesting. Also 1 year of XP as an independent revenue operating partner and I see lots of similar lessons and patterns \ud83d\udc68\u200d\ud83c\udf73 Elric Legloire",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:milestone-one-year-solo",
+    "llm_approved": true,
+    "llm_score": 0.82,
+    "llm_buyer_type": "independent_consultant",
+    "llm_reasoning": "1 year into going independent as a revenue operating partner (VP Sales-level positioning), reflecting on patterns and lessons \u2014 classic independent transition forcing moment with senior means."
+  },
+  {
+    "index": 3,
+    "name": "Elijah Awoke",
+    "headline": "I cold call for a living | I build lists & cold call that list on a performance basis to make you more revenue | Watch my Loom video in my feature section and then DM me to run a paid 30 day pilot",
+    "text": "Congrats man!! I remember 2.5 years ago when I wanted to get better as a cold caller, your podcast came on YT. I binge watched all episodes. That was a great learning channel for me!",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:milestone-one-year-solo",
+    "llm_approved": false,
+    "llm_score": 0.1,
+    "llm_buyer_type": "junior_sales_rep",
+    "llm_reasoning": "Cold caller role with no seniority, speaking retrospectively about learning 2.5 years ago \u2014 no current forcing moment."
+  },
+  {
+    "index": 4,
+    "name": "Troy Johnson",
+    "headline": "Coaching elite-level SDRs | SDR Enablement @JumpCloud | Outbound Coach + Career Coach",
+    "text": "Love all of these. Awesome to see all the growth you\u2019ve had over the past year my friend. \n\n\u201cYour outbound problem isn't a people problem. It's a productivity problem disguised as an outdated systems problem.\u201d\n\n\ud83d\udc46THIS is my favorite. \n\nEven the best talent can produce mediocre results in a bad system",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:milestone-one-year-solo",
+    "llm_approved": false,
+    "llm_score": 0.05,
+    "llm_buyer_type": "coach",
+    "llm_reasoning": "Headline explicitly includes 'Outbound Coach + Career Coach' \u2014 they ARE a coach, automatic reject regardless of comment quality."
+  },
+  {
+    "index": 5,
+    "name": "Vlad Talevski",
+    "headline": "B2B SaaS SDR | Driving qualified pipeline through problem-led discovery so AEs close deals, not chase unqualified leads",
+    "text": "That last line hit hard, outbound isn\u2019t broken, it\u2019s outdated.\n\nIn my experience, most teams confuse scaling with solving. Fixing process before people is what actually compounds results.\n\nAppreciate this post, lots of truth here.",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:milestone-one-year-solo",
+    "llm_approved": false,
+    "llm_score": 0.1,
+    "llm_buyer_type": "junior_sales_rep",
+    "llm_reasoning": "SDR-level role (not senior), generic agreement comment with no personal situation or forcing moment described."
+  },
+  {
+    "index": 6,
+    "name": "Marius Andr\u00e9",
+    "headline": "Principal | Normandin Beaudry",
+    "text": "Great content with precision / d\u00e9tailled approach and real exemple. One of the best was the one around Q4 planning once you get in the weeds with numbers and spreadsheets. \n\nCurious about what help you delivering the best value to your client ? Finding the right fit / ICP ? Having a comprehensive fo",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:milestone-one-year-solo",
+    "llm_approved": true,
+    "llm_score": 0.72,
+    "llm_buyer_type": "senior_consultant",
+    "llm_reasoning": "Principal at a consulting firm (senior title with means) asking substantive questions about service delivery and diagnostics \u2014 suggests active professional curiosity, though no explicit personal forcing moment is described."
+  }
+]

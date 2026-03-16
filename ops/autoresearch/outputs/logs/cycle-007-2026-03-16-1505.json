@@ -1,0 +1,176 @@
+{
+  "cycle": 7,
+  "timestamp": "2026-03-16T15:05:51.417933+00:00",
+  "elapsed_seconds": 143.8,
+  "strategies_run": 16,
+  "posts_discovered": 346,
+  "posts_qualified": 3,
+  "posts_mined": 3,
+  "total_candidates": 252,
+  "regex_hits": 59,
+  "leads_found": 4,
+  "leads": [
+    {
+      "name": "Dariya Vyshnevska",
+      "headline": "Scaling B2B revenue with psychology-led sales systems. Helping teams close without pressure | Ex-Google, Ex-Grammarly",
+      "profile_url": "https://www.linkedin.com/in/dariya-vyshnevska",
+      "comment_url": "https://www.linkedin.com/feed/update/urn:li:activity:7416475834686935040?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7416475834686935040%2C7416508173194502144%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287416508173194502144%2Curn%3Ali%3Aactivity%3A7416475834686935040%29",
+      "comment": "This feels like the in-between phase people rarely talk about. I\u2019m in a similar reset right now. less about chasing numbers, more about building something I won\u2019t want to run away from in a year.",
+      "score": 0.85,
+      "buyer_type": "senior_sales_leader_in_reset",
+      "reason": "First-person vulnerability: 'I'm in a similar reset right now... building something I won't want to run away from' \u2014 active forcing moment, ex-Google/Grammarly shows seniority and means.",
+      "regex_score": 0.6,
+      "source_post": "https://www.linkedin.com/posts/kyle-poyar_its-been-100-days-since-i-left-vc-to-become-activity-7416475834686935040-llwn",
+      "source_author": "#beehiivpartner | Kyle Poyar | 274 comments",
+      "strategy": "pathos:milestone-one-year-solo",
+      "likes": 0,
+      "replies": 1
+    },
+    {
+      "name": "Hunter K. Jones, MA, MS",
+      "headline": "Founder & CEO | Business Development & Sales | Investigations & Operations | Federal Agent | US Air Force | Global Security | Insider Threat | PM | Strategist | Servant Leader | Veteran Advocate | Coach & Mentor",
+      "profile_url": "https://www.linkedin.com/in/hunterkentjones",
+      "comment_url": "https://www.linkedin.com/feed/update/urn:li:activity:7416475834686935040?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7416475834686935040%2C7425533269062037504%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287425533269062037504%2Curn%3Ali%3Aactivity%3A7416475834686935040%29",
+      "comment": "Kyle Poyar\u2026great stuff. Look forward to networking with you in the future as I am year one into my consulting LLC. Crawl, walk, run for me as I still have a FT job. Keep doing your thing!!",
+      "score": 0.82,
+      "buyer_type": "founder_early_stage",
+      "reason": "Founder & CEO in year one of consulting LLC while still holding a full-time job \u2014 active forcing moment of career transition with real stakes.",
+      "regex_score": 0.7,
+      "source_post": "https://www.linkedin.com/posts/kyle-poyar_its-been-100-days-since-i-left-vc-to-become-activity-7416475834686935040-llwn",
+      "source_author": "#beehiivpartner | Kyle Poyar | 274 comments",
+      "strategy": "pathos:milestone-one-year-solo",
+      "likes": 0,
+      "replies": 0
+    },
+    {
+      "name": "Chris Tottman",
+      "headline": "Partner at Notion Capital",
+      "profile_url": "https://www.linkedin.com/in/chris-tottman",
+      "comment_url": "https://www.linkedin.com/feed/update/urn:li:activity:7416475834686935040?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7416475834686935040%2C7416527405588312064%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287416527405588312064%2Curn%3Ali%3Aactivity%3A7416475834686935040%29",
+      "comment": "Congratulations \ud83d\udc4fI'm a massive fan as you know \ud83d\udc99 my first day today moving from \"all free\" to \"free + paid\" \ud83d\ude33\ud83e\udd1e",
+      "score": 0.82,
+      "buyer_type": "vc_partner_going_independent",
+      "reason": "Partner at Notion Capital describing their own first day transitioning from all-free to paid content \u2014 real vulnerability about a live transition with professional stakes.",
+      "regex_score": 0.6,
+      "source_post": "https://www.linkedin.com/posts/kyle-poyar_its-been-100-days-since-i-left-vc-to-become-activity-7416475834686935040-llwn",
+      "source_author": "#beehiivpartner | Kyle Poyar | 274 comments",
+      "strategy": "pathos:milestone-one-year-solo",
+      "likes": 0,
+      "replies": 1
+    },
+    {
+      "name": "Yannik Hellmich",
+      "headline": "Product \u2022 Founder \u2022 ex-Meta",
+      "profile_url": "https://www.linkedin.com/in/yannik-hellmich",
+      "comment_url": "https://www.linkedin.com/feed/update/urn:li:activity:7312843756175544322?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7312843756175544322%2C7312874192054493184%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287312874192054493184%2Curn%3Ali%3Aactivity%3A7312843756175544322%29",
+      "comment": "Congrats Sven! Taking the leap is always terrifying, especially completely solo. The biggest drawback for me personally was how isolating it can be to work solo on your own company. That's something I'd never do again and look for a co-founder. \n\nAnd definitely second learning technical skills for people who have none or little. In basically any discipline it will make sure you can provide more value directly or in the very least better understand a part of your discipline that is otherwise is done by other people. \n\nFor me this was picking up Game Development (C#), as well as SQL and the associated tools of that ecosystem. Huge bonus in any conversation where you exchange with other experts.",
+      "score": 0.8,
+      "buyer_type": "founder_ex_meta_solo_struggle",
+      "reason": "First-person vulnerability about how isolating solo founding is, saying they'd never do it again \u2014 ex-Meta founder describing real professional pain from going independent, active forcing moment.",
+      "regex_score": 0.6,
+      "source_post": "https://www.linkedin.com/posts/svenjuergens_12-months-of-running-my-own-consulting-activity-7312843756175544322-byyb",
+      "source_author": "\ud83c\udf89 12 Months of running my own Consulting Business: The story about a 1-person company\ud83d\udc47\n\nIt is the first of April in 2024. I officially started my consulting business. Every document is handed in. I\u2026 | Sven J\u00fcrgens | 38 comments",
+      "strategy": "pathos:milestone-one-year-solo",
+      "likes": 0,
+      "replies": 2
+    }
+  ],
+  "strategy_stats": {
+    "pathos:career-transition-stories": {
+      "posts_found": 17,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:milestone-one-year-solo": {
+      "posts_found": 26,
+      "candidates": 260,
+      "regex_hits": 59,
+      "leads": 4
+    },
+    "pathos:advice-to-self-career-leap": {
+      "posts_found": 24,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:identity-without-corporate-title": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:finally-left-announcement": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:corporate-refugee-rebuilding": {
+      "posts_found": 29,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:last-day-farewell-leap": {
+      "posts_found": 29,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:layoff-to-solo-pivot": {
+      "posts_found": 28,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:pricing-yourself-first-time": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:considering-going-independent": {
+      "posts_found": 27,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:executive-burnout-walking-away": {
+      "posts_found": 29,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:layoff-reinvention-story": {
+      "posts_found": 25,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:fractional-executive-transition": {
+      "posts_found": 28,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:second-act-reinvention": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:returning-after-career-break": {
+      "posts_found": 29,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:burnout-forced-career-change": {
+      "posts_found": 29,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    }
+  }
+}

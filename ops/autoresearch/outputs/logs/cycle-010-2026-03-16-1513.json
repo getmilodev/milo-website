@@ -1,0 +1,117 @@
+{
+  "cycle": 10,
+  "timestamp": "2026-03-16T15:13:44.038563+00:00",
+  "elapsed_seconds": 116.8,
+  "strategies_run": 17,
+  "posts_discovered": 308,
+  "posts_qualified": 3,
+  "posts_mined": 3,
+  "total_candidates": 0,
+  "regex_hits": 0,
+  "leads_found": 0,
+  "leads": [],
+  "strategy_stats": {
+    "pathos:milestone-one-year-solo": {
+      "posts_found": 17,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:career-transition-stories": {
+      "posts_found": 17,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:solo-revenue-milestone": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:scaling-solo-to-team": {
+      "posts_found": 28,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:two-year-solo-evolution": {
+      "posts_found": 22,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:almost-went-back-corporate": {
+      "posts_found": 23,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:pivoting-independent-practice": {
+      "posts_found": 29,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:multi-year-practice-anniversary": {
+      "posts_found": 19,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:fractional-executive-launch": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:quit-corporate-best-decision": {
+      "posts_found": 27,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:solo-to-small-firm-growth": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:corporate-escapee-year-in-review": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:just-handed-in-resignation": {
+      "posts_found": 23,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:two-year-solo-anniversary": {
+      "posts_found": 21,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:replaced-corporate-income-solo": {
+      "posts_found": 25,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:solo-professional-first-big-win": {
+      "posts_found": 24,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:quit-for-lifestyle-autonomy": {
+      "posts_found": 24,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "cycle": 2,
+  "timestamp": "2026-03-16T14:54:44.843082+00:00",
+  "elapsed_seconds": 79.5,
+  "strategies_run": 15,
+  "posts_discovered": 342,
+  "posts_qualified": 3,
+  "posts_mined": 3,
+  "total_candidates": 9,
+  "regex_hits": 2,
+  "leads_found": 1,
+  "leads": [
+    {
+      "name": "Gary David Armstrong",
+      "headline": "Partner & Executive Search | Helping law firms de-risk lateral hires through data, due diligence & research | UK, Offshore & International",
+      "profile_url": "https://www.linkedin.com/in/garyiq",
+      "comment_url": "https://www.linkedin.com/feed/update/urn:li:activity:6902952287551963136?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A6902952287551963136%2C6904087953342353408%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%286904087953342353408%2Curn%3Ali%3Aactivity%3A6902952287551963136%29",
+      "comment": "They say that the brightest light comes from a burning bridge and from someone who built a business without a plan B - I can say hand on heart it was for me, the only way to do it.",
+      "score": 0.82,
+      "buyer_type": "executive search partner who left Big 4 consulting to go independent",
+      "reason": "First-person account of leaving Big 4 consulting to build own business with no plan B \u2014 classic went-independent forcing moment, senior headline (Partner), though the post is somewhat retrospective and motivational rather than expressing current vulnerability.",
+      "regex_score": 0.6,
+      "source_post": "https://uk.linkedin.com/posts/stefan-bartel_since-i-left-consulting-at-the-big-4-things-activity-6902952287551963136-me-c",
+      "source_author": "Stefan Bartel\u2019s Post",
+      "strategy": "pathos:career-transition-stories",
+      "likes": 0,
+      "replies": 1
+    }
+  ],
+  "strategy_stats": {
+    "pathos:career-transition-stories": {
+      "posts_found": 26,
+      "candidates": 9,
+      "regex_hits": 2,
+      "leads": 1
+    },
+    "pathos:speaking-fear-audience": {
+      "posts_found": 27,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:new-leadership-role": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:went-independent-pain": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:founder-sales-struggle": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:imposter-syndrome-leaders": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:first-90-days-executive": {
+      "posts_found": 28,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:board-presentation-fear": {
+      "posts_found": 29,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:career-pivot-40s": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:authority-gap-new-role": {
+      "posts_found": 26,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:leadership-coach-audience": {
+      "posts_found": 29,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:executive-vulnerability-posts": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:corporate-to-indie-consulting": {
+      "posts_found": 28,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:first-90-days-manager": {
+      "posts_found": 30,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "pathos:senior-ic-to-leadership": {
+      "posts_found": 28,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    }
+  }
+}

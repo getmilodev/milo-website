@@ -1,0 +1,41 @@
+[
+  {
+    "index": 0,
+    "name": "Dominik Nitsch",
+    "headline": "Founder @ Generalyst | building talent infrastructure for early-stage startups | 1,306 generalists read my newsletter to future-proof their career.",
+    "text": "4/ There are wayyy more generalists out there than I thought\n\n\u201cEverything I read that you publish sounds like you wrote my internal monologue out loud.\u201d \u2014 a subscriber\n\nNot everybody wants to specialize. I knew that.\u00a0\n\nBut there are 10X more people who don\u2019t to be boxed in, not just do one thing. Ev",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:first-year-solo-reflections",
+    "llm_approved": false,
+    "llm_score": 0.25,
+    "llm_buyer_type": "founder",
+    "llm_reasoning": "Celebrating his newsletter's one-year milestone and community growth \u2014 no forcing moment, just retrospective pride and content marketing."
+  },
+  {
+    "index": 1,
+    "name": "Anna Ferdinand",
+    "headline": "Ich bringe dein Business in die Medien I Kommunikationsberatung & Training f\u00fcr Start-ups und Entrepreneure I Public Relations & Content mit Impact",
+    "text": "Dominik Nitsch I feel you \u2014 the doubts, the waiting for those first real wins, the constant experimenting until things start clicking (and the content finally feels right). Congrats on one year of building Generalyst \u2014 that\u2019s a huge milestone! \ud83d\udc4f",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:first-year-solo-reflections",
+    "llm_approved": false,
+    "llm_score": 0.1,
+    "llm_buyer_type": "communications_consultant",
+    "llm_reasoning": "Cheerleading on someone else's post with generic congrats \u2014 no own situation described, no forcing moment."
+  },
+  {
+    "index": 2,
+    "name": "Julie Lepique",
+    "headline": "Founder & CEO femtasy \u2013 The #1 audio pleasure platform with \u200b>2MN users | Building a next-gen media company | Capital Top 40 Under 40 | Forbes 30 Under 30 | OMR50 I Financial Times \u2018Fastest Growing Companies\u2019 I Speaker",
+    "text": "\u201eDo something meaningful, then write about it.\u201c \u2014 100% agree. For me, what I\u2019m building / creating always comes first. Sharing about it on LinkedIn is a valuable / strategic byproduct.. but it will always remain a byproduct.\n\nHappy first year!! :)",
+    "regex_score": 0.6,
+    "regex_reason": "first-person substantive",
+    "strategy": "pathos:first-year-solo-reflections",
+    "llm_approved": false,
+    "llm_score": 0.2,
+    "llm_buyer_type": "founder_ceo",
+    "llm_reasoning": "Senior founder with real scale, but comment is general content philosophy agreement \u2014 no forcing moment, no vulnerability, purely retrospective."
+  }
+]
