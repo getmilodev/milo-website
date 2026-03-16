@@ -58,6 +58,7 @@ MAX_STRATEGY_COUNT = 40
 MAX_GENERATE_PER_EVENT = 5
 MAX_CYCLE_RESULTS_IN_STATE = 20
 GOLDEN_SOURCE_THRESHOLD = 3  # leads from one post to become golden
+FRESHNESS_DAYS = 90  # only discover posts from the last N days
 
 # ---------------------------------------------------------------------------
 # Config loading
@@ -251,6 +252,12 @@ def score_comment_regex(text: str, headline: str = "") -> tuple[float, str]:
 # Phase 1: Post Discovery (Exa)
 # ---------------------------------------------------------------------------
 
+def _freshness_date() -> str:
+    """Return ISO date string for FRESHNESS_DAYS ago."""
+    from datetime import timedelta
+    return (datetime.now(UTC) - timedelta(days=FRESHNESS_DAYS)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
 def exa_discover_posts(api_key: str, strategy: dict, seen_post_urls: set[str]) -> list[dict]:
     """Use Exa neural search to find LinkedIn posts for a signal strategy."""
     try:
@@ -261,6 +268,7 @@ def exa_discover_posts(api_key: str, strategy: dict, seen_post_urls: set[str]) -
 
     exa = Exa(api_key=api_key)
     posts = []
+    cutoff = _freshness_date()
 
     for query in strategy.get("search_queries", []):
         try:
@@ -270,6 +278,7 @@ def exa_discover_posts(api_key: str, strategy: dict, seen_post_urls: set[str]) -
                 num_results=10,
                 contents={"text": {"max_characters": 300}},
                 include_domains=["linkedin.com"],
+                start_published_date=cutoff,
             ))
             for r in result.results:
                 url = r.url or ""
@@ -313,6 +322,7 @@ def exa_discover_poster_prospects(api_key: str, strategy: dict, seen_post_urls: 
 
     exa = Exa(api_key=api_key)
     prospects = []
+    cutoff = _freshness_date()
 
     for query in strategy.get("search_queries", []):
         try:
@@ -322,6 +332,7 @@ def exa_discover_poster_prospects(api_key: str, strategy: dict, seen_post_urls: 
                 num_results=10,
                 contents={"text": {"max_characters": 500}},
                 include_domains=["linkedin.com"],
+                start_published_date=cutoff,
             ))
             for r in result.results:
                 url = r.url or ""
@@ -378,6 +389,7 @@ def exa_check_golden_sources(api_key: str, golden_sources: list[dict], seen_post
 
     exa = Exa(api_key=api_key)
     posts = []
+    cutoff = _freshness_date()
 
     for source in golden_sources:
         author_name = source.get("author", "")
@@ -390,6 +402,7 @@ def exa_check_golden_sources(api_key: str, golden_sources: list[dict], seen_post
                 num_results=5,
                 contents={"text": {"max_characters": 300}},
                 include_domains=["linkedin.com"],
+                start_published_date=cutoff,
             ))
             new_count = 0
             for r in result.results:
