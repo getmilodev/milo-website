@@ -1,0 +1,129 @@
+{
+  "cycle": 2,
+  "timestamp": "2026-03-16T15:44:52.280604+00:00",
+  "elapsed_seconds": 118.0,
+  "strategies_run": 19,
+  "posts_discovered": 42,
+  "posts_qualified": 3,
+  "posts_mined": 3,
+  "total_candidates": 57,
+  "regex_hits": 25,
+  "leads_found": 0,
+  "leads": [],
+  "strategy_stats": {
+    "milo:accounting-practice-ops": {
+      "posts_found": 3,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:agency-scaling-pain": {
+      "posts_found": 6,
+      "candidates": 21,
+      "regex_hits": 6,
+      "leads": 0
+    },
+    "milo:consulting-operations": {
+      "posts_found": 0,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:law-firm-ops": {
+      "posts_found": 1,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:ai-frustration-smb": {
+      "posts_found": 4,
+      "candidates": 36,
+      "regex_hits": 19,
+      "leads": 0
+    },
+    "milo:agency-owner-burnout": {
+      "posts_found": 11,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:consulting-partner-workload": {
+      "posts_found": 4,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:proposal-writing-pain": {
+      "posts_found": 0,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:client-reporting-pain": {
+      "posts_found": 1,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:follow-up-broken": {
+      "posts_found": 0,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:agency-coach-audience": {
+      "posts_found": 3,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:small-firm-admin-overwhelm": {
+      "posts_found": 1,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:ai-disrupting-consulting": {
+      "posts_found": 2,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:ai-native-law-firms": {
+      "posts_found": 3,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:ai-adoption-accounting": {
+      "posts_found": 3,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:ai-competition-smb": {
+      "posts_found": 1,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:agency-ai-strategy": {
+      "posts_found": 0,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:smb-asking-ai-help": {
+      "posts_found": 3,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    },
+    "milo:firm-owner-ai-curious": {
+      "posts_found": 3,
+      "candidates": 0,
+      "regex_hits": 0,
+      "leads": 0
+    }
+  }
+}

@@ -275,8 +275,8 @@ def exa_discover_posts(api_key: str, strategy: dict, seen_post_urls: set[str]) -
                 url = r.url or ""
                 if not url or url in seen_post_urls:
                     continue
-                # Skip profile URLs — we want post URLs
-                if "/in/" in url and "/posts/" not in url:
+                # Only keep feed posts (/posts/) — articles (/pulse/, /advice/) have 0 mineable comments
+                if "/posts/" not in url:
                     continue
                 posts.append({
                     "url": url,
@@ -329,7 +329,7 @@ def exa_check_golden_sources(api_key: str, golden_sources: list[dict], seen_post
                 url = r.url or ""
                 if not url or url in seen_post_urls:
                     continue
-                if "/in/" in url and "/posts/" not in url:
+                if "/posts/" not in url:
                     continue
                 posts.append({
                     "url": url,

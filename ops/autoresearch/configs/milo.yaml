@@ -165,3 +165,70 @@ seed_strategies:
       - "admin eating all my billable hours consulting"
       - "too much admin not enough client work agency"
     signal_type: pain_expression
+
+  # --- AI disruption fear by industry (operators feeling the pressure) ---
+
+  - id: "milo:ai-disrupting-consulting"
+    source: exa_deep
+    objective: "LinkedIn posts about AI disrupting consulting and how small firms need to adapt"
+    search_queries:
+      - "AI is quietly rewiring the consulting industry small firms"
+      - "how AI is empowering boutique consulting firms"
+      - "small consulting firm AI competitive advantage adapt"
+    signal_type: pain_expression
+
+  - id: "milo:ai-native-law-firms"
+    source: exa_deep
+    objective: "LinkedIn posts about AI-native law firms and small teams outcompeting with AI"
+    search_queries:
+      - "rise of AI-native law firms small teams outcompete"
+      - "law firms using AI leaving others behind"
+      - "small law firm AI adoption getting started"
+    signal_type: pain_expression
+
+  - id: "milo:ai-adoption-accounting"
+    source: exa_deep
+    objective: "LinkedIn posts about AI adoption at accounting firms and practices"
+    search_queries:
+      - "state of AI adoption in accounting firms"
+      - "accounting practice AI tools getting started"
+      - "CPA firm AI behind competitors adopting"
+    signal_type: pain_expression
+
+  - id: "milo:ai-competition-smb"
+    source: exa_deep
+    objective: "LinkedIn posts about small businesses falling behind on AI vs competitors"
+    search_queries:
+      - "your competition is already using AI to beat you"
+      - "small business owner falling behind AI competitors"
+      - "competitors using AI and I haven't started yet"
+    signal_type: pain_expression
+
+  - id: "milo:agency-ai-strategy"
+    source: exa_deep
+    objective: "LinkedIn posts about agencies needing AI strategy and implementation"
+    search_queries:
+      - "AI strategy implementation agency for other agencies"
+      - "marketing agency needs AI strategy where to start"
+      - "agency AI transformation how to begin"
+    signal_type: help_request
+
+  # --- Operator identity + AI curiosity (people asking for help) ---
+
+  - id: "milo:smb-asking-ai-help"
+    source: exa_deep
+    objective: "LinkedIn posts where small business owners are asking their network for AI help"
+    search_queries:
+      - "does anyone know a good AI consultant for small business"
+      - "looking for someone to help us implement AI at our firm"
+      - "recommendations AI tools for professional services firm"
+    signal_type: help_request
+
+  - id: "milo:firm-owner-ai-curious"
+    source: exa_deep
+    objective: "LinkedIn posts by firm owners sharing their first AI experiments or asking how to start"
+    search_queries:
+      - "just started using ChatGPT at our agency first impressions"
+      - "trying to figure out AI for our consulting firm"
+      - "we know we need AI but don't know where to start small firm"
+    signal_type: failed_diy
