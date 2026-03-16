@@ -1,5 +1,6 @@
 business: milo
 name: "Milo — AI Native Setup"
+notion_database_id: "321fbd34-dc17-8151-ad89-d91aaad70965"
 
 icp:
   summary: "Founders/operators at 3-15 person professional services firms with manual workflows who need AI implementation help"

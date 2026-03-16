@@ -624,6 +624,81 @@ def notify_leads(count: int, cycle_num: int):
 
 
 # ---------------------------------------------------------------------------
+# Notion integration — auto-push .8+ leads
+# ---------------------------------------------------------------------------
+
+def push_lead_to_notion(lead: dict, config: dict) -> bool:
+    """Push a single .8+ lead to the Notion Signal Detection database.
+
+    Returns True if successful.
+    """
+    notion_key = os.environ.get("NOTION_API_KEY")
+    notion_db = config.get("notion_database_id")
+    if not notion_key or not notion_db:
+        return False
+
+    import requests as _req
+
+    headers = {
+        "Authorization": f"Bearer {notion_key}",
+        "Notion-Version": "2022-06-28",
+        "Content-Type": "application/json",
+    }
+
+    # Map buyer_type to valid Notion select options
+    signal_map = {
+        "transition": "transition", "career": "transition",
+        "independent": "transition", "pivot": "transition",
+        "founder": "struggle_post", "pain": "struggle_post",
+        "hand_raiser": "hand_raiser", "hand": "hand_raiser",
+        "law": "hand_raiser", "accounting": "hand_raiser",
+        "consulting": "hand_raiser", "agency": "hand_raiser",
+    }
+    bt = lead.get("buyer_type", "unknown").lower()
+    signal_type = "unknown"
+    for key, val in signal_map.items():
+        if key in bt:
+            signal_type = val
+            break
+
+    today = datetime.now(UTC).strftime("%Y-%m-%d")
+
+    page = {
+        "parent": {"database_id": notion_db},
+        "properties": {
+            "Name": {"title": [{"text": {"content": lead.get("name", "Unknown")[:100]}}]},
+            "Signal Type": {"select": {"name": signal_type}},
+            "Author Profile": {"url": lead.get("profile_url") or lead.get("comment_url") or None},
+            "Post URL": {"url": lead.get("source_post") or lead.get("comment_url") or None},
+            "ICP Score": {"number": lead.get("score", 0)},
+            "Urgency Score": {"number": lead.get("score", 0)},
+            "LLM Analysis": {"rich_text": [{"text": {"content": lead.get("reason", "")[:500]}}]},
+            "Outreach Hook": {"rich_text": [{"text": {"content": lead.get("comment", "")[:500]}}]},
+            "Author Headline": {"rich_text": [{"text": {"content": lead.get("headline", "")[:200]}}]},
+            "Platform": {"select": {"name": "linkedin"}},
+            "Status": {"select": {"name": "pending"}},
+            "Detected At": {"date": {"start": today}},
+        },
+    }
+
+    # Remove None URLs (Notion rejects null urls)
+    for key in ["Author Profile", "Post URL"]:
+        if page["properties"][key].get("url") is None:
+            del page["properties"][key]
+
+    try:
+        r = _req.post("https://api.notion.com/v1/pages", headers=headers, json=page, timeout=10)
+        if r.status_code == 200:
+            logger.info("  → Notion: pushed %s", lead.get("name", "")[:30])
+            return True
+        else:
+            logger.warning("  → Notion failed for %s: %s", lead.get("name", "")[:30], r.text[:100])
+    except Exception as exc:
+        logger.warning("  → Notion push failed: %s", exc)
+    return False
+
+
+# ---------------------------------------------------------------------------
 # Core cycle
 # ---------------------------------------------------------------------------
 
@@ -887,6 +962,9 @@ def run_cycle(
                 "replies": hit.get("replies", 0),
             }
             all_leads.append(lead)
+
+            # Auto-push to Notion
+            push_lead_to_notion(lead, config)
 
             if sid in strategy_stats:
                 strategy_stats[sid]["leads"] = strategy_stats[sid].get("leads", 0) + 1
