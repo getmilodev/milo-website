@@ -299,6 +299,73 @@ def exa_discover_posts(api_key: str, strategy: dict, seen_post_urls: set[str]) -
     return posts
 
 
+def exa_discover_poster_prospects(api_key: str, strategy: dict, seen_post_urls: set[str]) -> list[dict]:
+    """Find LinkedIn posts where the POSTER is the prospect (no comment mining).
+
+    For exa_poster strategies: the post author is describing their own pain.
+    We extract their profile URL from the post URL and evaluate them directly.
+    Cost: $0 Apify — Exa + claude -p only.
+    """
+    try:
+        from exa_py import Exa
+    except ImportError:
+        return []
+
+    exa = Exa(api_key=api_key)
+    prospects = []
+
+    for query in strategy.get("search_queries", []):
+        try:
+            result = _retry_with_backoff(lambda q=query: exa.search(
+                q,
+                type="neural",
+                num_results=10,
+                contents={"text": {"max_characters": 500}},
+                include_domains=["linkedin.com"],
+            ))
+            for r in result.results:
+                url = r.url or ""
+                if not url or url in seen_post_urls:
+                    continue
+                if "/posts/" not in url:
+                    continue
+                # Extract username from post URL: /posts/USERNAME_slug
+                parts = url.split("/posts/")
+                if len(parts) < 2:
+                    continue
+                username = parts[1].split("_")[0]
+                if not username:
+                    continue
+                profile_url = f"https://www.linkedin.com/in/{username}/"
+                prospects.append({
+                    "text": (r.text or "")[:500],
+                    "name": (r.title or "").split("'s Post")[0].split(" posted")[0][:60],
+                    "headline": "",  # not available from Exa
+                    "profile_url": profile_url,
+                    "comment_url": url,
+                    "source_url": url,
+                    "channel": "exa_poster",
+                    "_source_post": url,
+                    "_source_author": (r.title or "")[:60],
+                    "_strategy": strategy["id"],
+                    "_regex_score": 0.8,  # bypass regex — LLM evaluates directly
+                    "_regex_reason": "poster-as-prospect",
+                })
+                seen_post_urls.add(url)
+        except Exception as exc:
+            err_msg = str(exc).lower()
+            if "unauthorized" in err_msg or "invalid api key" in err_msg:
+                logger.error("EXA_API_KEY invalid or expired. Exiting.")
+                sys.exit(1)
+            logger.warning("Exa poster search failed for %r: %s", query[:40], exc)
+
+    logger.info(
+        "  Exa poster strategy %s: %d queries → %d prospects",
+        strategy["id"][:40], len(strategy.get("search_queries", [])), len(prospects),
+    )
+    return prospects
+
+
 def exa_check_golden_sources(api_key: str, golden_sources: list[dict], seen_post_urls: set[str]) -> list[dict]:
     """Check golden source authors for new posts via Exa."""
     try:
@@ -601,16 +668,30 @@ def run_cycle(
     all_posts.extend(golden_posts)
 
     # Run each strategy's Exa queries
+    poster_candidates: list[dict] = []  # exa_poster prospects bypass comment mining
     for strategy in strategies:
         sid = strategy["id"]
-        posts = exa_discover_posts(exa_key, strategy, seen_post_urls)
-        all_posts.extend(posts)
-        strategy_stats[sid] = {
-            "posts_found": len(posts),
-            "candidates": 0,
-            "regex_hits": 0,
-            "leads": 0,
-        }
+        source = strategy.get("source", "exa_deep")
+
+        if source == "exa_poster":
+            # Poster-as-prospect: no comment mining, goes straight to LLM eval
+            prospects = exa_discover_poster_prospects(exa_key, strategy, seen_post_urls)
+            poster_candidates.extend(prospects)
+            strategy_stats[sid] = {
+                "posts_found": len(prospects),
+                "candidates": len(prospects),
+                "regex_hits": len(prospects),
+                "leads": 0,
+            }
+        else:
+            posts = exa_discover_posts(exa_key, strategy, seen_post_urls)
+            all_posts.extend(posts)
+            strategy_stats[sid] = {
+                "posts_found": len(posts),
+                "candidates": 0,
+                "regex_hits": 0,
+                "leads": 0,
+            }
 
     # Dedupe posts by URL
     seen_in_cycle = set()
@@ -730,7 +811,13 @@ def run_cycle(
             c["_regex_reason"] = reason
             regex_hits.append(c)
 
-    logger.info("Phase 3a: %d/%d candidates passed regex filter", len(regex_hits), len(candidates))
+    # Add poster-as-prospect candidates (bypass regex — already pre-qualified by Exa query)
+    if poster_candidates:
+        logger.info("Phase 3a (poster): %d poster-as-prospect candidates added", len(poster_candidates))
+        regex_hits.extend(poster_candidates)
+
+    logger.info("Phase 3a: %d total candidates for LLM eval (%d from comments, %d from posters)",
+                len(regex_hits), len(regex_hits) - len(poster_candidates), len(poster_candidates))
 
     # --- Phase 3b: LLM Evaluation ---
     all_leads: list[dict] = []

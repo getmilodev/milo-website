@@ -222,3 +222,43 @@ seed_strategies:
       - "showing my team how to use AI at our company results"
       - "small business AI results first month honest review"
     signal_type: failed_diy
+
+  # === POSTER-AS-PROSPECT: Agency owners writing about their own pain ===
+  # These use exa_poster source — the poster IS the prospect, no comment mining.
+  # Cost: $0 Apify, only Exa + claude -p.
+
+  - id: "milo:agency-poster-manual-ops"
+    source: exa_poster
+    objective: "Find agency owners posting about doing everything manually or drowning in operations"
+    search_queries:
+      - "I run a small agency and we still do everything manually"
+      - "as an agency owner I spend too much time on admin and proposals"
+      - "my agency is growing but our processes are falling apart"
+    signal_type: pain_expression
+
+  - id: "milo:agency-poster-ai-curious"
+    source: exa_poster
+    objective: "Find agency owners posting about trying AI or wondering how to adopt it"
+    search_queries:
+      - "we tried ChatGPT at our agency but it did not work for us"
+      - "agency owner here how do you actually use AI day to day"
+      - "my agency needs to figure out AI before our competitors do"
+    signal_type: failed_diy
+
+  - id: "milo:agency-poster-scaling-pain"
+    source: exa_poster
+    objective: "Find agency owners posting about the pain of scaling from small to medium"
+    search_queries:
+      - "growing from a 3 person agency to 10 has been the hardest thing"
+      - "agency owner wearing every hat and something has to change"
+      - "my marketing agency hit a wall we need better systems"
+    signal_type: pain_expression
+
+  - id: "milo:consulting-poster-ops-pain"
+    source: exa_poster
+    objective: "Find consulting firm founders posting about operational struggles"
+    search_queries:
+      - "running my own consulting firm the admin is killing me"
+      - "boutique consulting founder spending more time on operations than clients"
+      - "I started a consulting practice and the overhead is crushing"
+    signal_type: pain_expression
