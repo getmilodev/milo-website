@@ -75,7 +75,8 @@
     { "source": "/blog/intuit-ai-agents-accountants", "destination": "/content/blog-intuit-ai-agents-accountants.html" },
     { "source": "/blog/ai-automation-small-business", "destination": "/content/blog-ai-automation-small-business.html" },
     { "source": "/blog/ai-native-operating-audit-chiefs-of-staff", "destination": "/content/blog-ai-native-operating-audit-chiefs-of-staff.html" },
-    { "source": "/blog/first-90-days-coo-ai-audit", "destination": "/content/blog-first-90-days-coo-ai-audit.html" }
+    { "source": "/blog/first-90-days-coo-ai-audit", "destination": "/content/blog-first-90-days-coo-ai-audit.html" },
+    { "source": "/for/:slug", "destination": "/content/blueprints/:slug.html" }
   ],
   "headers": [
     {

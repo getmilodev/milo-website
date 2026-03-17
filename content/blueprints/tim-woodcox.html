@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your AI Workflow Blueprint — Milo</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/milo-design-system.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── Blueprint page — minimal additions to design system ── */
+
+    .bp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: var(--sp-1) var(--sp-4);
+      background: var(--gold-light);
+      color: var(--gold-text);
+      font: 500 var(--text-xs) var(--font-mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--sp-6);
+    }
+
+    .bp-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold-text);
+      animation: bp-pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes bp-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .bp-hero__context {
+      margin-top: var(--sp-6);
+      font: 400 var(--text-sm) var(--font-mono);
+      color: var(--text-3);
+      line-height: 1.6;
+    }
+
+    /* Workflow diagnosis: now/fix panels inside FAQ answers */
+    .bp-diagnosis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-6);
+      margin-top: var(--sp-4);
+    }
+
+    .bp-diagnosis__panel {
+      padding: var(--sp-4);
+      border-radius: var(--radius-sm);
+    }
+
+    .bp-diagnosis__panel--now {
+      background: var(--surface);
+      border-left: 2px solid var(--error);
+    }
+
+    .bp-diagnosis__panel--fix {
+      background: var(--surface);
+      border-left: 2px solid var(--success);
+    }
+
+    .bp-diagnosis__label {
+      font: 500 var(--text-xs) var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--sp-2);
+    }
+
+    .bp-diagnosis__panel--now .bp-diagnosis__label { color: var(--error); }
+    .bp-diagnosis__panel--fix .bp-diagnosis__label { color: var(--success); }
+
+    .bp-diagnosis__text {
+      font: 400 var(--text-sm)/1.6 var(--font-body);
+      color: var(--text-2);
+      margin: 0;
+    }
+
+    /* Stats grid — matches ainative.html pattern */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-6);
+    }
+
+    .stats-grid__item {
+      padding: var(--sp-6) 0;
+      border-top: 2px solid var(--border);
+      transition: border-color 600ms;
+    }
+
+    .stats-grid.visible .stats-grid__item {
+      border-color: var(--gold-light);
+    }
+
+    .stats-grid__num {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      color: var(--text-1);
+      font-weight: 400;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: var(--sp-1);
+    }
+
+    .stats-grid__label {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .bp-disclaimer {
+      margin-top: var(--sp-8);
+      font: 400 var(--text-sm)/1.6 var(--font-mono);
+      color: var(--text-3);
+    }
+
+    /* Diagnosis panels: subtle border transition on FAQ open */
+    .bp-diagnosis__panel {
+      transition: border-color 400ms;
+    }
+
+    .faq__question[aria-expanded="true"] ~ .faq__answer .bp-diagnosis__panel--now {
+      border-left-color: var(--error);
+    }
+
+    .faq__question[aria-expanded="true"] ~ .faq__answer .bp-diagnosis__panel--fix {
+      border-left-color: var(--success);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bp-badge::before { animation: none; }
+      .stats-grid__item { transition: none; }
+      .bp-diagnosis__panel { transition: none; }
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .bp-diagnosis { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link">Services</a>
+      <a href="/audit" class="nav__link">Audit</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/agents">Services</a>
+  <a href="/audit">Audit</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
+</div>
+
+<main id="main">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="page-hero">
+    <div class="wrap wrap--narrow">
+      <div class="section-marker reveal">
+        <span class="spec-label">BLUEPRINT:001</span>
+        <span class="spec-coord">// personalized workflow analysis</span>
+      </div>
+      <div class="bp-badge reveal" data-delay="1">Built for you</div>
+      <h1 class="page-hero__title reveal" data-delay="1">
+        Your AI workflow blueprint
+      </h1>
+      <p class="page-hero__subtitle reveal" data-delay="2">
+        Tim, you've already invested in AI and automation at Media Place Partners. Here's how to close the gap between the tools you've bought and the results you expected.
+      </p>
+      <p class="bp-hero__context reveal" data-delay="3">
+        Based on your comment about investing heavily in AI for reporting, workflow automation, and media optimization — and still seeing friction.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══ THE SIGNAL — using pull-quote pattern ═══ -->
+  <blockquote class="pull-quote">
+    <div class="wrap">
+      <div class="pull-quote__inner reveal">
+        <p class="pull-quote__text">
+          "Mike, you're asking the right question. And you're not alone. At Media Place Partners, we've invested heavily in AI and automation. Enhanced reporting, workflow automation, AI-powered media optimizat..."
+        </p>
+        <cite class="pull-quote__attr">Tim Woodcox, VP of Business Development &amp; Sales — Independent Agency Strategist, 28 Years</cite>
+      </div>
+    </div>
+  </blockquote>
+
+
+  <!-- ═══ REFRAME — tight coupling to quote above ═══ -->
+  <section class="section section--flush-top">
+    <div class="wrap wrap--narrow">
+      <div class="section-marker reveal">
+        <span class="spec-label">BLUEPRINT:002</span>
+        <span class="spec-coord">// the real problem</span>
+      </div>
+      <div class="editorial reveal" data-delay="1">
+        <div>
+          <h2 class="editorial__title">What most firms miss</h2>
+        </div>
+        <div class="editorial__body">
+          <p>You said you've invested heavily — reporting, workflow automation, media optimization. That's more than most agencies attempt. The question now isn't whether to use AI. It's whether what you've built actually connects into how your team works day-to-day.</p>
+          <p>Most agencies end up with a stack of tools that each solve one problem but don't talk to each other. The real unlock is wiring them into a single operational flow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ CURRENT WORKFLOW ═══ -->
+  <section class="section section--sm">
+    <div class="wrap wrap--narrow">
+      <div class="section-marker reveal">
+        <span class="spec-label">BLUEPRINT:003</span>
+        <span class="spec-coord">// current state</span>
+      </div>
+      <h2 class="editorial__title reveal" data-delay="1">Your agency workflow today</h2>
+      <p class="reveal" data-delay="1" style="margin-top: var(--sp-2); margin-bottom: var(--sp-8); font: 400 var(--text-sm)/1.6 var(--font-body); color: var(--text-3);">Each step shows what's happening now and what changes with Milo.</p>
+
+      <div class="faq-item reveal" data-delay="2">
+        <button class="faq__question" aria-expanded="false" aria-controls="bp-faq-1">
+          Client onboarding
+        </button>
+        <div class="faq__answer" id="bp-faq-1" hidden>
+          <div class="faq__answer-inner">
+            <div class="bp-diagnosis">
+              <div class="bp-diagnosis__panel bp-diagnosis__panel--now">
+                <div class="bp-diagnosis__label">Now</div>
+                <p class="bp-diagnosis__text">New client signs. Someone sends a welcome email with a list of things needed. Half the information trickles in over weeks. The team starts work with incomplete context. Onboarding feels like it happens by accident.</p>
+              </div>
+              <div class="bp-diagnosis__panel bp-diagnosis__panel--fix">
+                <div class="bp-diagnosis__label">With Milo</div>
+                <p class="bp-diagnosis__text">Structured onboarding flow captures brand assets, login credentials, goals, and constraints before kickoff. Auto-confirms receipt of each item. Team walks into the first working session with everything they need.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="2">
+        <button class="faq__question" aria-expanded="false" aria-controls="bp-faq-2">
+          Proposals and scoping
+        </button>
+        <div class="faq__answer" id="bp-faq-2" hidden>
+          <div class="faq__answer-inner">
+            <div class="bp-diagnosis">
+              <div class="bp-diagnosis__panel bp-diagnosis__panel--now">
+                <div class="bp-diagnosis__label">Now</div>
+                <p class="bp-diagnosis__text">Every proposal starts from scratch or from a half-remembered template. Scoping takes hours of back-and-forth. By the time you send the proposal, the prospect has talked to two other agencies.</p>
+              </div>
+              <div class="bp-diagnosis__panel bp-diagnosis__panel--fix">
+                <div class="bp-diagnosis__label">With Milo</div>
+                <p class="bp-diagnosis__text">Proposal system pulls from past work, the client brief, and your scope templates to generate a solid first draft. You edit and personalize instead of building from zero. Turnaround drops from days to hours.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="2">
+        <button class="faq__question" aria-expanded="false" aria-controls="bp-faq-3">
+          Project delivery
+        </button>
+        <div class="faq__answer" id="bp-faq-3" hidden>
+          <div class="faq__answer-inner">
+            <div class="bp-diagnosis">
+              <div class="bp-diagnosis__panel bp-diagnosis__panel--now">
+                <div class="bp-diagnosis__label">Now</div>
+                <p class="bp-diagnosis__text">Work lives in Slack, email, spreadsheets, and someone's head. Deadlines drift. Team capacity is invisible until someone burns out. The client finds out about delays when the deliverable is late.</p>
+              </div>
+              <div class="bp-diagnosis__panel bp-diagnosis__panel--fix">
+                <div class="bp-diagnosis__label">With Milo</div>
+                <p class="bp-diagnosis__text">Centralized project tracking with automatic status updates. Capacity visible across the team. Bottlenecks flagged before they become fires. Clients see progress without asking.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="2">
+        <button class="faq__question" aria-expanded="false" aria-controls="bp-faq-4">
+          Reporting and analytics
+        </button>
+        <div class="faq__answer" id="bp-faq-4" hidden>
+          <div class="faq__answer-inner">
+            <div class="bp-diagnosis">
+              <div class="bp-diagnosis__panel bp-diagnosis__panel--now">
+                <div class="bp-diagnosis__label">Now</div>
+                <p class="bp-diagnosis__text">End-of-month reporting is a manual scramble — pulling data from multiple platforms, formatting slides, writing summaries. It takes a full day and nobody enjoys it.</p>
+              </div>
+              <div class="bp-diagnosis__panel bp-diagnosis__panel--fix">
+                <div class="bp-diagnosis__label">With Milo</div>
+                <p class="bp-diagnosis__text">Automated reports pull real performance data, formatted to your brand template. Generated on schedule and ready for review. Your team adds strategic insights instead of assembling numbers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="2">
+        <button class="faq__question" aria-expanded="false" aria-controls="bp-faq-5">
+          Client communication
+        </button>
+        <div class="faq__answer" id="bp-faq-5" hidden>
+          <div class="faq__answer-inner">
+            <div class="bp-diagnosis">
+              <div class="bp-diagnosis__panel bp-diagnosis__panel--now">
+                <div class="bp-diagnosis__label">Now</div>
+                <p class="bp-diagnosis__text">Clients email asking for updates. Your team context-switches to answer status questions. Scheduling calls is back-and-forth. Important messages get buried in threads.</p>
+              </div>
+              <div class="bp-diagnosis__panel bp-diagnosis__panel--fix">
+                <div class="bp-diagnosis__label">With Milo</div>
+                <p class="bp-diagnosis__text">Automated project status updates at each milestone. Scheduling links in every communication. Your team focuses on the work, not the inbox.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══ THE BUILD ═══ -->
+  <section class="section section--lg">
+    <div class="wrap wrap--narrow">
+      <div class="section-marker reveal">
+        <span class="spec-label">BLUEPRINT:004</span>
+        <span class="spec-coord">// what we build</span>
+      </div>
+      <div class="editorial reveal" data-delay="1">
+        <div>
+          <h2 class="editorial__title">What Milo builds in week one</h2>
+        </div>
+        <div class="editorial__body">
+          <p>One workflow, fully wired, handed off to your team. Not a demo. Not a pitch deck. A working system.</p>
+        </div>
+      </div>
+
+      <ul class="stacked-list reveal" data-delay="2">
+        <li class="stacked-item">
+          <div class="stacked-item__num">01</div>
+          <div>
+            <div class="stacked-item__title">Automated proposal system</div>
+            <div class="stacked-item__body">Pulls from past work, client brief, and scope template to generate first-draft proposals. Branded to your firm. Cuts proposal time from hours to minutes.</div>
+          </div>
+        </li>
+        <li class="stacked-item">
+          <div class="stacked-item__num">02</div>
+          <div>
+            <div class="stacked-item__title">Project status automation</div>
+            <div class="stacked-item__body">Client deliverables tracked automatically, team capacity visible, bottlenecks flagged before they become fires.</div>
+          </div>
+        </li>
+        <li class="stacked-item">
+          <div class="stacked-item__num">03</div>
+          <div>
+            <div class="stacked-item__title">Client reporting</div>
+            <div class="stacked-item__body">Automated performance reports pull real data, formatted to your brand, sent on schedule without manual assembly.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ═══ IMPACT ═══ -->
+  <section class="section section--sm">
+    <div class="wrap">
+      <div class="section-marker reveal">
+        <span class="spec-label">BLUEPRINT:005</span>
+        <span class="spec-coord">// projected impact</span>
+      </div>
+      <h2 class="reveal" data-delay="1" style="font-size: var(--text-2xl); font-family: var(--font-display); font-weight: 400; margin-bottom: var(--sp-8);">After the setup starts working</h2>
+      <div class="stats-grid reveal" data-delay="2">
+        <div class="stats-grid__item">
+          <div class="stats-grid__num">8hrs</div>
+          <div class="stats-grid__label">Saved per week on proposals, reporting, and client admin</div>
+        </div>
+        <div class="stats-grid__item">
+          <div class="stats-grid__num">3x</div>
+          <div class="stats-grid__label">Faster proposal turnaround — respond to opportunities before competitors</div>
+        </div>
+        <div class="stats-grid__item">
+          <div class="stats-grid__num">Day 1</div>
+          <div class="stats-grid__label">Clients experience a more organized, responsive agency</div>
+        </div>
+      </div>
+      <p class="bp-disclaimer reveal" data-delay="3">
+        Estimates based on a 5-15 person agency or consulting firm. Your full assessment would use your actual project volume and workflow data.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta-section">
+    <div class="section-marker section-marker--cta reveal">
+      <span class="spec-label spec-label--on-dark">BLUEPRINT:006</span>
+      <span class="spec-coord spec-coord--on-dark">// next step</span>
+    </div>
+    <div class="cta__inner">
+      <div>
+        <h2 class="cta__title reveal" data-delay="1">
+          This blueprint is a <span class="accent">preview.</span><br>
+          The full assessment maps everything.
+        </h2>
+        <p class="cta__body reveal" data-delay="2">
+          30-minute diagnostic. We identify the highest-leverage workflow in your firm, scope the build, and deliver a complete implementation plan. No recurring fees. You own everything.
+        </p>
+        <div class="reveal" data-delay="3">
+          <a href="/demo?ref=blueprint" class="btn btn--gold-on-dark btn--lg">Book an Assessment Call</a>
+        </div>
+      </div>
+      <div class="cta__pricing reveal" data-delay="2">
+        <strong>AI Systems Assessment</strong> — $500<br>
+        <strong>AI Native Setup</strong> — from $2,500<br><br>
+        You own everything.<br>
+        $0/month to us after delivery.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/audit">Audit</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
+  </div>
+</footer>
+
+<script>
+  // ── Scroll reveal ──
+  (function(){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var d = e.target.dataset.delay;
+          e.target.style.transitionDelay = d ? (d * 0.12) + 's' : '0s';
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.1});
+    document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+  })();
+
+  // ── Mobile menu ──
+  (function(){
+    var btn = document.querySelector('.nav__toggle');
+    var menu = document.getElementById('mobile-menu');
+    if(!btn||!menu) return;
+    btn.addEventListener('click', function(){
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !open);
+      menu.classList.toggle('open', !open);
+      document.body.style.overflow = !open ? 'hidden' : '';
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && menu.classList.contains('open')){
+        btn.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+        btn.focus();
+      }
+    });
+  })();
+
+  // ── FAQ accordion ──
+  (function(){
+    document.querySelectorAll('.faq__question').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var answer = document.getElementById(btn.getAttribute('aria-controls'));
+
+        // Close all others
+        document.querySelectorAll('.faq__question').forEach(function(b){
+          if(b !== btn){
+            b.setAttribute('aria-expanded', 'false');
+            var a = document.getElementById(b.getAttribute('aria-controls'));
+            if(a) a.hidden = true;
+          }
+        });
+
+        // Toggle this one
+        btn.setAttribute('aria-expanded', !expanded);
+        answer.hidden = expanded;
+      });
+    });
+
+    // Delight: auto-open first step once it scrolls into view
+    var firstQ = document.querySelector('.faq__question');
+    if(firstQ){
+      var openObs = new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting){
+          setTimeout(function(){
+            firstQ.setAttribute('aria-expanded', 'true');
+            var a = document.getElementById(firstQ.getAttribute('aria-controls'));
+            if(a) a.hidden = false;
+          }, 400);
+          openObs.disconnect();
+        }
+      }, {threshold: 0.5});
+      openObs.observe(firstQ);
+    }
+  })();
+</script>
+
+</body>
+</html>
