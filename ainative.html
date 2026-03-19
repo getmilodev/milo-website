@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
+  <title>AI Native Setup — You do not need more AI ideas. You need to know how to actually use it. | Milo</title>
+  <meta name="description" content="Milo helps founders and executives turn AI from vague curiosity into a practical advantage in how they think, work, decide, and make money.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="milo-design-system.css">
+  <script src="/milo-analytics.js" defer></script>
+  <style>
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-6);
+    }
+    .stats-grid__item {
+      padding: var(--sp-6) 0;
+      border-top: 2px solid var(--border);
+    }
+    .stats-grid__num {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      color: var(--text-1);
+      font-weight: 400;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: var(--sp-1);
+    }
+    .stats-grid__label {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .cta-features {
+      list-style: none;
+      padding: 0;
+    }
+    .cta-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-3);
+      font-size: var(--text-sm);
+      color: var(--text-on-dark);
+      line-height: 1.6;
+    }
+    .cta-features li::before {
+      content: '\2713';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .talk-link {
+      color: var(--gold-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .talk-link:hover { color: var(--text-1); }
+
+    .talk-link--on-dark {
+      color: var(--gold);
+    }
+    .talk-link--on-dark:hover { color: var(--text-inv); }
+
+    .faq__answer-inner a {
+      color: var(--gold-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .faq__answer-inner a:hover { color: var(--text-1); }
+
+    .founder-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: var(--sp-8);
+      align-items: start;
+    }
+    .founder-card__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--gold-text);
+      margin-bottom: var(--sp-2);
+    }
+    .founder-card__name {
+      font-size: var(--text-xl);
+      color: var(--text-1);
+      margin-bottom: var(--sp-2);
+    }
+    .founder-card__role {
+      font-size: var(--text-sm);
+      color: var(--text-3);
+      margin-bottom: var(--sp-4);
+    }
+    .founder-card__avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      color: var(--text-1);
+      background: var(--gold-light);
+    }
+    .founder-points {
+      list-style: none;
+      padding: 0;
+      margin-top: var(--sp-4);
+      display: grid;
+      gap: var(--sp-2);
+    }
+    .founder-points li {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .founder-card { grid-template-columns: 1fr; }
+      .founder-card__avatar { max-width: 120px; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      @keyframes stepIn {
+        from { opacity: 1; transform: none; }
+        to   { opacity: 1; transform: none; }
+      }
+    }
+  </style>
+</head>
+<body data-page-type="ainative">
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link">Services</a>
+      <a href="/audit" class="nav__link">Audit</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/agents">Services</a>
+  <a href="/audit">Audit</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
+</div>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:010</span>
+      <span class="spec-coord">// ai-native setup</span>
+    </div>
+    <h1 class="page-hero__title reveal" data-delay="1">You do not need more AI ideas.<br>You need to know how to actually use it.</h1>
+    <p class="page-hero__subtitle reveal" data-delay="2">Milo helps founders and executives turn AI from vague curiosity into a practical advantage in how they think, work, write, decide, and make money.</p>
+    <div class="reveal" data-delay="3" style="margin-top: var(--sp-8); display: flex; gap: var(--sp-3); flex-wrap: wrap; align-items: center;">
+      <a href="/demo?offer=assessment&ref=ainative" class="btn btn--dark btn--lg" data-track="assessment_cta" data-track-location="hero_primary">Book an assessment call</a>
+      <a href="https://buy.stripe.com/aFa7sKckB5aD4ts0lUfIs0d" class="btn btn--outline btn--lg" data-track="direct_buy_cta" data-track-location="hero_secondary">Buy direct — $2,500</a>
+    </div>
+    <p class="reveal" data-delay="3" style="margin-top: var(--sp-3); font-size: var(--text-sm); color: var(--text-3);">
+      Request-first for most buyers. Direct checkout is there if you already know you want help turning AI into something real.
+    </p>
+    <p class="reveal" data-delay="3" style="margin-top: var(--sp-3); font-size: var(--text-sm); color: var(--text-2); max-width: 640px;">
+      Practical setup, real working sessions, and full handoff. No course. No abstract AI strategy deck. No monthly dependency required to keep the system useful.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:011</span>
+      <span class="spec-coord">// the problem</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">You can feel that AI matters. That is what makes this frustrating.</h2>
+      </div>
+      <div class="editorial__body">
+        <p>You know there is some way to make money with AI, move faster with it, and get more out of your work than a chat window can give you. You just have not crossed from curiosity to capability yet.</p>
+        <p>That gap is bigger than people admit. Most people never get past a browser tab, a few prompts, and a vague feeling that they should be doing more with this.</p>
+        <p style="color: var(--text-1); font-weight: 500;">AI Native Setup closes the gap between “I have tried AI” and “I know how to use this to get ahead.”</p>
+        <p>You do not need a course, a prompt library, or another vendor deck. You need someone to help make AI useful in the real world, around your actual work, and leave you with something usable.</p>
+        <p style="font-weight: 600; color: var(--text-1);">That's what we do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="gold-line"></div></div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:012</span>
+      <span class="spec-coord">// deliverables</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">What changes once AI stops being a tab and starts becoming an advantage</h2>
+      </div>
+      <div class="editorial__body">
+        <p>Everything is shaped around the work, decisions, writing, planning, and revenue motion that already matter in your world — not generic templates and not abstract promises.</p>
+      </div>
+    </div>
+    <ul class="stacked-list reveal" data-delay="2">
+      <li class="stacked-item">
+        <div class="stacked-item__num">01</div>
+        <div>
+          <div class="stacked-item__title">Sharper thinking, faster starts</div>
+          <div class="stacked-item__body">Writing, planning, and structured thinking stop starting from a blank page every time.</div>
+        </div>
+      </li>
+      <li class="stacked-item">
+        <div class="stacked-item__num">02</div>
+        <div>
+          <div class="stacked-item__title">Better output with less drag</div>
+          <div class="stacked-item__body">Research, decisions, follow-up, and execution get lighter because AI starts doing useful work instead of sitting in a tab waiting for inspiration.</div>
+        </div>
+      </li>
+      <li class="stacked-item">
+        <div class="stacked-item__num">03</div>
+        <div>
+          <div class="stacked-item__title">A setup that fits how you actually work</div>
+          <div class="stacked-item__body">The tools, context, prompts, and operating patterns are shaped around your real responsibilities, not a generic AI demo.</div>
+        </div>
+      </li>
+      <li class="stacked-item">
+        <div class="stacked-item__num">04</div>
+        <div>
+          <div class="stacked-item__title">Real confidence, not AI theater</div>
+          <div class="stacked-item__body">We work through your actual use cases so you leave knowing how to use it, not just admiring what it could do.</div>
+        </div>
+      </li>
+      <li class="stacked-item">
+        <div class="stacked-item__num">05</div>
+        <div>
+          <div class="stacked-item__title">Capability that sticks</div>
+          <div class="stacked-item__body">Questions after the session? New edge cases? We stay involved long enough to make sure this becomes part of how you operate, not another abandoned experiment.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section--sm" style="padding-top: 0; padding-bottom: var(--sp-20);">
+  <div class="wrap wrap--narrow">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:012A</span>
+      <span class="spec-coord">// founder layer</span>
+    </div>
+    <div class="founder-card reveal" data-delay="1">
+      <div class="founder-card__avatar" aria-hidden="true">CP</div>
+      <div>
+        <div class="founder-card__label">FOUNDER / EXECUTIVE</div>
+        <h2 class="founder-card__name">Callias Pulcher</h2>
+        <p class="founder-card__role">Founder, Milo</p>
+        <p style="color: var(--text-2); line-height: 1.7;">This is not a packaged AI course. Callias works directly with clients to figure out where AI can create real leverage, set it up around real work, and make sure the first gain is actually usable.</p>
+        <ul class="founder-points">
+          <li>Best fit for buyers who know AI matters and are tired of feeling behind.</li>
+          <li>Built for founders and executives who want leverage without becoming the in-house AI hobbyist.</li>
+          <li>Focused on practical gains in writing, planning, research, decision support, and execution.</li>
+          <li>The goal is real capability you can keep using, not another dependency.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section--sm" style="padding-bottom: var(--sp-20);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:013</span>
+      <span class="spec-coord">// outcomes</span>
+    </div>
+    <h2 class="reveal" data-delay="1" style="font-size: var(--text-2xl); margin-bottom: var(--sp-8);">After the setup starts working</h2>
+    <div class="stats-grid reveal" data-delay="2">
+      <div class="stats-grid__item">
+        <div class="stats-grid__num">10x</div>
+        <div class="stats-grid__label">Faster output on the thinking and writing that usually eats your time</div>
+      </div>
+      <div class="stats-grid__item">
+        <div class="stats-grid__num">1-2</div>
+        <div class="stats-grid__label">Clear first wins so you can feel the leverage quickly</div>
+      </div>
+      <div class="stats-grid__item">
+        <div class="stats-grid__num">100%</div>
+        <div class="stats-grid__label">Yours. The setup stays usable without turning into another rented black box</div>
+      </div>
+      <div class="stats-grid__item">
+        <div class="stats-grid__num">30 min</div>
+        <div class="stats-grid__label">Fast scoping call to map where AI should actually help first</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="section-marker section-marker--cta reveal">
+    <span class="spec-label spec-label--on-dark">SPEC:014</span>
+    <span class="spec-coord spec-coord--on-dark">// pricing</span>
+  </div>
+  <div class="cta__inner">
+    <div>
+      <h2 class="cta__title reveal">You know AI matters. <span class="accent">Now make it useful.</span></h2>
+      <p class="cta__body reveal" data-delay="1">The right move for most buyers is a short strategy/demo call first. We figure out where AI can actually create leverage for you, confirm fit, and only move forward when the gain is clear.</p>
+      <ul class="cta-features reveal" data-delay="1">
+        <li>Practical AI setup around your real work</li>
+        <li>Live working session with your actual use cases</li>
+        <li>Sharper writing, planning, research, and decision support</li>
+        <li>30 days of follow-up support</li>
+        <li>Best fit for founders, executives, and operator-led teams</li>
+        <li>No course, no hype, no browser-tab dead end</li>
+      </ul>
+      <div class="reveal" data-delay="2" style="margin-top: var(--sp-8);">
+        <a href="/demo?offer=assessment&ref=ainative" class="btn btn--gold-on-dark btn--lg" data-track="assessment_cta" data-track-location="footer_primary">Book an assessment call</a>
+      </div>
+      <p class="reveal" data-delay="2" style="margin-top: var(--sp-4); font-size: var(--text-sm); color: var(--text-on-dark-muted);">
+        Already decided? <a href="https://buy.stripe.com/aFa7sKckB5aD4ts0lUfIs0d" class="talk-link--on-dark" data-track="direct_buy_cta" data-track-location="footer_text">Buy direct here</a>.
+      </p>
+    </div>
+    <div class="cta__pricing reveal" data-delay="2">
+      <strong>$2,500</strong><br>
+      one-time setup<br><br>
+      Practical advantage, not AI theory.<br>
+      You keep the capability.<br>
+      Call first in most cases.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:015</span>
+      <span class="spec-coord">// faq</span>
+    </div>
+    <h2 class="reveal" data-delay="1" style="font-size: var(--text-2xl); margin-bottom: var(--sp-8);">Common questions</h2>
+
+    <div class="faq-item reveal" data-delay="1">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-1">Do I need to be technical?</button>
+      <div class="faq__answer" id="faq-1" aria-hidden="true">
+        <div class="faq__answer-inner">
+          <p>No. That is the point. We build this for operators and service firms that want leverage, not for teams that want to become AI hobbyists.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="1">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-2">What tools do you use?</button>
+      <div class="faq__answer" id="faq-2" aria-hidden="true">
+        <div class="faq__answer-inner">
+          <p>Usually Claude plus the supporting workspace, knowledge, and prompt structure needed for your use case. The point is not the tool stack by itself. The point is configuring it around how your firm actually works.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="2">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-3">How long does the setup take?</button>
+      <div class="faq__answer" id="faq-3" aria-hidden="true">
+        <div class="faq__answer-inner">
+          <p>The initial strategy/demo call is 30 minutes. The setup itself is typically completed in one focused working session, with follow-up afterward as your team starts using it for real.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="2">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-4">What if I want to set up my whole team?</button>
+      <div class="faq__answer" id="faq-4" aria-hidden="true">
+        <div class="faq__answer-inner">
+          <p><a href="/demo?offer=assessment&ref=ainative-team" data-track="assessment_cta" data-track-location="faq_team">Book an assessment call</a> and we will scope it out. Team buildouts usually follow the first workflow once the operating pattern is clear.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="3">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-5">Will I need to pay for anything else?</button>
+      <div class="faq__answer" id="faq-5" aria-hidden="true">
+        <div class="faq__answer-inner">
+          <p>You will need the underlying software subscriptions that fit your setup, usually Claude. Our fee is for the implementation, configuration, and handoff.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="3">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-6">What kinds of roles does this work for?</button>
+      <div class="faq__answer" id="faq-6" aria-hidden="true">
+        <div class="faq__answer-inner">
+          <p>Operators, agency owners, COOs, client service leads, firm partners, and other knowledge-work roles where proposals, reporting, follow-up, or research create recurring drag.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="3">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-7">Can my company expense this?</button>
+      <div class="faq__answer" id="faq-7" aria-hidden="true">
+        <div class="faq__answer-inner">
+          <p>Yes. You will get a receipt from Stripe immediately. Most clients expense it as professional services, training, or technology implementation.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/audit">Audit</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+      <a href="https://pathoslabs.co">Pathos Labs</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !open);
+    menu.classList.toggle('open');
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+      toggle.focus();
+      return;
+    }
+    if (e.key === 'Tab') {
+      const focusable = [toggle, ...menu.querySelectorAll('a')];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  document.querySelectorAll('.faq__question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const answer = document.getElementById(btn.getAttribute('aria-controls'));
+      btn.setAttribute('aria-expanded', !expanded);
+      answer.setAttribute('aria-hidden', expanded);
+    });
+  });
+
+</script>
+
+</body>
+</html>

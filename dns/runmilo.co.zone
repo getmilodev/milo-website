@@ -1,0 +1,19 @@
+; Zone file for runmilo.co
+; Generated from AgentMail create-domain response on 2026-03-12
+; Purpose: secondary cold-outbound sending domain
+
+; Google verification
+@ IN TXT "google-site-verification=l1XITDK5447Mp3hCXc_NL6GDtUwy7FgSLqDMo6v0rXU"
+
+; DKIM
+agentmail._domainkey IN TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwOjQ6b6dg9x016I0DTDkie/LZ4luuvuCLe78cXXS+dR3Rzl9igwuMMJYTwX0ia1iosWqWS0wJpvGXixWzjFXjAPf/rdmUn7hscQv+Iu4HMNwH5OqmhqgPiaWIfkiauQTEpt+3XMQUrl1lKuHukpiXVategUCkqAhacOUgYcy2kqE0/1ClqpT3hCPJwZpZOMUkeJzp6yTo9Oxq///y7UWbe8YH9oH1W9P0nuP437g+r0iw0YrMIY8DNDD/MFrWZ/1bzkDLCbmUiN+v7TIWCMx3dy1d8t/bDyjFRHNjVlMLeJdkXjhKPga49CmA6F9FqVzEoFWarqjhjWL/DS31OWBHQIDAQAB"
+
+; MX
+@ IN MX 10 inbound-smtp.us-east-1.amazonaws.com.
+mail IN MX 10 feedback-smtp.us-east-1.amazonaws.com.
+
+; SPF
+mail IN TXT "v=spf1 include:amazonses.com -all"
+
+; DMARC
+_dmarc IN TXT "v=DMARC1; p=reject; rua=mailto:dmarc@runmilo.co"

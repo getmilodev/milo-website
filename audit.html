@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
+  <title>AI Systems Assessment — preview your highest-leverage implementation target | Milo</title>
+  <meta name="description" content="Preview the Milo AI Systems Assessment for agencies, operators, and service firms. Answer 4 questions to see workflow pressure, implementation opportunities, and the likely next build.">
+  <meta property="og:title" content="AI Systems Assessment | Milo">
+  <meta property="og:description" content="Answer 4 questions to preview where workflow pressure is costing time and what Milo would likely implement first.">
+  <link rel="canonical" href="https://getmilo.dev/audit">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="milo-design-system.css">
+  <style>
+    .audit-hero {
+      padding: clamp(120px, 14vh, 170px) 0 var(--sp-8);
+    }
+    .audit-hero__title {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: 400;
+      color: var(--text-1);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      margin-bottom: var(--sp-3);
+    }
+    .audit-hero__subtitle {
+      font-size: var(--text-lg);
+      color: var(--text-2);
+      max-width: 520px;
+      line-height: 1.6;
+    }
+    .audit-hero__note {
+      margin-top: var(--sp-4);
+      max-width: 640px;
+      font-size: var(--text-sm);
+      color: var(--text-3);
+      line-height: 1.6;
+    }
+
+    /* Wizard */
+    .wizard { padding: var(--sp-6) 0 var(--sp-20); }
+    .step-heading { margin-bottom: var(--sp-6); }
+    .step-heading__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--gold-text);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--sp-2);
+    }
+    .step-heading__title {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--text-xl);
+      color: var(--text-1);
+      line-height: 1.35;
+    }
+    .step-heading__hint {
+      font-size: var(--text-sm);
+      color: var(--text-3);
+      margin-top: var(--sp-2);
+    }
+    .step { display: none; }
+    .step.active { display: block; animation: stepIn 400ms var(--ease-out-expo); }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .step.active { animation: none; }
+    }
+
+    /* Option cards */
+    .option-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+    }
+    @media (max-width: 600px) { .option-grid { grid-template-columns: 1fr; } }
+    .option {
+      position: relative;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6) var(--sp-6) var(--sp-4);
+      cursor: pointer;
+      background: var(--surface-raised);
+      text-align: left;
+      transition: border-color 150ms var(--ease-out-quart), background 150ms var(--ease-out-quart);
+    }
+    .option:hover { border-color: var(--text-3); background: var(--surface); }
+    .option:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .option.selected {
+      border-color: var(--gold);
+      background: var(--gold-light);
+      animation: option-select 300ms var(--ease-out-expo);
+    }
+    @keyframes option-select {
+      0% { transform: scale(1); }
+      40% { transform: scale(0.97); }
+      100% { transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) { .option.selected { animation: none; } }
+    .option-icon {
+      width: 22px; height: 22px;
+      margin-bottom: var(--sp-2);
+      color: var(--gold-text);
+    }
+    .option-icon svg { width: 100%; height: 100%; display: block; }
+    .option h3 {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: 2px;
+    }
+    .option p { font-size: var(--text-sm); color: var(--text-3); margin: 0; line-height: 1.45; }
+
+    /* Checkbox options */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+    }
+    @media (max-width: 600px) { .checkbox-grid { grid-template-columns: 1fr; } }
+    .checkbox-option {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-4);
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-3);
+      background: var(--surface-raised);
+      transition: border-color 150ms var(--ease-out-quart), background 150ms var(--ease-out-quart);
+    }
+    .checkbox-option:hover { border-color: var(--text-3); }
+    .checkbox-option:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .checkbox-option.selected { border-color: var(--gold); background: var(--gold-light); }
+    .checkbox-option .check {
+      width: 18px; height: 18px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 150ms var(--ease-out-quart);
+      background: var(--surface-raised);
+      margin-top: 1px;
+    }
+    .checkbox-option.selected .check { background: var(--text-1); border-color: var(--text-1); }
+    .checkbox-option .check::after { content: ''; }
+    .checkbox-option.selected .check::after {
+      content: '\2713'; font-size: 11px; font-weight: 700; color: var(--text-inv);
+    }
+    .checkbox-option .cb-text { font-size: var(--text-sm); font-weight: 500; color: var(--text-1); line-height: 1.4; }
+    .checkbox-option .cb-detail { font-size: var(--text-xs); color: var(--text-3); margin-top: 2px; display: block; font-weight: 400; }
+
+    /* Buttons */
+    .btn-row { display: flex; justify-content: flex-end; margin-top: var(--sp-8); gap: var(--sp-3); }
+    .btn-primary { background: var(--text-1); color: var(--text-inv); }
+    .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+    .btn-primary:disabled:hover { transform: none; opacity: 0.35; }
+    .btn-back {
+      background: transparent; border: 1.5px solid var(--border);
+      color: var(--text-3); font-weight: 500;
+    }
+    .btn-back:hover { border-color: var(--text-3); color: var(--text-1); transform: none; }
+
+    /* Sub-section within step 2 */
+    .step-sub { margin-bottom: var(--sp-8); }
+    .step-sub__label {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--text-base);
+      color: var(--text-1);
+      margin-bottom: var(--sp-3);
+    }
+
+    /* Results */
+    .result { display: none; }
+    .result.active { display: block; animation: stepIn 500ms var(--ease-out-expo); }
+    .result-header { padding: var(--sp-16) 0 var(--sp-8); }
+    .result-header__badge {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      font-weight: 500; color: var(--text-1); margin-bottom: var(--sp-4);
+    }
+    .result-header__badge::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--success);
+    }
+    .result-header__title {
+      font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 400;
+      color: var(--text-1); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: var(--sp-2);
+    }
+    .result-header__subtitle { font-size: var(--text-base); color: var(--text-2); line-height: 1.6; }
+
+    /* Grade box */
+    .grade-box {
+      background: var(--text-1);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-10) var(--sp-8);
+      text-align: center;
+      margin-bottom: var(--sp-10);
+    }
+    .grade-letter {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: var(--sp-2);
+    }
+    .grade-A { color: var(--success); }
+    .grade-B { color: var(--success); }
+    .grade-C { color: var(--gold); }
+    .grade-D { color: var(--warning); }
+    .grade-F { color: var(--error); }
+    .grade-label {
+      font-family: var(--font-body); font-weight: 600;
+      font-size: var(--text-lg); color: var(--text-inv); margin-bottom: var(--sp-3);
+    }
+    .grade-desc {
+      font-size: var(--text-sm); color: var(--text-on-dark);
+      max-width: 480px; margin: 0 auto var(--sp-6); line-height: 1.6;
+    }
+    .grade-inputs {
+      display: flex; justify-content: center; gap: var(--sp-8); flex-wrap: wrap;
+    }
+    .grade-input {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      color: var(--text-on-dark-muted);
+    }
+    .grade-input strong { color: var(--text-on-dark); font-weight: 500; }
+
+    /* Section dividers */
+    .audit-section { margin-bottom: var(--sp-12); }
+    .audit-section__title {
+      font-family: var(--font-body); font-weight: 600;
+      font-size: var(--text-xl); color: var(--text-1);
+      margin-bottom: var(--sp-2);
+    }
+    .audit-section__subtitle {
+      font-size: var(--text-sm); color: var(--text-3);
+      margin-bottom: var(--sp-6);
+    }
+
+    /* Workflow cards */
+    .workflow-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      margin-bottom: var(--sp-4);
+      background: var(--surface-raised);
+    }
+    .workflow-card__header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: var(--sp-4); padding-bottom: var(--sp-3);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .workflow-card__name {
+      font-family: var(--font-body); font-weight: 600;
+      font-size: var(--text-base); color: var(--text-1);
+      display: flex; align-items: center; gap: var(--sp-2);
+    }
+    .workflow-card__name svg { width: 18px; height: 18px; color: var(--gold-text); }
+    .workflow-card__saves {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      color: var(--success); font-weight: 500;
+    }
+    .workflow-flows {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6);
+    }
+    @media (max-width: 640px) { .workflow-flows { grid-template-columns: 1fr; } }
+    .flow-col__title {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: var(--sp-3); padding-bottom: var(--sp-2);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .flow-col__title--broken { color: var(--error); }
+    .flow-col__title--auto { color: var(--success); }
+    .flow-step {
+      padding: var(--sp-2) 0 var(--sp-2) var(--sp-4);
+      border-left: 2px solid var(--border);
+      margin-bottom: 2px;
+    }
+    .flow-step--broken { border-left-color: color-mix(in oklch, var(--error), transparent 60%); }
+    .flow-step--auto { border-left-color: color-mix(in oklch, var(--success), transparent 60%); }
+    .flow-step__label { font-size: var(--text-sm); color: var(--text-2); line-height: 1.4; }
+    .flow-step__delay {
+      font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500;
+    }
+    .delay--bad { color: var(--error); }
+    .delay--good { color: var(--success); }
+
+    /* Stat trio */
+    .cost-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-1); margin-bottom: var(--sp-6);
+    }
+    .cost-stat {
+      padding: var(--sp-6); background: var(--surface);
+      border: 1px solid var(--border-subtle);
+    }
+    .cost-stat:first-child { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
+    .cost-stat:last-child {
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      background: var(--text-1); border-color: var(--text-1);
+    }
+    .cost-stat__number {
+      font-family: var(--font-display); font-size: var(--text-2xl);
+      color: var(--gold-text); font-weight: 400; line-height: 1.1;
+      margin-bottom: var(--sp-2); font-variant-numeric: tabular-nums;
+    }
+    .cost-stat:last-child .cost-stat__number { color: var(--gold); }
+    .cost-stat__label { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-3); }
+    .cost-stat:last-child .cost-stat__label { color: var(--text-on-dark-muted); }
+    @media (max-width: 640px) {
+      .cost-stats { grid-template-columns: 1fr; }
+      .cost-stat:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+      .cost-stat:last-child { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+    }
+
+    /* DIY roadmap */
+    .diy-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      margin-bottom: var(--sp-4);
+      background: var(--surface-raised);
+    }
+    .diy-card__header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: var(--sp-4);
+    }
+    .diy-card__name {
+      font-family: var(--font-body); font-weight: 600;
+      font-size: var(--text-base); color: var(--text-1);
+    }
+    .diy-card__hours {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      color: var(--text-3);
+    }
+    .diy-step {
+      display: flex; align-items: flex-start; gap: var(--sp-3);
+      padding: var(--sp-2) 0;
+    }
+    .diy-step__num {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      color: var(--gold-text); font-weight: 500;
+      min-width: 18px; padding-top: 2px;
+    }
+    .diy-step__text { font-size: var(--text-sm); color: var(--text-2); line-height: 1.5; }
+    .tool-badge {
+      display: inline-flex; align-items: center;
+      padding: 1px var(--sp-2);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono); font-size: 0.68rem;
+      color: var(--gold-text); font-weight: 500;
+      margin-right: var(--sp-1);
+      white-space: nowrap;
+    }
+    .diy-totals {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+    }
+    .diy-totals__title {
+      font-family: var(--font-body); font-weight: 600;
+      font-size: var(--text-base); color: var(--text-1);
+      margin-bottom: var(--sp-4);
+    }
+
+    /* Comparison table overrides */
+    .comparison-table td.milo-col {
+      background: var(--gold-light);
+    }
+
+    /* Soft CTA */
+    .soft-cta {
+      background: var(--text-1);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-10) var(--sp-8);
+      text-align: center;
+      margin-top: var(--sp-10);
+    }
+    .soft-cta h3 {
+      font-family: var(--font-display); font-size: var(--text-2xl);
+      font-weight: 400; color: var(--text-inv);
+      margin-bottom: var(--sp-3);
+    }
+    .soft-cta p {
+      font-size: var(--text-sm); color: var(--text-on-dark);
+      margin-bottom: var(--sp-6); max-width: 420px; margin-left: auto; margin-right: auto;
+    }
+    .soft-cta__actions {
+      display: flex; justify-content: center; align-items: center;
+      gap: var(--sp-3); flex-wrap: wrap;
+    }
+    .soft-cta .cta-btn {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      background: var(--gold); color: var(--text-1);
+      padding: var(--sp-4) var(--sp-8); border-radius: var(--radius-md);
+      text-decoration: none; font-family: var(--font-body);
+      font-weight: 600; font-size: var(--text-sm);
+      transition: transform 200ms var(--ease-out-quart), opacity 150ms;
+      border: none; cursor: pointer;
+    }
+    .soft-cta .cta-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+    .soft-cta .cta-secondary {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      color: var(--text-on-dark-muted); padding: var(--sp-4) var(--sp-6);
+      text-decoration: none; font-family: var(--font-body);
+      font-weight: 500; font-size: var(--text-sm);
+      transition: color 150ms; background: none; border: none; cursor: pointer;
+    }
+    .soft-cta .cta-secondary:hover { color: var(--text-on-dark); }
+
+    /* Copy feedback */
+    .copy-feedback {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      color: var(--success); display: none;
+    }
+    .copy-feedback.show { display: inline; }
+
+    /* Print styles */
+    @media print {
+      .nav, .mobile-menu, .wizard, .footer, .grid-bg, .skip-link,
+      .audit-hero, .soft-cta__actions { display: none !important; }
+      .result { display: block !important; animation: none !important; }
+      .result-header { padding-top: var(--sp-4); }
+      body { background: white; }
+      .grade-box, .soft-cta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body::after {
+        content: 'getmilo.dev/audit';
+        position: fixed; bottom: 12px; right: 16px;
+        font-size: var(--text-xs); color: var(--text-3); font-family: var(--font-mono);
+      }
+      .workflow-card, .diy-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link">Services</a>
+      <a href="/audit" class="nav__link nav__link--active" aria-current="page">Audit</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/agents">Services</a>
+  <a href="/audit">Audit</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="audit-hero">
+  <div class="wrap wrap--narrow">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:020</span>
+      <span class="spec-coord">// operations audit</span>
+    </div>
+    <h1 class="audit-hero__title reveal" data-delay="1">AI Systems <span class="accent">Assessment</span></h1>
+    <p class="audit-hero__subtitle reveal" data-delay="2">Answer 4 questions to preview where manual workflow pressure is costing time, what an implementation path could look like, and whether Milo is the right team to build it.</p>
+    <p class="audit-hero__note reveal" data-delay="3">This page is the self-serve preview. The paid $500 assessment is the operator-facing version: scoped diagnosis, priority recommendation, and a clear implementation path into AI Native Setup or a larger build.</p>
+  </div>
+</section>
+
+<!-- WIZARD -->
+<section class="wizard">
+  <div class="wrap wrap--narrow">
+
+    <div class="wizard__steps" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" aria-label="Audit progress">
+      <div class="wizard__step wizard__step--active" id="dot1"></div>
+      <div class="wizard__step" id="dot2"></div>
+      <div class="wizard__step" id="dot3"></div>
+      <div class="wizard__step" id="dot4"></div>
+    </div>
+
+    <!-- STEP 1: Industry -->
+    <div class="step active" id="step1">
+      <div class="step-heading">
+        <div class="step-heading__label">Step 1 of 4</div>
+        <h2 class="step-heading__title">What kind of firm are we assessing?</h2>
+      </div>
+      <div class="option-grid" id="industryGrid" role="radiogroup" aria-label="Select your industry">
+        <div class="option" data-value="law" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v16"/><path d="M4 6h12"/><path d="M2 12l2-6 2 6"/><path d="M14 12l2-6 2 6"/></svg></div>
+          <h3>Law Firm</h3>
+          <p>Solo to mid-size practice</p>
+        </div>
+        <div class="option" data-value="realestate" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l8-7 8 7"/><path d="M4 8.5V17h12V8.5"/></svg></div>
+          <h3>Real Estate</h3>
+          <p>Brokerage, team, or solo agent</p>
+        </div>
+        <div class="option" data-value="healthcare" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v14"/><path d="M3 10h14"/></svg></div>
+          <h3>Healthcare / Dental</h3>
+          <p>Practice or clinic</p>
+        </div>
+        <div class="option" data-value="trades" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l6.93 4v8L10 18l-6.93-4V6z"/></svg></div>
+          <h3>Home Services / HVAC</h3>
+          <p>Plumbing, electrical, HVAC, roofing</p>
+        </div>
+        <div class="option" data-value="agency" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M10 3v3M10 14v3M3 10h3M14 10h3"/></svg></div>
+          <h3>Agency / Consulting</h3>
+          <p>Marketing, design, or advisory</p>
+        </div>
+        <div class="option" data-value="ecommerce" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="14" height="11" rx="1"/><path d="M7 7V5a3 3 0 016 0v2"/></svg></div>
+          <h3>E-Commerce</h3>
+          <p>Online store or D2C brand</p>
+        </div>
+        <div class="option" data-value="finance" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17V12M8 17V8M12 17V5M16 17V3"/></svg></div>
+          <h3>Accounting / Finance</h3>
+          <p>CPA, bookkeeper, or advisor</p>
+        </div>
+        <div class="option" data-value="other" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l8 8-8 8-8-8z"/></svg></div>
+          <h3>Something Else</h3>
+          <p>We build for any business</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Team size + Revenue -->
+    <div class="step" id="step2">
+      <div class="step-heading">
+        <div class="step-heading__label">Step 2 of 4</div>
+        <h2 class="step-heading__title">Tell us about the operating context</h2>
+      </div>
+
+      <div class="step-sub">
+        <div class="step-sub__label">Team size</div>
+        <div class="option-grid" id="sizeGrid" role="radiogroup" aria-label="Select team size">
+          <div class="option" data-value="solo" tabindex="0" role="radio" aria-checked="false">
+            <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="3"/></svg></div>
+            <h3>Just me</h3>
+            <p>Solopreneur or freelancer</p>
+          </div>
+          <div class="option" data-value="small" tabindex="0" role="radio" aria-checked="false">
+            <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="10" r="2.5"/><circle cx="13" cy="10" r="2.5"/></svg></div>
+            <h3>2 to 5 people</h3>
+            <p>Small but growing</p>
+          </div>
+          <div class="option" data-value="medium" tabindex="0" role="radio" aria-checked="false">
+            <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="7" r="2"/><circle cx="13.5" cy="7" r="2"/><circle cx="6.5" cy="13" r="2"/><circle cx="13.5" cy="13" r="2"/></svg></div>
+            <h3>6 to 20 people</h3>
+            <p>Established operation</p>
+          </div>
+          <div class="option" data-value="large" tabindex="0" role="radio" aria-checked="false">
+            <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="5" r="1.5"/><circle cx="10" cy="5" r="1.5"/><circle cx="15" cy="5" r="1.5"/><circle cx="5" cy="10" r="1.5"/><circle cx="10" cy="10" r="1.5"/><circle cx="15" cy="10" r="1.5"/><circle cx="5" cy="15" r="1.5"/><circle cx="10" cy="15" r="1.5"/><circle cx="15" cy="15" r="1.5"/></svg></div>
+            <h3>20+ people</h3>
+            <p>Scaling fast</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-sub">
+        <div class="step-sub__label">Annual revenue</div>
+        <div class="option-grid" id="revenueGrid" role="radiogroup" aria-label="Select revenue range">
+          <div class="option" data-value="under250k" tabindex="0" role="radio" aria-checked="false">
+            <h3>Under $250K</h3>
+            <p>Early stage or side business</p>
+          </div>
+          <div class="option" data-value="250k-1m" tabindex="0" role="radio" aria-checked="false">
+            <h3>$250K – $1M</h3>
+            <p>Established and growing</p>
+          </div>
+          <div class="option" data-value="1m-5m" tabindex="0" role="radio" aria-checked="false">
+            <h3>$1M – $5M</h3>
+            <p>Scaling operations</p>
+          </div>
+          <div class="option" data-value="5m+" tabindex="0" role="radio" aria-checked="false">
+            <h3>$5M+</h3>
+            <p>Mature business</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-back" onclick="goStep(1)">Back</button>
+        <button class="btn btn-primary" id="step2Btn" disabled onclick="goStep(3)">Next</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Pain points -->
+    <div class="step" id="step3">
+      <div class="step-heading">
+        <div class="step-heading__label">Step 3 of 4</div>
+        <h2 class="step-heading__title">Where is workflow pressure showing up?</h2>
+        <p class="step-heading__hint">Pick all that apply. This shapes the assessment preview.</p>
+      </div>
+      <div class="checkbox-grid" id="painGrid">
+        <div class="checkbox-option" data-value="leads" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <div><span class="cb-text">Leads go cold before anyone follows up</span><span class="cb-detail">Hours pass between inquiry and first response</span></div>
+        </div>
+        <div class="checkbox-option" data-value="scheduling" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <div><span class="cb-text">Scheduling is 5+ emails of back-and-forth</span><span class="cb-detail">Calendar coordination eats entire mornings</span></div>
+        </div>
+        <div class="checkbox-option" data-value="support" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <div><span class="cb-text">Same customer questions answered manually every day</span><span class="cb-detail">Hours spent on answers that could be templated</span></div>
+        </div>
+        <div class="checkbox-option" data-value="outreach" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <div><span class="cb-text">Prospecting is copy-paste into LinkedIn and email</span><span class="cb-detail">Manual outreach that stops when you get busy</span></div>
+        </div>
+        <div class="checkbox-option" data-value="data" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <div><span class="cb-text">Same info typed into 3 different systems</span><span class="cb-detail">CRM, spreadsheet, and project tool never in sync</span></div>
+        </div>
+        <div class="checkbox-option" data-value="reporting" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <div><span class="cb-text">Weekly reports take half a day to pull together</span><span class="cb-detail">Export, copy, paste, format, email, repeat</span></div>
+        </div>
+        <div class="checkbox-option" data-value="content" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <div><span class="cb-text">Social media goes silent when you get busy</span><span class="cb-detail">Content creation is first thing to fall off</span></div>
+        </div>
+        <div class="checkbox-option" data-value="invoicing" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <div><span class="cb-text">Invoices go out late and payments aren't chased</span><span class="cb-detail">Money sits on the table because follow-up is manual</span></div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-back" onclick="goStep(2)">Back</button>
+        <button class="btn btn-primary" id="auditBtn" disabled onclick="goStep(4)">Continue to assessment</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: AI Maturity -->
+    <div class="step" id="step4">
+      <div class="step-heading">
+        <div class="step-heading__label">Step 4 of 4</div>
+        <h2 class="step-heading__title">How much AI do you use today?</h2>
+      </div>
+      <div class="option-grid" id="aiGrid" role="radiogroup" aria-label="Select AI maturity level">
+        <div class="option" data-value="none" tabindex="0" role="radio" aria-checked="false">
+          <h3>None</h3>
+          <p>We don't use any AI tools yet</p>
+        </div>
+        <div class="option" data-value="dabbled" tabindex="0" role="radio" aria-checked="false">
+          <h3>Dabbled</h3>
+          <p>Tried ChatGPT or similar a few times</p>
+        </div>
+        <div class="option" data-value="some" tabindex="0" role="radio" aria-checked="false">
+          <h3>Some tools</h3>
+          <p>Use AI regularly for specific tasks</p>
+        </div>
+        <div class="option" data-value="full" tabindex="0" role="radio" aria-checked="false">
+          <h3>Full stack</h3>
+          <p>AI is integrated into daily operations</p>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-back" onclick="goStep(3)">Back</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="result" id="resultSection">
+      <div class="result-header">
+        <div class="section-marker">
+          <span class="spec-label">SPEC:021</span>
+          <span class="spec-coord">// audit results</span>
+        </div>
+        <div class="result-header__badge">Assessment preview complete</div>
+        <h2 class="result-header__title" id="resultTitle">Your AI Systems Assessment</h2>
+        <p class="result-header__subtitle" id="resultSubtitle"></p>
+      </div>
+
+      <!-- S1: Grade -->
+      <div id="gradeSection"></div>
+
+      <!-- S2: Automation Map -->
+      <div class="audit-section" id="automationSection">
+        <div class="section-marker">
+          <span class="spec-label">SPEC:022</span>
+          <span class="spec-coord">// automation map</span>
+        </div>
+        <h3 class="audit-section__title">Implementation Map</h3>
+        <p class="audit-section__subtitle">How each strained workflow could become a dependable AI-assisted one.</p>
+        <div id="workflowCards"></div>
+      </div>
+
+      <!-- S3: Cost -->
+      <div class="audit-section" id="costSection">
+        <div class="section-marker">
+          <span class="spec-label">SPEC:023</span>
+          <span class="spec-coord">// cost of inaction</span>
+        </div>
+        <h3 class="audit-section__title">Cost of Doing Nothing</h3>
+        <p class="audit-section__subtitle">What these broken workflows cost you every month.</p>
+        <div id="costStats"></div>
+        <div id="costBreakdown"></div>
+      </div>
+
+      <!-- S4: DIY Roadmap -->
+      <div class="audit-section" id="diySection">
+        <div class="section-marker">
+          <span class="spec-label">SPEC:024</span>
+          <span class="spec-coord">// diy roadmap</span>
+        </div>
+        <h3 class="audit-section__title">If you build it yourself</h3>
+        <p class="audit-section__subtitle">A realistic look at the DIY path, step by step.</p>
+        <div id="diyCards"></div>
+        <div id="diyTotals"></div>
+      </div>
+
+      <!-- S5: Comparison -->
+      <div class="audit-section" id="comparisonSection">
+        <div class="section-marker">
+          <span class="spec-label">SPEC:025</span>
+          <span class="spec-coord">// honest comparison</span>
+        </div>
+        <h3 class="audit-section__title">DIY vs. Milo</h3>
+        <p class="audit-section__subtitle">No spin — just the path from assessment to implementation.</p>
+        <div id="comparisonTable"></div>
+      </div>
+
+      <!-- S6: Soft CTA -->
+      <div class="soft-cta" id="softCta">
+        <h3>Want the real assessment?</h3>
+        <p>We will review your workflows with you, identify the best first implementation target, and tell you whether to proceed with the $500 assessment, move into implementation, or keep it in-house.</p>
+        <div class="soft-cta__actions">
+          <a class="cta-btn" id="ctaLink" href="/demo?offer=assessment">Book an assessment call</a>
+          <button class="cta-secondary" onclick="window.print()">Print this assessment</button>
+          <button class="cta-secondary" id="copyBtn" onclick="copyAudit()">Copy as text</button>
+          <span class="copy-feedback" id="copyFeedback">Copied!</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/audit">Audit</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+      <a href="https://pathoslabs.co">Pathos Labs</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
+  </div>
+</footer>
+
+<script>
+/* ===== STATE ===== */
+var state = { industry: null, size: null, revenue: null, pains: [], aiUsage: null };
+
+/* ===== DATA ===== */
+var industryDB = {
+  law:        { name: 'Law Firm',            avgHourlyRate: 150, avgCustomerValue: 5000 },
+  realestate: { name: 'Real Estate',         avgHourlyRate: 75,  avgCustomerValue: 8000 },
+  healthcare: { name: 'Healthcare / Dental',  avgHourlyRate: 85,  avgCustomerValue: 3000 },
+  trades:     { name: 'Home Services / HVAC', avgHourlyRate: 65,  avgCustomerValue: 2000 },
+  agency:     { name: 'Agency / Consulting',  avgHourlyRate: 100, avgCustomerValue: 5000 },
+  ecommerce:  { name: 'E-Commerce',           avgHourlyRate: 45,  avgCustomerValue: 150  },
+  finance:    { name: 'Accounting / Finance',  avgHourlyRate: 120, avgCustomerValue: 4000 },
+  other:      { name: 'Other',                avgHourlyRate: 75,  avgCustomerValue: 2500 }
+};
+
+var sizeDB = {
+  solo:   { label: 'Solo',      people: 1,  multiplier: 1 },
+  small:  { label: '2-5',       people: 3.5, multiplier: 1.5 },
+  medium: { label: '6-20',      people: 13,  multiplier: 2.5 },
+  large:  { label: '20+',       people: 30,  multiplier: 4 }
+};
+
+var revenueDB = {
+  'under250k': { label: 'Under $250K', midpoint: 125000  },
+  '250k-1m':   { label: '$250K-$1M',   midpoint: 625000  },
+  '1m-5m':     { label: '$1M-$5M',     midpoint: 3000000 },
+  '5m+':       { label: '$5M+',        midpoint: 7500000 }
+};
+
+var aiUsageDB = {
+  none:    { label: 'No AI',            diyMultiplier: 1.5, maturityScore: 0 },
+  dabbled: { label: 'Dabbled',          diyMultiplier: 1.2, maturityScore: 1 },
+  some:    { label: 'Some tools',       diyMultiplier: 0.9, maturityScore: 2 },
+  full:    { label: 'Full stack',       diyMultiplier: 0.6, maturityScore: 3 }
+};
+
+var workflowDB = {
+  leads: {
+    name: 'Lead Follow-Up',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2l-6 9h5l-1 7 6-9h-5l1-7z"/></svg>',
+    agentType: 'Lead Response Agent',
+    hoursPerWeek: { solo: 3, small: 6, medium: 10, large: 15 },
+    brokenFlow: [
+      { step: 'Lead fills out form', delay: '0 min' },
+      { step: 'Sits in inbox unread', delay: '2-6 hrs' },
+      { step: 'Someone remembers to check', delay: 'varies' },
+      { step: 'Manual email drafted and sent', delay: '30 min' },
+      { step: 'No follow-up tracking', delay: 'never' }
+    ],
+    automatedFlow: [
+      { step: 'Lead fills out form', delay: '0 min' },
+      { step: 'AI sends personalized response', delay: '60 sec' },
+      { step: 'Lead qualified and routed', delay: 'instant' },
+      { step: 'Follow-up sequence starts', delay: 'automatic' },
+      { step: 'CRM updated, team notified', delay: 'automatic' }
+    ],
+    diySteps: [
+      { tool: 'Zapier', instruction: 'Connect form submissions to email automation trigger', hours: 3 },
+      { tool: 'SendGrid', instruction: 'Build multi-step follow-up email sequences', hours: 4 },
+      { tool: 'Claude API', instruction: 'Generate personalized response templates', hours: 3 },
+      { tool: 'CRM', instruction: 'Set up lead scoring and pipeline tracking', hours: 3 }
+    ],
+    diyTools: ['Zapier', 'SendGrid', 'Claude API'],
+    diyMonthlyCost: 45
+  },
+  scheduling: {
+    name: 'Scheduling',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg>',
+    agentType: 'Calendar Agent',
+    hoursPerWeek: { solo: 2, small: 4, medium: 7, large: 12 },
+    brokenFlow: [
+      { step: 'Client requests meeting', delay: '0 min' },
+      { step: 'Check calendar manually', delay: '15 min' },
+      { step: 'Email available times back', delay: '30 min' },
+      { step: 'Wait for client to pick', delay: '1-2 days' },
+      { step: 'Send manual confirmation', delay: '15 min' }
+    ],
+    automatedFlow: [
+      { step: 'Client requests meeting', delay: '0 min' },
+      { step: 'AI checks all calendars', delay: 'instant' },
+      { step: 'Booking link sent', delay: '30 sec' },
+      { step: 'Client self-schedules', delay: 'instant' },
+      { step: 'Confirmation + reminders auto-sent', delay: 'automatic' }
+    ],
+    diySteps: [
+      { tool: 'Calendly', instruction: 'Set up booking pages with availability rules', hours: 2 },
+      { tool: 'Zapier', instruction: 'Connect calendar to CRM and notification systems', hours: 3 },
+      { tool: 'Twilio', instruction: 'Build SMS reminder sequences for appointments', hours: 3 }
+    ],
+    diyTools: ['Calendly', 'Zapier', 'Twilio'],
+    diyMonthlyCost: 40
+  },
+  support: {
+    name: 'Customer Support',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="10" rx="2"/><path d="M7 13v4l4-4"/></svg>',
+    agentType: 'Client Communication Agent',
+    hoursPerWeek: { solo: 3, small: 5, medium: 10, large: 18 },
+    brokenFlow: [
+      { step: 'Customer emails question', delay: '0 min' },
+      { step: 'Waits for someone to see it', delay: '4-8 hrs' },
+      { step: 'Staff looks up the answer', delay: '10 min' },
+      { step: 'Types out reply manually', delay: '15 min' },
+      { step: 'Same question asked again tomorrow', delay: 'repeat' }
+    ],
+    automatedFlow: [
+      { step: 'Customer asks question', delay: '0 min' },
+      { step: 'AI matches to knowledge base', delay: 'instant' },
+      { step: 'Personalized reply sent', delay: '30 sec' },
+      { step: 'Escalates only if needed', delay: 'automatic' },
+      { step: 'Learns from every interaction', delay: 'continuous' }
+    ],
+    diySteps: [
+      { tool: 'Intercom', instruction: 'Set up chat widget with knowledge base articles', hours: 4 },
+      { tool: 'Claude API', instruction: 'Train AI on your FAQs, policies, and tone', hours: 5 },
+      { tool: 'Zapier', instruction: 'Build escalation routing to team inboxes', hours: 2 }
+    ],
+    diyTools: ['Intercom', 'Claude API', 'Zapier'],
+    diyMonthlyCost: 60
+  },
+  outreach: {
+    name: 'Outreach & Prospecting',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3.5"/><circle cx="10" cy="10" r="1"/></svg>',
+    agentType: 'Outreach Agent',
+    hoursPerWeek: { solo: 4, small: 8, medium: 12, large: 20 },
+    brokenFlow: [
+      { step: 'Find prospect manually', delay: '20 min' },
+      { step: 'Research their business', delay: '15 min' },
+      { step: 'Write personalized message', delay: '20 min' },
+      { step: 'Send and hope for reply', delay: '5 min' },
+      { step: 'Forget to follow up', delay: 'never' }
+    ],
+    automatedFlow: [
+      { step: 'AI identifies prospects daily', delay: 'automatic' },
+      { step: 'Auto-researches each one', delay: 'instant' },
+      { step: 'Generates personalized message', delay: '10 sec' },
+      { step: 'Sends on optimal schedule', delay: 'automatic' },
+      { step: 'Tracks opens, replies, follow-ups', delay: 'automatic' }
+    ],
+    diySteps: [
+      { tool: 'Apollo.io', instruction: 'Set up prospect search filters and lists', hours: 2 },
+      { tool: 'Claude API', instruction: 'Build personalized message generation pipeline', hours: 4 },
+      { tool: 'Lemlist', instruction: 'Create multi-step outreach sequences', hours: 3 }
+    ],
+    diyTools: ['Apollo.io', 'Claude API', 'Lemlist'],
+    diyMonthlyCost: 95
+  },
+  data: {
+    name: 'Data Entry & Admin',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="10" height="15" rx="1"/><path d="M8 3V1h4v2"/></svg>',
+    agentType: 'Admin Agent',
+    hoursPerWeek: { solo: 3, small: 5, medium: 9, large: 15 },
+    brokenFlow: [
+      { step: 'Info arrives via email or form', delay: '0 min' },
+      { step: 'Open CRM, type it in', delay: '5 min' },
+      { step: 'Open spreadsheet, type again', delay: '5 min' },
+      { step: 'Update project management tool', delay: '5 min' },
+      { step: 'Hope nothing was missed', delay: 'ongoing' }
+    ],
+    automatedFlow: [
+      { step: 'Info arrives via any channel', delay: '0 min' },
+      { step: 'AI extracts structured data', delay: 'instant' },
+      { step: 'Updates all systems at once', delay: '5 sec' },
+      { step: 'Cross-checks for accuracy', delay: 'automatic' },
+      { step: 'Flags conflicts for review', delay: 'automatic' }
+    ],
+    diySteps: [
+      { tool: 'Zapier', instruction: 'Connect all input sources to central automation', hours: 4 },
+      { tool: 'Airtable', instruction: 'Build structured database as single source of truth', hours: 3 },
+      { tool: 'Claude API', instruction: 'Parse unstructured inputs into clean data', hours: 3 }
+    ],
+    diyTools: ['Zapier', 'Airtable', 'Claude API'],
+    diyMonthlyCost: 50
+  },
+  reporting: {
+    name: 'Reporting & Analytics',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17V11M8 17V7M12 17V9M16 17V4"/></svg>',
+    agentType: 'Reporting Agent',
+    hoursPerWeek: { solo: 2, small: 3, medium: 6, large: 10 },
+    brokenFlow: [
+      { step: 'Open 4 different tools', delay: '10 min' },
+      { step: 'Export CSVs and screenshots', delay: '15 min' },
+      { step: 'Paste into spreadsheet', delay: '20 min' },
+      { step: 'Build charts manually', delay: '30 min' },
+      { step: 'Email report to team', delay: '10 min' }
+    ],
+    automatedFlow: [
+      { step: 'AI pulls data from all sources', delay: 'automatic' },
+      { step: 'Report generated with charts', delay: 'instant' },
+      { step: 'Insights and trends highlighted', delay: 'automatic' },
+      { step: 'Delivered to inbox on schedule', delay: 'automatic' },
+      { step: 'Anomalies flagged immediately', delay: 'real-time' }
+    ],
+    diySteps: [
+      { tool: 'Zapier', instruction: 'Set up automated data pulls from each tool', hours: 3 },
+      { tool: 'Google Sheets', instruction: 'Build report templates with formulas and charts', hours: 4 },
+      { tool: 'Claude API', instruction: 'Generate narrative insights from raw numbers', hours: 3 }
+    ],
+    diyTools: ['Zapier', 'Google Sheets', 'Claude API'],
+    diyMonthlyCost: 30
+  },
+  content: {
+    name: 'Content & Social Media',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 3.5l3 3L7 16H4v-3z"/></svg>',
+    agentType: 'Content Agent',
+    hoursPerWeek: { solo: 4, small: 6, medium: 8, large: 12 },
+    brokenFlow: [
+      { step: 'Think of a topic', delay: '1 hr' },
+      { step: 'Write draft from scratch', delay: '2 hrs' },
+      { step: 'Find or create images', delay: '30 min' },
+      { step: 'Post to each platform manually', delay: '30 min' },
+      { step: 'Forget for 2 weeks', delay: 'weeks' }
+    ],
+    automatedFlow: [
+      { step: 'AI drafts posts from your content', delay: 'automatic' },
+      { step: 'Adapts tone per platform', delay: 'instant' },
+      { step: 'Schedules consistently', delay: 'automatic' },
+      { step: 'Suggests topics from trends', delay: 'weekly' },
+      { step: 'You just review and approve', delay: '5 min' }
+    ],
+    diySteps: [
+      { tool: 'Claude API', instruction: 'Build content generation pipeline with your voice', hours: 4 },
+      { tool: 'Buffer', instruction: 'Set up social scheduling across platforms', hours: 2 },
+      { tool: 'Canva', instruction: 'Create image templates for consistent branding', hours: 3 }
+    ],
+    diyTools: ['Claude API', 'Buffer', 'Canva'],
+    diyMonthlyCost: 43
+  },
+  invoicing: {
+    name: 'Invoicing & Collections',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="12" height="16" rx="1"/><path d="M8 7h4M8 10h4M8 13h2"/></svg>',
+    agentType: 'Billing Agent',
+    hoursPerWeek: { solo: 2, small: 3, medium: 5, large: 8 },
+    brokenFlow: [
+      { step: 'Project or service completed', delay: '0 min' },
+      { step: 'Remember to create invoice', delay: '1-5 days' },
+      { step: 'Build invoice manually', delay: '15 min' },
+      { step: 'Send to client', delay: '5 min' },
+      { step: 'Chase payment manually', delay: 'weeks' }
+    ],
+    automatedFlow: [
+      { step: 'Work marked complete', delay: '0 min' },
+      { step: 'Invoice auto-generated', delay: 'instant' },
+      { step: 'Sent to client immediately', delay: 'automatic' },
+      { step: 'Payment reminders on schedule', delay: 'automatic' },
+      { step: 'Status tracked in dashboard', delay: 'real-time' }
+    ],
+    diySteps: [
+      { tool: 'Stripe', instruction: 'Set up automated invoicing with payment links', hours: 3 },
+      { tool: 'Zapier', instruction: 'Connect project completion triggers to invoice generation', hours: 3 },
+      { tool: 'SendGrid', instruction: 'Build polite payment reminder email sequences', hours: 2 }
+    ],
+    diyTools: ['Stripe', 'Zapier', 'SendGrid'],
+    diyMonthlyCost: 60
+  }
+};
+
+/* ===== WIZARD LOGIC ===== */
+
+function selectOption(gridId, el, stateKey) {
+  document.querySelectorAll('#' + gridId + ' .option').forEach(function(o) {
+    o.classList.remove('selected');
+    o.setAttribute('aria-checked', 'false');
+  });
+  el.classList.add('selected');
+  el.setAttribute('aria-checked', 'true');
+  state[stateKey] = el.dataset.value;
+}
+
+// Step 1: Industry — auto-advance
+document.querySelectorAll('#industryGrid .option').forEach(function(el) {
+  el.addEventListener('click', function() {
+    selectOption('industryGrid', el, 'industry');
+    setTimeout(function() { goStep(2); }, 300);
+  });
+});
+
+// Step 2: Team size
+document.querySelectorAll('#sizeGrid .option').forEach(function(el) {
+  el.addEventListener('click', function() {
+    selectOption('sizeGrid', el, 'size');
+    checkStep2();
+  });
+});
+
+// Step 2: Revenue
+document.querySelectorAll('#revenueGrid .option').forEach(function(el) {
+  el.addEventListener('click', function() {
+    selectOption('revenueGrid', el, 'revenue');
+    checkStep2();
+  });
+});
+
+function checkStep2() {
+  document.getElementById('step2Btn').disabled = !(state.size && state.revenue);
+}
+
+// Step 3: Pain points
+document.querySelectorAll('#painGrid .checkbox-option').forEach(function(el) {
+  el.addEventListener('click', function() {
+    el.classList.toggle('selected');
+    var isSelected = el.classList.contains('selected');
+    el.setAttribute('aria-checked', String(isSelected));
+    var v = el.dataset.value;
+    if (state.pains.indexOf(v) > -1) {
+      state.pains = state.pains.filter(function(p) { return p !== v; });
+    } else {
+      state.pains.push(v);
+    }
+    document.getElementById('auditBtn').disabled = state.pains.length === 0;
+  });
+});
+
+// Step 4: AI maturity — auto-advance to results
+document.querySelectorAll('#aiGrid .option').forEach(function(el) {
+  el.addEventListener('click', function() {
+    selectOption('aiGrid', el, 'aiUsage');
+    setTimeout(function() { showResults(); }, 300);
+  });
+});
+
+function goStep(n) {
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('step' + n).classList.add('active');
+  document.querySelector('.wizard__steps').setAttribute('aria-valuenow', n);
+  for (var i = 1; i <= 4; i++) {
+    var dot = document.getElementById('dot' + i);
+    dot.className = 'wizard__step';
+    if (i < n) dot.classList.add('wizard__step--done');
+    if (i === n) dot.classList.add('wizard__step--active');
+  }
+  window.scrollTo({ top: document.querySelector('.wizard').offsetTop - 80, behavior: 'smooth' });
+}
+
+/* ===== RESULTS ===== */
+
+function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+
+function showResults() {
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.wizard__step').forEach(function(d) { d.className = 'wizard__step wizard__step--done'; });
+
+  var ind = industryDB[state.industry];
+  var sz = sizeDB[state.size];
+  var rev = revenueDB[state.revenue];
+  var ai = aiUsageDB[state.aiUsage];
+  var painCount = state.pains.length;
+  var hourlyRate = ind.avgHourlyRate;
+
+  // Title
+  document.getElementById('resultTitle').textContent = 'Your AI Systems Assessment';
+  document.getElementById('resultSubtitle').textContent =
+    'Assessment preview for a ' + sz.label + '-person ' + ind.name.toLowerCase() +
+    ' at ' + rev.label + ' revenue.';
+
+  // === S1: Grade ===
+  var maturityScore = ai.maturityScore;
+  var painInverted = (8 - painCount) / 7 * 5;
+  var maturityNorm = maturityScore / 3 * 5;
+  var rawScore = maturityNorm + painInverted;
+  var grade, gradeLabel, gradeDesc;
+  if (rawScore >= 8) { grade = 'A'; gradeLabel = 'Strong AI Readiness'; gradeDesc = 'Your business is well-positioned for AI. Focused pain points and existing tool experience mean fast, high-impact automation.'; }
+  else if (rawScore >= 6) { grade = 'B'; gradeLabel = 'Good Foundation'; gradeDesc = 'You have some AI experience and clear areas to target. Automation will deliver fast ROI with the right implementation.'; }
+  else if (rawScore >= 4) { grade = 'C'; gradeLabel = 'Typical — Significant Opportunity'; gradeDesc = 'Multiple manual workflows are costing you. This is where most small businesses sit — and where automation makes the biggest difference.'; }
+  else if (rawScore >= 2) { grade = 'D'; gradeLabel = 'Significant Automation Debt'; gradeDesc = 'Many workflows are manual, and limited AI experience means the gap is widening. The cost of inaction compounds every month.'; }
+  else { grade = 'F'; gradeLabel = 'Critical Need'; gradeDesc = 'Nearly every workflow is manual. Every week of delay compounds the cost. The good news: the ROI from automating is enormous.'; }
+
+  document.getElementById('gradeSection').innerHTML =
+    '<div class="grade-box">' +
+      '<div class="grade-letter grade-' + grade + '">' + grade + '</div>' +
+      '<div class="grade-label">' + gradeLabel + '</div>' +
+      '<p class="grade-desc">' + gradeDesc + '</p>' +
+      '<div class="grade-inputs">' +
+        '<span class="grade-input"><strong>' + ind.name + '</strong></span>' +
+        '<span class="grade-input"><strong>' + sz.label + ' people</strong></span>' +
+        '<span class="grade-input"><strong>' + painCount + ' pain points</strong></span>' +
+        '<span class="grade-input"><strong>' + ai.label + '</strong> AI usage</span>' +
+      '</div>' +
+    '</div>';
+
+  // === S2: Automation Map ===
+  var workflowHTML = '';
+  var totalHoursWeek = 0;
+  state.pains.forEach(function(p) {
+    var w = workflowDB[p];
+    var hrs = w.hoursPerWeek[state.size];
+    totalHoursWeek += hrs;
+
+    var brokenSteps = w.brokenFlow.map(function(s) {
+      return '<div class="flow-step flow-step--broken">' +
+        '<div class="flow-step__label">' + s.step + '</div>' +
+        '<div class="flow-step__delay delay--bad">' + s.delay + '</div>' +
+      '</div>';
+    }).join('');
+
+    var autoSteps = w.automatedFlow.map(function(s) {
+      return '<div class="flow-step flow-step--auto">' +
+        '<div class="flow-step__label">' + s.step + '</div>' +
+        '<div class="flow-step__delay delay--good">' + s.delay + '</div>' +
+      '</div>';
+    }).join('');
+
+    workflowHTML +=
+      '<div class="workflow-card">' +
+        '<div class="workflow-card__header">' +
+          '<div class="workflow-card__name">' + w.icon + ' ' + w.name + '</div>' +
+          '<div class="workflow-card__saves">saves ~' + hrs + ' hrs/week</div>' +
+        '</div>' +
+        '<div class="workflow-flows">' +
+          '<div class="flow-col">' +
+            '<div class="flow-col__title flow-col__title--broken">Today (broken)</div>' +
+            brokenSteps +
+          '</div>' +
+          '<div class="flow-col">' +
+            '<div class="flow-col__title flow-col__title--auto">With AI (automated)</div>' +
+            autoSteps +
+          '</div>' +
+        '</div>' +
+      '</div>';
+  });
+  document.getElementById('workflowCards').innerHTML = workflowHTML;
+
+  // === S3: Cost of Doing Nothing ===
+  var monthlyCost = totalHoursWeek * hourlyRate * 4.33;
+  var annualCost = monthlyCost * 12;
+
+  document.getElementById('costStats').innerHTML =
+    '<div class="cost-stats">' +
+      '<div class="cost-stat">' +
+        '<div class="cost-stat__number" id="monthlyCostNum">' + fmt(monthlyCost) + '</div>' +
+        '<div class="cost-stat__label">Monthly cost</div>' +
+      '</div>' +
+      '<div class="cost-stat">' +
+        '<div class="cost-stat__number" id="annualCostNum">' + fmt(annualCost) + '</div>' +
+        '<div class="cost-stat__label">Annual cost</div>' +
+      '</div>' +
+      '<div class="cost-stat">' +
+        '<div class="cost-stat__number" id="hoursWastedNum">' + totalHoursWeek + ' hrs</div>' +
+        '<div class="cost-stat__label">Wasted per week</div>' +
+      '</div>' +
+    '</div>';
+
+  var breakdownRows = '';
+  state.pains.forEach(function(p) {
+    var w = workflowDB[p];
+    var hrs = w.hoursPerWeek[state.size];
+    var cost = hrs * hourlyRate * 4.33;
+    breakdownRows +=
+      '<div class="results-panel__row">' +
+        '<span class="results-panel__key">' + w.name + ' (' + hrs + ' hrs/week)</span>' +
+        '<span class="results-panel__val">' + fmt(cost) + '/mo</span>' +
+      '</div>';
+  });
+  breakdownRows +=
+    '<div class="results-panel__row breakdown-row--total">' +
+      '<span class="results-panel__key">Total</span>' +
+      '<span class="results-panel__val">' + fmt(monthlyCost) + '/mo</span>' +
+    '</div>';
+
+  document.getElementById('costBreakdown').innerHTML =
+    '<div class="results-panel"><h3 class="breakdown-title">Breakdown by workflow</h3>' + breakdownRows + '</div>';
+
+  // === S4: DIY Roadmap ===
+  var diyHTML = '';
+  var totalDiyHours = 0;
+  var totalDiyMonthlyCost = 0;
+  var allTools = {};
+
+  state.pains.forEach(function(p) {
+    var w = workflowDB[p];
+    var adjustedHours = 0;
+
+    var stepsHTML = w.diySteps.map(function(s, i) {
+      var h = Math.round(s.hours * ai.diyMultiplier);
+      adjustedHours += h;
+      return '<div class="diy-step">' +
+        '<div class="diy-step__num">' + (i + 1) + '.</div>' +
+        '<div class="diy-step__text"><span class="tool-badge">' + s.tool + '</span> ' + s.instruction + ' <span style="color:var(--text-3);font-size:var(--text-xs);">~' + h + ' hrs</span></div>' +
+      '</div>';
+    }).join('');
+
+    totalDiyHours += adjustedHours;
+    totalDiyMonthlyCost += w.diyMonthlyCost;
+
+    w.diyTools.forEach(function(t) { allTools[t] = true; });
+
+    diyHTML +=
+      '<div class="diy-card">' +
+        '<div class="diy-card__header">' +
+          '<div class="diy-card__name">' + w.name + '</div>' +
+          '<div class="diy-card__hours">~' + adjustedHours + ' hrs build · ' + fmt(w.diyMonthlyCost) + '/mo tools</div>' +
+        '</div>' +
+        stepsHTML +
+      '</div>';
+  });
+
+  document.getElementById('diyCards').innerHTML = diyHTML;
+
+  var uniqueToolCount = Object.keys(allTools).length;
+  document.getElementById('diyTotals').innerHTML =
+    '<div class="diy-totals">' +
+      '<div class="diy-totals__title">DIY Totals</div>' +
+      '<div class="results-panel__row"><span class="results-panel__key">Total build time</span><span class="results-panel__val">~' + totalDiyHours + ' hours</span></div>' +
+      '<div class="results-panel__row"><span class="results-panel__key">Monthly tool costs</span><span class="results-panel__val">~' + fmt(totalDiyMonthlyCost) + '/mo</span></div>' +
+      '<div class="results-panel__row"><span class="results-panel__key">Tools to manage</span><span class="results-panel__val">' + uniqueToolCount + ' platforms</span></div>' +
+      '<div class="results-panel__row"><span class="results-panel__key">Ongoing maintenance</span><span class="results-panel__val">You (when things break)</span></div>' +
+    '</div>';
+
+  // === S5: Comparison Table ===
+  var miloSetupLabel = '$500 assessment → implementation scoped after review';
+
+  document.getElementById('comparisonTable').innerHTML =
+    '<table class="comparison-table">' +
+      '<thead><tr>' +
+        '<th></th>' +
+        '<th>DIY</th>' +
+        '<th>Milo</th>' +
+      '</tr></thead>' +
+      '<tbody>' +
+        '<tr><td>Build time</td><td>~' + totalDiyHours + ' hours</td><td class="milo-col">Assessment first, then implementation in days or a scoped sprint</td></tr>' +
+        '<tr><td>Starting cost</td><td>$0 (your time)</td><td class="milo-col">' + miloSetupLabel + '</td></tr>' +
+        '<tr><td>Monthly cost</td><td>~' + fmt(totalDiyMonthlyCost) + '/mo</td><td class="milo-col">~$30-50/mo (hosting + AI)</td></tr>' +
+        '<tr><td>Maintenance</td><td>You fix what breaks</td><td class="milo-col">You own the system after handoff</td></tr>' +
+        '<tr><td>Expertise needed</td><td>APIs, Zapier, prompt engineering</td><td class="milo-col">Operator context, not tool obsession</td></tr>' +
+        '<tr><td>Time to first result</td><td>Weeks to months</td><td class="milo-col">Assessment call first, then a clear build path</td></tr>' +
+      '</tbody>' +
+    '</table>';
+
+  // === S6: CTA link ===
+  var demoUrl = '/demo?offer=assessment&ref=audit&industry=' + encodeURIComponent(state.industry) +
+    '&pains=' + encodeURIComponent(state.pains.join(','));
+  document.getElementById('ctaLink').href = demoUrl;
+
+  // Show results
+  document.getElementById('resultSection').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Count-up animations
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    animateCountUp('monthlyCostNum', monthlyCost, '$');
+    animateCountUp('annualCostNum', annualCost, '$');
+    animateCountUp('hoursWastedNum', totalHoursWeek, '', ' hrs');
+  }
+}
+
+function animateCountUp(id, target, prefix, suffix) {
+  prefix = prefix || '';
+  suffix = suffix || '';
+  var el = document.getElementById(id);
+  if (!el) return;
+  var duration = 600;
+  var startTime = null;
+  function tick(ts) {
+    if (!startTime) startTime = ts;
+    var progress = Math.min((ts - startTime) / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    var val = Math.round(target * eased);
+    if (prefix === '$') {
+      el.textContent = '$' + val.toLocaleString() + suffix;
+    } else {
+      el.textContent = prefix + val.toLocaleString() + suffix;
+    }
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ===== COPY TO CLIPBOARD ===== */
+
+function copyAudit() {
+  var ind = industryDB[state.industry];
+  var sz = sizeDB[state.size];
+  var rev = revenueDB[state.revenue];
+  var ai = aiUsageDB[state.aiUsage];
+  var hourlyRate = ind.avgHourlyRate;
+  var totalHours = 0;
+  state.pains.forEach(function(p) { totalHours += workflowDB[p].hoursPerWeek[state.size]; });
+  var monthlyCost = totalHours * hourlyRate * 4.33;
+
+  var lines = [
+    'AI SYSTEMS ASSESSMENT PREVIEW — getmilo.dev/audit',
+    '==========================================',
+    '',
+    'Business: ' + ind.name + ' | ' + sz.label + ' people | ' + rev.label + ' revenue',
+    'AI maturity: ' + ai.label,
+    'Pain points: ' + state.pains.length,
+    '',
+    'COST OF DOING NOTHING',
+    '---------------------',
+    'Monthly: ' + fmt(monthlyCost),
+    'Annual: ' + fmt(monthlyCost * 12),
+    'Hours wasted/week: ' + totalHours,
+    ''
+  ];
+
+  lines.push('WORKFLOW BREAKDOWN');
+  lines.push('------------------');
+  state.pains.forEach(function(p) {
+    var w = workflowDB[p];
+    var hrs = w.hoursPerWeek[state.size];
+    lines.push('- ' + w.name + ': ' + hrs + ' hrs/week (' + fmt(hrs * hourlyRate * 4.33) + '/mo)');
+  });
+  lines.push('');
+
+  lines.push('DIY ROADMAP');
+  lines.push('-----------');
+  state.pains.forEach(function(p) {
+    var w = workflowDB[p];
+    lines.push(w.name + ':');
+    w.diySteps.forEach(function(s, i) {
+      var h = Math.round(s.hours * ai.diyMultiplier);
+      lines.push('  ' + (i + 1) + '. [' + s.tool + '] ' + s.instruction + ' (~' + h + ' hrs)');
+    });
+    lines.push('  Tools: ~' + fmt(w.diyMonthlyCost) + '/mo');
+    lines.push('');
+  });
+
+  lines.push('Want the real assessment? getmilo.dev/demo?offer=assessment');
+
+  navigator.clipboard.writeText(lines.join('\n')).then(function() {
+    var fb = document.getElementById('copyFeedback');
+    fb.classList.add('show');
+    setTimeout(function() { fb.classList.remove('show'); }, 2000);
+  });
+}
+
+/* ===== SCROLL REVEAL ===== */
+
+var reveals = document.querySelectorAll('.reveal');
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(function(el) { observer.observe(el); });
+
+/* ===== MOBILE MENU ===== */
+
+var toggle = document.querySelector('.nav__toggle');
+var menu = document.getElementById('mobile-menu');
+toggle.addEventListener('click', function() {
+  var open = toggle.getAttribute('aria-expanded') === 'true';
+  toggle.setAttribute('aria-expanded', !open);
+  menu.classList.toggle('open');
+  document.body.style.overflow = open ? '' : 'hidden';
+});
+menu.querySelectorAll('a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    toggle.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+document.addEventListener('keydown', function(e) {
+  if (!menu.classList.contains('open')) return;
+  if (e.key === 'Escape') {
+    toggle.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+    toggle.focus();
+    return;
+  }
+  if (e.key === 'Tab') {
+    var focusable = [toggle].concat(Array.prototype.slice.call(menu.querySelectorAll('a')));
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+});
+
+/* ===== KEYBOARD SUPPORT ===== */
+
+document.querySelectorAll('.option, .checkbox-option').forEach(function(el) {
+  el.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+</script>
+
+</body>
+</html>

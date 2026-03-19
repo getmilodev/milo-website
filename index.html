@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
+  <title>Milo — Stop dabbling with AI. Start getting ahead with it.</title>
+  <meta name="description" content="Everyone around you is shipping faster with AI. Milo helps founders and executives close the gap — real output, sharper decisions, lasting leverage.">
+  <meta property="og:title" content="Milo — Stop dabbling with AI. Start getting ahead with it.">
+  <meta property="og:description" content="Everyone around you is shipping faster with AI. Milo helps founders and executives close the gap — real output, sharper decisions, lasting leverage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="milo-design-system.css">
+  <script src="/milo-analytics.js" defer></script>
+  <link rel="canonical" href="https://getmilo.dev/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Milo",
+    "url": "https://getmilo.dev",
+    "description": "Milo builds AI-native operating systems for operators, agencies, and professional-service firms. We turn scattered AI usage into dependable workflows you own.",
+    "priceRange": "$2,500+",
+    "areaServed": "US",
+    "serviceType": ["AI Native Setup", "AI Workflow Implementation", "Business Automation"],
+    "offers": [
+      { "@type": "Offer", "name": "AI Native Setup", "price": "2500", "priceCurrency": "USD", "description": "Custom AI workspace and working session for operators and service firms." },
+      { "@type": "Offer", "name": "Multi-Workflow Buildout", "priceRange": "$5,000-$15,000", "priceCurrency": "USD", "description": "Expanded implementation across proposals, reporting, follow-up, and internal research." }
+    ],
+    "sameAs": ["https://x.com/getmilo_dev", "https://github.com/getmilodev"]
+  }
+  </script>
+  <style>
+    /* Page-specific overrides */
+    .hero {
+      padding: clamp(120px, 14vh, 180px) 0 var(--sp-16);
+    }
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: var(--sp-10);
+      align-items: start;
+    }
+    .hero__main { padding-top: var(--sp-2); }
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 400;
+      color: var(--text-1);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: var(--sp-6);
+    }
+    .hero__body {
+      font-size: var(--text-lg);
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 480px;
+      margin-bottom: var(--sp-8);
+    }
+    .hero__actions {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      margin-bottom: var(--sp-16);
+    }
+    .hero__phases {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      line-height: 2.4;
+      border-top: 1px solid var(--border);
+      padding-top: var(--sp-4);
+    }
+    .hero__phases .num { color: var(--gold-text); display: inline-block; width: 32px; }
+    .hero__phases .name { color: var(--text-1); font-family: var(--font-body); font-weight: 500; }
+    .hero__phases .note { color: var(--text-3); }
+    .hero__sidebar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: var(--sp-6);
+      margin-top: 50px;
+    }
+    .hero__sidebar-title {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: var(--sp-4);
+    }
+    .hero__sidebar-row {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      line-height: 2.2;
+      color: var(--text-3);
+    }
+    .hero__sidebar-row .key { display: inline-block; min-width: 80px; }
+    .hero__sidebar-row .val { color: var(--text-1); font-weight: 500; }
+    .hero__sidebar-divider { height: 1px; background: var(--border); margin: var(--sp-3) 0; }
+    .config-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: var(--sp-8);
+      align-items: start;
+    }
+    .config-aside__image {
+      border-radius: 8px;
+      overflow: hidden;
+      height: clamp(200px, 26vh, 320px);
+    }
+    .config-aside__image img { width: 100%; height: 100%; object-fit: cover; }
+    .config-aside__caption {
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      font-style: italic;
+      max-width: 280px;
+    }
+    .config-aside__fig {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-3);
+      opacity: 0.6;
+      margin-bottom: var(--sp-1);
+    }
+    @media (max-width: 900px) {
+      .hero__grid { grid-template-columns: 1fr; }
+      .hero__sidebar { margin-top: var(--sp-8); }
+    }
+    @media (max-width: 768px) {
+      .config-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-page-type="homepage">
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link">Services</a>
+      <a href="/audit" class="nav__link">Audit</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/agents">Services</a>
+  <a href="/audit">Audit</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
+</div>
+
+<main id="main">
+
+<!-- HERO — SPEC:001 -->
+<section class="hero">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:001</span>
+      <span class="spec-coord">// ai-native operations</span>
+    </div>
+    <div class="hero__grid">
+      <div class="hero__main">
+        <h1 class="hero__title reveal">Stop dabbling with AI. <span class="accent">Start getting ahead with it.</span></h1>
+        <p class="hero__body reveal" data-delay="1">Everyone around you is shipping faster with AI. You&rsquo;re still copying things into ChatGPT. Milo closes that gap&mdash;real output, sharper decisions, lasting leverage.</p>
+        <div class="hero__actions reveal" data-delay="2">
+          <a href="/demo?offer=assessment" class="btn btn--dark" data-track="assessment_cta" data-track-location="hero_primary">Book an assessment call</a>
+          <a href="/ainative" class="btn btn--outline" data-track="ainative_cta" data-track-location="hero_secondary">See AI Native Setup</a>
+        </div>
+        <div class="hero__phases reveal" data-delay="3">
+          <div><span class="num">I.</span> <span class="name">AI Systems Assessment</span> <span class="note">— find where AI can create real leverage first</span></div>
+          <div><span class="num">II.</span> <span class="name">AI Native Setup</span> <span class="note">— turn that opportunity into something practical and usable</span></div>
+          <div><span class="num">III.</span> <span class="name">Working session</span> <span class="note">— learn how to use it in your actual work</span></div>
+          <div><span class="num">IV.</span> <span class="name">Expansion</span> <span class="note">— extend the advantage once the first win is real</span></div>
+        </div>
+      </div>
+      <div class="hero__sidebar reveal" data-delay="3">
+        <div class="hero__sidebar-title">Quick specs</div>
+        <div class="hero__sidebar-row"><span class="key">for</span> <span class="val">founders + executives</span></div>
+        <div class="hero__sidebar-row"><span class="key">start</span> <span class="val">$500 assessment</span></div>
+        <div class="hero__sidebar-row"><span class="key">setup</span> <span class="val">from $2,500</span></div>
+        <div class="hero__sidebar-row"><span class="key">lock-in</span> <span class="val">none — you own everything</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES — SPEC:002 -->
+<section style="padding: 0 0 var(--sp-24);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:002</span>
+      <span class="spec-coord">// services</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">You do not need another AI lecture. You need a better way to get ahead.</h2>
+      </div>
+      <div class="editorial__body">
+        <p><strong style="color: var(--text-1);">AI Systems Assessment</strong> — A paid $500 assessment to figure out where AI could create the most leverage for you first: better decisions, faster output, stronger follow-through, or a cleaner revenue path.</p>
+        <p><strong style="color: var(--text-1);">AI Native Setup</strong> — Once the opportunity is clear, we help set up a practical AI advantage around the way you actually work. From $2,500.</p>
+        <p><strong style="color: var(--text-1);">Expansion</strong> — Once the first gain is real, we extend it into the rest of the business or operating rhythm.</p>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+    <ul class="stacked-list reveal" data-delay="2">
+      <li class="stacked-item">
+        <div class="stacked-item__num">01</div>
+        <div>
+          <div class="stacked-item__title">Stop guessing where AI could help</div>
+          <div class="stacked-item__body">The assessment shows where AI can actually create leverage for you first instead of leaving you stuck with vague ideas and browser-tab experiments.</div>
+        </div>
+      </li>
+      <li class="stacked-item">
+        <div class="stacked-item__num">02</div>
+        <div>
+          <div class="stacked-item__title">Turn AI into something that changes your output</div>
+          <div class="stacked-item__body">Writing gets faster. Research gets lighter. Context comes together quicker. Decisions stop requiring so much friction and blank-page energy.</div>
+        </div>
+      </li>
+      <li class="stacked-item">
+        <div class="stacked-item__num">03</div>
+        <div>
+          <div class="stacked-item__title">Get capability, not dependency</div>
+          <div class="stacked-item__body">The goal is not to trap you in another vendor relationship. It is to help you become someone who can actually use AI well in the real world.</div>
+        </div>
+      </li>
+      <li class="stacked-item">
+        <div class="stacked-item__num">04</div>
+        <div>
+          <div class="stacked-item__title">Get a real first win, then expand from strength</div>
+          <div class="stacked-item__body">We start where the payoff is easiest to feel. Once you can see the gain in your own work, we extend it deliberately from there.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<blockquote class="pull-quote">
+  <div class="wrap">
+    <div class="pull-quote__inner reveal">
+      <p class="pull-quote__text">Most people never get past a ChatGPT tab. The real gain starts when AI changes how you think, write, decide, and move.</p>
+    </div>
+  </div>
+</blockquote>
+
+<!-- TERMINAL — SPEC:003 -->
+<section class="section--sm" style="padding: 0 0 var(--sp-24);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:003</span>
+      <span class="spec-coord">// what the assessment finds</span>
+    </div>
+    <div class="terminal reveal" data-delay="1">
+      <div class="terminal__bar">
+        <span class="terminal__dot"></span>
+        <span class="terminal__dot"></span>
+        <span class="terminal__dot"></span>
+        <span class="terminal__title">milo — audit</span>
+      </div>
+      <div class="terminal__body"><span class="t-prompt">$</span> <span class="t-cmd">milo diagnose --firm ./ops</span>
+
+<span class="t-muted">Scanning where AI could create leverage across actual founder and executive work...</span>
+
+  <span class="t-accent">Writing</span>      <span class="t-bar">██████████</span><span class="t-bar-empty">░░░░</span>  <span class="t-num">5</span> delays     │  <span class="t-success">first drafts in minutes</span>
+  <span class="t-accent">Planning</span>     <span class="t-bar">████████</span><span class="t-bar-empty">░░░░░░</span>  <span class="t-num">3</span> bottlenecks │  <span class="t-success">clearer next moves</span>
+  <span class="t-accent">Decisions</span>    <span class="t-bar">███████</span><span class="t-bar-empty">░░░░░░░</span>  <span class="t-num">2</span> slow loops │  <span class="t-success">context faster</span>
+  <span class="t-accent">Research</span>     <span class="t-bar">██████</span><span class="t-bar-empty">░░░░░░░░</span>  <span class="t-num">2</span> repeats    │  <span class="t-success">better briefs in minutes</span>
+
+<span class="t-num">4</span> leverage points prioritized. Recommended: <span class="t-accent">AI Native Setup</span>.
+
+<span class="t-prompt">$</span> <span class="t-cmd">milo install --workspace callias-ops</span>
+<span class="t-success">✓</span> role-specific prompts loaded  <span class="t-muted">[1.9s]</span>
+<span class="t-success">✓</span> firm knowledge indexed        <span class="t-muted">[2.3s]</span>
+<span class="t-success">✓</span> reporting / follow-up flows live <span class="t-muted">[2.0s]</span>
+
+Workspace <span class="t-accent">"founder-hq"</span> ready for live working session.
+
+<span class="t-prompt">$</span> <span class="terminal__cursor"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT CONFIG — SPEC:004 -->
+<section style="padding: 0 0 var(--sp-20);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:004</span>
+      <span class="spec-coord">// what gets built</span>
+    </div>
+    <div class="config-grid">
+      <div class="config-block reveal" data-delay="1">
+        <div class="config-block__bar">
+          <span class="config-block__dot"></span>
+          <span class="config-block__dot"></span>
+          <span class="config-block__dot"></span>
+          <span class="config-block__title">operator-workspace.yaml</span>
+        </div>
+        <div class="config-block__body"><span class="c-comment"># AI Native setup — configured around real recurring work</span>
+
+<span class="c-key">workspace</span>: <span class="c-str">operator-hq</span>
+<span class="c-key">status</span>: <span class="c-str">active</span>
+<span class="c-key">owner</span>: <span class="c-str">client operator</span>
+
+<span class="c-key">workflows</span>:
+  <span class="c-key">proposal_builder</span>:
+    <span class="c-key">inputs</span>: [<span class="c-str">past scopes</span>, <span class="c-str">pricing rules</span>, <span class="c-str">client notes</span>]
+    <span class="c-key">output</span>: <span class="c-arrow">→ first draft in minutes</span>
+
+  <span class="c-key">client_reporting</span>:
+    <span class="c-key">inputs</span>: [<span class="c-str">source metrics</span>, <span class="c-str">account context</span>]
+    <span class="c-key">output</span>: <span class="c-arrow">→ ready-to-send update</span>
+
+  <span class="c-key">followup_engine</span>:
+    <span class="c-key">inputs</span>: [<span class="c-str">meeting notes</span>, <span class="c-str">open loops</span>]
+    <span class="c-key">output</span>: <span class="c-arrow">→ next-step drafts</span>
+
+  <span class="c-key">research_brief</span>:
+    <span class="c-key">inputs</span>: [<span class="c-str">internal docs</span>, <span class="c-str">market context</span>]
+    <span class="c-key">output</span>: <span class="c-arrow">→ operator-ready memo</span></div>
+      </div>
+      <div class="config-aside reveal" data-delay="2" style="display: flex; flex-direction: column; gap: var(--sp-6);">
+        <div class="config-aside__fig">FIG.01</div>
+        <div class="config-aside__image">
+          <img src="/mockups/d2-hands.png" alt="Milo AI Native blueprint showing assessment, setup, and expansion as a structured operating system" loading="lazy" width="640" height="360">
+        </div>
+        <p class="config-aside__caption">Assessment, setup, expansion — the point is to turn AI into a structured edge you can actually use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIBILITY — SPEC:005 -->
+<section style="padding: 0 0 var(--sp-24);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:005</span>
+      <span class="spec-coord">// why milo</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">The problem is not that you missed AI. The problem is that nobody showed you how to use it properly.</h2>
+      </div>
+      <div class="editorial__body editorial__body--columns">
+        <p>You can feel that AI matters. That is the frustrating part. You know there is leverage here, but the jump from "I have tried ChatGPT" to "I know how to use this to get ahead" is bigger than people admit.</p>
+        <p>Milo exists for that gap. We help founders and executives turn AI from a vague curiosity into something practical, useful, and profitable in the way they actually work.</p>
+        <p>Then we make sure it is real enough to stick, not just impressive enough to demo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST — SPEC:005A -->
+<section style="padding: 0 0 var(--sp-24);">
+  <div class="wrap wrap--narrow">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:005A</span>
+      <span class="spec-coord">// trust layer</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">Why buyers trust Milo with the first move</h2>
+      </div>
+      <div class="editorial__body">
+        <p>You work directly with Callias. This is operator-led, not content-led. We are not selling a course, a prompt pack, or vague AI coaching. We start with a paid assessment because the point is to tell you the truth about where AI can help first.</p>
+        <p>If the leverage is real, we move into AI Native Setup. If it is not, we say so. The goal is not to trap you in another monthly dependency. The goal is to help you get a real edge you can actually use — and keep using after the engagement.</p>
+        <p><strong style="color: var(--text-1);">What buyers are actually buying:</strong> direct operator judgment, a clear first move, practical setup around real work, and a system they own after delivery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — SPEC:006 -->
+<section class="cta-section">
+  <div class="section-marker section-marker--cta reveal">
+    <span class="spec-label spec-label--on-dark">SPEC:006</span>
+    <span class="spec-coord spec-coord--on-dark">// engagement</span>
+  </div>
+  <div class="cta__inner">
+    <div>
+      <h2 class="cta__title reveal">Feel like everyone else got the AI memo before you did?</h2>
+      <p class="cta__body reveal" data-delay="1">Start with the AI Systems Assessment. We will show you where the real leverage is, then help you turn it into something you can actually use.</p>
+      <div class="reveal" data-delay="2">
+        <a href="/demo?offer=assessment" class="btn btn--gold-on-dark" data-track="assessment_cta" data-track-location="footer_primary">Book an assessment call</a>
+      </div>
+    </div>
+    <div class="cta__pricing reveal" data-delay="2">
+      <strong>AI Systems Assessment</strong> — $500 diagnostic<br>
+      <strong>AI Native Setup</strong> — from $2,500<br>
+      <strong>Expansion</strong> — scoped after first win<br>
+      <strong>Best fit</strong> — founders, executives, operator-led teams<br><br>
+      Get capability, not more confusion.<br>
+      Expand only after the first gain is real.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/audit">Audit</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+      <a href="https://pathoslabs.co">Pathos Labs</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Mobile menu
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !open);
+    menu.classList.toggle('open');
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+  // Focus trap + Escape for mobile menu
+  document.addEventListener('keydown', (e) => {
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+      toggle.focus();
+      return;
+    }
+    if (e.key === 'Tab') {
+      const focusable = [toggle, ...menu.querySelectorAll('a')];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  // Console easter egg for developers
+  console.log('%c⬡ milo', 'font-size:24px;font-weight:700;color:#b28e48;');
+  console.log('%cMilo helps founders and executives turn AI into a real edge.\nStart with the assessment → getmilo.dev/demo?offer=assessment', 'font-size:12px;color:#92847a;');
+</script>
+
+</body>
+</html>

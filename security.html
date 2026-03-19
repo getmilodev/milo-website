@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
+  <title>Security Services — Milo</title>
+  <meta name="description" content="OpenClaw and NanoClaw security hardening. Free scanner, automated vulnerability detection, expert audits, and done-for-you secure deployments.">
+  <meta property="og:title" content="Security Services — Milo">
+  <meta property="og:description" content="Scan, harden, and secure your AI agent deployment. Free scanner to done-for-you builds.">
+  <link rel="canonical" href="https://getmilo.dev/security">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="milo-design-system.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Milo Security Services",
+    "url": "https://getmilo.dev/security",
+    "description": "OpenClaw and NanoClaw security hardening. Free scanner to done-for-you secure deployment.",
+    "priceRange": "$0-$399",
+    "serviceType": ["AI Security Audit", "Configuration Hardening", "Vulnerability Scanning"],
+    "offers": [
+      { "@type": "Offer", "name": "Free Security Scanner", "price": "0", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Milo Shield", "price": "29", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Expert Audit", "price": "199", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Secure Build", "price": "399", "priceCurrency": "USD" }
+    ]
+  }
+  </script>
+  <style>
+    .shield-editorial {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: var(--sp-12);
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .shield-editorial { grid-template-columns: 1fr; }
+    }
+    .guides-list {
+      list-style: none;
+    }
+    .guides-list li {
+      padding: var(--sp-6) 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .guides-list li:last-child { border-bottom: none; }
+    .guides-list__tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-on-dark-muted);
+      background: var(--text-1);
+      display: inline-block;
+      padding: 2px var(--sp-2);
+      border-radius: 3px;
+      margin-bottom: var(--sp-2);
+    }
+    .guides-list__title {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--text-base);
+      color: var(--text-1);
+      margin-bottom: var(--sp-1);
+      transition: color 150ms;
+    }
+    .guides-list a:hover .guides-list__title { color: var(--gold-text); }
+    .guides-list__desc {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link">Services</a>
+      <a href="/audit" class="nav__link">Audit</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/agents">Services</a>
+  <a href="/audit">Audit</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
+</div>
+
+<main id="main">
+
+<!-- HERO — SEC:001 -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SEC:001</span>
+      <span class="spec-coord">// security services</span>
+    </div>
+    <h1 class="page-hero__title reveal" data-delay="1">Your AI agents are only as secure as their <span class="accent">config.</span></h1>
+    <p class="page-hero__subtitle reveal" data-delay="2">OpenClaw and NanoClaw security hardening. From a free scan to a done-for-you secure deployment. We find the vulnerabilities, fix the configs, and walk away.</p>
+    <div class="reveal" data-delay="3" style="display: flex; gap: var(--sp-3); flex-wrap: wrap; margin-top: var(--sp-8);">
+      <a href="/demo" class="btn btn--dark btn--lg">Free Security Scan</a>
+      <a href="#tiers" class="btn btn--outline btn--lg">See All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS — SEC:002 -->
+<section class="section--sm">
+  <div class="wrap">
+    <div class="stats-bar reveal">
+      <div class="stats-bar__item">
+        <div class="stats-bar__num">500+</div>
+        <div class="stats-bar__label">Configs audited</div>
+      </div>
+      <div class="stats-bar__item">
+        <div class="stats-bar__num">2,000+</div>
+        <div class="stats-bar__label">Issues found & fixed</div>
+      </div>
+      <div class="stats-bar__item">
+        <div class="stats-bar__num">20+</div>
+        <div class="stats-bar__label">Vulnerability patterns</div>
+      </div>
+      <div class="stats-bar__item">
+        <div class="stats-bar__num">48hr</div>
+        <div class="stats-bar__label">Audit turnaround</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 THINGS WRONG — SEC:003 -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SEC:003</span>
+      <span class="spec-coord">// common failures</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">Three things most configs get wrong</h2>
+      </div>
+      <div class="editorial__body">
+        <p>They don't throw errors. They don't crash. They just silently cost you money and security.</p>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+    <ul class="stacked-list reveal" data-delay="2">
+      <li class="stacked-item">
+        <div class="stacked-item__num">01</div>
+        <div>
+          <div class="stacked-item__title">Memory leaks in multi-agent setups</div>
+          <div class="stacked-item__body">Agents sharing context without cleanup. Your deployment slows to a crawl after a few hundred messages. Our audit catches this in the first 5 minutes.</div>
+        </div>
+      </li>
+      <li class="stacked-item">
+        <div class="stacked-item__num">02</div>
+        <div>
+          <div class="stacked-item__title">Token waste from unoptimized context</div>
+          <div class="stacked-item__body">Default context windows load everything. You are paying 3x what you should. We have saved clients 40-60% on API costs with config changes alone.</div>
+        </div>
+      </li>
+      <li class="stacked-item">
+        <div class="stacked-item__num">03</div>
+        <div>
+          <div class="stacked-item__title">Silent skill failures that corrupt data</div>
+          <div class="stacked-item__body">A misconfigured skill returns empty results. Your agent keeps running. Your data is wrong. Our scanner detects 40+ patterns like this automatically.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- MILO SHIELD — SEC:004 -->
+<section class="section" style="background: var(--surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SEC:004</span>
+      <span class="spec-coord">// milo shield — $29</span>
+    </div>
+    <div class="shield-editorial">
+      <div class="reveal" data-delay="1">
+        <p class="caption" style="margin-bottom: var(--sp-4);">Self-service tool</p>
+        <h2 style="margin-bottom: var(--sp-4);">Automated security hardening</h2>
+        <p class="lead" style="margin-bottom: var(--sp-8);">Install Shield, run a scan, get a clear A-F score with exactly what to fix — and auto-generated fixes for most of it.</p>
+        <ul class="feature-list" style="margin-bottom: var(--sp-8);">
+          <li>Scans your entire config in under 60 seconds</li>
+          <li>Detects 40+ vulnerability patterns</li>
+          <li>Auto-generates fixes you review before applying</li>
+          <li>Scheduled monitoring via cron</li>
+          <li>CVE database references</li>
+          <li>Free updates as new threats emerge</li>
+        </ul>
+        <a href="https://buy.stripe.com/6oUdR870h1YraRQ1pYfIs00" class="btn btn--dark btn--lg">Buy Milo Shield — $29</a>
+      </div>
+      <div class="reveal" data-delay="2">
+        <div class="terminal">
+          <div class="terminal__bar">
+            <span class="terminal__dot"></span>
+            <span class="terminal__dot"></span>
+            <span class="terminal__dot"></span>
+            <span class="terminal__title">milo-shield — scan</span>
+          </div>
+          <div class="terminal__body"><span class="t-prompt">$</span> <span class="t-cmd">milo-shield scan</span>
+
+<span class="t-muted">Scanning config.json...</span>
+
+<span class="t-success">&#10003; Scan complete (1.2s)</span>
+
+<span class="t-accent">&#9888; Found 7 issues</span> <span class="t-muted">(3 high, 4 medium)</span>
+
+  <span class="t-cmd">HIGH</span>  Memory leak in agent context
+         <span class="t-muted">&#8594; Missing context cleanup in multi-agent flow</span>
+         <span class="t-muted">&#8594; Auto-fix available</span>
+
+  <span class="t-cmd">HIGH</span>  Unscoped tool permissions
+         <span class="t-muted">&#8594; skill.write has no resource filter</span>
+         <span class="t-muted">&#8594; Auto-fix available</span>
+
+  <span class="t-cmd">HIGH</span>  Unbounded context window
+         <span class="t-muted">&#8594; max_tokens not set, defaulting to model max</span>
+         <span class="t-muted">&#8594; Auto-fix available</span>
+
+<span class="t-prompt">$</span> <span class="t-cmd">milo-shield fix --auto</span>
+<span class="t-success">&#10003; Applied 7 fixes</span>
+<span class="t-success">&#10003; New score: A</span> <span class="t-muted">(was D)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TIERS — SEC:005 -->
+<section id="tiers" class="section--lg">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SEC:005</span>
+      <span class="spec-coord">// service tiers</span>
+    </div>
+    <div class="editorial reveal" data-delay="1" style="margin-bottom: var(--sp-12);">
+      <div>
+        <h2 class="editorial__title">Security services — pick your level</h2>
+      </div>
+      <div class="editorial__body">
+        <p>All paths lead to a secure deployment. We set it up, you walk away.</p>
+      </div>
+    </div>
+
+    <!-- Tier 1: Free Scanner -->
+    <div class="pricing-tier reveal" data-delay="1">
+      <div>
+        <div class="pricing-tier__name">Security Scanner</div>
+        <div class="pricing-tier__price">$0 — always free</div>
+      </div>
+      <div class="pricing-tier__body">
+        <p>Paste your config, get an A-F grade with specific issues. 100% client-side — nothing stored or sent.</p>
+        <ul class="feature-list" style="margin-top: var(--sp-4); margin-bottom: var(--sp-6);">
+          <li>20+ vulnerability checks</li>
+          <li>A-F security grade</li>
+          <li>Specific fix recommendations</li>
+          <li>Nothing stored or sent</li>
+        </ul>
+        <a href="/demo" class="btn btn--outline">Open Scanner</a>
+      </div>
+    </div>
+
+    <!-- Tier 2: Milo Shield -->
+    <div class="pricing-tier reveal" data-delay="1">
+      <div>
+        <div class="pricing-tier__name">Milo Shield</div>
+        <div class="pricing-tier__price">$29 — one-time</div>
+      </div>
+      <div class="pricing-tier__body">
+        <p>Automated scanning and fixing tool. Run locally, get auto-generated fixes.</p>
+        <ul class="feature-list" style="margin-top: var(--sp-4); margin-bottom: var(--sp-6);">
+          <li>40+ vulnerability patterns</li>
+          <li>Auto-generated fixes</li>
+          <li>Cron monitoring</li>
+          <li>CVE database</li>
+          <li>Free updates</li>
+        </ul>
+        <a href="https://buy.stripe.com/6oUdR870h1YraRQ1pYfIs00" class="btn btn--outline">Buy Shield — $29</a>
+      </div>
+    </div>
+
+    <!-- Tier 3: Expert Audit (featured) -->
+    <div class="pricing-tier pricing-tier__featured reveal" data-delay="1">
+      <div>
+        <div class="pricing-tier__name">Expert Audit</div>
+        <div class="pricing-tier__price">$199 — one-time, 48hr delivery</div>
+      </div>
+      <div class="pricing-tier__body">
+        <p>We review your entire setup and deliver a detailed report with specific fixes. <strong style="color: var(--gold-text);">Most popular.</strong></p>
+        <ul class="feature-list" style="margin-top: var(--sp-4); margin-bottom: var(--sp-6);">
+          <li>Full config review</li>
+          <li>8-point security assessment</li>
+          <li>Token usage audit</li>
+          <li>10-15 page report</li>
+          <li>Prioritized fix list</li>
+          <li>Optional walkthrough call</li>
+        </ul>
+        <a href="https://buy.stripe.com/00w3cu84l8mP5xwc4CfIs04" class="btn btn--dark">Book Audit — $199</a>
+      </div>
+    </div>
+
+    <!-- Tier 4: Secure Build -->
+    <div class="pricing-tier reveal" data-delay="1">
+      <div>
+        <div class="pricing-tier__name">Secure Build</div>
+        <div class="pricing-tier__price">$399 — one-time, we set up, you walk away</div>
+      </div>
+      <div class="pricing-tier__body">
+        <p>We build your production deployment from scratch. Secure, optimized, monitored.</p>
+        <ul class="feature-list" style="margin-top: var(--sp-4); margin-bottom: var(--sp-6);">
+          <li>Fresh server install</li>
+          <li>Security hardening</li>
+          <li>Memory architecture</li>
+          <li>Channel integration</li>
+          <li>Gateway watchdog</li>
+          <li>Daily backups</li>
+          <li>30 days support</li>
+        </ul>
+        <a href="https://buy.stripe.com/5kQcN484l32vgcac4CfIs05" class="btn btn--outline">Get Secure Build — $399</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDES — SEC:006 -->
+<section class="section" style="background: var(--surface); border-top: 1px solid var(--border-subtle);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SEC:006</span>
+      <span class="spec-coord">// security guides</span>
+    </div>
+    <div class="editorial reveal" data-delay="1" style="margin-bottom: var(--sp-8);">
+      <div>
+        <h2 class="editorial__title">Security guides</h2>
+      </div>
+      <div class="editorial__body">
+        <p>Research-backed analysis of the most common OpenClaw failures in production.</p>
+      </div>
+    </div>
+    <ul class="guides-list reveal" data-delay="2">
+      <li>
+        <a href="/blog/top-openclaw-problems-how-to-fix-them" style="text-decoration: none; display: block;">
+          <span class="guides-list__tag">Troubleshooting</span>
+          <div class="guides-list__title">The 20 Biggest OpenClaw Problems in 2026</div>
+          <div class="guides-list__desc">We analyzed 3,400+ GitHub issues to find what actually breaks in production.</div>
+        </a>
+      </li>
+      <li>
+        <a href="/blog/openclaw-memory-management" style="text-decoration: none; display: block;">
+          <span class="guides-list__tag">Memory</span>
+          <div class="guides-list__title">OpenClaw Memory Is Broken By Default</div>
+          <div class="guides-list__desc">Your agent forgets everything between sessions because memory is misconfigured out of the box.</div>
+        </a>
+      </li>
+      <li>
+        <a href="/blog/openclaw-silent-failures" style="text-decoration: none; display: block;">
+          <span class="guides-list__tag">Debugging</span>
+          <div class="guides-list__title">5 Silent Failures Killing Your OpenClaw Agent</div>
+          <div class="guides-list__desc">Your agent looks fine. But five invisible failure modes are degrading it silently.</div>
+        </a>
+      </li>
+    </ul>
+    <div class="reveal" data-delay="3" style="margin-top: var(--sp-6);">
+      <a href="/blog" class="btn btn--ghost">View all guides</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — SEC:007 -->
+<section class="cta-section">
+  <div class="section-marker section-marker--cta reveal">
+    <span class="spec-label spec-label--on-dark">SEC:007</span>
+    <span class="spec-coord spec-coord--on-dark">// get started</span>
+  </div>
+  <div class="cta__inner">
+    <div>
+      <h2 class="cta__title reveal">Start with a free scan. Fix everything from <span class="accent">there.</span></h2>
+      <p class="cta__body reveal" data-delay="1">Free security score in 60 seconds. No signup. Or jump straight to an expert audit.</p>
+      <div class="reveal" data-delay="2" style="display: flex; gap: var(--sp-3); flex-wrap: wrap;">
+        <a href="/demo" class="btn btn--gold-on-dark">Free Security Scan</a>
+        <a href="https://buy.stripe.com/00w3cu84l8mP5xwc4CfIs04" class="btn btn--outline" style="border-color: var(--text-on-dark-muted); color: var(--text-on-dark);">Book Expert Audit — $199</a>
+      </div>
+    </div>
+    <div class="cta__pricing reveal" data-delay="2">
+      <strong>Scanner</strong> — free, always<br>
+      <strong>Shield</strong> — $29 one-time<br>
+      <strong>Audit</strong> — $199 one-time<br>
+      <strong>Secure Build</strong> — $399 one-time<br><br>
+      All paths lead to a secure deployment.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/audit">Audit</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+      <a href="https://pathoslabs.co">Pathos Labs</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Mobile menu
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !open);
+    menu.classList.toggle('open');
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+  // Focus trap + Escape for mobile menu
+  document.addEventListener('keydown', (e) => {
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+      toggle.focus();
+      return;
+    }
+    if (e.key === 'Tab') {
+      const focusable = [toggle, ...menu.querySelectorAll('a')];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

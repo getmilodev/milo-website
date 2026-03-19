@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding — Sacha Awwa | Milo</title>
+  <link rel="stylesheet" href="../../milo-design-system.css">
+  <style>
+    body {
+      --bg: var(--dark);                          /* oklch(12% 0.012 65) */
+      --surface: var(--dark-surface);             /* oklch(16% 0.015 65) */
+      --surface-raised: var(--dark-raised);       /* oklch(25% 0.01 65) */
+      --border: var(--dark-raised);               /* oklch(25% 0.01 65) */
+      --border-subtle: var(--dark-muted);         /* oklch(30% 0.01 65) */
+      --text-1: var(--text-inv);                  /* oklch(97% 0.005 65) */
+      --text-2: var(--text-on-dark);              /* oklch(78% 0.008 65) */
+      --text-3: var(--text-on-dark-muted);        /* oklch(52% 0.008 65) */
+      --gold-text: oklch(72% 0.10 65);
+      --gold-light: oklch(35% 0.06 65);
+      --surface-raised: var(--dark-surface);      /* inputs need contrast against --dark-raised border */
+      background: var(--dark);
+      color: var(--text-2);
+      min-height: 100vh;
+    }
+
+    .grid-bg { opacity: 0.3; }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: var(--sp-6) clamp(1.5rem, 5vw, 3rem) var(--sp-4);
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--sp-4);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .logo__text {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--text-1);
+      letter-spacing: -0.02em;
+    }
+    .logo__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .step-indicator {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+    }
+
+    .progress-track {
+      display: flex;
+      gap: var(--sp-1);
+      margin-bottom: var(--sp-6);
+    }
+    ol.progress-track {
+      list-style: none;
+      padding: 0;
+      margin-top: 0;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .progress-segment {
+      flex: 1;
+      height: 2px;
+      background: var(--dark-raised);
+      border-radius: var(--radius-sm);
+      transition: background 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
+    }
+    .progress-segment.done { background: var(--gold); }
+    .progress-segment.active {
+      background: var(--gold);
+      box-shadow: 0 0 6px color-mix(in oklch, var(--gold), transparent 60%);
+    }
+
+    .panel {
+      display: none;
+      flex: 1;
+      min-height: 0;
+      flex-direction: column;
+      animation: panel-enter 0.38s var(--ease-out-expo) both;
+    }
+    .panel.active { display: flex; }
+
+    @keyframes panel-enter {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-header {
+      margin-bottom: var(--sp-4);
+      flex-shrink: 0;
+    }
+
+    .panel-content {
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+    }
+
+    .question-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      color: var(--text-1);
+      line-height: 1.15;
+      margin-bottom: var(--sp-2);
+    }
+    .question-subtitle {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    .seeded-context {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-raised);
+      border-radius: var(--radius-md);
+      padding: var(--sp-3) var(--sp-4);
+      margin-bottom: var(--sp-4);
+      line-height: 1.7;
+    }
+    .seeded-context .key { display: inline-block; min-width: 100px; color: var(--gold-text); }
+    .seeded-context .val { color: var(--text-1); }
+
+    .multi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+      overflow-y: auto;
+      min-height: 0;
+    }
+    .multi-grid--single { grid-template-columns: 1fr; }
+    @media (max-width: 600px) {
+      .multi-grid { grid-template-columns: 1fr; }
+      .input, .textarea { font-size: 16px; }
+    }
+
+    .multi-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-2);
+      padding: var(--sp-3);
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: border-color 200ms, background 200ms;
+      user-select: none;
+      text-align: left;
+      font-family: inherit;
+    }
+    .multi-item:hover { border-color: var(--dark-muted); }
+    .multi-item.selected {
+      border-color: var(--gold);
+      background: color-mix(in oklch, var(--surface), var(--gold) 5%);
+    }
+    .multi-item:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .multi-check {
+      width: 18px;
+      height: 18px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--dark-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 200ms, border-color 200ms;
+      font-size: 11px;
+      color: transparent;
+      margin-top: 2px;
+    }
+    .multi-item.selected .multi-check {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--dark);
+    }
+
+    .multi-item-content { display: flex; flex-direction: column; }
+    .multi-title {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-1);
+    }
+    .multi-desc {
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      margin-top: var(--sp-1);
+    }
+    .multi-label { font-size: var(--text-sm); color: var(--text-1); }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: var(--sp-4);
+      flex-shrink: 0;
+    }
+
+    .btn .arrow {
+      display: inline-block;
+      transition: transform 150ms var(--ease-out-quart);
+    }
+    .btn-next:hover .arrow { transform: translateX(3px); }
+    .btn-back:hover .arrow { transform: translateX(-3px); }
+    .btn-back.btn--ghost::after { display: none; }
+
+    .shimmer {
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      background-size: 200% 100%;
+      animation: gold-shimmer 2s infinite linear;
+    }
+    @keyframes gold-shimmer {
+      from { background-position: 100% 0; }
+      to   { background-position: 0% 0; }
+    }
+
+    .confirm-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--success);
+      margin-bottom: var(--sp-6);
+      background: color-mix(in oklch, var(--success), transparent 90%);
+    }
+
+    .confirm-summary {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-raised);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6);
+      margin-top: var(--sp-6);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+    }
+    .confirm-summary .row {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--sp-2) 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .confirm-summary .row:last-child { border-bottom: none; }
+    .confirm-summary .row-key { color: var(--text-3); }
+    .confirm-summary .row-val { color: var(--text-1); font-weight: 500; text-align: right; max-width: 280px; }
+    .confirm-summary .row-val--complete { color: var(--success); }
+    .confirm-summary .row-val--missing { color: var(--error, oklch(65% 0.2 25)); }
+    .confirm-summary .row-val--skipped { color: var(--text-3); font-style: italic; }
+
+    /* ═══════ DELIGHT ═══════ */
+
+    /* Logo dot breathes on hover */
+    .logo:hover .logo__dot {
+      animation: dot-breathe 1.2s var(--ease-out-expo) infinite alternate;
+    }
+    @keyframes dot-breathe {
+      from { transform: scale(1); opacity: 1; }
+      to   { transform: scale(1.6); opacity: 0.6; }
+    }
+
+    /* Multi-item: satisfying press */
+    .multi-item:active {
+      transform: scale(0.98);
+      transition-duration: 50ms;
+    }
+
+    /* Gold checkmark draw-in on select */
+    .multi-item.selected .multi-check {
+      animation: check-pop 250ms var(--ease-out-expo);
+    }
+    @keyframes check-pop {
+      0% { transform: scale(0.6); }
+      60% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    /* Progress segment: pulse when completing */
+    .progress-segment.done {
+      animation: seg-done 400ms var(--ease-out-expo);
+    }
+    @keyframes seg-done {
+      from { box-shadow: 0 0 8px color-mix(in oklch, var(--gold), transparent 40%); }
+      to { box-shadow: none; }
+    }
+
+    /* Confirm icon: draw-in on arrival */
+    .confirm-icon {
+      animation: icon-arrive 420ms var(--ease-out-expo);
+    }
+    @keyframes icon-arrive {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Textarea: subtle gold glow on focus */
+    .textarea:focus {
+      box-shadow: 0 0 0 3px color-mix(in oklch, var(--gold), transparent 88%);
+    }
+
+    /* Nav buttons: lift on hover */
+    .btn-next:hover {
+      box-shadow: 0 4px 16px color-mix(in oklch, var(--gold), transparent 70%);
+    }
+
+    /* Gold line on confirmation: shimmer entrance */
+    .panel.active .gold-line {
+      background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
+      background-size: 200% 100%;
+      animation: gold-shimmer 2s var(--ease-out-expo) forwards;
+    }
+
+    /* Seeded context: stagger reveal */
+    .seeded-context div {
+      opacity: 0;
+      animation: ctx-reveal 400ms var(--ease-out-expo) forwards;
+    }
+    .seeded-context div:nth-child(1) { animation-delay: 100ms; }
+    .seeded-context div:nth-child(2) { animation-delay: 180ms; }
+    .seeded-context div:nth-child(3) { animation-delay: 260ms; }
+    .seeded-context div:nth-child(4) { animation-delay: 340ms; }
+    .seeded-context div:nth-child(5) { animation-delay: 420ms; }
+    @keyframes ctx-reveal {
+      from { opacity: 0; transform: translateX(-8px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Feature list checkmarks: gold pulse on hover */
+    .feature-list li:hover::before {
+      color: var(--gold);
+      transition: color 150ms;
+    }
+
+    .upload-zone {
+      border: 1.5px dashed var(--dark-muted);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6) var(--sp-4);
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 200ms, background 200ms;
+    }
+    .upload-zone:hover { border-color: var(--gold); background: color-mix(in oklch, var(--surface), var(--gold) 3%); }
+    .upload-zone.has-file { border-color: var(--success); border-style: solid; }
+    .upload-zone__icon { font-size: var(--text-xl); color: var(--text-3); margin-bottom: var(--sp-2); }
+    .upload-zone.has-file .upload-zone__icon { color: var(--success); }
+    .upload-zone__text { font-size: var(--text-sm); color: var(--text-2); }
+    .upload-zone.dragover { border-color: var(--gold); background: color-mix(in oklch, var(--surface), var(--gold) 8%); }
+
+    .validation-error {
+      color: var(--error, oklch(65% 0.2 25));
+      font-size: var(--text-xs);
+      margin-top: var(--sp-2);
+      display: none;
+    }
+    .validation-error.visible {
+      display: block;
+    }
+
+    .question-title:focus { outline: none; }
+    .question-title:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      /* Essential: shorten, don't remove — users need feedback */
+      .multi-item.selected .multi-check {
+        animation: check-pop 100ms linear;
+      }
+      .multi-item:active { transition-duration: 0ms; }
+
+      /* Helpful: instant transitions, no movement */
+      .panel { animation: panel-fade 100ms ease both; }
+      .confirm-icon { animation: panel-fade 100ms ease; }
+      .progress-segment { transition: background 0.1s ease; }
+      .seeded-context div { opacity: 1; animation: none; }
+      .textarea:focus { transition: box-shadow 0ms; }
+      .btn-next:hover { transition: box-shadow 0ms; }
+
+      /* Decorative: disable entirely */
+      .shimmer { animation: none; background: var(--gold); }
+      .logo:hover .logo__dot { animation: none; }
+      .progress-segment.done { animation: none; }
+      .panel.active .gold-line { animation: none; }
+    }
+
+    @keyframes panel-fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body data-page-type="onboarding">
+
+<div class="grid-bg" aria-hidden="true"></div>
+
+<main>
+<div class="shell" role="form" aria-label="Onboarding questionnaire">
+
+  <div class="header">
+    <div class="logo"><span class="logo__text">milo</span><span class="logo__dot"></span></div>
+    <div class="step-indicator" id="stepIndicator">1 / 8</div>
+  </div>
+
+  <ol class="progress-track" id="progressTrack" aria-label="Form progress">
+    <li class="progress-segment active" aria-current="step"><span class="sr-only">Step 1: Welcome (current)</span></li>
+    <li class="progress-segment"><span class="sr-only">Step 2: Capabilities</span></li>
+    <li class="progress-segment"><span class="sr-only">Step 3: Possibilities</span></li>
+    <li class="progress-segment"><span class="sr-only">Step 4: Dream Big</span></li>
+    <li class="progress-segment"><span class="sr-only">Step 5: Workflows</span></li>
+    <li class="progress-segment"><span class="sr-only">Step 6: Follow-up</span></li>
+    <li class="progress-segment"><span class="sr-only">Step 7: Assets</span></li>
+    <li class="progress-segment"><span class="sr-only">Step 8: Confirmation</span></li>
+  </ol>
+
+  <!-- Panel 1: Welcome -->
+  <div class="panel active" data-panel="0" style="justify-content: center; gap: var(--sp-6);">
+    <h1 class="question-title" id="welcomeHeadline" tabindex="-1">Hi Sacha.</h1>
+    <p class="question-subtitle" id="welcomeBody"></p>
+    <div class="seeded-context">
+      <div><span class="key">business</span> <span class="val">SAMG Marketing / My Marketer Mentors</span></div>
+      <div><span class="key">framework</span> <span class="val">3P — Prepare, Propel, Perfect</span></div>
+      <div><span class="key">book</span> <span class="val">"Empower Your Marketing" — June 23, 2026</span></div>
+      <div><span class="key">community</span> <span class="val">Circle ($29–50/mo membership)</span></div>
+      <div><span class="key">brand</span> <span class="val">Sacha Awwa umbrella + "Uncomplicated" sub-brand</span></div>
+    </div>
+    <ul class="feature-list">
+      <li>This takes about 5 minutes</li>
+      <li>Your answers save automatically</li>
+      <li>Everything feeds directly into your AI environment</li>
+    </ul>
+    <button type="button" class="btn btn--gold-on-dark btn-next" onclick="goNext()" style="align-self: flex-end;">Let's go <span class="arrow">&rarr;</span></button>
+  </div>
+
+  <!-- Panel 2: Capabilities -->
+  <div class="panel" data-panel="1">
+    <div class="panel-header">
+      <h2 class="question-title" tabindex="-1">What do you want to be able to do?</h2>
+      <p class="question-subtitle">Check everything that sounds like you. Add your own.</p>
+      <p class="form-helper" style="margin-top: var(--sp-2);">These shape which tools and workflows we build for you.</p>
+    </div>
+
+    <div class="panel-content">
+      <div class="multi-grid" id="capabilitiesGrid">
+        <button type="button" class="multi-item" data-value="landing-pages" onclick="toggleMulti(this, 'capabilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Build landing pages and funnels myself</div>
+        </button>
+        <button type="button" class="multi-item" data-value="course-content" onclick="toggleMulti(this, 'capabilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Create course content from my framework</div>
+        </button>
+        <button type="button" class="multi-item" data-value="copy-writing" onclick="toggleMulti(this, 'capabilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Write marketing copy in my voice, fast</div>
+        </button>
+        <button type="button" class="multi-item" data-value="community" onclick="toggleMulti(this, 'capabilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Run my community without it eating my week</div>
+        </button>
+        <button type="button" class="multi-item" data-value="research" onclick="toggleMulti(this, 'capabilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Research anything and get a sourced answer in minutes</div>
+        </button>
+        <button type="button" class="multi-item" data-value="consistency" onclick="toggleMulti(this, 'capabilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Keep content consistent across everything I publish</div>
+        </button>
+        <button type="button" class="multi-item" data-value="independence" onclick="toggleMulti(this, 'capabilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Stop depending on freelancers and agencies for basic changes</div>
+        </button>
+        <div style="grid-column: 1 / -1; margin-top: var(--sp-2);">
+          <label for="capabilitiesOther" class="sr-only">What else?</label>
+          <input type="text" id="capabilitiesOther" class="input" placeholder="What else?">
+        </div>
+      </div>
+    </div>
+    <p class="validation-error" id="capabilitiesError">Pick at least one so we know where to focus.</p>
+    <div class="nav-row">
+      <button type="button" class="btn btn--ghost btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button type="button" class="btn btn--gold-on-dark btn-next" onclick="goNext()">Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- Panel 3: Possibilities -->
+  <div class="panel" data-panel="2">
+    <div class="panel-header">
+      <h2 class="question-title" tabindex="-1">Most people don't know AI can do this.</h2>
+      <p class="question-subtitle">Which of these would change your business?</p>
+      <p class="form-helper" style="margin-top: var(--sp-2);">We'll prototype the ones you pick in your first sessions.</p>
+    </div>
+
+    <div class="panel-content">
+      <div class="multi-grid" id="possibilitiesGrid">
+        <button type="button" class="multi-item" data-value="book-to-course" onclick="toggleMulti(this, 'possibilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Turn your book into a course</div>
+        </button>
+        <button type="button" class="multi-item" data-value="community-ai-coach" onclick="toggleMulti(this, 'possibilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">AI coach for your community</div>
+        </button>
+        <button type="button" class="multi-item" data-value="30-day-content" onclick="toggleMulti(this, 'possibilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">30 days of content from one idea</div>
+        </button>
+        <button type="button" class="multi-item" data-value="landing-page-10m" onclick="toggleMulti(this, 'possibilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Landing page in 10 minutes</div>
+        </button>
+        <button type="button" class="multi-item" data-value="research-brief" onclick="toggleMulti(this, 'possibilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Research brief in 5 minutes</div>
+        </button>
+        <button type="button" class="multi-item" data-value="auto-proposals" onclick="toggleMulti(this, 'possibilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Auto-generate client proposals</div>
+        </button>
+        <button type="button" class="multi-item" data-value="personalized-onboarding" onclick="toggleMulti(this, 'possibilities')">
+          <div class="multi-check">&check;</div>
+          <div class="multi-label">Personalized member onboarding</div>
+        </button>
+        <div style="grid-column: 1 / -1; margin-top: var(--sp-2);">
+          <label for="possibilitiesOther" class="sr-only">What else?</label>
+          <input type="text" id="possibilitiesOther" class="input" placeholder="Something else you've been imagining?">
+        </div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button type="button" class="btn btn--ghost btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button type="button" class="btn btn--gold-on-dark btn-next" onclick="goNext()">Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- Panel 4: Dream Big -->
+  <div class="panel" data-panel="3">
+    <div class="panel-header">
+      <h2 class="question-title" tabindex="-1">Picture your business running perfectly.</h2>
+      <p class="question-subtitle">A year from now, what's different? What problem is gone? What do you never have to worry about again?</p>
+    </div>
+
+    <div class="panel-content">
+      <label for="dream" class="sr-only">Your ideal business</label>
+      <textarea id="dream" class="textarea" style="flex: 1; min-height: 80px;"></textarea>
+      <div class="form-helper">
+        Examples: "I never chase late invoices" · "My content is planned a month ahead" · "New members get a personalized welcome without me touching it"
+      </div>
+    </div>
+    <div class="nav-row">
+      <button type="button" class="btn btn--ghost btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button type="button" class="btn btn--gold-on-dark btn-next" onclick="goNext()">Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- Panel 5: Workflows -->
+  <div class="panel" data-panel="4">
+    <div class="panel-header">
+      <h2 class="question-title" tabindex="-1">Walk us through a typical week.</h2>
+      <p class="question-subtitle">Three quick answers — no need to write essays.</p>
+      <p class="form-helper" style="margin-top: var(--sp-2);">We'll map these to AI automations before session one.</p>
+    </div>
+
+    <div class="panel-content">
+      <div>
+        <label class="label" for="workflowTime">What takes the most time?</label>
+        <textarea id="workflowTime" class="textarea" style="min-height: 48px; resize: none;" placeholder="E.g., Monday is all content creation, takes the whole day..."></textarea>
+      </div>
+      <div>
+        <label class="label" for="workflowDread">What do you dread doing?</label>
+        <textarea id="workflowDread" class="textarea" style="min-height: 48px; resize: none;" placeholder="E.g., Client reporting is manual and I hate it..."></textarea>
+      </div>
+      <div>
+        <label class="label" for="workflowDelegate">What do you wish someone else could handle?</label>
+        <textarea id="workflowDelegate" class="textarea" style="min-height: 48px; resize: none;" placeholder="E.g., Updating the website, scheduling social posts..."></textarea>
+      </div>
+    </div>
+    <p class="validation-error" id="workflowError">Even a sentence or two helps us prepare your sessions.</p>
+    <div class="nav-row">
+      <button type="button" class="btn btn--ghost btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button type="button" class="btn btn--gold-on-dark btn-next" onclick="goNext()">Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- Panel 6: AI Generated -->
+  <div class="panel" data-panel="5" id="aiPanel">
+    <div class="panel-header">
+      <h2 class="question-title" id="aiHeadline" tabindex="-1" style="font-family: var(--font-display); font-style: italic; color: var(--text-2);">Thinking...</h2>
+      <p class="question-subtitle" id="aiContext"></p>
+    </div>
+    
+    <div class="panel-content">
+      <div id="aiInputWrapper" style="display: none; width: 100%; flex: 1; display: flex; flex-direction: column;">
+        <label for="aiAnswer" class="sr-only">Answer</label>
+        <textarea id="aiAnswer" class="textarea" style="flex: 1; min-height: 80px;"></textarea>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button type="button" class="btn btn--ghost btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button type="button" class="btn btn--gold-on-dark btn-next" onclick="goNext()" id="btnAiNext" disabled>Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- Panel 7: Assets -->
+  <div class="panel" data-panel="6">
+    <div class="panel-header">
+      <h2 class="question-title" tabindex="-1">Last thing — your files.</h2>
+      <p class="question-subtitle">We'll load these into your AI environment before session one.</p>
+      <p class="form-helper" style="margin-top: var(--sp-2);">Don't have these handy? Skip for now — you can send them later.</p>
+    </div>
+    
+    <div class="panel-content">
+      <div>
+        <label class="label">Manuscript</label>
+        <div class="upload-zone" id="manuscriptZone" onclick="document.getElementById('manuscriptFile').click()">
+          <input type="file" id="manuscriptFile" accept=".pdf,.doc,.docx,.txt" style="display:none" onchange="handleUpload(this,'manuscript')">
+          <div class="upload-zone__icon">&#8593;</div>
+          <div class="upload-zone__text" id="manuscriptLabel">Drop file or click to upload</div>
+          <div class="form-helper">PDF, Word, Google Doc — or paste a link below</div>
+        </div>
+        <input type="text" id="manuscript" class="input" style="margin-top: var(--sp-2);" placeholder="Or paste a Google Drive / Dropbox link">
+      </div>
+      <div>
+        <label class="label">Brand assets</label>
+        <div class="upload-zone" id="brandZone" onclick="document.getElementById('brandFile').click()">
+          <input type="file" id="brandFile" accept=".pdf,.png,.jpg,.jpeg,.svg,.ai,.zip" multiple onchange="handleUpload(this,'brand')">
+          <div class="upload-zone__icon">&#8593;</div>
+          <div class="upload-zone__text" id="brandLabel">Drop files or click to upload</div>
+          <div class="form-helper">Logo, brand guide, style assets — or paste a link</div>
+        </div>
+        <input type="text" id="brandAssets" class="input" style="margin-top: var(--sp-2);" placeholder="Or paste a link / your website URL">
+      </div>
+    </div>
+    <div class="nav-row">
+      <button type="button" class="btn btn--ghost btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button type="button" class="btn btn--gold-on-dark btn-next" onclick="goNext()">Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- Panel 8: Confirmation -->
+  <div class="panel" data-panel="7">
+    <div class="panel-header" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <div class="confirm-icon">&#x2713;</div>
+      <h2 class="question-title" tabindex="-1" style="margin-bottom: var(--sp-2);">You're all set, Sacha.</h2>
+      <p class="question-subtitle">Your answers are saved. We'll have your AI environment pre-loaded and ready for session one.</p>
+    </div>
+    <div class="panel-content">
+      <div class="gold-line" style="margin: var(--sp-4) 0;"></div>
+      <div class="confirm-summary" id="finalSummary">
+        <!-- filled by js -->
+      </div>
+      <p style="font-size: var(--text-sm); color: var(--text-3);">
+        Questions before our first session? Email <a href="mailto:sam@getmilo.dev" style="color: var(--text-1); text-decoration: underline;">sam@getmilo.dev</a>
+      </p>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<script>
+  const STORAGE_KEY = 'milo_sacha_onboarding';
+  let state = {
+    capabilities: [],
+    capabilities_other: '',
+    possibilities: [],
+    possibilities_other: '',
+    dream: '',
+    workflow_time: '',
+    workflow_dread: '',
+    workflow_delegate: '',
+    ai_followup_question: '',
+    ai_followup_answer: '',
+    manuscript: '',
+    brand_assets: '',
+    currentPanel: 0
+  };
+
+  let lastGeneratedWorkflows = '';
+
+  const totalPanels = 8;
+  const stepNames = [
+    'Welcome', 'Capabilities', 'Possibilities', 'Dream Big',
+    'Workflows', 'Follow-up', 'Assets', 'Confirmation'
+  ];
+  const segments = document.querySelectorAll('.progress-segment');
+  const panels = document.querySelectorAll('.panel');
+
+  function save() {
+    state.capabilities_other = document.getElementById('capabilitiesOther').value;
+    state.possibilities_other = document.getElementById('possibilitiesOther').value;
+    state.dream = document.getElementById('dream').value;
+    state.workflow_time = document.getElementById('workflowTime').value;
+    state.workflow_dread = document.getElementById('workflowDread').value;
+    state.workflow_delegate = document.getElementById('workflowDelegate').value;
+    state.ai_followup_answer = document.getElementById('aiAnswer').value;
+    state.manuscript = document.getElementById('manuscript').value;
+    state.brand_assets = document.getElementById('brandAssets').value;
+    state.savedAt = new Date().toISOString();
+    
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function load() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('paid') === 'true') {
+      document.getElementById('welcomeHeadline').innerText = "You're in, Sacha.";
+      document.getElementById('welcomeBody').innerText = "Payment confirmed. We've been building together for 5 months — 17 sessions. This form maps what you want to be able to do, so we can make the most of every working session.";
+    } else {
+      document.getElementById('welcomeHeadline').innerText = "Hi Sacha.";
+      document.getElementById('welcomeBody').innerText = "We've been building together for 5 months — 17 sessions. This form maps what you want to be able to do, so we can make the most of every working session.";
+    }
+
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        state = { ...state, ...JSON.parse(raw) };
+      }
+    } catch(e) {}
+
+    document.getElementById('capabilitiesOther').value = state.capabilities_other || '';
+    document.getElementById('possibilitiesOther').value = state.possibilities_other || '';
+    document.getElementById('dream').value = state.dream || '';
+    document.getElementById('workflowTime').value = state.workflow_time || '';
+    document.getElementById('workflowDread').value = state.workflow_dread || '';
+    document.getElementById('workflowDelegate').value = state.workflow_delegate || '';
+    document.getElementById('aiAnswer').value = state.ai_followup_answer || '';
+    document.getElementById('manuscript').value = state.manuscript || '';
+    document.getElementById('brandAssets').value = state.brand_assets || '';
+    
+    if (state.capabilities) {
+      document.querySelectorAll('#capabilitiesGrid .multi-item').forEach(btn => {
+        if (state.capabilities.includes(btn.dataset.value)) {
+          btn.classList.add('selected');
+        }
+      });
+    } else { state.capabilities = []; }
+
+    if (state.possibilities) {
+      document.querySelectorAll('#possibilitiesGrid .multi-item').forEach(btn => {
+        if (state.possibilities.includes(btn.dataset.value)) {
+          btn.classList.add('selected');
+        }
+      });
+    } else { state.possibilities = []; }
+
+    showPanel(state.currentPanel || 0);
+  }
+
+  function toggleMulti(btn, listName) {
+    const val = btn.dataset.value;
+    const idx = state[listName].indexOf(val);
+    if (idx > -1) {
+      state[listName].splice(idx, 1);
+      btn.classList.remove('selected');
+    } else {
+      state[listName].push(val);
+      btn.classList.add('selected');
+    }
+    save();
+  }
+
+  document.addEventListener('input', (e) => {
+    if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+      save();
+    }
+  });
+
+  async function showPanel(idx) {
+    panels.forEach(p => p.classList.remove('active'));
+    state.currentPanel = idx;
+    
+    panels[idx].style.animation = 'none';
+    panels[idx].offsetHeight; 
+    panels[idx].style.animation = '';
+    panels[idx].classList.add('active');
+
+    // Focus management: move focus to the new panel's heading
+    requestAnimationFrame(() => {
+      const heading = panels[idx].querySelector('.question-title');
+      if (heading) heading.focus();
+    });
+
+    for (let i = 0; i < segments.length; i++) {
+      segments[i].className = 'progress-segment';
+      segments[i].removeAttribute('aria-current');
+      const srText = segments[i].querySelector('.sr-only');
+      if (i < idx) {
+        segments[i].classList.add('done');
+        if (srText) srText.textContent = `Step ${i + 1}: ${stepNames[i]} (completed)`;
+      } else if (i === idx) {
+        segments[i].classList.add('active');
+        segments[i].setAttribute('aria-current', 'step');
+        if (srText) srText.textContent = `Step ${i + 1}: ${stepNames[i]} (current)`;
+        if (idx === 5) segments[i].classList.add('shimmer');
+      } else {
+        if (srText) srText.textContent = `Step ${i + 1}: ${stepNames[i]}`;
+      }
+    }
+    document.getElementById('stepIndicator').innerText = (idx + 1) + ' / ' + totalPanels;
+    document.title = `Step ${idx + 1} of ${totalPanels}: ${stepNames[idx]} — Milo`;
+
+    save();
+    window.scrollTo(0, 0);
+
+    if (idx === 5) {
+      await generateFollowup();
+    }
+    
+    if (idx === 7) {
+      submitForm();
+    }
+  }
+
+  function goNext() {
+    if (state.currentPanel >= totalPanels - 1) return;
+
+    // Clear previous errors
+    document.querySelectorAll('.validation-error').forEach(el => el.classList.remove('visible'));
+
+    // Panel 2 (capabilities): require at least 1 selection
+    if (state.currentPanel === 1) {
+      if (state.capabilities.length === 0 && !document.getElementById('capabilitiesOther').value.trim()) {
+        document.getElementById('capabilitiesError').classList.add('visible');
+        return;
+      }
+    }
+
+    // Panel 5 (workflows): require at least one field
+    if (state.currentPanel === 4) {
+      save();
+      if (!state.workflow_time.trim() && !state.workflow_dread.trim() && !state.workflow_delegate.trim()) {
+        document.getElementById('workflowError').classList.add('visible');
+        return;
+      }
+      // Prefetch AI question when leaving Panel 5 (workflows filled)
+      prefetchFollowup();
+    }
+
+    showPanel(state.currentPanel + 1);
+  }
+
+  function goBack() {
+    if (state.currentPanel > 0) {
+      showPanel(state.currentPanel - 1);
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey && document.activeElement.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      const activePanel = panels[state.currentPanel];
+      const nextBtn = activePanel.querySelector('.btn-next');
+      if (nextBtn && !nextBtn.disabled) {
+        goNext();
+      }
+    }
+  });
+
+  let prefetchPromise = null;
+  let prefetchWorkflowSnapshot = '';
+
+  function prefetchFollowup() {
+    save();
+    const workflows = 'Time: ' + state.workflow_time + '\nDread: ' + state.workflow_dread + '\nDelegate: ' + state.workflow_delegate;
+    prefetchWorkflowSnapshot = state.workflow_time + '|' + state.workflow_dread + '|' + state.workflow_delegate;
+    const controller = new AbortController();
+    setTimeout(function() { controller.abort(); }, 8000);
+
+    prefetchPromise = fetch('/api/onboarding-followup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        capabilities: state.capabilities,
+        possibilities: state.possibilities,
+        dream: state.dream,
+        workflows: workflows
+      }),
+      signal: controller.signal
+    }).then(function(res) {
+      if (!res.ok) throw new Error('API failed');
+      return res.json();
+    }).catch(function(e) { return null; });
+  }
+
+  async function generateFollowup() {
+    save();
+
+    const hl = document.getElementById('aiHeadline');
+    const cx = document.getElementById('aiContext');
+    const wrapper = document.getElementById('aiInputWrapper');
+    const nextBtn = document.getElementById('btnAiNext');
+    const activeSegment = segments[5];
+
+    const currentWorkflows = state.workflow_time + '|' + state.workflow_dread + '|' + state.workflow_delegate;
+    if (currentWorkflows !== '||' && lastGeneratedWorkflows === currentWorkflows && state.ai_followup_question) {
+      hl.innerText = state.ai_followup_question;
+      hl.style.fontStyle = 'normal';
+      hl.style.color = 'var(--text-1)';
+      cx.innerText = "Follow-up question based on your answers.";
+      wrapper.style.display = 'block';
+      nextBtn.disabled = false;
+      activeSegment.classList.remove('shimmer');
+      return;
+    }
+
+    hl.innerText = "Creating a question from your answers...";
+    hl.style.fontStyle = 'italic';
+    hl.style.color = 'var(--text-2)';
+    cx.innerText = "";
+    wrapper.style.display = 'none';
+    nextBtn.disabled = true;
+    activeSegment.classList.add('shimmer');
+
+    let data = null;
+    if (prefetchPromise) {
+      const prefetchResult = await prefetchPromise;
+      prefetchPromise = null;
+      if (prefetchWorkflowSnapshot === currentWorkflows) {
+        data = prefetchResult;
+      }
+    }
+
+    if (!data) {
+      try {
+        const controller = new AbortController();
+        setTimeout(function() { controller.abort(); }, 8000);
+        const res = await fetch('/api/onboarding-followup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            capabilities: state.capabilities,
+            possibilities: state.possibilities,
+            dream: state.dream,
+            workflows: 'Time: ' + state.workflow_time + '\nDread: ' + state.workflow_dread + '\nDelegate: ' + state.workflow_delegate
+          }),
+          signal: controller.signal
+        });
+        if (!res.ok) throw new Error('API failed');
+        data = await res.json();
+      } catch (e) {
+        data = null;
+      }
+    }
+
+    if (data && data.question) {
+      state.ai_followup_question = data.question;
+      state.ai_followup_answer = '';
+      document.getElementById('aiAnswer').value = '';
+      lastGeneratedWorkflows = currentWorkflows;
+      hl.innerText = data.question;
+      cx.innerText = data.context || "Based on everything you've shared so far.";
+    } else {
+      state.ai_followup_question = "Is there anything about your current workflow that feels like it should be easier than it is?";
+      state.ai_followup_answer = '';
+      document.getElementById('aiAnswer').value = '';
+      hl.innerText = state.ai_followup_question;
+      cx.innerText = "We couldn't personalize this question right now — here's a good one instead.";
+    }
+
+    hl.style.fontStyle = 'normal';
+    hl.style.color = 'var(--text-1)';
+    wrapper.style.display = 'block';
+    nextBtn.disabled = false;
+    activeSegment.classList.remove('shimmer');
+    save();
+  }
+
+  function submitForm() {
+    const summary = document.getElementById('finalSummary');
+
+    const capCount = state.capabilities.length;
+    const posCount = state.possibilities.length;
+    let shortDream = state.dream ? state.dream.substring(0, 60) : '';
+    if (state.dream && state.dream.length > 60) shortDream += '...';
+    const hasWorkflow = state.workflow_time || state.workflow_dread || state.workflow_delegate;
+    const hasMs = state.manuscript;
+    const hasBrand = state.brand_assets;
+
+    function row(key, val, status) {
+      var cls = status === 'complete' ? 'row-val--complete'
+                : status === 'missing' ? 'row-val--missing'
+                : 'row-val--skipped';
+      var safeVal = typeof val === 'string' ? val.replace(/</g, "&lt;") : val;
+      return '<div class="row"><span class="row-key">' + key + '</span><span class="row-val ' + cls + '">' + safeVal + '</span></div>';
+    }
+
+    summary.innerHTML = [
+      row('Capabilities', capCount > 0 ? capCount + ' selected' : 'None selected', capCount > 0 ? 'complete' : 'missing'),
+      row('Possibilities', posCount > 0 ? posCount + ' selected' : 'Skipped (optional)', posCount > 0 ? 'complete' : 'skipped'),
+      row('Vision', shortDream || 'Skipped (optional)', shortDream ? 'complete' : 'skipped'),
+      row('Workflows', hasWorkflow ? 'Shared' : 'Not provided', hasWorkflow ? 'complete' : 'missing'),
+      row('Manuscript', hasMs ? 'Provided' : 'Skipped (optional)', hasMs ? 'complete' : 'skipped'),
+      row('Brand assets', hasBrand ? 'Provided' : 'Skipped (optional)', hasBrand ? 'complete' : 'skipped'),
+    ].join('');
+
+    const payload = {
+      client: "sacha-awwa",
+      capabilities: state.capabilities,
+      capabilities_other: state.capabilities_other,
+      possibilities: state.possibilities,
+      possibilities_other: state.possibilities_other,
+      dream: state.dream,
+      workflow_time: state.workflow_time,
+      workflow_dread: state.workflow_dread,
+      workflow_delegate: state.workflow_delegate,
+      ai_followup_question: state.ai_followup_question,
+      ai_followup_answer: state.ai_followup_answer,
+      manuscript: state.manuscript,
+      brand_assets: state.brand_assets,
+      submitted_at: new Date().toISOString(),
+      tier: "unknown"
+    };
+
+    fetch('/api/onboarding-submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(console.error);
+  }
+
+  async function handleUpload(input, type) {
+    const files = Array.from(input.files);
+    if (!files.length) return;
+    const names = files.map(f => f.name).join(', ');
+    const zone = input.closest('.upload-zone');
+    const label = zone.querySelector('.upload-zone__text');
+    zone.classList.add('has-file');
+    label.textContent = 'Uploading ' + names + '...';
+
+    // Upload to server
+    const formData = new FormData();
+    files.forEach(f => formData.append(type, f));
+
+    try {
+      const res = await fetch('/api/onboarding-upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (data.ok && data.files) {
+        const urls = data.files.map(f => f.url);
+        if (type === 'manuscript') state.manuscript = urls.join(', ');
+        if (type === 'brand') state.brand_assets = urls.join(', ');
+        label.textContent = names + ' ✓';
+      } else {
+        label.textContent = names + ' (saved locally)';
+        if (type === 'manuscript') state.manuscript = 'uploaded: ' + names;
+        if (type === 'brand') state.brand_assets = 'uploaded: ' + names;
+      }
+    } catch (e) {
+      // Fallback: store filename only
+      label.textContent = names + ' (saved locally)';
+      if (type === 'manuscript') state.manuscript = 'uploaded: ' + names;
+      if (type === 'brand') state.brand_assets = 'uploaded: ' + names;
+    }
+    save();
+  }
+
+  document.querySelectorAll('.upload-zone').forEach(zone => {
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('dragover');
+      const input = zone.querySelector('input[type="file"]');
+      input.files = e.dataTransfer.files;
+      input.dispatchEvent(new Event('change'));
+    });
+  });
+
+  window.addEventListener('DOMContentLoaded', load);
+</script>
+
+</body>
+</html>

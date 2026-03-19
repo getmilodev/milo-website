@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
+  <title>Map Your First AI Workflow — 60-Second Build Tool | Milo</title>
+  <meta name="description" content="Answer 3 questions and get a custom workflow blueprint for your firm. See which system to build first for proposals, reporting, follow-up, research, and delivery.">
+  <meta property="og:title" content="Map Your First AI Workflow in 60 Seconds | Milo">
+  <meta property="og:description" content="Tell Milo what kind of firm you run and where the workflow breaks. Get a scoped blueprint for the first system to build.">
+  <link rel="canonical" href="https://getmilo.dev/build">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="milo-design-system.css">
+  <script src="/milo-analytics.js" defer></script>
+  <style>
+    /* Page-specific — build wizard */
+    .build-hero {
+      padding: clamp(104px, 12vh, 148px) 0 var(--sp-8);
+    }
+    .build-hero__title {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: 400;
+      color: var(--text-1);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      margin-bottom: var(--sp-3);
+    }
+    .build-hero__subtitle {
+      font-size: var(--text-lg);
+      color: var(--text-2);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+    .wizard {
+      padding: var(--sp-6) 0 var(--sp-20);
+    }
+    .step-heading {
+      margin-bottom: var(--sp-6);
+    }
+    .step-heading__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--gold-text);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--sp-2);
+    }
+    .step-heading__title {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--text-xl);
+      color: var(--text-1);
+      line-height: 1.35;
+    }
+    .step-heading__hint {
+      font-size: var(--text-sm);
+      color: var(--text-3);
+      margin-top: var(--sp-2);
+    }
+
+    /* Wizard steps */
+    .step { display: none; }
+    .step.active { display: block; animation: stepIn 400ms var(--ease-out-expo); }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .step.active { animation: none; }
+    }
+
+    /* Option cards */
+    .option-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+    }
+    @media (max-width: 600px) { .option-grid { grid-template-columns: 1fr; } }
+
+    .option {
+      position: relative;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6) var(--sp-6) var(--sp-4);
+      cursor: pointer;
+      background: var(--surface-raised);
+      text-align: left;
+      transition: border-color 150ms var(--ease-out-quart),
+                  background 150ms var(--ease-out-quart);
+    }
+    .option:hover {
+      border-color: var(--text-3);
+      background: var(--surface);
+    }
+    .option:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    .option.selected {
+      border-color: var(--gold);
+      background: var(--gold-light);
+      animation: option-select 300ms var(--ease-out-expo);
+    }
+    @keyframes option-select {
+      0% { transform: scale(1); }
+      40% { transform: scale(0.97); }
+      100% { transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .option.selected { animation: none; }
+    }
+    .option-icon {
+      width: 22px;
+      height: 22px;
+      margin-bottom: var(--sp-2);
+      color: var(--gold-text);
+    }
+    .option-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .option h3 {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: 2px;
+    }
+    .option p {
+      font-size: var(--text-sm);
+      color: var(--text-3);
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    /* Checkbox options */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+    }
+    @media (max-width: 600px) { .checkbox-grid { grid-template-columns: 1fr; } }
+
+    .checkbox-option {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--sp-4) var(--sp-4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      background: var(--surface-raised);
+      transition: border-color 150ms var(--ease-out-quart),
+                  background 150ms var(--ease-out-quart);
+    }
+    .checkbox-option:hover {
+      border-color: var(--text-3);
+    }
+    .checkbox-option:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    .checkbox-option.selected {
+      border-color: var(--gold);
+      background: var(--gold-light);
+    }
+    .checkbox-option .check {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 150ms var(--ease-out-quart);
+      background: var(--surface-raised);
+    }
+    .checkbox-option.selected .check {
+      background: var(--text-1);
+      border-color: var(--text-1);
+    }
+    .checkbox-option .check::after { content: ''; }
+    .checkbox-option.selected .check::after {
+      content: '\2713';
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-inv);
+    }
+    .checkbox-option span {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--text-1);
+    }
+
+    /* Button row */
+    .btn-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: var(--sp-8);
+      gap: var(--sp-3);
+    }
+    .btn-primary {
+      background: var(--text-1);
+      color: var(--text-inv);
+    }
+    .btn-primary:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-primary:disabled:hover {
+      transform: none;
+      opacity: 0.35;
+    }
+    .btn-back {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text-3);
+      font-weight: 500;
+    }
+    .btn-back:hover {
+      border-color: var(--text-3);
+      color: var(--text-1);
+      transform: none;
+      opacity: 1;
+    }
+
+    /* Results section */
+    .result { display: none; }
+    .result.active { display: block; animation: stepIn 500ms var(--ease-out-expo); }
+
+    .result-header {
+      padding: var(--sp-16) 0 var(--sp-8);
+    }
+    .result-header__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--text-1);
+      margin-bottom: var(--sp-4);
+    }
+    .result-header__badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+    .result-header__title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      color: var(--text-1);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-2);
+    }
+    .result-header__subtitle {
+      font-size: var(--text-base);
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* Agent cards — stacked list style */
+    .agent-card {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: var(--sp-4);
+      padding: var(--sp-6) 0;
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: start;
+    }
+    .agent-card:last-child { border-bottom: none; }
+
+    .agent-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--text-2);
+    }
+    .agent-avatar svg {
+      width: 20px;
+      height: 20px;
+    }
+    .agent-info { min-width: 0; }
+    .agent-info h3 {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: 1px;
+    }
+    .agent-info .role {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--gold-text);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      margin-bottom: var(--sp-2);
+    }
+    .agent-info p {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      margin: 0;
+      line-height: 1.6;
+    }
+    .agent-info .saves {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--success);
+      font-weight: 500;
+      margin-top: var(--sp-2);
+    }
+
+    /* Summary box — dark inset */
+    .summary-box {
+      background: var(--text-1);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-10) var(--sp-8);
+      margin: var(--sp-10) 0 var(--sp-6);
+    }
+    .summary-box h3 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--text-lg);
+      color: var(--text-inv);
+      margin-bottom: var(--sp-6);
+      text-align: center;
+    }
+    .summary-stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--sp-12);
+      margin-bottom: var(--sp-8);
+    }
+    @media (max-width: 500px) {
+      .summary-stats { flex-direction: column; gap: var(--sp-4); align-items: center; }
+    }
+    .summary-stat { text-align: center; }
+    .summary-stat .num {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      color: var(--gold);
+      font-variant-numeric: tabular-nums;
+    }
+    .summary-stat .label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-on-dark-muted);
+      margin-top: var(--sp-1);
+    }
+    .summary-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--sp-2);
+      flex-wrap: wrap;
+    }
+    .summary-box .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      background: var(--gold);
+      color: var(--text-1);
+      padding: var(--sp-4) var(--sp-8);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      transition: transform 200ms var(--ease-out-quart), opacity 150ms;
+    }
+    .summary-box .cta-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+    .summary-box .cta-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .summary-box .cta-secondary {
+      display: inline-flex;
+      color: var(--text-on-dark-muted);
+      padding: var(--sp-4) var(--sp-6);
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: var(--text-sm);
+      transition: color 150ms;
+    }
+    .summary-box .cta-secondary:hover { color: var(--text-on-dark); }
+    .summary-box .cta-secondary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    /* Fine print */
+    .fine-print {
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      line-height: 1.7;
+      max-width: 540px;
+      padding-bottom: var(--sp-12);
+    }
+    .fine-print strong {
+      color: var(--text-2);
+      font-weight: 600;
+    }
+    .fine-print code {
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      background: var(--surface);
+      padding: 0.1em 0.35em;
+      border-radius: var(--radius-sm);
+      color: var(--gold-text);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body data-page-type="build">
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link">Services</a>
+      <a href="/audit" class="nav__link">Audit</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link nav__link--active" aria-current="page">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/agents">Services</a>
+  <a href="/audit">Audit</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
+</div>
+
+<main id="main">
+
+<!-- HERO — SPEC:010 -->
+<section class="build-hero">
+  <div class="wrap wrap--narrow">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:010</span>
+      <span class="spec-coord">// workflow configurator</span>
+    </div>
+    <h1 class="build-hero__title reveal" data-delay="1">Map your <span class="accent">first workflow</span></h1>
+    <p class="build-hero__subtitle reveal" data-delay="2">Answer 3 questions. See which workflow to fix first.</p>
+  </div>
+</section>
+
+<!-- WIZARD -->
+<section class="wizard">
+  <div class="wrap wrap--narrow">
+
+    <!-- Progress — wizard__steps from design system -->
+    <div class="wizard__steps" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" aria-label="Configuration progress">
+      <div class="wizard__step wizard__step--active" id="dot1"></div>
+      <div class="wizard__step" id="dot2"></div>
+      <div class="wizard__step" id="dot3"></div>
+    </div>
+
+    <!-- STEP 1: Industry -->
+    <div class="step active" id="step1">
+      <div class="step-heading">
+        <div class="step-heading__label">Step 1 of 3</div>
+        <h2 class="step-heading__title" id="step1Title" tabindex="-1">What kind of firm is this?</h2>
+      </div>
+      <div class="option-grid" id="industryGrid" role="radiogroup" aria-labelledby="step1Title" aria-label="Select your industry">
+        <div class="option" data-value="agency" onclick="selectIndustry(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M10 3v3M10 14v3M3 10h3M14 10h3"/></svg></div>
+          <h3>Agency</h3>
+          <p>Marketing, creative, media, performance</p>
+        </div>
+        <div class="option" data-value="consulting" onclick="selectIndustry(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v16"/><path d="M4 6h12"/><path d="M2 12l2-6 2 6"/><path d="M14 12l2-6 2 6"/></svg></div>
+          <h3>Consulting / Advisory</h3>
+          <p>Strategy, ops, finance, growth</p>
+        </div>
+        <div class="option" data-value="law" onclick="selectIndustry(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v16"/><path d="M4 6h12"/><path d="M2 12l2-6 2 6"/><path d="M14 12l2-6 2 6"/></svg></div>
+          <h3>Law / Compliance</h3>
+          <p>Practice, advisory, or compliance team</p>
+        </div>
+        <div class="option" data-value="accounting" onclick="selectIndustry(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17V12M8 17V8M12 17V5M16 17V3"/></svg></div>
+          <h3>Accounting / Finance</h3>
+          <p>CPA, bookkeeping, advisory</p>
+        </div>
+        <div class="option" data-value="recruiting" onclick="selectIndustry(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v14"/><path d="M3 10h14"/></svg></div>
+          <h3>Recruiting / Staffing</h3>
+          <p>Search, placement, talent teams</p>
+        </div>
+        <div class="option" data-value="realestate" onclick="selectIndustry(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l8-7 8 7"/><path d="M4 8.5V17h12V8.5"/></svg></div>
+          <h3>Real Estate</h3>
+          <p>Brokerage, advisory, investor ops</p>
+        </div>
+        <div class="option" data-value="inhouse" onclick="selectIndustry(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="14" height="11" rx="1"/><path d="M7 7V5a3 3 0 016 0v2"/></svg></div>
+          <h3>In-House Marketing / RevOps</h3>
+          <p>Internal ops, growth, client-facing teams</p>
+        </div>
+        <div class="option" data-value="other" onclick="selectIndustry(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l8 8-8 8-8-8z"/></svg></div>
+          <h3>Something Else</h3>
+          <p>We will still map the workflow</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Team size -->
+    <div class="step" id="step2">
+      <div class="step-heading">
+        <div class="step-heading__label">Step 2 of 3</div>
+        <h2 class="step-heading__title" id="step2Title" tabindex="-1">How big is your team?</h2>
+      </div>
+      <div class="option-grid" id="sizeGrid" role="radiogroup" aria-labelledby="step2Title" aria-label="Select your team size">
+        <div class="option" data-value="solo" onclick="selectSize(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="3"/></svg></div>
+          <h3>Just me</h3>
+          <p>Solopreneur or freelancer</p>
+        </div>
+        <div class="option" data-value="small" onclick="selectSize(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="10" r="2.5"/><circle cx="13" cy="10" r="2.5"/></svg></div>
+          <h3>2 to 5 people</h3>
+          <p>Small but growing</p>
+        </div>
+        <div class="option" data-value="medium" onclick="selectSize(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="7" r="2"/><circle cx="13.5" cy="7" r="2"/><circle cx="6.5" cy="13" r="2"/><circle cx="13.5" cy="13" r="2"/></svg></div>
+          <h3>6 to 20 people</h3>
+          <p>Established operation</p>
+        </div>
+        <div class="option" data-value="large" onclick="selectSize(this)" tabindex="0" role="radio" aria-checked="false">
+          <div class="option-icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="5" r="1.5"/><circle cx="10" cy="5" r="1.5"/><circle cx="15" cy="5" r="1.5"/><circle cx="5" cy="10" r="1.5"/><circle cx="10" cy="10" r="1.5"/><circle cx="15" cy="10" r="1.5"/><circle cx="5" cy="15" r="1.5"/><circle cx="10" cy="15" r="1.5"/><circle cx="15" cy="15" r="1.5"/></svg></div>
+          <h3>20+ people</h3>
+          <p>Scaling fast</p>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-back" onclick="goStep(1)">Back</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Pain points -->
+    <div class="step" id="step3">
+      <div class="step-heading">
+        <div class="step-heading__label">Step 3 of 3</div>
+        <h2 class="step-heading__title" id="step3Title" tabindex="-1">Where does the workflow keep breaking?</h2>
+        <p class="step-heading__hint" id="step3Hint">Pick all that apply. This shapes the first system we would build.</p>
+      </div>
+      <div class="checkbox-grid" id="painGrid" role="group" aria-labelledby="step3Title" aria-describedby="step3Hint">
+        <div class="checkbox-option" data-value="proposal" onclick="togglePain(this)" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <span>Proposal turnaround is slow</span>
+        </div>
+        <div class="checkbox-option" data-value="reporting" onclick="togglePain(this)" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <span>Client reporting gets rebuilt every cycle</span>
+        </div>
+        <div class="checkbox-option" data-value="followup" onclick="togglePain(this)" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <span>Lead or client follow-up slips</span>
+        </div>
+        <div class="checkbox-option" data-value="research" onclick="togglePain(this)" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <span>Research and meeting prep repeat every week</span>
+        </div>
+        <div class="checkbox-option" data-value="delivery" onclick="togglePain(this)" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <span>Delivery coordination disappears into messages</span>
+        </div>
+        <div class="checkbox-option" data-value="inbox" onclick="togglePain(this)" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <span>Internal inbox triage lands on one person</span>
+        </div>
+        <div class="checkbox-option" data-value="notes" onclick="togglePain(this)" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <span>Meeting notes and next steps get lost</span>
+        </div>
+        <div class="checkbox-option" data-value="billing" onclick="togglePain(this)" tabindex="0" role="checkbox" aria-checked="false">
+          <div class="check"></div>
+          <span>Renewal or invoicing follow-up is manual</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-back" onclick="goStep(2)">Back</button>
+        <button class="btn btn-primary" id="buildBtn" disabled onclick="showResults()">Build my blueprint</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="result" id="resultSection">
+      <div class="result-header">
+        <div class="section-marker">
+          <span class="spec-label">SPEC:011</span>
+          <span class="spec-coord">// blueprint output</span>
+        </div>
+        <div class="result-header__badge">Workflow blueprint ready</div>
+        <h2 class="result-header__title" id="resultTitle" tabindex="-1">Your workflow blueprint</h2>
+        <p class="result-header__subtitle" id="resultSubtitle">Based on your answers, here are the systems we would prioritize first.</p>
+      </div>
+      <div id="agentCards"></div>
+
+      <div class="summary-box">
+        <h3>Your build at a glance</h3>
+        <div class="summary-stats">
+          <div class="summary-stat">
+            <div class="num" id="agentCount">4</div>
+            <div class="label">workflows mapped</div>
+          </div>
+          <div class="summary-stat">
+            <div class="num" id="hoursSaved">25+</div>
+            <div class="label">hours returned / week</div>
+          </div>
+          <div class="summary-stat">
+            <div class="num" id="investmentAmount">-</div>
+            <div class="label">starting scope</div>
+          </div>
+        </div>
+        <div class="summary-actions">
+          <a class="cta-btn" id="ctaLink" href="/buy/team" data-track="build_result_cta" data-track-location="result_primary">Start this build</a>
+          <a class="cta-secondary" href="/agents">Compare all plans</a>
+        </div>
+      </div>
+
+      <p class="fine-print">Start with a $500 AI Systems Assessment, then AI Native Setup from $2,500. You own everything. Ongoing cost is usually <strong>$30 to $60/mo</strong> for hosting and model usage, with no recurring Milo fee.</p>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/audit">Audit</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+      <a href="https://pathoslabs.co">Pathos Labs</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
+  </div>
+</footer>
+
+<script>
+let state = { industry: null, size: null, pains: [] };
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function focusTarget(el) {
+  if (!el) return;
+  requestAnimationFrame(() => {
+    el.focus({ preventScroll: true });
+  });
+}
+
+function scrollToSection(el) {
+  if (!el) return;
+  el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+}
+
+function syncRadioTabOrder(gridId, activeEl) {
+  document.querySelectorAll('#' + gridId + ' .option').forEach(option => {
+    option.tabIndex = option === activeEl ? 0 : -1;
+  });
+}
+
+function selectIndustry(el, options = {}) {
+  const { advance = true } = options;
+  document.querySelectorAll('#industryGrid .option').forEach(o => {
+    o.classList.remove('selected');
+    o.setAttribute('aria-checked', 'false');
+  });
+  el.classList.add('selected');
+  el.setAttribute('aria-checked', 'true');
+  syncRadioTabOrder('industryGrid', el);
+  state.industry = el.dataset.value;
+  if (advance) {
+    setTimeout(() => goStep(2), 300);
+  }
+}
+
+function selectSize(el, options = {}) {
+  const { advance = true } = options;
+  document.querySelectorAll('#sizeGrid .option').forEach(o => {
+    o.classList.remove('selected');
+    o.setAttribute('aria-checked', 'false');
+  });
+  el.classList.add('selected');
+  el.setAttribute('aria-checked', 'true');
+  syncRadioTabOrder('sizeGrid', el);
+  state.size = el.dataset.value;
+  if (advance) {
+    setTimeout(() => goStep(3), 300);
+  }
+}
+
+function togglePain(el) {
+  el.classList.toggle('selected');
+  const isSelected = el.classList.contains('selected');
+  el.setAttribute('aria-checked', String(isSelected));
+  const v = el.dataset.value;
+  if (state.pains.includes(v)) {
+    state.pains = state.pains.filter(p => p !== v);
+  } else {
+    state.pains.push(v);
+  }
+  document.getElementById('buildBtn').disabled = state.pains.length === 0;
+}
+
+function goStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const step = document.getElementById('step' + n);
+  step.classList.add('active');
+  document.querySelector('.wizard__steps').setAttribute('aria-valuenow', n);
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('dot' + i);
+    dot.className = 'wizard__step';
+    if (i < n) dot.classList.add('wizard__step--done');
+    if (i === n) dot.classList.add('wizard__step--active');
+  }
+  scrollToSection(step);
+  focusTarget(step.querySelector('.step-heading__title'));
+}
+
+const agentDB = {
+  proposal: {
+    name: 'Proposal System',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2l-6 9h5l-1 7 6-9h-5l1-7z"/></svg>',
+    bg: 'var(--gold-light)',
+    role: 'Proposal turnaround',
+    desc: 'Turns transcripts, notes, prior scopes, and pricing rules into a repeatable proposal flow with fewer blank-page starts and less last-minute chasing.',
+    hours: 6
+  },
+  reporting: {
+    name: 'Client Reporting System',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg>',
+    bg: 'var(--surface)',
+    role: 'Reporting assembly',
+    desc: 'Pulls numbers from your stack, drafts the client-facing update, and gives the team a clean review point instead of rebuilding reports from scratch.',
+    hours: 4
+  },
+  followup: {
+    name: 'Follow-Up System',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="10" rx="2"/><path d="M7 13v4l4-4"/></svg>',
+    bg: 'var(--surface-raised)',
+    role: 'Pipeline continuity',
+    desc: 'Keeps prospects and clients from going cold by turning your follow-up cadence, reminders, and escalation rules into a dependable workflow.',
+    hours: 5
+  },
+  research: {
+    name: 'Research System',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3.5"/><circle cx="10" cy="10" r="1"/></svg>',
+    bg: 'var(--surface)',
+    role: 'Reusable context',
+    desc: 'Collects account context, meeting prep, and background research into one structured system so the team stops reopening the same tabs every week.',
+    hours: 8
+  },
+  delivery: {
+    name: 'Delivery Coordination System',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="10" height="15" rx="1"/><path d="M8 3V1h4v2"/></svg>',
+    bg: 'var(--gold-light)',
+    role: 'Execution flow',
+    desc: 'Routes work between intake, approvals, execution, and client delivery so nothing disappears in email, Slack, or someone&apos;s private to-do list.',
+    hours: 5
+  },
+  inbox: {
+    name: 'Internal Inbox System',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17V11M8 17V7M12 17V9M16 17V4"/></svg>',
+    bg: 'var(--surface-raised)',
+    role: 'Request triage',
+    desc: 'Sorts incoming internal requests, summarizes what matters, and routes work to the right owner so one operator is not carrying the whole inbox.',
+    hours: 3
+  },
+  notes: {
+    name: 'Meeting Notes System',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 3.5l3 3L7 16H4v-3z"/></svg>',
+    bg: 'var(--surface)',
+    role: 'Decision capture',
+    desc: 'Turns calls and internal meetings into usable notes, action items, and next steps so handoffs do not depend on someone remembering the details later.',
+    hours: 6
+  },
+  billing: {
+    name: 'Billing Follow-Up System',
+    icon: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="12" height="16" rx="1"/><path d="M8 7h4M8 10h4M8 13h2"/></svg>',
+    bg: 'var(--gold-light)',
+    role: 'Collections rhythm',
+    desc: 'Keeps invoice reminders, renewal nudges, and overdue follow-up consistent without asking the team to remember the cadence manually.',
+    hours: 3
+  }
+};
+
+function showResults() {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.wizard__step').forEach(d => { d.className = 'wizard__step wizard__step--done'; });
+
+  const agents = state.pains.map(p => agentDB[p]).filter(Boolean);
+  const totalHours = agents.reduce((sum, a) => sum + a.hours, 0);
+  const count = agents.length;
+
+  let price, link, ctaText;
+  if (count <= 2) {
+    price = '$2,500+'; link = '/demo?offer=assessment'; ctaText = 'Book an assessment call →';
+  } else {
+    price = '$2,500+'; link = '/demo?offer=assessment'; ctaText = 'Book an assessment call →';
+  }
+
+  const industryNames = {
+    agency: 'agency',
+    consulting: 'consulting firm',
+    law: 'law or compliance firm',
+    accounting: 'finance or accounting firm',
+    recruiting: 'recruiting team',
+    realestate: 'real estate firm',
+    inhouse: 'in-house operations team',
+    other: 'firm'
+  };
+  const biz = industryNames[state.industry] || 'firm';
+
+  document.getElementById('resultTitle').textContent = 'Your ' + count + '-Workflow Blueprint';
+  document.getElementById('resultSubtitle').textContent = 'Built for your ' + biz + '. We would start with the workflow that removes the most repeated manual work first.';
+  document.getElementById('agentCount').textContent = count;
+  document.getElementById('hoursSaved').textContent = totalHours + '+';
+  document.getElementById('investmentAmount').textContent = price;
+  document.getElementById('ctaLink').href = link;
+  document.getElementById('ctaLink').textContent = ctaText;
+
+  if (window.miloTrack) {
+    window.miloTrack('build_blueprint_generated', {
+      industry: state.industry || '',
+      pains: state.pains || [],
+      count: count,
+      estimated_investment: price,
+      cta_destination: link
+    });
+  }
+
+  const cardsHTML = agents.map(a => {
+    return '<div class="agent-card">' +
+      '<div class="agent-avatar" style="background:' + a.bg + '">' + a.icon + '</div>' +
+      '<div class="agent-info">' +
+        '<h3>' + a.name + '</h3>' +
+        '<div class="role">' + a.role + '</div>' +
+        '<p>' + a.desc + '</p>' +
+        '<div class="saves">// returns ~' + a.hours + ' hrs/week</div>' +
+      '</div></div>';
+  }).join('');
+
+  document.getElementById('agentCards').innerHTML = cardsHTML;
+  const resultSection = document.getElementById('resultSection');
+  resultSection.classList.add('active');
+  scrollToSection(resultSection);
+  focusTarget(document.getElementById('resultTitle'));
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// Mobile menu
+const toggle = document.querySelector('.nav__toggle');
+const menu = document.getElementById('mobile-menu');
+toggle.addEventListener('click', () => {
+  const open = toggle.getAttribute('aria-expanded') === 'true';
+  toggle.setAttribute('aria-expanded', !open);
+  menu.classList.toggle('open');
+  document.body.style.overflow = open ? '' : 'hidden';
+});
+menu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    toggle.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+// Focus trap + Escape for mobile menu
+document.addEventListener('keydown', (e) => {
+  if (!menu.classList.contains('open')) return;
+  if (e.key === 'Escape') {
+    toggle.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+    toggle.focus();
+    return;
+  }
+  if (e.key === 'Tab') {
+    const focusable = [toggle, ...menu.querySelectorAll('a')];
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+});
+
+function moveRadioFocus(gridId, currentEl, direction, selectFn, boundary) {
+  const options = Array.from(document.querySelectorAll('#' + gridId + ' .option'));
+  const currentIndex = options.indexOf(currentEl);
+  if (currentIndex === -1) return;
+  let nextIndex;
+  if (boundary === 'start') {
+    nextIndex = 0;
+  } else if (boundary === 'end') {
+    nextIndex = options.length - 1;
+  } else {
+    nextIndex = (currentIndex + direction + options.length) % options.length;
+  }
+  const nextOption = options[nextIndex];
+  selectFn(nextOption, { advance: false });
+  nextOption.focus();
+}
+
+document.querySelectorAll('#industryGrid .option').forEach(el => {
+  el.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      moveRadioFocus('industryGrid', el, 1, selectIndustry);
+      return;
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      moveRadioFocus('industryGrid', el, -1, selectIndustry);
+      return;
+    }
+    if (e.key === 'Home') {
+      e.preventDefault();
+      moveRadioFocus('industryGrid', el, 0, selectIndustry, 'start');
+      return;
+    }
+    if (e.key === 'End') {
+      e.preventDefault();
+      moveRadioFocus('industryGrid', el, 0, selectIndustry, 'end');
+      return;
+    }
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+
+document.querySelectorAll('#sizeGrid .option').forEach(el => {
+  el.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      moveRadioFocus('sizeGrid', el, 1, selectSize);
+      return;
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      moveRadioFocus('sizeGrid', el, -1, selectSize);
+      return;
+    }
+    if (e.key === 'Home') {
+      e.preventDefault();
+      moveRadioFocus('sizeGrid', el, 0, selectSize, 'start');
+      return;
+    }
+    if (e.key === 'End') {
+      e.preventDefault();
+      moveRadioFocus('sizeGrid', el, 0, selectSize, 'end');
+      return;
+    }
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+
+document.querySelectorAll('#painGrid .checkbox-option').forEach(el => {
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+
+syncRadioTabOrder('industryGrid', document.querySelector('#industryGrid .option[aria-checked="true"]') || document.querySelector('#industryGrid .option'));
+syncRadioTabOrder('sizeGrid', document.querySelector('#sizeGrid .option[aria-checked="true"]') || document.querySelector('#sizeGrid .option'));
+</script>
+
+</body>
+</html>

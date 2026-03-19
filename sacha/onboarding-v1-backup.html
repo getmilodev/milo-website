@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Onboarding — Sacha Awwa | Milo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../milo-design-system.css">
+  <style>
+    /* ═══════════════════════════════════════════
+       DARK THEME — Remap semantic tokens
+       ═══════════════════════════════════════════ */
+
+    body {
+      --bg: var(--dark);
+      --surface: var(--dark-surface);
+      --surface-raised: var(--dark-raised);
+      --border: var(--dark-raised);
+      --border-subtle: oklch(20% 0.012 65);
+      --text-1: var(--text-inv);
+      --text-2: var(--text-on-dark);
+      --text-3: var(--text-on-dark-muted);
+      --gold-text: oklch(72% 0.10 65);
+
+      background: var(--bg);
+      color: var(--text-2);
+      min-height: 100vh;
+    }
+
+    .grid-bg { opacity: 0.3; }
+
+    /* ═══════════════════════════════════════════
+       LAYOUT
+       ═══════════════════════════════════════════ */
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: var(--sp-10) clamp(1.5rem, 5vw, 3rem);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ═══════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════ */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--sp-12);
+    }
+    .logo {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: var(--text-base);
+      letter-spacing: 0.18em;
+      text-transform: lowercase;
+      color: var(--text-muted);
+    }
+    .step-indicator {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ═══════════════════════════════════════════
+       PROGRESS BAR
+       ═══════════════════════════════════════════ */
+
+    .progress-track {
+      display: flex;
+      gap: var(--sp-1);
+      margin-bottom: var(--sp-16);
+    }
+    .progress-segment {
+      flex: 1;
+      height: 2px;
+      background: var(--dark-raised);
+      border-radius: 1px;
+      transition: background 0.4s var(--ease-out-expo);
+    }
+    .progress-segment.done { background: var(--gold); }
+    .progress-segment.active {
+      background: var(--gold);
+      box-shadow: 0 0 6px color-mix(in oklch, var(--gold), transparent 60%);
+    }
+
+    /* ═══════════════════════════════════════════
+       QUESTION PANELS
+       ═══════════════════════════════════════════ */
+
+    .panel {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      animation: panel-enter 0.5s var(--ease-out-expo) both;
+    }
+    .panel.active { display: flex; }
+
+    @keyframes panel-enter {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-num {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--gold-text);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--sp-3);
+    }
+
+    .question-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      color: var(--text-inv);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      margin-bottom: var(--sp-3);
+    }
+
+    .question-subtitle {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: var(--sp-8);
+      max-width: 480px;
+    }
+
+    .seeded-context {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-raised);
+      border-radius: var(--radius-md);
+      padding: var(--sp-4) var(--sp-6);
+      margin-bottom: var(--sp-8);
+      line-height: 1.9;
+    }
+    .seeded-context .key { color: var(--gold-text); display: inline-block; min-width: 100px; }
+    .seeded-context .val { color: var(--text-on-dark); }
+
+    /* ═══════════════════════════════════════════
+       FORM ELEMENTS
+       ═══════════════════════════════════════════ */
+
+    .input-field {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text-inv);
+      background: var(--dark-surface);
+      border: 1.5px solid var(--dark-raised);
+      border-radius: var(--radius-md);
+      padding: var(--sp-4) var(--sp-6);
+      width: 100%;
+      transition: border-color 200ms, box-shadow 200ms;
+      outline: none;
+    }
+    .input-field:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px color-mix(in oklch, var(--gold), transparent 88%);
+    }
+    .input-field::placeholder { color: var(--text-muted); }
+
+    textarea.input-field {
+      min-height: 140px;
+      resize: vertical;
+      line-height: 1.7;
+      font-family: var(--font-body);
+    }
+
+    .input-helper {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: var(--sp-2);
+    }
+
+    /* ═══════════════════════════════════════════
+       PRIORITY RANKING
+       ═══════════════════════════════════════════ */
+
+    .rank-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+    .rank-item {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      padding: var(--sp-3) var(--sp-4);
+      background: var(--dark-surface);
+      border: 1.5px solid var(--dark-raised);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: border-color 200ms, background 200ms, transform 200ms var(--ease-out-quart);
+      user-select: none;
+    }
+    .rank-item:hover {
+      border-color: var(--dark-muted);
+      background: var(--surface);
+    }
+    .rank-item:active { transform: scale(0.99); }
+    .rank-item.selected {
+      border-color: var(--gold);
+      background: color-mix(in oklch, var(--surface), var(--gold) 5%);
+    }
+    .rank-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--dark-raised);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: background 200ms, color 200ms;
+    }
+    .rank-item.selected .rank-num {
+      background: var(--gold);
+      color: var(--dark);
+    }
+    .rank-label {
+      font-size: var(--text-sm);
+      color: var(--text-on-dark);
+    }
+
+    /* ═══════════════════════════════════════════
+       MULTI-SELECT (Tools)
+       ═══════════════════════════════════════════ */
+
+    .multi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-2);
+    }
+    .multi-item {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      padding: var(--sp-3) var(--sp-4);
+      background: var(--dark-surface);
+      border: 1.5px solid var(--dark-raised);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: border-color 200ms, background 200ms;
+      user-select: none;
+    }
+    .multi-item:hover {
+      border-color: var(--dark-muted);
+    }
+    .multi-item.selected {
+      border-color: var(--gold);
+      background: color-mix(in oklch, var(--surface), var(--gold) 5%);
+    }
+    .multi-check {
+      width: 18px;
+      height: 18px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--dark-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 200ms, border-color 200ms;
+      font-size: 11px;
+      color: transparent;
+    }
+    .multi-item.selected .multi-check {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--dark);
+    }
+    .multi-label {
+      font-size: var(--text-sm);
+      color: var(--text-on-dark);
+    }
+
+    .other-input {
+      grid-column: 1 / -1;
+      margin-top: var(--sp-1);
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════ */
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: var(--sp-10);
+    }
+
+    .form-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: var(--sp-3) var(--sp-6);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 200ms var(--ease-out-quart), box-shadow 200ms;
+      border: none;
+      white-space: nowrap;
+    }
+    .form-btn:hover { transform: translateY(-1px); }
+    .form-btn:active { transform: translateY(0); }
+
+    .btn-next {
+      background: var(--gold);
+      color: var(--dark);
+      box-shadow: 0 2px 12px color-mix(in oklch, var(--gold), transparent 75%);
+      margin-left: auto;
+    }
+    .btn-next:hover { box-shadow: 0 4px 20px color-mix(in oklch, var(--gold), transparent 65%); }
+
+    .btn-back {
+      background: transparent;
+      color: var(--text-muted);
+      padding-left: 0;
+    }
+    .btn-back:hover { color: var(--text-on-dark); }
+
+    .btn-back .arrow { transition: transform 150ms var(--ease-out-quart); }
+    .btn-back:hover .arrow { transform: translateX(-3px); }
+    .btn-next .arrow { transition: transform 150ms var(--ease-out-quart); }
+    .btn-next:hover .arrow { transform: translateX(3px); }
+
+    /* ═══════════════════════════════════════════
+       WELCOME PANEL
+       ═══════════════════════════════════════════ */
+
+    .welcome-message {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 400;
+      color: var(--text-inv);
+      line-height: 1.55;
+      font-style: italic;
+      margin-bottom: var(--sp-8);
+      max-width: 480px;
+    }
+
+    .welcome-checklist {
+      list-style: none;
+      margin-bottom: var(--sp-8);
+    }
+    .welcome-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-3);
+      padding: var(--sp-2) 0;
+      font-size: var(--text-sm);
+      color: var(--text-on-dark);
+    }
+    .welcome-checklist li::before {
+      content: '\2713';
+      color: var(--gold-text);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CONFIRMATION PANEL
+       ═══════════════════════════════════════════ */
+
+    .confirm-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: oklch(68% 0.14 155 / 0.1);
+      border: 2px solid var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: var(--sp-6);
+    }
+
+    .confirm-summary {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-raised);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6);
+      margin-top: var(--sp-6);
+    }
+    .confirm-summary .row {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--sp-2) 0;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: var(--text-sm);
+    }
+    .confirm-summary .row:last-child { border-bottom: none; }
+    .confirm-summary .row-key { color: var(--text-muted); }
+    .confirm-summary .row-val { color: var(--text-inv); font-weight: 500; text-align: right; max-width: 280px; }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+
+    @media (max-width: 600px) {
+      html { font-size: 16px; }
+      .multi-grid { grid-template-columns: 1fr; }
+      .seeded-context .key { display: block; min-width: 0; margin-bottom: 2px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       REDUCED MOTION
+       ═══════════════════════════════════════════ */
+
+    @media (prefers-reduced-motion: reduce) {
+      .panel { animation: none; }
+      .rank-item, .multi-item, .btn { transition: none; }
+      .progress-segment { transition: background 0.1s ease; }
+    }
+  </style>
+</head>
+<body data-page-type="onboarding">
+
+<div class="grid-bg" aria-hidden="true"></div>
+
+<main>
+<div class="shell" role="form" aria-label="Onboarding questionnaire">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">milo</div>
+    <div class="step-indicator" id="stepIndicator">1 / 8</div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-track" id="progressTrack">
+    <div class="progress-segment active"></div>
+    <div class="progress-segment"></div>
+    <div class="progress-segment"></div>
+    <div class="progress-segment"></div>
+    <div class="progress-segment"></div>
+    <div class="progress-segment"></div>
+    <div class="progress-segment"></div>
+    <div class="progress-segment"></div>
+  </div>
+
+  <!-- ═══════ Panel 1: Welcome ═══════ -->
+  <div class="panel active" data-panel="0">
+    <div class="question-title">Hi Sacha.</div>
+    <p class="welcome-message">We've been building together for 5 months. 17 sessions. We already know a lot about what you're building — so this form is pre-loaded with that context. Fill in the gaps, and we'll have everything we need for session one.</p>
+
+    <div class="seeded-context">
+      <div><span class="key">Business</span> <span class="val">SAMG Marketing / My Marketer Mentors</span></div>
+      <div><span class="key">Framework</span> <span class="val">3P — Prepare, Propel, Perfect</span></div>
+      <div><span class="key">Book launch</span> <span class="val">June 23, 2026 — "Empower Your Marketing"</span></div>
+      <div><span class="key">Community</span> <span class="val">Circle ($29–50/mo membership)</span></div>
+      <div><span class="key">Brand</span> <span class="val">Sacha Awwa umbrella + "Uncomplicated" sub-brand</span></div>
+    </div>
+
+    <ul class="welcome-checklist">
+      <li>This form takes about 5 minutes</li>
+      <li>Your answers save automatically</li>
+      <li>Everything feeds directly into your AI environment</li>
+    </ul>
+
+    <div class="nav-row">
+      <div></div>
+      <button class="form-btn btn-next" onclick="goNext()">Let's go <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- ═══════ Panel 2: Manuscript ═══════ -->
+  <div class="panel" data-panel="1">
+    <div class="question-num">01</div>
+    <div class="question-title">Your manuscript</div>
+    <p class="question-subtitle">We'll load "Empower Your Marketing" into your AI so it knows your book inside and out. Share a link or upload.</p>
+
+    <label for="manuscript" class="sr-only">Manuscript link</label>
+    <input type="text" class="input-field" id="manuscript" placeholder="Google Drive link, Dropbox link, or describe where to find it" data-key="manuscript">
+    <p class="input-helper">Any format works — PDF, Word, Google Doc. We'll handle the rest.</p>
+
+    <div class="nav-row">
+      <button class="form-btn btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button class="form-btn btn-next" onclick="goNext()">Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- ═══════ Panel 3: Brand Assets ═══════ -->
+  <div class="panel" data-panel="2">
+    <div class="question-num">02</div>
+    <div class="question-title">Brand assets</div>
+    <p class="question-subtitle">We'll configure your AI environment with your brand — colors, logo, typography, voice. Share what you have.</p>
+
+    <label for="brandAssets" class="sr-only">Brand assets link</label>
+    <input type="text" class="input-field" id="brandAssets" placeholder="Link to logo files, brand guide, or your website" data-key="brandAssets" style="margin-bottom:var(--sp-3);">
+    <label for="websites" class="sr-only">Website URLs</label>
+    <input type="text" class="input-field" id="websites" placeholder="sachaawwa.com, samghq.com, or other sites" data-key="websites">
+    <p class="input-helper">If you don't have a formal brand guide, that's fine — we'll extract your style from your existing assets.</p>
+
+    <div class="nav-row">
+      <button class="form-btn btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button class="form-btn btn-next" onclick="goNext()">Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- ═══════ Panel 4: Priorities ═══════ -->
+  <div class="panel" data-panel="3">
+    <div class="question-num">03</div>
+    <div class="question-title">Rank your launch priorities</div>
+    <p class="question-subtitle">Click each item in order of importance. What matters most before June 23?</p>
+
+    <ul class="rank-list" id="rankList">
+      <li class="rank-item" data-value="community" onclick="toggleRank(this)">
+        <div class="rank-num">&mdash;</div>
+        <div class="rank-label">Community (Circle setup, member experience)</div>
+      </li>
+      <li class="rank-item" data-value="course" onclick="toggleRank(this)">
+        <div class="rank-num">&mdash;</div>
+        <div class="rank-label">Course (3P framework scaffold, content)</div>
+      </li>
+      <li class="rank-item" data-value="landing-pages" onclick="toggleRank(this)">
+        <div class="rank-num">&mdash;</div>
+        <div class="rank-label">Landing pages (book launch, events, funnels)</div>
+      </li>
+      <li class="rank-item" data-value="funnels" onclick="toggleRank(this)">
+        <div class="rank-num">&mdash;</div>
+        <div class="rank-label">Funnels (opt-in, email sequences, launch flows)</div>
+      </li>
+      <li class="rank-item" data-value="practice" onclick="toggleRank(this)">
+        <div class="rank-num">&mdash;</div>
+        <div class="rank-label">Client practice automation</div>
+      </li>
+    </ul>
+
+    <div class="nav-row">
+      <button class="form-btn btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button class="form-btn btn-next" onclick="goNext()">Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- ═══════ Panel 5: Friction ═══════ -->
+  <div class="panel" data-panel="4">
+    <div class="question-num">04</div>
+    <div class="question-title">Biggest friction points</div>
+    <p class="question-subtitle">What slows you down most in your current practice? What takes too long, costs too much, or just doesn't work?</p>
+
+    <label for="friction" class="sr-only">Biggest friction points</label>
+    <textarea class="input-field" id="friction" placeholder="E.g., creating content takes all day, I can't update my website without calling someone, outreach is manual and inconsistent..." data-key="friction"></textarea>
+
+    <div class="nav-row">
+      <button class="form-btn btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button class="form-btn btn-next" onclick="goNext()">Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- ═══════ Panel 6: Tools ═══════ -->
+  <div class="panel" data-panel="5">
+    <div class="question-num">05</div>
+    <div class="question-title">Tools you use today</div>
+    <p class="question-subtitle">Select everything you currently use. This helps us integrate rather than replace.</p>
+
+    <div class="multi-grid" id="toolsGrid">
+      <div class="multi-item" data-value="circle" onclick="toggleMulti(this)">
+        <div class="multi-check">&check;</div>
+        <div class="multi-label">Circle</div>
+      </div>
+      <div class="multi-item" data-value="claude" onclick="toggleMulti(this)">
+        <div class="multi-check">&check;</div>
+        <div class="multi-label">Claude / ChatGPT</div>
+      </div>
+      <div class="multi-item" data-value="canva" onclick="toggleMulti(this)">
+        <div class="multi-check">&check;</div>
+        <div class="multi-label">Canva</div>
+      </div>
+      <div class="multi-item" data-value="wordpress" onclick="toggleMulti(this)">
+        <div class="multi-check">&check;</div>
+        <div class="multi-label">WordPress</div>
+      </div>
+      <div class="multi-item" data-value="mailchimp" onclick="toggleMulti(this)">
+        <div class="multi-check">&check;</div>
+        <div class="multi-label">Mailchimp / ConvertKit</div>
+      </div>
+      <div class="multi-item" data-value="linkedin" onclick="toggleMulti(this)">
+        <div class="multi-check">&check;</div>
+        <div class="multi-label">LinkedIn</div>
+      </div>
+      <div class="multi-item" data-value="kajabi" onclick="toggleMulti(this)">
+        <div class="multi-check">&check;</div>
+        <div class="multi-label">Kajabi / Teachable</div>
+      </div>
+      <div class="multi-item" data-value="zoom" onclick="toggleMulti(this)">
+        <div class="multi-check">&check;</div>
+        <div class="multi-label">Zoom</div>
+      </div>
+      <label for="toolsOther" class="sr-only">Other tools</label>
+      <input type="text" class="input-field other-input" id="toolsOther" placeholder="Other tools..." data-key="toolsOther">
+    </div>
+
+    <div class="nav-row">
+      <button class="form-btn btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button class="form-btn btn-next" onclick="goNext()">Next <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- ═══════ Panel 7: Success ═══════ -->
+  <div class="panel" data-panel="6">
+    <div class="question-num">06</div>
+    <div class="question-title">90 days from now</div>
+    <p class="question-subtitle">What does success look like? Paint the picture — what's different about your business, your workflow, your capacity?</p>
+
+    <label for="success" class="sr-only">90-day success vision</label>
+    <textarea class="input-field" id="success" placeholder="E.g., book launched with a real funnel, community is live with 50+ members, I can build a landing page in 10 minutes without calling anyone..." data-key="success"></textarea>
+
+    <div class="nav-row">
+      <button class="form-btn btn-back" onclick="goBack()"><span class="arrow">&larr;</span> Back</button>
+      <button class="form-btn btn-next" onclick="goNext()">Submit <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- ═══════ Panel 8: Confirmation ═══════ -->
+  <div class="panel" data-panel="7">
+    <div class="confirm-icon">&#x2713;</div>
+    <div class="question-title">You're all set, Sacha.</div>
+    <p class="question-subtitle" style="margin-bottom:var(--sp-4);">Your answers are saved. We'll have your AI environment pre-loaded and ready for session one.</p>
+
+    <div class="confirm-summary" id="confirmSummary">
+      <!-- Filled by JS -->
+    </div>
+
+    <p style="margin-top:var(--sp-8); font-size:var(--text-sm); color:var(--text-muted);">Questions before our first session? Reply to the email that brought you here.</p>
+  </div>
+
+</div>
+</main>
+
+<script>
+  /* ═══════ Form engine ═══════ */
+
+  var panels = document.querySelectorAll('.panel');
+  var segments = document.querySelectorAll('.progress-segment');
+  var stepIndicator = document.getElementById('stepIndicator');
+  var current = 0;
+  var totalPanels = panels.length;
+
+  /* Ranking state */
+  var rankOrder = [];
+
+  /* Multi-select state */
+  var selectedTools = [];
+
+  /* ─── Navigation ─── */
+
+  function showPanel(n) {
+    panels[current].classList.remove('active');
+    current = n;
+
+    /* Re-trigger entry animation */
+    panels[current].style.animation = 'none';
+    panels[current].offsetHeight; /* reflow */
+    panels[current].style.animation = '';
+    panels[current].classList.add('active');
+
+    /* Update progress */
+    for (var i = 0; i < segments.length; i++) {
+      segments[i].className = 'progress-segment';
+      if (i < current) segments[i].classList.add('done');
+      if (i === current) segments[i].classList.add('active');
+    }
+    stepIndicator.textContent = (current + 1) + ' / ' + totalPanels;
+
+    save();
+    window.scrollTo(0, 0);
+  }
+
+  function goNext() {
+    if (current < totalPanels - 1) {
+      if (current === totalPanels - 2) buildSummary();
+      showPanel(current + 1);
+    }
+  }
+  function goBack() {
+    if (current > 0) showPanel(current - 1);
+  }
+
+  /* Keyboard: Enter = next */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey && document.activeElement.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      goNext();
+    }
+  });
+
+  /* ─── Priority ranking ─── */
+
+  function toggleRank(el) {
+    var value = el.dataset.value;
+    var idx = rankOrder.indexOf(value);
+
+    if (idx > -1) {
+      /* Deselect: remove and renumber */
+      rankOrder.splice(idx, 1);
+      el.classList.remove('selected');
+    } else {
+      /* Select: add to end */
+      rankOrder.push(value);
+      el.classList.add('selected');
+    }
+
+    /* Update all numbers */
+    var items = document.querySelectorAll('#rankList .rank-item');
+    for (var i = 0; i < items.length; i++) {
+      var v = items[i].dataset.value;
+      var pos = rankOrder.indexOf(v);
+      var numEl = items[i].querySelector('.rank-num');
+      if (pos > -1) {
+        numEl.textContent = pos + 1;
+        items[i].classList.add('selected');
+      } else {
+        numEl.innerHTML = '&mdash;';
+        items[i].classList.remove('selected');
+      }
+    }
+    save();
+  }
+
+  /* ─── Multi-select ─── */
+
+  function toggleMulti(el) {
+    var value = el.dataset.value;
+    var idx = selectedTools.indexOf(value);
+    if (idx > -1) {
+      selectedTools.splice(idx, 1);
+      el.classList.remove('selected');
+    } else {
+      selectedTools.push(value);
+      el.classList.add('selected');
+    }
+    save();
+  }
+
+  /* ─── localStorage persistence ─── */
+
+  var STORAGE_KEY = 'milo_sacha_onboarding';
+
+  function save() {
+    var data = {
+      manuscript: val('manuscript'),
+      brandAssets: val('brandAssets'),
+      websites: val('websites'),
+      priorities: rankOrder,
+      friction: val('friction'),
+      tools: selectedTools,
+      toolsOther: val('toolsOther'),
+      success: val('success'),
+      currentPanel: current,
+      savedAt: new Date().toISOString()
+    };
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+  }
+
+  function val(id) {
+    var el = document.getElementById(id);
+    return el ? el.value : '';
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      var data = JSON.parse(raw);
+
+      if (data.manuscript) document.getElementById('manuscript').value = data.manuscript;
+      if (data.brandAssets) document.getElementById('brandAssets').value = data.brandAssets;
+      if (data.websites) document.getElementById('websites').value = data.websites;
+      if (data.friction) document.getElementById('friction').value = data.friction;
+      if (data.toolsOther) document.getElementById('toolsOther').value = data.toolsOther;
+      if (data.success) document.getElementById('success').value = data.success;
+
+      /* Restore priority ranking */
+      if (data.priorities && data.priorities.length) {
+        rankOrder = data.priorities;
+        var items = document.querySelectorAll('#rankList .rank-item');
+        for (var i = 0; i < items.length; i++) {
+          var v = items[i].dataset.value;
+          var pos = rankOrder.indexOf(v);
+          if (pos > -1) {
+            items[i].classList.add('selected');
+            items[i].querySelector('.rank-num').textContent = pos + 1;
+          }
+        }
+      }
+
+      /* Restore tools */
+      if (data.tools && data.tools.length) {
+        selectedTools = data.tools;
+        var toolItems = document.querySelectorAll('#toolsGrid .multi-item');
+        for (var j = 0; j < toolItems.length; j++) {
+          if (selectedTools.indexOf(toolItems[j].dataset.value) > -1) {
+            toolItems[j].classList.add('selected');
+          }
+        }
+      }
+
+      /* Restore panel position */
+      if (data.currentPanel && data.currentPanel > 0 && data.currentPanel < totalPanels) {
+        showPanel(data.currentPanel);
+      }
+    } catch(e) {}
+  }
+
+  /* Auto-save on input */
+  document.addEventListener('input', function(e) {
+    if (e.target.classList.contains('input-field')) save();
+  });
+
+  /* ─── Summary builder ─── */
+
+  function buildSummary() {
+    var container = document.getElementById('confirmSummary');
+    var rows = [
+      ['Manuscript', val('manuscript') || 'Not provided yet'],
+      ['Brand assets', val('brandAssets') || val('websites') || 'Not provided yet'],
+      ['Top priority', rankOrder.length ? formatPriority(rankOrder[0]) : 'Not ranked yet'],
+      ['Tools', selectedTools.length ? selectedTools.join(', ') : 'None selected'],
+    ];
+    var html = '';
+    for (var i = 0; i < rows.length; i++) {
+      html += '<div class="row"><span class="row-key">' + rows[i][0] + '</span><span class="row-val">' + escHtml(rows[i][1]) + '</span></div>';
+    }
+    container.innerHTML = html;
+  }
+
+  function formatPriority(val) {
+    var map = { community: 'Community', course: 'Course', 'landing-pages': 'Landing pages', funnels: 'Funnels', practice: 'Practice automation' };
+    return map[val] || val;
+  }
+
+  function escHtml(s) {
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  /* ─── Init ─── */
+  load();
+</script>
+
+</body>
+</html>

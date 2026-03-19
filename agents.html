@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
+  <title>AI Native for Operator-Led Teams | Milo</title>
+  <meta name="description" content="Start with the workflow or responsibility that keeps costing your team time, money, or follow-through. Milo turns AI into a real first win.">
+  <meta property="og:title" content="AI Native for Operator-Led Teams | Milo">
+  <meta property="og:description" content="Use AI Native to turn one painful recurring workflow into a real first gain, then expand from there.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="milo-design-system.css">
+  <script src="/milo-analytics.js" defer></script>
+  <link rel="canonical" href="https://getmilo.dev/agents">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "AI Native for Operator-Led Teams",
+    "provider": { "@type": "Organization", "name": "Milo", "url": "https://getmilo.dev" },
+    "description": "AI Native setup for operator-led teams that want a practical first win, then deliberate expansion across the team.",
+    "serviceType": "AI Native Setup",
+    "areaServed": "US",
+    "offers": [
+      { "@type": "Offer", "name": "AI Systems Assessment", "price": "500", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "AI Native Setup for Teams", "price": "2500", "priceCurrency": "USD" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is this only for agencies?", "acceptedAnswer": { "@type": "Answer", "text": "No. Agencies are the clearest fit, but we also work with lean professional-service firms that live in proposals, reporting, client follow-up, and internal research. If the work repeats every week and the workflow is still manual, the model fits." }},
+      { "@type": "Question", "name": "We already use ChatGPT. Why pay for this?", "acceptedAnswer": { "@type": "Answer", "text": "Because casual AI use is not the same as a dependable operating system. We map the workflow, connect the tools, define the guardrails, and hand over something your team can actually run without rebuilding it by hand." }},
+      { "@type": "Question", "name": "What happens if I stop working with you?", "acceptedAnswer": { "@type": "Answer", "text": "Nothing breaks. The systems run on your infrastructure with open tools and standard integrations. You keep the docs, the logic, and the handoff materials from day one." }},
+      { "@type": "Question", "name": "What does it cost per month after setup?", "acceptedAnswer": { "@type": "Answer", "text": "Usually about $30 to $60 per month in hosting and model usage, depending on volume. Milo does not charge a recurring software fee after delivery." }},
+      { "@type": "Question", "name": "Can I see what you would build first?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the build page to map your first workflow, or book a project call and we will tell you which workflow we would start with, why, and what the scope should be." }}
+    ]
+  }
+  </script>
+  <style>
+    /* Page-specific overrides only */
+    /* Hero — editorial asymmetry */
+    .agents-hero {
+      padding: clamp(104px, 12vh, 156px) 0 var(--sp-16);
+    }
+    .agents-hero__grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: var(--sp-16);
+      align-items: start;
+    }
+    .agents-hero__body {
+      font-size: var(--text-lg);
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 520px;
+      margin-bottom: var(--sp-6);
+    }
+    .agents-hero__fine {
+      font-size: var(--text-sm);
+      color: var(--text-3);
+      margin-bottom: var(--sp-8);
+      max-width: 520px;
+      line-height: 1.6;
+    }
+    .agents-hero__actions {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+    }
+    .agents-hero__alt {
+      margin-top: var(--sp-8);
+      max-width: 540px;
+      padding-top: var(--sp-5);
+      border-top: 1px solid var(--border);
+    }
+    .agents-hero__alt-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold-text);
+      margin-bottom: var(--sp-2);
+    }
+    .agents-hero__alt-title {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: var(--sp-2);
+    }
+    .agents-hero__alt-copy {
+      font-size: var(--text-sm);
+      line-height: 1.65;
+      color: var(--text-2);
+      margin-bottom: var(--sp-4);
+      max-width: 520px;
+    }
+    .agents-hero__sidebar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: var(--sp-6);
+      margin-top: var(--sp-12);
+    }
+    .agents-hero__sidebar-title {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: var(--sp-4);
+    }
+    .agents-hero__sidebar-row {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      line-height: 2.2;
+      color: var(--text-3);
+    }
+    .agents-hero__sidebar-row .key { display: inline-block; min-width: 100px; }
+    .agents-hero__sidebar-row .val { color: var(--text-1); font-weight: 500; }
+    .agents-hero__sidebar-divider { height: 1px; background: var(--border); margin: var(--sp-3) 0; }
+
+    @media (max-width: 768px) {
+      .agents-hero__grid { grid-template-columns: 1fr; gap: var(--sp-8); }
+      .agents-hero__sidebar { margin-top: var(--sp-4); }
+      .agents-hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .agents-hero__actions .btn {
+        justify-content: center;
+      }
+      .agents-hero__alt .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .agents-hero__sidebar-row .key,
+      .agents-hero__sidebar-row .val {
+        display: block;
+        min-width: 0;
+      }
+    }
+
+    /* How it works — 3-step editorial */
+    .steps-list {
+      counter-reset: step-counter;
+      list-style: none;
+    }
+    .steps-list li {
+      counter-increment: step-counter;
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: var(--sp-6);
+      padding: var(--sp-8) 0;
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: start;
+    }
+    .steps-list li:last-child { border-bottom: none; }
+    .steps-list li::before {
+      content: counter(step-counter);
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      color: var(--gold-text);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .steps-list h3 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--text-lg);
+      color: var(--text-1);
+      margin-bottom: var(--sp-2);
+    }
+    .steps-list p {
+      font-size: var(--text-base);
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    /* Pricing tier CTA styling */
+    .pricing-tier__cta {
+      margin-top: var(--sp-6);
+    }
+    .pricing-tier__badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold-text);
+      background: var(--gold-light);
+      padding: 2px var(--sp-2);
+      border-radius: 3px;
+      margin-bottom: var(--sp-2);
+      display: inline-block;
+    }
+
+    /* Promo note */
+    .promo-note {
+      font-size: var(--text-sm);
+      color: var(--text-3);
+      margin-top: var(--sp-8);
+    }
+    .promo-note strong {
+      color: var(--gold-text);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body data-page-type="agents">
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link nav__link--active" aria-current="page">Services</a>
+      <a href="/audit" class="nav__link">Audit</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/agents">Services</a>
+  <a href="/audit">Audit</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
+</div>
+
+<main id="main">
+
+<!-- HERO — SPEC:001 -->
+<section class="agents-hero">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:001</span>
+      <span class="spec-coord">// AI workflow systems</span>
+    </div>
+    <div class="agents-hero__grid">
+      <div>
+        <h1 class="page-hero__title reveal">Your team rebuilds the same work every week. <span class="accent">AI Native fixes the workflow that costs the most.</span></h1>
+        <p class="agents-hero__body reveal" data-delay="1">Proposals rewritten from scratch. Reports reassembled every cycle. Follow-up that slips between people. Research repeated because nobody can find the last version. We find the workflow that bleeds the most time and make AI do the recurring part.</p>
+        <div class="agents-hero__actions reveal visible" data-delay="2">
+          <a href="/demo?offer=assessment" class="btn btn--dark btn--lg" data-track="assessment_cta" data-track-location="hero_primary">Book an assessment call</a>
+          <a href="/build" class="btn btn--ghost" data-track="build_cta" data-track-location="hero_secondary">See What We Build</a>
+        </div>
+        <div class="agents-hero__alt reveal" data-delay="3">
+          <div class="agents-hero__alt-label">Also available</div>
+          <div class="agents-hero__alt-title">Founder or executive lens</div>
+          <p class="agents-hero__alt-copy">Same AI Native product. If the first leverage point lives with a founder or executive rather than the wider team, start there instead.</p>
+          <a href="/ainative" class="talk-link" data-track="ainative_cta" data-track-location="alternate_fit">See AI Native Setup</a>
+        </div>
+      </div>
+      <div class="agents-hero__sidebar reveal" data-delay="3">
+        <div class="agents-hero__sidebar-title">Quick specs</div>
+        <div class="agents-hero__sidebar-row"><span class="key">buyer</span> <span class="val">operator-led teams</span></div>
+        <div class="agents-hero__sidebar-row"><span class="key">entry</span> <span class="val">$500 assessment</span></div>
+        <div class="agents-hero__sidebar-row"><span class="key">monthly to us</span> <span class="val">$0</span></div>
+        <div class="agents-hero__sidebar-row"><span class="key">setup</span> <span class="val">from $2,500</span></div>
+        <div class="agents-hero__sidebar-divider"></div>
+        <div class="agents-hero__sidebar-row"><span class="key">handoff</span> <span class="val">documented</span></div>
+        <div class="agents-hero__sidebar-row"><span class="key">infrastructure</span> <span class="val">yours</span></div>
+        <div class="agents-hero__sidebar-row"><span class="key">stack</span> <span class="val">open tools</span></div>
+        <div class="agents-hero__sidebar-row"><span class="key">risk</span> <span class="val">start narrow</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS — SPEC:002 -->
+<section style="padding: 0 0 var(--sp-20);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:002</span>
+      <span class="spec-coord">// proof points</span>
+    </div>
+    <div class="stats-bar reveal" data-delay="1">
+      <div class="stats-bar__item">
+        <div class="stats-bar__num">4</div>
+        <div class="stats-bar__label">core workflows we lead with</div>
+      </div>
+      <div class="stats-bar__item">
+        <div class="stats-bar__num">2-5</div>
+        <div class="stats-bar__label">days to ship a first workflow</div>
+      </div>
+      <div class="stats-bar__item">
+        <div class="stats-bar__num">$0</div>
+        <div class="stats-bar__label">monthly fees to us after setup</div>
+      </div>
+      <div class="stats-bar__item">
+        <div class="stats-bar__num">1</div>
+        <div class="stats-bar__label">workflow to prove value first</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS — SPEC:003 -->
+<section id="agents" style="padding: 0 0 var(--sp-24);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:003</span>
+      <span class="spec-coord">// agent roster</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">Where AI Native usually creates the first gain for teams</h2>
+      </div>
+      <div class="editorial__body">
+        <p>We do not start with "everything." We start where the team can feel the gain fastest. These are the first places AI Native usually pays off.</p>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+    <ul class="stacked-list">
+      <li class="stacked-item reveal">
+        <div class="stacked-item__num">proposal</div>
+        <div>
+          <div class="stacked-item__title">Proposal System</div>
+          <div class="stacked-item__body">Turns scattered notes, call transcripts, old scopes, and pricing rules into a repeatable proposal workflow. Faster turnaround, less blank-page work, fewer inconsistencies between what was promised and what gets delivered.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="1">
+        <div class="stacked-item__num">reporting</div>
+        <div>
+          <div class="stacked-item__title">Client Reporting System</div>
+          <div class="stacked-item__body">Pulls numbers from the tools you already use, drafts the report, flags missing context, and gives the team a clean review point before anything goes to the client.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="2">
+        <div class="stacked-item__num">follow-up</div>
+        <div>
+          <div class="stacked-item__title">Follow-Up System</div>
+          <div class="stacked-item__body">Keeps leads, prospects, and clients from going cold because the next message depended on someone remembering to send it. Cadence, triggers, approvals, and handoff rules live in one dependable system.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="1">
+        <div class="stacked-item__num">research</div>
+        <div>
+          <div class="stacked-item__title">Research System</div>
+          <div class="stacked-item__body">Stops the team from redoing the same account research, market scans, and meeting prep every week. It gathers context, structures it, and hands back something usable instead of another pile of tabs.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="2">
+        <div class="stacked-item__num">delivery</div>
+        <div>
+          <div class="stacked-item__title">Delivery Coordination System</div>
+          <div class="stacked-item__body">Routes work between intake, approvals, execution, and client delivery so tasks stop disappearing in Slack, email, and personal to-do lists. Useful when delivery is strong but internal coordination keeps leaking time.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="3">
+        <div class="stacked-item__num">inbox</div>
+        <div>
+          <div class="stacked-item__title">Internal Inbox System</div>
+          <div class="stacked-item__body">Monitors incoming requests, triages them, summarizes what matters, and keeps the right person from becoming the human router for every message, task, and exception.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- WHY IT WORKS — SPEC:004 -->
+<section style="padding: 0 0 var(--sp-24);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:004</span>
+      <span class="spec-coord">// differentiation</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">Why this works when prompts, templates, and one-off automations didn&apos;t</h2>
+      </div>
+      <div class="editorial__body">
+        <p>The failure mode is usually the same: a smart demo, a few saved prompts, then the team drifts back to manual work because nobody turned it into an operating system.</p>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+    <ul class="stacked-list">
+      <li class="stacked-item reveal">
+        <div class="stacked-item__num">01</div>
+        <div>
+          <div class="stacked-item__title">We build around a real bottleneck, not a vague AI ambition</div>
+          <div class="stacked-item__body">Proposal drag, reporting churn, follow-up leakage, repeated research. The system starts where the team already feels pain instead of trying to automate the whole firm in one shot.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="1">
+        <div class="stacked-item__num">02</div>
+        <div>
+          <div class="stacked-item__title">The workflow is visible and testable before it spreads</div>
+          <div class="stacked-item__body">You can inspect the trigger, the inputs, the approvals, the outputs, and the exceptions. That is what makes a system dependable instead of magical for two days and fragile after that.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="2">
+        <div class="stacked-item__num">03</div>
+        <div>
+          <div class="stacked-item__title">Ownership only matters if the team can inherit the system cleanly</div>
+          <div class="stacked-item__body">Milo does not stop at "it runs on your stack." We document the logic, define the guardrails, and make sure someone on your side can understand what was built and how to run it.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="3">
+        <div class="stacked-item__num">04</div>
+        <div>
+          <div class="stacked-item__title">The first system is intentionally narrow enough to work</div>
+          <div class="stacked-item__body">The point of the entry offer is not to promise unlimited implementation. It is to fix one workflow, prove the handoff, and decide whether the firm should expand from there.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<blockquote class="pull-quote">
+  <div class="wrap">
+    <div class="pull-quote__inner reveal">
+      <p class="pull-quote__text">The point is not to add more AI. The point is to get one real win your team can feel.</p>
+      <cite class="pull-quote__attr">That is the difference between dabbling and operating</cite>
+    </div>
+  </div>
+</blockquote>
+
+<!-- HOW IT WORKS — SPEC:005 -->
+<section style="padding: 0 0 var(--sp-24);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:005</span>
+      <span class="spec-coord">// process</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">How the first win works</h2>
+      </div>
+      <div class="editorial__body">
+        <p>The process is short on purpose. The goal is to create one real gain, prove the pattern, then expand from there.</p>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+    <ol class="steps-list">
+      <li class="reveal">
+        <div>
+          <h3>Find the place where AI can help fastest</h3>
+          <p>We start with the assessment, identify where the drag is real, and choose the point where AI can create the clearest first gain.</p>
+        </div>
+      </li>
+      <li class="reveal" data-delay="1">
+        <div>
+          <h3>Set up AI Native around that gain</h3>
+          <p>We turn the opportunity into something practical inside the way your team already works, then test it against the real path instead of a polished demo.</p>
+        </div>
+      </li>
+      <li class="reveal" data-delay="2">
+        <div>
+          <h3>Expand only after it works</h3>
+          <p>Once the first win is real, we decide whether to extend AI Native into the rest of the team. No vague transformation promises up front.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- PRICING — SPEC:006 -->
+<section id="pricing" class="section">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:006</span>
+      <span class="spec-coord">// pricing</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">Start with the team problem that keeps costing you time and follow-through</h2>
+      </div>
+      <div class="editorial__body">
+        <p>The entry is the assessment. Then AI Native Setup. Then expansion once the first result is real. Same product architecture as the rest of the site.</p>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+
+    <!-- Per Agent -->
+    <div class="pricing-tier reveal">
+      <div>
+        <div class="caption" style="margin-bottom: var(--sp-2);">Entry</div>
+        <div class="pricing-tier__name">AI Systems Assessment</div>
+        <div class="pricing-tier__price">$500</div>
+      </div>
+      <div class="pricing-tier__body">
+        <p>For teams that know AI should help but do not want to guess where to start. We identify where the clearest leverage is and what AI Native should tackle first.</p>
+        <ul class="feature-list">
+          <li>Identify the highest-leverage first target</li>
+          <li>Clarify whether AI Native is the right next move</li>
+          <li>Get a practical recommendation, not more sprawl</li>
+          <li>Best when the goal is proof before expansion</li>
+        </ul>
+        <div class="pricing-tier__cta">
+          <a href="/demo?offer=assessment" class="btn btn--dark" data-track="assessment_cta" data-track-location="pricing_assessment">Book an assessment call</a>
+          <a href="/build" class="btn btn--ghost" style="margin-top: var(--sp-2); display: inline-block;" data-track="build_cta" data-track-location="pricing_map_first">Map it first</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Team (featured) -->
+    <div class="pricing-tier pricing-tier__featured reveal" data-delay="1">
+      <div>
+        <div class="pricing-tier__badge">Best Value</div>
+        <div class="pricing-tier__name">AI Native Setup for Teams</div>
+        <div class="pricing-tier__price">From $2,500</div>
+      </div>
+      <div class="pricing-tier__body">
+        <p>For teams that already know the problem is real and want to turn AI into a practical first win they can expand from.</p>
+        <ul class="feature-list">
+          <li>AI Native set up around the team's real work</li>
+          <li>Clear first gain before broader expansion</li>
+          <li>Client-facing and internal use cases supported</li>
+          <li>Documentation, transfer, and expansion path</li>
+          <li>30 days of post-setup support</li>
+          <li>Tested on real workflow paths before delivery</li>
+        </ul>
+        <div class="pricing-tier__cta">
+          <a href="/demo?offer=assessment" class="btn btn--gold btn--lg" data-track="assessment_cta" data-track-location="pricing_setup">Book an assessment call</a>
+          <a href="/ainative" class="btn btn--ghost" style="margin-top: var(--sp-2); display: inline-block;" data-track="ainative_cta" data-track-location="pricing_secondary">See AI Native Setup</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="promo-note reveal"><strong>Same product, different lens:</strong> <a href="/executives" style="color: var(--gold-text);">AI Native for founders and executives</a> uses the same discipline in a 1-on-1 context for writing, planning, research, and decision support.</p>
+  </div>
+</section>
+
+<!-- FAQ — SPEC:007 -->
+<section class="section" style="padding-top: 0;">
+  <div class="wrap wrap--narrow">
+    <div class="section-marker reveal">
+      <span class="spec-label">SPEC:007</span>
+      <span class="spec-coord">// faq</span>
+    </div>
+    <h2 class="reveal" style="font-size: var(--text-2xl); margin-bottom: var(--sp-10);">Questions operators ask before they hand you a workflow</h2>
+
+    <div class="faq-item reveal">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-1">"Is this only for agencies?"</button>
+      <div class="faq__answer" id="faq-1" hidden>
+        <div class="faq__answer-inner">
+          <p>No. Agencies are the clearest fit, but the same model works for lean professional-service firms with recurring workflow drag around proposals, reporting, follow-up, and research.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="1">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-2">"We already use ChatGPT. Why pay for this?"</button>
+      <div class="faq__answer" id="faq-2" hidden>
+        <div class="faq__answer-inner">
+          <p>Because using AI casually is not the same as having a dependable workflow. Most firms already have prompts, tabs, and scattered experiments. They do not have a tested system with approvals, integrations, ownership, and handoff.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="2">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-3">"What happens if I stop working with you?"</button>
+      <div class="faq__answer" id="faq-3" hidden>
+        <div class="faq__answer-inner">
+          <p>The system keeps running on your infrastructure. You keep the operating logic, the docs, and the handoff material. That is the point of building it this way.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-4">"What does it actually cost me per month after setup?"</button>
+      <div class="faq__answer" id="faq-4" hidden>
+        <div class="faq__answer-inner">
+          <p>Usually around $30 to $60 per month in hosting and model usage, depending on volume and tools. Milo does not charge recurring software fees after delivery.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="1">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-5">"What if the system does something I don't want it to?"</button>
+      <div class="faq__answer" id="faq-5" hidden>
+        <div class="faq__answer-inner">
+          <p>Guardrails, approvals, and escalation rules are part of the build. High-risk client-facing actions can stay behind approval. Lower-risk internal work can run with more autonomy. The workflow gets tuned to the actual risk of the task.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="2">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-6">"Can I see what you would build first?"</button>
+      <div class="faq__answer" id="faq-6" hidden>
+        <div class="faq__answer-inner">
+          <p>Yes. <a href="/build" style="color: var(--gold-text); text-decoration: underline;" data-track="build_cta" data-track-location="faq">Map your first workflow</a> or <a href="/demo?offer=assessment" style="color: var(--gold-text); text-decoration: underline;" data-track="assessment_cta" data-track-location="faq">book an assessment call</a>. We will tell you where we would start, what the first win should be, and whether AI Native is the right next move.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — SPEC:008 -->
+<section class="cta-section">
+  <div class="section-marker section-marker--cta reveal">
+    <span class="spec-label spec-label--on-dark">SPEC:008</span>
+    <span class="spec-coord spec-coord--on-dark">// engagement</span>
+  </div>
+  <div class="cta__inner">
+    <div>
+      <h2 class="cta__title reveal">If the work repeats every week, your team should not be rebuilding it by hand.</h2>
+      <p class="cta__body reveal" data-delay="1">Start with the assessment, identify the best first gain, and use AI Native to turn it into something the team can actually use and expand from.</p>
+      <div class="reveal" data-delay="2">
+        <a href="/demo?offer=assessment" class="btn btn--gold-on-dark btn--lg" data-track="assessment_cta" data-track-location="footer_primary">Book an Assessment Call</a>
+      </div>
+    </div>
+    <div class="cta__pricing reveal" data-delay="2">
+      <strong>AI Systems Assessment</strong> — $500<br>
+      <strong>AI Native Setup</strong> — from $2,500<br><br>
+      You own everything.<br>
+      $0/month to us after delivery.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/audit">Audit</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+      <a href="https://pathoslabs.co">Pathos Labs</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Mobile menu
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !open);
+    menu.classList.toggle('open');
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+  // Focus trap + Escape for mobile menu
+  document.addEventListener('keydown', (e) => {
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+      toggle.focus();
+      return;
+    }
+    if (e.key === 'Tab') {
+      const focusable = [toggle, ...menu.querySelectorAll('a')];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq__question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const answer = document.getElementById(btn.getAttribute('aria-controls'));
+
+      // Close all others
+      document.querySelectorAll('.faq__question').forEach(other => {
+        if (other !== btn) {
+          other.setAttribute('aria-expanded', 'false');
+          const otherAnswer = document.getElementById(other.getAttribute('aria-controls'));
+          if (otherAnswer) otherAnswer.hidden = true;
+        }
+      });
+
+      btn.setAttribute('aria-expanded', !expanded);
+      answer.hidden = expanded;
+    });
+  });
+</script>
+
+</body>
+</html>

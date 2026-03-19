@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
+  <title>AI Native for Founders and Executives | Milo</title>
+  <meta name="description" content="You do not need another AI lecture. You need to know how to use it to get ahead. Milo helps founders and executives turn AI into practical advantage.">
+  <meta property="og:title" content="AI Native for Founders and Executives | Milo">
+  <meta property="og:description" content="Milo helps founders and executives turn AI from vague curiosity into sharper thinking, faster output, stronger decisions, and real leverage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="milo-design-system.css">
+  <script src="/milo-analytics.js" defer></script>
+  <link rel="canonical" href="https://getmilo.dev/executives">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "AI Native for Founders and Executives",
+    "provider": { "@type": "Organization", "name": "Milo", "url": "https://getmilo.dev" },
+    "description": "AI Native setup for founders and executives who want practical leverage, not AI theory.",
+    "serviceType": "AI Native Setup",
+    "areaServed": "US",
+    "offers": {
+      "@type": "Offer",
+      "priceRange": "$2,000-$5,000",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <style>
+    /* Page-specific: executives */
+    .exec-hero {
+      padding: clamp(130px, 15vh, 200px) 0 var(--sp-16);
+    }
+    .exec-hero__grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: var(--sp-16);
+      align-items: start;
+    }
+    .exec-hero__kicker {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--gold-text);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--sp-4);
+    }
+    .exec-hero__body {
+      font-size: var(--text-lg);
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 540px;
+      margin-bottom: var(--sp-8);
+    }
+    .exec-hero__sidebar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: var(--sp-6);
+      margin-top: var(--sp-12);
+    }
+    .exec-hero__sidebar-title {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: var(--sp-4);
+    }
+    .exec-hero__sidebar-row {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      line-height: 2.2;
+      color: var(--text-3);
+    }
+    .exec-hero__sidebar-row .key { display: inline-block; min-width: 90px; }
+    .exec-hero__sidebar-row .val { color: var(--text-1); font-weight: 500; }
+    .exec-hero__sidebar-divider { height: 1px; background: var(--border); margin: var(--sp-3) 0; }
+
+    .reality-check {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 400;
+      color: var(--text-2);
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 640px;
+      margin: var(--sp-4) 0 var(--sp-12);
+    }
+
+    @media (max-width: 768px) {
+      .exec-hero__grid { grid-template-columns: 1fr; gap: var(--sp-8); }
+      .exec-hero__sidebar { margin-top: var(--sp-4); }
+      .exec-hero__sidebar-row .key,
+      .exec-hero__sidebar-row .val {
+        display: block;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body data-page-type="executives">
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link">Services</a>
+      <a href="/audit" class="nav__link">Audit</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/agents">Services</a>
+  <a href="/audit">Audit</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="exec-hero">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">EXEC:001</span>
+      <span class="spec-coord">// executive enablement</span>
+    </div>
+    <div class="exec-hero__grid">
+      <div>
+        <div class="exec-hero__kicker reveal">AI Native for founders and executives</div>
+        <h1 class="page-hero__title reveal" data-delay="1">Everyone around you is moving faster. <span class="accent">You can feel the gap opening.</span></h1>
+        <p class="exec-hero__body reveal" data-delay="2">Writing that takes longer than it should. Decisions made without the context you know exists somewhere. Planning that is still manual when it does not have to be. Milo gives you a personal AI setup built around how you actually work, think, and decide.</p>
+        <div class="reveal" data-delay="3">
+          <a href="/demo?offer=assessment" class="btn btn--dark btn--lg" data-track="assessment_cta" data-track-location="hero_primary">Book an assessment call</a>
+        </div>
+      </div>
+      <div class="exec-hero__sidebar reveal" data-delay="3">
+        <div class="exec-hero__sidebar-title">Engagement</div>
+        <div class="exec-hero__sidebar-row"><span class="key">entry</span> <span class="val">$500 assessment</span></div>
+        <div class="exec-hero__sidebar-row"><span class="key">setup</span> <span class="val">from $2,500</span></div>
+        <div class="exec-hero__sidebar-row"><span class="key">timeline</span> <span class="val">1–2 weeks</span></div>
+        <div class="exec-hero__sidebar-divider"></div>
+        <div class="exec-hero__sidebar-row"><span class="key">format</span> <span class="val">1-on-1 or operator-led</span></div>
+        <div class="exec-hero__sidebar-row"><span class="key">confidential</span> <span class="val">always</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROBLEM -->
+<section style="padding: 0 0 var(--sp-24);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">EXEC:002</span>
+      <span class="spec-coord">// the gap</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">You have tried AI. It has not changed how you operate.</h2>
+      </div>
+      <div class="editorial__body">
+        <p>You have used ChatGPT. You have seen the demos. But none of it has actually changed how you make decisions, write, or run your week. The gap between knowing AI matters and having it wired into your daily work is where most executives stall.</p>
+        <p>That is not a knowledge problem. It is a setup problem. Nobody has built the system around your actual responsibilities, your tools, and the way you already think.</p>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+    <ul class="stacked-list">
+      <li class="stacked-item reveal">
+        <div class="stacked-item__num">01</div>
+        <div>
+          <div class="stacked-item__title">You are not behind because you are incapable</div>
+          <div class="stacked-item__body">You are behind because nobody showed you how to make AI useful in the real world, around your actual responsibilities and decisions.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="1">
+        <div class="stacked-item__num">02</div>
+        <div>
+          <div class="stacked-item__title">The gain is not novelty. It is leverage.</div>
+          <div class="stacked-item__body">AI becomes valuable when it helps you think better, write faster, make sharper decisions, and move with more confidence than you could alone.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="2">
+        <div class="stacked-item__num">03</div>
+        <div>
+          <div class="stacked-item__title">The browser-tab version of AI is not enough</div>
+          <div class="stacked-item__body">Most people stay stuck in prompts and experiments. The real advantage starts when AI becomes part of how you operate, not just something you try when you have time.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section style="padding: 0 0 var(--sp-24);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">EXEC:003</span>
+      <span class="spec-coord">// the engagement</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">What AI Native actually does for you</h2>
+      </div>
+      <div class="editorial__body">
+        <p>This is not AI coaching in disguise. We help turn AI into something practical in the way you actually think, write, plan, decide, and execute.</p>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+    <ul class="stacked-list">
+      <li class="stacked-item reveal">
+        <div class="stacked-item__num">stack</div>
+        <div>
+          <div class="stacked-item__title">Sharper writing and faster output</div>
+          <div class="stacked-item__body">The work that used to begin with a blank page starts with structure, momentum, and a usable first draft.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="1">
+        <div class="stacked-item__num">literacy</div>
+        <div>
+          <div class="stacked-item__title">Better decisions with less friction</div>
+          <div class="stacked-item__body">AI helps assemble context, clarify options, and move high-value decisions forward faster without replacing your judgment.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="2">
+        <div class="stacked-item__num">edge</div>
+        <div>
+          <div class="stacked-item__title">A practical edge you can actually feel</div>
+          <div class="stacked-item__body">The goal is not to impress you with AI. The goal is to make your work lighter, your output stronger, and your confidence higher.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<blockquote class="pull-quote">
+  <div class="wrap">
+    <div class="pull-quote__inner reveal">
+      <p class="pull-quote__text">The next generation of outsized operators won't work harder. They'll work with AI that multiplies every hour of their experience into ten.</p>
+    </div>
+  </div>
+</blockquote>
+
+<!-- WHO THIS IS FOR -->
+<section style="padding: 0 0 var(--sp-24);">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">EXEC:004</span>
+      <span class="spec-coord">// fit</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">This is for you if AI still feels important but unclear</h2>
+      </div>
+      <div class="editorial__body editorial__body--columns">
+        <p>You're a founder, executive, or senior operator who knows AI matters but has not yet turned it into a real advantage in the way you work.</p>
+        <p>You've tried ChatGPT and thought, "this is interesting, but I still do not know how to make it genuinely useful for what I do." That is the gap we close.</p>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+    <ul class="stacked-list">
+      <li class="stacked-item reveal">
+        <div class="stacked-item__num">01</div>
+        <div>
+          <div class="stacked-item__title">People who can already feel they should be further along</div>
+          <div class="stacked-item__body">Founders and executives who know the leverage is real and do not want to spend another year almost figuring it out.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="1">
+        <div class="stacked-item__num">02</div>
+        <div>
+          <div class="stacked-item__title">Leaders who want the upside without the embarrassment</div>
+          <div class="stacked-item__body">You do not want to look foolish fumbling through AI in public. You want the quiet edge of someone who actually knows how to use it.</div>
+        </div>
+      </li>
+      <li class="stacked-item reveal" data-delay="2">
+        <div class="stacked-item__num">03</div>
+        <div>
+          <div class="stacked-item__title">People who want real capability, not AI content</div>
+          <div class="stacked-item__body">You want AI helping with your actual work, not another pile of videos, hot takes, and vague strategy commentary.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">EXEC:005</span>
+      <span class="spec-coord">// investment</span>
+    </div>
+    <div class="editorial reveal" data-delay="1">
+      <div>
+        <h2 class="editorial__title">Start with the same product: AI Native</h2>
+      </div>
+      <div class="editorial__body">
+        <p>The entry point is the AI Systems Assessment. Once the leverage is clear, we move into AI Native Setup around your real work. Same product. Executive lens.</p>
+      </div>
+    </div>
+    <div class="gold-line"></div>
+
+    <div class="pricing-tier reveal">
+      <div>
+        <div class="caption" style="margin-bottom: var(--sp-2);">Entry</div>
+        <div class="pricing-tier__name">AI Systems Assessment</div>
+        <div class="pricing-tier__price">$500</div>
+      </div>
+      <div class="pricing-tier__body">
+        <p>We figure out where AI can create the most leverage for you first: output, planning, decision support, writing, research, or operating speed.</p>
+        <ul class="feature-list">
+          <li>Identify the clearest leverage point first</li>
+          <li>Map where AI can be genuinely useful</li>
+          <li>Clarify whether AI Native is the right next step</li>
+          <li>Leave with a practical recommendation, not more fog</li>
+        </ul>
+        <div class="pricing-tier__cta">
+          <a href="/demo?offer=assessment" class="btn btn--dark btn--lg" data-track="assessment_cta" data-track-location="pricing_primary">Book an Assessment Call</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-tier reveal" data-delay="1">
+      <div>
+        <div class="caption" style="margin-bottom: var(--sp-2);">Core setup</div>
+        <div class="pricing-tier__name">AI Native Setup</div>
+        <div class="pricing-tier__price">From $2,500</div>
+      </div>
+      <div class="pricing-tier__body">
+        <p>Once the leverage point is clear, we help turn it into something practical you can use in your real work: stronger output, better decisions, and more operating confidence.</p>
+        <ul class="feature-list">
+          <li>Practical setup around your actual responsibilities</li>
+          <li>Live working sessions on real use cases</li>
+          <li>Sharper writing, planning, research, and decision support</li>
+          <li>Capability you can keep using after the engagement</li>
+        </ul>
+        <div class="pricing-tier__cta">
+          <a href="/ainative" class="btn btn--outline" data-track="ainative_cta" data-track-location="pricing_secondary">See AI Native Setup</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="padding-top: 0;">
+  <div class="wrap wrap--narrow">
+    <div class="section-marker reveal">
+      <span class="spec-label">EXEC:006</span>
+      <span class="spec-coord">// faq</span>
+    </div>
+    <h2 class="reveal" style="font-size: var(--text-2xl); margin-bottom: var(--sp-10);">Questions you're thinking</h2>
+
+    <div class="faq-item reveal">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-1">"I'm not technical. Will I actually use this?"</button>
+      <div class="faq__answer" id="faq-1" hidden>
+        <div class="faq__answer-inner">
+          <p>That's exactly who this is for. We don't teach you to code. We configure tools that work within your existing workflow — email, docs, calendar, messaging. If you can use a smartphone, you can use what we build. The technical part is our job.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="1">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-2">"Is this confidential?"</button>
+      <div class="faq__answer" id="faq-2" hidden>
+        <div class="faq__answer-inner">
+          <p>Completely. We work with senior leaders who can't afford to look like they're "learning AI." Everything is private, 1-on-1, and under NDA if you want it. Your board doesn't need to know. Your team just sees better output.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" data-delay="2">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-3">"How is this different from hiring an AI consultant?"</button>
+      <div class="faq__answer" id="faq-3" hidden>
+        <div class="faq__answer-inner">
+          <p>Consultants write reports. We build capability. After our engagement, you're independently AI-capable — you don't need us to use what we built. No dependency, no ongoing obligation. We transfer the skill, not just the tool.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq__question" aria-expanded="false" aria-controls="faq-4">"I've tried ChatGPT. It wasn't that useful."</button>
+      <div class="faq__answer" id="faq-4" hidden>
+        <div class="faq__answer-inner">
+          <p>Default ChatGPT is like buying a piano and pressing random keys. Of course it wasn't useful. We tune the instrument to your specific work — custom instructions, specific workflows, integrations with your actual tools. The difference between "AI is a toy" and "AI changed how I work" is configuration.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-marker section-marker--cta reveal">
+    <span class="spec-label spec-label--on-dark">EXEC:007</span>
+    <span class="spec-coord spec-coord--on-dark">// next step</span>
+  </div>
+  <div class="cta__inner">
+    <div>
+      <h2 class="cta__title reveal">The leaders who move first <span class="accent">build the edge</span>.</h2>
+      <p class="cta__body reveal" data-delay="1">Start with the assessment. We will identify where AI can create the clearest leverage in your work, then move into AI Native only if the gain is real.</p>
+      <div class="reveal" data-delay="2">
+        <a href="/demo?offer=assessment" class="btn btn--gold-on-dark btn--lg" data-track="assessment_cta" data-track-location="footer_primary">Book an assessment call</a>
+      </div>
+    </div>
+    <div class="cta__pricing reveal" data-delay="2">
+      <strong>AI Systems Assessment</strong> — $500<br>
+      <strong>AI Native Setup</strong> — from $2,500<br><br>
+      Confidential when needed.<br>
+      Same product, executive lens.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/audit">Audit</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+      <a href="https://pathoslabs.co">Pathos Labs</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { observer.observe(el); });
+
+  // Mobile menu
+  var toggle = document.querySelector('.nav__toggle');
+  var menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', function() {
+    var open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !open);
+    menu.classList.toggle('open');
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  menu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+  // Focus trap + Escape for mobile menu
+  document.addEventListener('keydown', function(e) {
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+      toggle.focus();
+      return;
+    }
+    if (e.key === 'Tab') {
+      var focusable = [toggle].concat(Array.prototype.slice.call(menu.querySelectorAll('a')));
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq__question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      var answer = document.getElementById(btn.getAttribute('aria-controls'));
+      document.querySelectorAll('.faq__question').forEach(function(other) {
+        if (other !== btn) {
+          other.setAttribute('aria-expanded', 'false');
+          var otherAnswer = document.getElementById(other.getAttribute('aria-controls'));
+          if (otherAnswer) otherAnswer.hidden = true;
+        }
+      });
+      btn.setAttribute('aria-expanded', !expanded);
+      answer.hidden = expanded;
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+{
+  "redirects": [
+    { "source": "/buy/starter", "destination": "https://buy.stripe.com/dRm9ASdoFcD5e426KifIs0e", "statusCode": 307 },
+    { "source": "/buy/team", "destination": "https://buy.stripe.com/28EdR81FXbz11hgc4CfIs0f", "statusCode": 307 },
+    { "source": "/buy/managed", "destination": "https://buy.stripe.com/bJe5kC2K18mP5xw7OmfIs0g", "statusCode": 307 },
+    { "source": "/buy/sprint", "destination": "/buy/starter", "statusCode": 301 },
+    { "source": "/contact", "destination": "/calculator", "statusCode": 301 },
+    { "source": "/services", "destination": "/agents", "statusCode": 301 },
+    { "source": "/try", "destination": "/agents", "statusCode": 301 },
+    { "source": "/scanner", "destination": "/security", "statusCode": 301 },
+    { "source": "/setup", "destination": "/agents", "statusCode": 301 },
+    { "source": "/survival-guide", "destination": "/blog", "statusCode": 301 },
+    { "source": "/ai-receptionist", "destination": "/agents", "statusCode": 301 },
+    { "source": "/receptionist", "destination": "/agents", "statusCode": 301 },
+    { "source": "/insurance", "destination": "/industries", "statusCode": 301 },
+
+    { "source": "/compare", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/answerconnect", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/ruby-receptionists", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/smith-ai", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/my-ai-front-desk", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/goodcall", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/dialzara", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/rosie", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/callbird", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/trillet", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/ring-eden", "destination": "/agents", "statusCode": 301 },
+    { "source": "/compare/abby-connect", "destination": "/agents", "statusCode": 301 },
+    { "source": "/why-so-cheap", "destination": "/agents", "statusCode": 301 },
+
+    { "source": "/dental", "destination": "/industries", "statusCode": 301 },
+    { "source": "/hvac", "destination": "/industries", "statusCode": 301 },
+    { "source": "/veterinary", "destination": "/industries", "statusCode": 301 },
+
+    { "source": "/blog/ai-agent-team-cost-2026", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/ai-agent-team-small-business", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/build-vs-buy-ai-agents", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/how-much-does-ai-agent-cost", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/one-time-vs-monthly-ai-subscriptions", "destination": "/blog", "statusCode": 301 },
+
+    { "source": "/blog/openclaw-silent-failures", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/openclaw-memory-management", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/top-openclaw-problems-how-to-fix-them", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/ai-receptionist-pricing-comparison", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/ai-receptionist-no-monthly-fee", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/ai-receptionist-dental-practices", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/ai-receptionist-hvac-plumbing", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/ai-receptionist-law-firms", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/ai-receptionist-veterinary-clinics", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/best-ai-receptionist", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/best-ai-receptionist-contractors", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/ai-phone-answering-service", "destination": "/blog", "statusCode": 301 },
+    { "source": "/blog/missed-calls-cost-calculator", "destination": "/blog", "statusCode": 301 }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/executives", "destination": "/executives.html" },
+    { "source": "/demo", "destination": "/demo.html" },
+    { "source": "/ainative", "destination": "/ainative.html" },
+    { "source": "/agents", "destination": "/agents.html" },
+    { "source": "/build", "destination": "/build.html" },
+    { "source": "/calculator", "destination": "/calculator.html" },
+    { "source": "/report", "destination": "/report.html" },
+    { "source": "/audit", "destination": "/audit.html" },
+    { "source": "/security", "destination": "/security.html" },
+    { "source": "/industries", "destination": "/industries.html" },
+    { "source": "/blog", "destination": "/blog.html" },
+    { "source": "/law-firms", "destination": "/content/law-firm-landing.html" },
+    { "source": "/accountants", "destination": "/content/cpa-landing.html" },
+    { "source": "/blog/ai-native-agencies", "destination": "/content/blog-ai-native-agencies.html" },
+    { "source": "/blog/ai-agents-small-business", "destination": "/content/blog-ai-agents-small-business.html" },
+    { "source": "/blog/ai-agent-system", "destination": "/content/blog-ai-agent-system-6m-pipeline.html" },
+    { "source": "/blog/how-to-automate-business-with-ai", "destination": "/content/blog-how-to-automate-business-with-ai.html" },
+    { "source": "/blog/ai-for-executives-cost-2026", "destination": "/content/blog-ai-for-executives-cost-2026.html" },
+    { "source": "/blog/intuit-ai-agents-accountants", "destination": "/content/blog-intuit-ai-agents-accountants.html" },
+    { "source": "/blog/ai-automation-small-business", "destination": "/content/blog-ai-automation-small-business.html" },
+    { "source": "/blog/ai-native-operating-audit-chiefs-of-staff", "destination": "/content/blog-ai-native-operating-audit-chiefs-of-staff.html" },
+    { "source": "/blog/first-90-days-coo-ai-audit", "destination": "/content/blog-first-90-days-coo-ai-audit.html" },
+    { "source": "/for/:slug", "destination": "/content/blueprints/:slug.html" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,OPTIONS" }
+      ]
+    },
+    {
+      "source": "/(executives|demo|ainative|agents|build|calculator|audit|security|industries|blog)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/(law-firms|accountants)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/blog/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ]
+}

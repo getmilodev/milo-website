@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
+<title>Book an Assessment Call — AI Native Setup | Milo</title>
+<meta name="description" content="Book a short assessment call to identify where AI can create the clearest leverage for you or your team before moving into AI Native Setup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="milo-design-system.css">
+<script src="/milo-analytics.js" defer></script>
+<link rel="canonical" href="https://getmilo.dev/demo">
+<style>
+  /* Page-specific: booking layout */
+  .demo-form-section {
+    padding: 0 0 var(--sp-24);
+    margin-top: calc(-1 * var(--sp-8));
+  }
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 0.38fr 0.62fr;
+    gap: var(--sp-16);
+    align-items: start;
+  }
+  .demo-sidebar {
+    position: sticky;
+    top: 100px;
+  }
+  .demo-sidebar__promises {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--sp-6);
+  }
+  .demo-sidebar__promises li {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-3);
+    line-height: 2.4;
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-2);
+  }
+  .demo-sidebar__promises li::before {
+    content: '//';
+    color: var(--gold-text);
+    flex-shrink: 0;
+  }
+  .booking-card {
+    background: color-mix(in oklch, var(--surface-1), transparent 4%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-2xl);
+    padding: var(--sp-8);
+    box-shadow: var(--shadow-soft);
+  }
+  .booking-card__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold-text);
+    margin-bottom: var(--sp-3);
+  }
+  .booking-card__title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--sp-3);
+  }
+  .booking-card__body {
+    color: var(--text-2);
+    line-height: 1.75;
+    margin-bottom: var(--sp-6);
+  }
+  .booking-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--sp-8) 0;
+    display: grid;
+    gap: var(--sp-3);
+  }
+  .booking-card__list li {
+    border-top: 1px solid var(--border);
+    padding-top: var(--sp-3);
+    color: var(--text-2);
+  }
+  .booking-card__actions {
+    display: flex;
+    gap: var(--sp-3);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .booking-card__note {
+    margin-top: var(--sp-5);
+    color: var(--text-3);
+    font-size: var(--text-sm);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .demo-grid {
+      grid-template-columns: 1fr;
+      gap: var(--sp-8);
+    }
+    .demo-sidebar {
+      position: static;
+      order: -1;
+    }
+  }
+</style>
+</head>
+<body data-page-type="demo">
+
+<div class="grid-bg" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main">
+  <div class="wrap">
+    <a href="/" class="nav__logo">
+      <span class="nav__logo-text">milo</span>
+      <span class="nav__dot"></span>
+    </a>
+    <div class="nav__links">
+      <a href="/agents" class="nav__link">Services</a>
+      <a href="/audit" class="nav__link">Audit</a>
+      <a href="/calculator" class="nav__link">Calculator</a>
+      <a href="/build" class="nav__link">Build</a>
+      <a href="/demo" class="nav__cta">Start a project</a>
+    </div>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/agents">Services</a>
+  <a href="/audit">Audit</a>
+  <a href="/calculator">Calculator</a>
+  <a href="/build">Build</a>
+  <a href="/demo">Start a project</a>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="section-marker reveal">
+      <span class="spec-label">START</span>
+      <span class="spec-coord">// assessment booking</span>
+    </div>
+    <h1 class="page-hero__title reveal" data-delay="1">Book a short <span class="accent">assessment call</span></h1>
+    <p class="page-hero__subtitle reveal" data-delay="2">This is the fastest way to figure out where AI can create real leverage for you or your team before moving into AI Native Setup.</p>
+  </div>
+</section>
+
+<!-- FORM SECTION -->
+<section class="demo-form-section">
+  <div class="wrap">
+    <div class="demo-grid">
+
+      <!-- LEFT: sidebar context -->
+      <div class="demo-sidebar reveal" data-delay="2">
+        <h3 style="font-size: var(--text-lg); margin-bottom: var(--sp-2);">What to expect</h3>
+        <p style="font-size: var(--text-sm); color: var(--text-2); line-height: 1.7; margin-bottom: var(--sp-6);">Pick a time. On the call, we identify the clearest first gain, pressure-test fit, and tell you whether AI Native is the right next move.</p>
+        <ul class="demo-sidebar__promises">
+          <li>30-minute assessment</li>
+          <li>No payment required to book</li>
+          <li>Specific to your real work</li>
+          <li>Clear next-step recommendation</li>
+          <li>No vague AI theater</li>
+        </ul>
+      </div>
+
+      <!-- RIGHT: booking CTA -->
+      <div>
+        <div class="booking-card reveal" data-delay="3">
+          <div class="booking-card__eyebrow">Assessment booking</div>
+          <h2 class="booking-card__title">Start with the clearest leverage point.</h2>
+          <p class="booking-card__body">You will book through our direct Cal.com link so the handoff stays fast, clean, and reliable. Book the call, then we will use the session to determine what AI should actually do for you first.</p>
+          <ul class="booking-card__list">
+            <li><strong>Step 1:</strong> Book your assessment call on Cal.com</li>
+            <li><strong>Step 2:</strong> Bring the work that currently feels slow, repetitive, or unclear</li>
+            <li><strong>Step 3:</strong> Leave with a recommendation on where AI Native should start</li>
+          </ul>
+          <div class="booking-card__actions">
+            <a id="cal-booking-link" href="https://cal.com/getmilodev/30min" target="_blank" rel="noopener noreferrer" class="btn btn--dark btn--lg" data-track="assessment_booking_open" data-track-location="primary">Open booking page</a>
+            <a href="/ainative" class="btn btn--outline btn--lg" data-track="ainative_cta" data-track-location="demo_secondary">See AI Native Setup</a>
+          </div>
+          <p class="booking-card__note">You will talk directly with Callias. If the booking page does not open cleanly, copy this link into a new tab: cal.com/getmilodev/30min</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__logo">
+      <span class="footer__logo-text">milo</span>
+      <span class="footer__dot"></span>
+    </div>
+    <div class="footer__links">
+      <a href="/agents">Services</a>
+      <a href="/audit">Audit</a>
+      <a href="/blog">Guides</a>
+      <a href="https://github.com/getmilodev">GitHub</a>
+      <a href="https://pathoslabs.co">Pathos Labs</a>
+    </div>
+    <span class="footer__copy">&copy; 2026 Milo</span>
+  </div>
+</footer>
+
+<!-- Scroll reveal -->
+<script>
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { observer.observe(el); });
+
+  // Mobile menu
+  var toggle = document.querySelector('.nav__toggle');
+  var menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', function() {
+    var open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', !open);
+    menu.classList.toggle('open');
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+  menu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+  // Focus trap + Escape for mobile menu
+  document.addEventListener('keydown', function(e) {
+    if (!menu.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+      toggle.focus();
+      return;
+    }
+    if (e.key === 'Tab') {
+      var focusable = [toggle].concat(Array.prototype.slice.call(menu.querySelectorAll('a')));
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+</script>
+
+<script>
+(function() {
+  var params = window.location.search || '';
+  if (!params) return;
+  var link = document.getElementById('cal-booking-link');
+  if (!link) return;
+  link.href = link.href + (link.href.indexOf('?') === -1 ? '?' : '&') + params.replace(/^\?/, '');
+})();
+</script>
+</body>
+</html>

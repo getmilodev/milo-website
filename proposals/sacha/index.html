@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sacha — A Proposal from Milo</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../../milo-design-system.css">
+  <style>
+    /* ===========================================
+       DARK THEME — Token Remap
+       =========================================== */
+    body {
+      --bg: var(--dark);
+      --surface: var(--dark-surface);
+      --surface-raised: var(--dark-raised);
+      --border: var(--dark-raised);
+      --border-subtle: var(--dark-muted);
+      --text-1: var(--text-inv);
+      --text-2: var(--text-on-dark);
+      --text-3: var(--text-on-dark-muted);
+      --gold-text: oklch(72% 0.10 65);
+      --gold-light: oklch(35% 0.06 65);
+      background: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Fix btn--dark on dark bg — invert */
+    .btn--dark {
+      background: var(--text-inv);
+      color: var(--dark);
+    }
+
+    /* ===========================================
+       GRID BACKGROUND — Dark Blueprint
+       =========================================== */
+    .grid-bg {
+      background-image:
+        linear-gradient(oklch(20% 0.01 65) 1px, transparent 1px),
+        linear-gradient(90deg, oklch(20% 0.01 65) 1px, transparent 1px);
+      opacity: 0.5;
+    }
+
+    /* ===========================================
+       SLIDE DECK LAYOUT
+       =========================================== */
+    .deck {
+      scroll-snap-type: y mandatory;
+      overflow-y: auto;
+      height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    .slide {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--sp-16) 0;
+      position: relative;
+    }
+
+    .slide--top {
+      justify-content: flex-start;
+      padding-top: clamp(80px, 12vh, 140px);
+    }
+
+    /* ===========================================
+       SLIDE 1 — Title
+       =========================================== */
+    .slide-title {
+      text-align: center;
+      justify-content: center;
+    }
+
+    .slide-title__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-2);
+      margin-bottom: var(--sp-12);
+    }
+
+    .slide-title__logo-text {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--text-1);
+      letter-spacing: -0.02em;
+    }
+
+    .slide-title__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .slide-title h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 400;
+      color: var(--text-1);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--sp-6);
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slide-title__body {
+      font-size: var(--text-lg);
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 520px;
+      margin: 0 auto var(--sp-10);
+    }
+
+    .slide-title .bridge {
+      border-top: none;
+    }
+
+    .section-marker--center {
+      justify-content: center;
+    }
+
+    /* ===========================================
+       BRIDGE LINES
+       =========================================== */
+    .bridge {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      margin-top: var(--sp-8);
+      padding-top: var(--sp-4);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ===========================================
+       SLIDE 2 — The Gap (cost list)
+       =========================================== */
+    .cost-list {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      line-height: 2.4;
+      color: var(--text-2);
+    }
+
+    .cost-list__item {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--sp-2) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cost-list__item:last-child {
+      border-bottom: none;
+    }
+
+    .cost-list__label {
+      color: var(--text-2);
+    }
+
+    .cost-list__price {
+      color: var(--text-1);
+      font-weight: 500;
+    }
+
+    .cost-list__total {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--sp-4) 0;
+      margin-top: var(--sp-2);
+      border-top: 2px solid var(--gold);
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      font-weight: 500;
+    }
+
+    .cost-list__total .cost-list__label {
+      color: var(--text-1);
+    }
+
+    .cost-list__total .cost-list__price {
+      color: var(--gold-text);
+    }
+
+    .cost-footnote {
+      font-size: var(--text-sm);
+      color: var(--text-3);
+      margin-top: var(--sp-4);
+      font-style: italic;
+    }
+
+    /* ===========================================
+       SLIDE 3 — The Shift (time examples)
+       =========================================== */
+    .time-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      margin-top: var(--sp-6);
+    }
+
+    .time-list__item {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-4);
+      font-size: var(--text-base);
+      color: var(--text-2);
+    }
+
+    .time-list__duration {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--gold-text);
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    /* ===========================================
+       SLIDE 4 — Terminal overrides for slide
+       =========================================== */
+    .slide .terminal {
+      max-width: 720px;
+    }
+
+    .slide .terminal__body {
+      font-size: clamp(0.62rem, 0.55rem + 0.3vw, 0.72rem);
+      line-height: 1.55;
+      padding: var(--sp-4);
+    }
+
+    .terminal__footer {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--text-3);
+      font-style: italic;
+      margin-top: var(--sp-4);
+    }
+
+    /* ===========================================
+       SLIDE 5 — Iceberg: compact stacked list
+       =========================================== */
+    .slide .stacked-item {
+      padding: var(--sp-3) 0;
+      grid-template-columns: 48px 1fr;
+      gap: var(--sp-4);
+    }
+
+    .slide .stacked-item__title {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+
+    .slide .stacked-item__body {
+      font-size: var(--text-xs);
+      line-height: 1.5;
+    }
+
+    /* ===========================================
+       SLIDE 8 — Vision (centered emotional)
+       =========================================== */
+    .slide-vision {
+      text-align: center;
+    }
+
+    .slide-vision h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 400;
+      color: var(--gold-text);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-8);
+    }
+
+    .slide-vision__body {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-2);
+      line-height: 1.55;
+      max-width: 600px;
+      margin: 0 auto var(--sp-6);
+    }
+
+    .slide-vision__coda {
+      font-family: var(--font-body);
+      font-size: var(--text-lg);
+      font-weight: 500;
+      color: var(--text-1);
+      margin-top: var(--sp-6);
+    }
+
+    /* ===========================================
+       SLIDE 9 — Math: comparison tables
+       =========================================== */
+    .comparison-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-8);
+      margin-bottom: var(--sp-8);
+    }
+
+    .comparison-pair__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--sp-3);
+    }
+
+    .comparison-pair .comparison-table {
+      font-size: var(--text-sm);
+    }
+
+    .comparison-pair .comparison-table th {
+      color: var(--text-3);
+      border-bottom-color: var(--border);
+    }
+
+    .comparison-pair .comparison-table td {
+      border-bottom-color: var(--border);
+      color: var(--text-2);
+      padding: var(--sp-3) var(--sp-4);
+    }
+
+    .comparison-pair .comparison-table td:first-child {
+      color: var(--text-1);
+    }
+
+    .compound-list {
+      list-style: none;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      line-height: 2.4;
+    }
+
+    .compound-list li {
+      padding: var(--sp-1) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compound-list li:last-child {
+      border-bottom: none;
+    }
+
+    .compound-list .saves {
+      color: var(--success);
+    }
+
+    .compound-list .project-num {
+      color: var(--gold-text);
+      display: inline-block;
+      min-width: 90px;
+    }
+
+    /* ===========================================
+       SLIDE 10 — Pricing + CTA (editorial rows)
+       =========================================== */
+    .slide-cta h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      color: var(--text-1);
+      margin-bottom: var(--sp-6);
+      text-align: center;
+    }
+
+    .slide-cta__personal {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-2);
+      max-width: 520px;
+      margin: 0 auto var(--sp-8);
+      text-align: center;
+      line-height: 1.65;
+    }
+
+    /* Pricing tiers on dark — override border colors */
+    .slide .pricing-tier {
+      border-bottom-color: var(--border);
+      padding: var(--sp-4) 0;
+      gap: var(--sp-4);
+    }
+
+    .slide .pricing-tier__name {
+      color: var(--text-1);
+    }
+
+    .slide .pricing-tier__price {
+      color: var(--gold-text);
+    }
+
+    .slide .pricing-tier__featured .pricing-tier__name {
+      color: var(--gold-text);
+    }
+
+    .slide .pricing-tier .feature-list li {
+      font-size: var(--text-xs);
+      margin-bottom: var(--sp-1);
+      line-height: 1.5;
+    }
+
+    .pricing-tier__cta {
+      margin-top: var(--sp-4);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+    }
+
+    .pricing-tier__installment {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+    }
+
+    .slide-cta__closing {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-2);
+      max-width: 540px;
+      margin: var(--sp-4) auto var(--sp-3);
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .slide-cta__footnote {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      text-align: center;
+    }
+
+    /* ===========================================
+       PROGRESS DOTS
+       =========================================== */
+    .progress {
+      position: fixed;
+      right: var(--sp-6);
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      z-index: 10;
+      padding: var(--sp-3) var(--sp-2);
+      background: oklch(12% 0.012 65 / 0.6);
+      border: 1px solid var(--dark-raised);
+      border-radius: 20px;
+    }
+
+    .progress__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--dark-muted);
+      border: none;
+      transition: background 300ms var(--ease-out-expo), transform 300ms var(--ease-out-expo);
+      cursor: pointer;
+    }
+
+    .progress__dot:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .progress__dot--active {
+      background: var(--gold);
+      transform: scale(1.4);
+    }
+
+    /* ===========================================
+       NAV HINT
+       =========================================== */
+    .nav-hint {
+      position: fixed;
+      bottom: var(--sp-8);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-3);
+      opacity: 0.5;
+      z-index: 10;
+      pointer-events: none;
+      transition: opacity 600ms;
+    }
+
+    .nav-hint--hidden {
+      opacity: 0;
+    }
+
+    /* ===========================================
+       SLIDE HEADINGS — standardized for non-editorial slides
+       =========================================== */
+    .slide__heading {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--sp-6);
+    }
+
+    .slide__subheading {
+      color: var(--text-2);
+      margin-bottom: var(--sp-4);
+      max-width: 600px;
+    }
+
+    /* ===========================================
+       SLIDE TRANSITIONS — only active when JS loads
+       =========================================== */
+    .js-loaded .slide__inner {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+    }
+
+    .js-loaded .slide--visible .slide__inner {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children */
+    .js-loaded .slide--visible .slide__inner [data-delay="1"] {
+      transition-delay: 80ms;
+    }
+    .js-loaded .slide--visible .slide__inner [data-delay="2"] {
+      transition-delay: 160ms;
+    }
+    .js-loaded .slide--visible .slide__inner [data-delay="3"] {
+      transition-delay: 240ms;
+    }
+    .js-loaded .slide--visible .slide__inner [data-delay="4"] {
+      transition-delay: 320ms;
+    }
+
+    /* ===========================================
+       EDITORIAL OVERRIDES FOR SLIDES
+       =========================================== */
+    .slide .editorial {
+      gap: var(--sp-8);
+    }
+
+    .slide .editorial__title {
+      font-size: var(--text-2xl);
+    }
+
+    .slide .editorial__body {
+      font-size: var(--text-base);
+    }
+
+    /* Feature list on dark */
+    .slide .feature-list li::before {
+      color: var(--gold);
+    }
+
+    /* Stacked list number color on dark */
+    .slide .stacked-item__num {
+      color: var(--gold-text);
+    }
+
+    /* Gold line on dark */
+    .slide .gold-line {
+      background: linear-gradient(90deg, transparent, oklch(35% 0.06 65), oklch(62% 0.12 65), oklch(35% 0.06 65), transparent);
+      margin: var(--sp-6) 0;
+    }
+
+    /* ===========================================
+       RESPONSIVE
+       =========================================== */
+    @media (max-width: 768px) {
+      .slide {
+        padding: var(--sp-8) 0;
+        min-height: auto;
+      }
+
+      .slide .editorial {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .slide .pricing-tier {
+        grid-template-columns: 1fr;
+        gap: var(--sp-4);
+      }
+    }
+
+    /* ===========================================
+       PRINT — show all slides
+       =========================================== */
+    @media print {
+      .deck { overflow: visible; height: auto; scroll-snap-type: none; }
+      .slide { min-height: auto; page-break-after: always; }
+      .progress, .nav-hint, .grid-bg { display: none; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .js-loaded .slide__inner { opacity: 1; transform: none; transition: none; }
+      .deck { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+
+<!-- PROGRESS DOTS -->
+<nav class="progress" aria-label="Slide navigation">
+  <button class="progress__dot progress__dot--active" data-slide="0" aria-label="Slide 1: Title"></button>
+  <button class="progress__dot" data-slide="1" aria-label="Slide 2: The Gap"></button>
+  <button class="progress__dot" data-slide="2" aria-label="Slide 3: The Shift"></button>
+  <button class="progress__dot" data-slide="3" aria-label="Slide 4: In Action"></button>
+  <button class="progress__dot" data-slide="4" aria-label="Slide 5: The Iceberg"></button>
+  <button class="progress__dot" data-slide="5" aria-label="Slide 6: How It Works"></button>
+  <button class="progress__dot" data-slide="6" aria-label="Slide 7: What You'll Own"></button>
+  <button class="progress__dot" data-slide="7" aria-label="Slide 8: Vision"></button>
+  <button class="progress__dot" data-slide="8" aria-label="Slide 9: The Math"></button>
+  <button class="progress__dot" data-slide="9" aria-label="Slide 10: Let's Start"></button>
+</nav>
+
+<div class="nav-hint" aria-hidden="true">&#8595; scroll or use arrow keys</div>
+
+<!-- DECK -->
+<main class="deck" id="deck">
+
+  <!-- ==========================================
+       SLIDE 1 — Title
+       ========================================== -->
+  <section class="slide slide-title slide--visible" id="slide-0">
+    <div class="slide__inner">
+      <div class="wrap wrap--narrow">
+        <div class="section-marker section-marker--center">
+          <span class="spec-label spec-label--on-dark">PROP:001</span>
+          <span class="spec-coord spec-coord--on-dark">// proposal</span>
+        </div>
+
+        <div class="slide-title__logo">
+          <span class="slide-title__logo-text">milo</span>
+          <span class="slide-title__dot"></span>
+        </div>
+
+        <h1>You said you wanted to start. <span class="accent">Here&rsquo;s the plan.</span></h1>
+
+        <p class="slide-title__body">A proposal built on 17 sessions together. Your 3P framework, your book, your timeline &mdash; I already know the details. This is the how.</p>
+
+        <p class="bridge">But first &mdash; what it costs to do this the old way.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SLIDE 2 — The Gap
+       ========================================== -->
+  <section class="slide slide--top" id="slide-1">
+    <div class="slide__inner">
+      <div class="wrap">
+        <div class="section-marker">
+          <span class="spec-label spec-label--on-dark">PROP:002</span>
+          <span class="spec-coord spec-coord--on-dark">// the old way</span>
+        </div>
+
+        <div class="editorial">
+          <div>
+            <h2 class="editorial__title">Five vendors. Five timelines. <span class="accent">One launch.</span></h2>
+          </div>
+          <div class="editorial__body">
+            <div class="cost-list">
+              <div class="cost-list__item">
+                <span class="cost-list__label">Funnel agency</span>
+                <span class="cost-list__price">$5,000&ndash;$15,000</span>
+              </div>
+              <div class="cost-list__item">
+                <span class="cost-list__label">Course setup (Jamie&rsquo;s)</span>
+                <span class="cost-list__price">$5,000</span>
+              </div>
+              <div class="cost-list__item">
+                <span class="cost-list__label">Website / landing pages</span>
+                <span class="cost-list__price">$3,000&ndash;$5,000</span>
+              </div>
+              <div class="cost-list__item">
+                <span class="cost-list__label">Community setup</span>
+                <span class="cost-list__price">your time</span>
+              </div>
+              <div class="cost-list__item">
+                <span class="cost-list__label">Content + outreach</span>
+                <span class="cost-list__price">$2,500+/year</span>
+              </div>
+              <div class="cost-list__total">
+                <span class="cost-list__label">Total for one launch</span>
+                <span class="cost-list__price">$15,000&ndash;$25,000+</span>
+              </div>
+            </div>
+            <p class="cost-footnote">And when you want to change a headline, you call them back.</p>
+
+            <div class="bridge">There&rsquo;s a different way to build this.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SLIDE 3 — The Shift
+       ========================================== -->
+  <section class="slide slide--top" id="slide-2">
+    <div class="slide__inner">
+      <div class="wrap">
+        <div class="section-marker">
+          <span class="spec-label spec-label--on-dark">PROP:003</span>
+          <span class="spec-coord spec-coord--on-dark">// what changes</span>
+        </div>
+
+        <div class="editorial">
+          <div>
+            <h2 class="editorial__title">What if you could build any of that yourself &mdash; <span class="accent">in minutes?</span></h2>
+          </div>
+          <div class="editorial__body">
+            <p>Your 3P framework. Your manuscript. Your brand voice. Your audience. It&rsquo;s all loaded into an AI system built around your business.</p>
+            <p>You describe what you need. It builds it. You own it.</p>
+
+            <div class="gold-line"></div>
+
+            <div class="time-list">
+              <div class="time-list__item">
+                <span class="time-list__duration">10 min</span>
+                <span>A book launch page &mdash; in your voice, with your brand</span>
+              </div>
+              <div class="time-list__item">
+                <span class="time-list__duration">20 min</span>
+                <span>A course scaffold from your manuscript</span>
+              </div>
+              <div class="time-list__item">
+                <span class="time-list__duration">5 min</span>
+                <span>A research brief on community pricing</span>
+              </div>
+            </div>
+
+            <div class="bridge">Here&rsquo;s what that actually looks like.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SLIDE 4 — In Action (Terminal)
+       ========================================== -->
+  <section class="slide slide--top" id="slide-3">
+    <div class="slide__inner">
+      <div class="wrap">
+        <div class="section-marker">
+          <span class="spec-label spec-label--on-dark">PROP:004</span>
+          <span class="spec-coord spec-coord--on-dark">// live demo</span>
+        </div>
+
+        <h2 class="slide__heading">Your AI, loaded with <span class="accent">your business.</span></h2>
+
+        <div class="terminal">
+          <div class="terminal__bar">
+            <span class="terminal__dot"></span>
+            <span class="terminal__dot"></span>
+            <span class="terminal__dot"></span>
+            <span class="terminal__title">milo &mdash; sacha-awwa</span>
+          </div>
+          <div class="terminal__body"><span class="t-prompt">$</span> <span class="t-cmd">milo load --client sacha-awwa</span>
+
+<span class="t-muted">Loading context...</span>
+<span class="t-success">&#10003;</span> Brand: Sacha Awwa / SAMG Marketing / Uncomplicated       <span class="t-muted">[0.8s]</span>
+<span class="t-success">&#10003;</span> Framework: 3P (Prepare &#8594; Propel &#8594; Perfect)                <span class="t-muted">[0.4s]</span>
+<span class="t-success">&#10003;</span> Manuscript: &quot;Empower Your Marketing&quot; (June 23 launch)     <span class="t-muted">[1.2s]</span>
+<span class="t-success">&#10003;</span> Audience: marketing consultants, small business owners     <span class="t-muted">[0.3s]</span>
+<span class="t-success">&#10003;</span> Voice profile: direct, warm, no-jargon                     <span class="t-muted">[0.2s]</span>
+
+<span class="t-muted">Skills ready:</span>
+  <span class="t-accent">landing-page</span>    <span class="t-accent">funnel-builder</span>    <span class="t-accent">course-scaffold</span>
+  <span class="t-accent">community-setup</span> <span class="t-accent">content-engine</span>    <span class="t-accent">research-brief</span>
+
+Workspace <span class="t-accent">sacha-awwa</span> ready. <span class="t-success">6 skills loaded.</span>
+
+<span class="t-prompt">$</span> <span class="terminal__cursor"></span></div>
+        </div>
+
+        <p class="terminal__footer">This is not a mockup. This is what the system does.</p>
+
+        <div class="bridge">Here&rsquo;s why that wasn&rsquo;t a trick.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SLIDE 5 — The Iceberg
+       ========================================== -->
+  <section class="slide slide--top" id="slide-4">
+    <div class="slide__inner">
+      <div class="wrap">
+        <div class="section-marker">
+          <span class="spec-label spec-label--on-dark">PROP:005</span>
+          <span class="spec-coord spec-coord--on-dark">// why it works</span>
+        </div>
+
+        <h2 class="slide__heading">Why this works when ChatGPT doesn&rsquo;t.</h2>
+        <p class="slide__subheading">Anyone can type into ChatGPT. It goes off-brand. It forgets your context. It produces generic output. That&rsquo;s because there&rsquo;s no engineering underneath. This is what&rsquo;s underneath yours:</p>
+
+        <div class="gold-line"></div>
+
+        <ul class="stacked-list">
+          <li class="stacked-item">
+            <div class="stacked-item__num">01</div>
+            <div>
+              <div class="stacked-item__title">It knows you and remembers</div>
+              <div class="stacked-item__body">Your brand, book, framework, and voice are always loaded. It remembers decisions and preferences across sessions &mdash; no reminding.</div>
+            </div>
+          </li>
+          <li class="stacked-item">
+            <div class="stacked-item__num">02</div>
+            <div>
+              <div class="stacked-item__title">It doesn&rsquo;t fail the way ChatGPT does</div>
+              <div class="stacked-item__body">Hallucination, off-brand output, lost instructions &mdash; every known failure mode is engineered around before you ever see it.</div>
+            </div>
+          </li>
+          <li class="stacked-item">
+            <div class="stacked-item__num">03</div>
+            <div>
+              <div class="stacked-item__title">It grows with your business</div>
+              <div class="stacked-item__body">Tested recipes that produce consistent quality. Not a static toolkit &mdash; you add new capabilities yourself as your needs evolve.</div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="bridge">Here&rsquo;s how we get you there.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SLIDE 6 — How It Works
+       ========================================== -->
+  <section class="slide" id="slide-5">
+    <div class="slide__inner">
+      <div class="wrap">
+        <div class="section-marker">
+          <span class="spec-label spec-label--on-dark">PROP:006</span>
+          <span class="spec-coord spec-coord--on-dark">// three steps</span>
+        </div>
+
+        <h2 class="slide__heading">Three steps. Then you&rsquo;re <span class="accent">independent.</span></h2>
+
+        <div class="gold-line"></div>
+
+        <ul class="stacked-list">
+          <li class="stacked-item">
+            <div class="stacked-item__num">01</div>
+            <div>
+              <div class="stacked-item__title">Pay and onboard</div>
+              <div class="stacked-item__body">Stripe link. You immediately receive a personalized onboarding form, pre-seeded with what we already know.</div>
+            </div>
+          </li>
+          <li class="stacked-item">
+            <div class="stacked-item__num">02</div>
+            <div>
+              <div class="stacked-item__title">Working sessions</div>
+              <div class="stacked-item__body">We build real assets together &mdash; your launch page, your course scaffold, your community. You build the muscle, not just the output.</div>
+            </div>
+          </li>
+          <li class="stacked-item">
+            <div class="stacked-item__num">03</div>
+            <div>
+              <div class="stacked-item__title">You&rsquo;re independent</div>
+              <div class="stacked-item__body">Full skills library, offboarding playbook, everything on your machine. $0/month to Milo.</div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="bridge">And everything we build stays with you.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SLIDE 7 — What You'll Own
+       ========================================== -->
+  <section class="slide" id="slide-6">
+    <div class="slide__inner">
+      <div class="wrap">
+        <div class="section-marker">
+          <span class="spec-label spec-label--on-dark">PROP:007</span>
+          <span class="spec-coord spec-coord--on-dark">// ownership</span>
+        </div>
+
+        <h2 class="slide__heading">Everything stays with you. <span class="accent">Nothing stays with us.</span></h2>
+
+        <div class="gold-line"></div>
+
+        <ul class="feature-list" style="max-width: 640px;">
+          <li>Next time you need a landing page, you describe it and it&rsquo;s built in your voice in 10 minutes. No agency. No invoice.</li>
+          <li>Your manuscript becomes living context &mdash; your AI writes in your voice because it&rsquo;s read your book.</li>
+          <li>Your 3P framework powers every piece of content, every course module, every community tool.</li>
+          <li>Every asset you build during our sessions is yours to use, edit, and extend.</li>
+          <li>A playbook for building anything you haven&rsquo;t built yet &mdash; so you never need to call us back.</li>
+          <li>Everything works after the engagement ends. No subscription. No expiration.</li>
+        </ul>
+
+        <div class="bridge">Now picture launch day.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SLIDE 8 — Vision
+       ========================================== -->
+  <section class="slide slide-vision" id="slide-7">
+    <div class="slide__inner">
+      <div class="wrap wrap--narrow">
+        <div class="section-marker section-marker--center">
+          <span class="spec-label spec-label--on-dark">PROP:008</span>
+          <span class="spec-coord spec-coord--on-dark">// june 23, 2026</span>
+        </div>
+
+        <h2>June 23, 2026.</h2>
+
+        <p class="slide-vision__body">Your book launches. The landing page is live &mdash; you built it yourself in an afternoon. The funnel is running. Your Circle community is open at $39/month with AI-powered onboarding for new members.</p>
+
+        <p class="slide-vision__body">Your 3P framework isn&rsquo;t just in the book anymore &mdash; it&rsquo;s a course, a set of community tools, the backbone of everything your AI produces.</p>
+
+        <p class="slide-vision__coda">You&rsquo;re not scrambling for a designer. You&rsquo;re not waiting on a developer. You&rsquo;re ready.</p>
+
+        <div class="bridge" style="text-align: center;">What does that math actually look like?</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SLIDE 9 — The Math
+       ========================================== -->
+  <section class="slide slide--top" id="slide-8">
+    <div class="slide__inner">
+      <div class="wrap">
+        <div class="section-marker">
+          <span class="spec-label spec-label--on-dark">PROP:009</span>
+          <span class="spec-coord spec-coord--on-dark">// the real comparison</span>
+        </div>
+
+        <h2 class="slide__heading">The math gets better <span class="accent">every month.</span></h2>
+
+        <div class="comparison-pair">
+          <div>
+            <div class="comparison-pair__label">Without Milo</div>
+            <table class="comparison-table">
+              <thead>
+                <tr><th class="sr-only">Item</th><th class="sr-only">Cost</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Vendors, agencies, freelancers</td><td>$15,000&ndash;$25,000+</td></tr>
+                <tr><td>Timeline</td><td>8&ndash;12 weeks</td></tr>
+                <tr><td>Next project</td><td>Start over. Pay again.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="comparison-pair__label">With Milo</div>
+            <table class="comparison-table">
+              <thead>
+                <tr><th class="sr-only">Item</th><th class="sr-only">Cost</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Launch Ready</td><td style="color: var(--gold-text); font-weight: 500;">$7,500 once</td></tr>
+                <tr><td>Every project after</td><td style="color: var(--success);">$0</td></tr>
+                <tr><td>Ongoing cost to Milo</td><td style="color: var(--success);">$0/month</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="gold-line"></div>
+
+        <h3 class="caption" style="margin-bottom: var(--sp-4);">The compound effect</h3>
+
+        <ul class="compound-list">
+          <li><span class="project-num">Project 1</span> Book launch: $7,500. <span class="saves">Saves $7,500&ndash;$17,500 vs. vendors.</span></li>
+          <li><span class="project-num">Project 2</span> Client landing page: $0. <span class="saves">Would have cost $3,000&ndash;$5,000.</span></li>
+          <li><span class="project-num">Project 3</span> New course module: $0. <span class="saves">Would have cost $2,000&ndash;$5,000.</span></li>
+          <li><span class="project-num">Project 5</span> The system has paid for itself <span style="color: var(--gold-text);">3x over.</span></li>
+        </ul>
+
+        <p style="font-size: var(--text-sm); color: var(--text-3); font-style: italic; margin-top: var(--sp-6);">Every new project you run through the system costs time, not money. The capability compounds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SLIDE 10 — Pricing + CTA
+       ========================================== -->
+  <section class="slide slide-cta" id="slide-9">
+    <div class="slide__inner">
+      <div class="wrap">
+        <div class="section-marker section-marker--center">
+          <span class="spec-label spec-label--on-dark">PROP:010</span>
+          <span class="spec-coord spec-coord--on-dark">// let&rsquo;s start</span>
+        </div>
+
+        <h2>June 23 is <span class="accent" id="countdown">96 days</span> away.</h2>
+
+        <p class="slide-cta__personal">I want you to know these prices are half of what I normally charge. You&rsquo;re important to me &mdash; full price wouldn&rsquo;t sit right.</p>
+
+        <!-- Tier 1 — editorial row -->
+        <div class="pricing-tier">
+          <div>
+            <div class="caption" style="margin-bottom: var(--sp-2);">Core</div>
+            <div class="pricing-tier__name">Launch Ready</div>
+            <div class="pricing-tier__price">$7,500</div>
+          </div>
+          <div class="pricing-tier__body">
+            <ul class="feature-list">
+              <li>AI environment + full brand/manuscript context loaded</li>
+              <li>Custom skills built for your specific workflows</li>
+              <li>4 working sessions &mdash; we build your launch stack together</li>
+              <li>Manuscript-aware AI that writes in your voice</li>
+              <li>Offboarding playbook + independence from day one</li>
+            </ul>
+            <div class="pricing-tier__cta">
+              <a href="https://buy.stripe.com/dRm14m5Wd8mP0dc7OmfIs0h" class="btn btn--gold-on-dark" data-track="stripe_launch_ready">Pay $7,500</a>
+              <a href="https://buy.stripe.com/5kQ9ASdoF0Unf864CafIs0i" class="pricing-tier__installment" data-track="stripe_launch_ready_installments">or 3 installments of $2,500/mo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tier 2 — editorial row, featured -->
+        <div class="pricing-tier pricing-tier__featured">
+          <div>
+            <div class="caption" style="margin-bottom: var(--sp-2);">Recommended</div>
+            <div class="pricing-tier__name">Launch + Growth</div>
+            <div class="pricing-tier__price">$10,000</div>
+          </div>
+          <div class="pricing-tier__body">
+            <ul class="feature-list">
+              <li>Everything in Launch Ready</li>
+              <li>6 working sessions + 6 months ongoing support</li>
+              <li>System evolves with you &mdash; new skills, methodology updates, AI improvements applied to your setup</li>
+              <li>Skill-writing guidance when you want to build something new</li>
+            </ul>
+            <div class="pricing-tier__cta">
+              <a href="https://buy.stripe.com/6oU8wOactbz1gcac4CfIs0j" class="btn btn--gold-on-dark" data-track="stripe_launch_growth">Pay $10,000</a>
+              <a href="https://buy.stripe.com/aFacN43O5eLd1hgfgOfIs0k" class="pricing-tier__installment" data-track="stripe_launch_growth_installments">or 3 installments of ~$3,334/mo</a>
+            </div>
+          </div>
+        </div>
+
+        <p class="slide-cta__closing">The $7,500 isn&rsquo;t an expense. It&rsquo;s the last time you pay someone else to build marketing infrastructure.</p>
+
+        <p class="slide-cta__footnote">Once you pay, your personalized onboarding form is ready immediately.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- SCRIPTS -->
+<script>
+(function() {
+  // Enable transitions only when JS is running
+  document.body.classList.add('js-loaded');
+
+  // Dynamic countdown to June 23, 2026
+  var launch = new Date(2026, 5, 23); // June = month 5 (0-indexed)
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+  var days = Math.ceil((launch - today) / (1000 * 60 * 60 * 24));
+  var countdownEl = document.getElementById('countdown');
+  if (countdownEl && days > 0) {
+    countdownEl.textContent = days + ' days';
+  }
+
+  var deck = document.getElementById('deck');
+  var slides = document.querySelectorAll('.slide');
+  var dots = document.querySelectorAll('.progress__dot');
+  var navHint = document.querySelector('.nav-hint');
+  var current = 0;
+  var total = slides.length;
+
+  function goTo(index) {
+    if (index < 0 || index >= total) return;
+    current = index;
+    slides[current].scrollIntoView({ behavior: 'smooth' });
+    updateUI();
+  }
+
+  function updateUI() {
+    // Dots
+    dots.forEach(function(dot, i) {
+      dot.classList.toggle('progress__dot--active', i === current);
+    });
+    // Slide visibility for animations
+    slides.forEach(function(slide, i) {
+      slide.classList.toggle('slide--visible', i === current);
+    });
+    // Hide nav hint after first navigation
+    if (current > 0 && navHint) {
+      navHint.classList.add('nav-hint--hidden');
+    }
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+      e.preventDefault();
+      goTo(current + 1);
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      goTo(current - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      goTo(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      goTo(total - 1);
+    }
+  });
+
+  // Dot click navigation
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      goTo(parseInt(dot.dataset.slide));
+    });
+  });
+
+  // Scroll-based detection
+  var scrollTimer;
+  deck.addEventListener('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
+      var deckRect = deck.getBoundingClientRect();
+      var center = deckRect.top + deckRect.height / 2;
+      var closest = 0;
+      var closestDist = Infinity;
+
+      slides.forEach(function(slide, i) {
+        var rect = slide.getBoundingClientRect();
+        var dist = Math.abs(rect.top + rect.height / 2 - center);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = i;
+        }
+      });
+
+      if (closest !== current) {
+        current = closest;
+        updateUI();
+      }
+    }, 50);
+  });
+
+  // Initialize first slide
+  updateUI();
+
+  // View tracking (lightweight)
+  var viewed = {};
+  function trackView(index) {
+    if (viewed[index]) return;
+    viewed[index] = true;
+    // If analytics available
+    if (typeof window.miloTrack === 'function') {
+      window.miloTrack('slide_view', { slide: index + 1, label: slides[index].id });
+    }
+  }
+
+  var origUpdateUI = updateUI;
+  updateUI = function() {
+    origUpdateUI();
+    trackView(current);
+  };
+
+  // Track CTA clicks
+  document.querySelectorAll('[data-track]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      if (typeof window.miloTrack === 'function') {
+        window.miloTrack('cta_click', { action: el.dataset.track });
+      }
+    });
+  });
+
+  trackView(0);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+; Zone file for milohq.co
+; Generated from AgentMail create-domain response on 2026-03-12
+; Purpose: secondary cold-outbound sending domain
+
+; Google verification
+@ IN TXT "google-site-verification=YTt57iQkWoInAkl6NA67VlNaCiFPdvBpybEIPSgSt-8"
+
+; DKIM
+agentmail._domainkey IN TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuMgg8vtYaN0YbaU0OwWKpOQFfhPnPi0oPVsQZD+rcEmqwwXMxTBplZml0fFcnlXIGNvnPaKoVuhsGLUqJL7Gkezlrf4qPUIePzeTF0Q3R8mz9kS8D3raxe/PO4PiEkZmaQqXlchouKejfQhARSbyagpaUPPEFv6FtNfv8dsSXiQtBoXJGCgRz7TC3wUsDWKMn1SpbWYwcsEPGmMFEuox9dh6NEayWVyex54VH3ukry1om1rWiAMFs1IAFrJJiUtXR9mbQlbGcK+EFSW3Ed35Fn/NySM2JsQKacS931bZUYJUuUd9akeh81RfKhgMQ7+zKrvYh+eL8y/1xc3z5vtw1wIDAQAB"
+
+; MX
+@ IN MX 10 inbound-smtp.us-east-1.amazonaws.com.
+mail IN MX 10 feedback-smtp.us-east-1.amazonaws.com.
+
+; SPF
+mail IN TXT "v=spf1 include:amazonses.com -all"
+
+; DMARC
+_dmarc IN TXT "v=DMARC1; p=reject; rua=mailto:dmarc@milohq.co"

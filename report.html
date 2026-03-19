@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6f3">
+  <title>Your Milo Blueprint Draft</title>
+  <meta name="description" content="Review the workflow blueprint Milo generated from your calculator inputs, then book an assessment call to turn it into a scoped implementation plan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/milo-design-system.css">
+  <script src="/milo-analytics.js" defer></script>
+  <link rel="canonical" href="https://getmilo.dev/report">
+  <style>
+    .report-page {
+      padding: clamp(96px, 12vh, 140px) 0 var(--sp-16);
+    }
+    .report-shell {
+      display: grid;
+      gap: var(--sp-8);
+    }
+    .report-card,
+    .report-sidebar {
+      background: color-mix(in oklch, var(--surface-1), transparent 4%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-soft);
+    }
+    .report-card { padding: var(--sp-8); }
+    .report-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+      gap: var(--sp-6);
+      align-items: start;
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+      margin-bottom: var(--sp-3);
+    }
+    .report-title {
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      line-height: 1.02;
+      margin-bottom: var(--sp-4);
+    }
+    .report-intro,
+    .report-copy,
+    .report-list li,
+    .metric-label,
+    .metric-value,
+    .detail-row,
+    .sidebar-copy {
+      color: var(--text-2);
+    }
+    .report-intro,
+    .report-copy { max-width: 62ch; }
+    .section-title {
+      margin-top: var(--sp-10);
+      margin-bottom: var(--sp-4);
+      font-size: var(--text-xl);
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--sp-4);
+      margin-top: var(--sp-6);
+    }
+    .metric-card {
+      padding: var(--sp-5);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: color-mix(in oklch, var(--surface-1), transparent 10%);
+    }
+    .metric-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--sp-2);
+    }
+    .metric-value {
+      font-size: var(--text-2xl);
+      color: var(--text-1);
+    }
+    .report-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: var(--sp-3);
+    }
+    .blueprint-block {
+      margin-top: var(--sp-6);
+      padding: var(--sp-6);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, color-mix(in oklch, var(--surface-1), transparent 6%), color-mix(in oklch, var(--surface-1), transparent 2%));
+    }
+    .blueprint-block h3 { margin-bottom: var(--sp-3); }
+    .detail-list {
+      display: grid;
+      gap: var(--sp-3);
+      margin-top: var(--sp-5);
+    }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      padding-top: var(--sp-3);
+      border-top: 1px solid var(--line);
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+    }
+    .report-sidebar {
+      padding: var(--sp-7);
+      position: sticky;
+      top: 96px;
+    }
+    .sidebar-points {
+      list-style: none;
+      padding: 0;
+      margin: var(--sp-5) 0 0;
+      display: grid;
+      gap: var(--sp-3);
+    }
+    .sidebar-points li {
+      display: flex;
+      gap: var(--sp-2);
+      color: var(--text-2);
+      font-size: var(--text-sm);
+    }
+    .sidebar-points li::before {
+      content: '//';
+      color: var(--gold-text);
+      font-family: var(--font-mono);
+      flex-shrink: 0;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-3);
+      margin-top: var(--sp-6);
+    }
+    .note {
+      margin-top: var(--sp-4);
+      font-size: var(--text-sm);
+      color: var(--text-3);
+    }
+    @media (max-width: 960px) {
+      .report-grid { grid-template-columns: 1fr; }
+      .report-sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <main class="report-page">
+    <div class="container report-shell">
+      <div class="report-grid">
+        <section class="report-card">
+          <div class="eyebrow">Calculator blueprint draft</div>
+          <h1 class="report-title" id="reportTitle">Your Milo blueprint draft</h1>
+          <p class="report-intro" id="reportIntro">We turned your calculator inputs into a first-pass implementation plan. Use it to pressure-test the opportunity, then take it into a short assessment call to scope the real build.</p>
+
+          <div class="metric-grid">
+            <article class="metric-card">
+              <span class="metric-label">Current drag</span>
+              <strong class="metric-value" id="monthlyLoss">$0/mo</strong>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Recoverable value</span>
+              <strong class="metric-value" id="monthlyGain">$0/mo</strong>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Likely first sprint</span>
+              <strong class="metric-value" id="firstSprint">2 workflows</strong>
+            </article>
+          </div>
+
+          <h2 class="section-title">What Milo would install first</h2>
+          <div class="blueprint-block">
+            <h3 id="workflowOneTitle">Workflow one</h3>
+            <p class="report-copy" id="workflowOneCopy"></p>
+          </div>
+          <div class="blueprint-block">
+            <h3 id="workflowTwoTitle">Workflow two</h3>
+            <p class="report-copy" id="workflowTwoCopy"></p>
+          </div>
+
+          <h2 class="section-title">Scope notes</h2>
+          <ul class="report-list" id="scopeList"></ul>
+
+          <div class="detail-list">
+            <div class="detail-row"><span>Industry</span><strong id="detailIndustry">—</strong></div>
+            <div class="detail-row"><span>Team size</span><strong id="detailTeam">—</strong></div>
+            <div class="detail-row"><span>Admin load</span><strong id="detailHours">—</strong></div>
+            <div class="detail-row"><span>Missed lead pressure</span><strong id="detailLeads">—</strong></div>
+          </div>
+        </section>
+
+        <aside class="report-sidebar">
+          <div class="eyebrow">Next move</div>
+          <h2>Turn this draft into a real scoped build.</h2>
+          <p class="sidebar-copy">The calculator is useful for pressure-testing the upside. The assessment call is where Milo maps the actual workflow, integration points, and what gets built first.</p>
+          <div class="actions">
+            <a class="btn btn--gold" href="/demo?offer=assessment&source=report" id="bookCta">Book the assessment call</a>
+            <a class="btn btn--secondary" href="/calculator">Run the calculator again</a>
+          </div>
+          <p class="note">If the full automated blueprint delivery path is unavailable, this report acts as the stable fallback instead of dropping you back into the calculator.</p>
+          <ul class="sidebar-points">
+            <li>Identify the first 1–2 workflows worth automating now.</li>
+            <li>Decide whether the work belongs in AI Native Setup or a broader buildout.</li>
+            <li>Leave with a concrete next step, not another vague AI idea.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var industryKey = params.get('industry') || 'professional';
+      var teamSize = parseInt(params.get('teamSize') || '5', 10);
+      var adminHours = parseInt(params.get('adminHours') || '20', 10);
+      var hourlyRate = parseFloat(params.get('hourlyRate') || '35');
+      var lostLeads = parseInt(params.get('lostLeads') || '2', 10);
+      var customerValue = parseFloat(params.get('customerValue') || '500');
+
+      var industryData = {
+        legal: {
+          label: 'Law firm',
+          automationRate: 0.42,
+          leadRecovery: 0.55,
+          workflowOneTitle: 'Intake triage and consult routing',
+          workflowOneCopy: 'Capture inbound inquiries, qualify urgency and practice area, route the right matters, and stop missed consultations from dying in voicemail or inbox sprawl.',
+          workflowTwoTitle: 'Client follow-up and status visibility',
+          workflowTwoCopy: 'Handle updates, reminders, document chase, and routine client questions so attorneys are not spending partner time on repetitive coordination.',
+          scopeNotes: [
+            'Prioritize intake and response-time compression first — that is where missed revenue is most visible.',
+            'Tie matter status, consult scheduling, and document requests into one operator-facing workflow.',
+            'Use the assessment call to decide what can be automated immediately vs. what needs human review gates.'
+          ]
+        },
+        accounting: {
+          label: 'Accounting firm',
+          automationRate: 0.38,
+          leadRecovery: 0.28,
+          workflowOneTitle: 'Client intake and document chase',
+          workflowOneCopy: 'Reduce repetitive back-and-forth around missing files, tax-season prep, onboarding, and recurring client questions that eat team capacity.',
+          workflowTwoTitle: 'Recurring status updates and follow-through',
+          workflowTwoCopy: 'Create a dependable system for reminders, status visibility, and next-step follow-up so work does not stall between team handoffs.',
+          scopeNotes: [
+            'Focus first on document collection, intake standardization, and recurring client communications.',
+            'A small team usually gets the most immediate lift from fewer email chases and cleaner handoffs.',
+            'Use the assessment call to map the systems already in place before deciding on a wider rollout.'
+          ]
+        },
+        agency: {
+          label: 'Agency',
+          automationRate: 0.35,
+          leadRecovery: 0.22,
+          workflowOneTitle: 'Proposal and follow-up workflow',
+          workflowOneCopy: 'Stop warm opportunities from cooling off between first call, proposal drafting, and follow-up. Milo can compress that gap into a repeatable operator flow.',
+          workflowTwoTitle: 'Reporting and client communication',
+          workflowTwoCopy: 'Automate the repetitive reporting layer and routine client-status communication so delivery work does not crowd out growth.',
+          scopeNotes: [
+            'Shorten the time between conversation, proposal, and close-ready follow-up.',
+            'Use the second workflow to reclaim client-service hours that should not require senior attention.',
+            'Assessment call should identify where reporting, handoff, and CRM friction are compounding.'
+          ]
+        },
+        consulting: {
+          label: 'Consulting business',
+          automationRate: 0.34,
+          leadRecovery: 0.2,
+          workflowOneTitle: 'Lead qualification and follow-up',
+          workflowOneCopy: 'Create a tighter system for qualifying inbound interest, preparing the right context, and pushing conversations toward booked calls instead of forgotten threads.',
+          workflowTwoTitle: 'Delivery prep and client communication',
+          workflowTwoCopy: 'Reduce the operator drag around kickoff prep, updates, reminders, and handoff notes so delivery stays clean as volume grows.',
+          scopeNotes: [
+            'First gain usually comes from making sales follow-through dependable rather than heroic.',
+            'The next gain comes from making client communication reusable and visible.',
+            'Use the assessment call to separate founder work from work the system should own.'
+          ]
+        },
+        professional: {
+          label: 'Professional services',
+          automationRate: 0.33,
+          leadRecovery: 0.2,
+          workflowOneTitle: 'Intake and qualification workflow',
+          workflowOneCopy: 'Bring order to the first-contact layer so leads, requests, and follow-up do not depend on one overloaded operator keeping everything in their head.',
+          workflowTwoTitle: 'Execution follow-through workflow',
+          workflowTwoCopy: 'Reduce repetitive coordination, reminders, reporting, and status updates that slow delivery and hide where work is stuck.',
+          scopeNotes: [
+            'The first sprint should target the most repetitive client-facing coordination loop.',
+            'Use the second workflow to clean up the reporting and handoff layer.',
+            'Assessment call should confirm where AI belongs and where a simple process fix is enough.'
+          ]
+        }
+      };
+
+      var data = industryData[industryKey] || industryData.professional;
+      var monthlyAdminCost = adminHours * hourlyRate * 4.33;
+      var monthlyLeadLoss = lostLeads * customerValue;
+      var totalLoss = monthlyAdminCost + monthlyLeadLoss;
+      var hoursSaved = Math.round(adminHours * data.automationRate);
+      var timeSaved = hoursSaved * hourlyRate * 4.33;
+      var leadsRecovered = Math.round(lostLeads * data.leadRecovery);
+      var revRecovered = leadsRecovered * customerValue;
+      var totalSaved = timeSaved + revRecovered;
+
+      function money(value) {
+        return '$' + Math.round(value).toLocaleString();
+      }
+
+      document.getElementById('reportTitle').textContent = data.label + ' blueprint draft';
+      document.getElementById('reportIntro').textContent = 'Based on the numbers you entered, Milo would start by reducing repetitive admin work and recovering avoidable demand leakage before widening the build.';
+      document.getElementById('monthlyLoss').textContent = money(totalLoss) + '/mo';
+      document.getElementById('monthlyGain').textContent = money(totalSaved) + '/mo';
+      document.getElementById('firstSprint').textContent = '2 workflows';
+      document.getElementById('workflowOneTitle').textContent = data.workflowOneTitle;
+      document.getElementById('workflowOneCopy').textContent = data.workflowOneCopy;
+      document.getElementById('workflowTwoTitle').textContent = data.workflowTwoTitle;
+      document.getElementById('workflowTwoCopy').textContent = data.workflowTwoCopy;
+      document.getElementById('detailIndustry').textContent = data.label;
+      document.getElementById('detailTeam').textContent = String(teamSize);
+      document.getElementById('detailHours').textContent = String(adminHours) + ' hrs/week';
+      document.getElementById('detailLeads').textContent = String(lostLeads) + ' lost/month';
+
+      var scopeList = document.getElementById('scopeList');
+      data.scopeNotes.forEach(function (note) {
+        var li = document.createElement('li');
+        li.textContent = note;
+        scopeList.appendChild(li);
+      });
+
+      if (window.miloTrack) {
+        window.miloTrack('calculator_report_viewed', {
+          industry: industryKey,
+          team_size: teamSize,
+          admin_hours: adminHours,
+          hourly_rate: hourlyRate,
+          lost_leads: lostLeads,
+          customer_value: customerValue,
+          hours_saved: hoursSaved,
+          recoverable_value: Math.round(totalSaved)
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

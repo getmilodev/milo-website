@@ -1,0 +1,19 @@
+; Zone file for getmilo.dev
+; Generated from verified AgentMail domain records on 2026-03-12
+; NOTE: Primary brand domain. Do not use for cold outbound.
+
+; Google Postmaster / Google verification
+@ IN TXT "google-site-verification=Lb2IeNUkpX0I1xVmhGHgW3vl0V-GzMGuLIsC_Zhsbck"
+
+; DKIM
+agentmail._domainkey IN TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0jWgjVZjc/yM6rdDNR32qKVfYCzZWtQg2Qmb9zozaebC4zD6iE3lK+9JZ+8UmKPN3yIapzkbCbonDd4Ko3ZskMv2X8lpr6fq81d0OHfQ/ERD5Etf+8Oikve59i/gpoPmhrt6lwi7mTjL+jZfj71rtK+LkzDDIEJb+D2YwFW7K8v9oQraSWEwv8x9dU+npQpsVDoNVpSi/EPW4XzOiE+vJBFHdliT5ft6MZjd9L1rmH+cgw/Ky/1fEGqdQqRDf3r0nd8imLHi/rOopyKxaQZhQRuEK+5IDVFEnF+lz/NFE16pe0CXlbmthJM8ovfCEeZhTCeoZFatB4+y8EXk0dv6FwIDAQAB"
+
+; MX
+@ IN MX 10 inbound-smtp.us-east-1.amazonaws.com.
+mail IN MX 10 feedback-smtp.us-east-1.amazonaws.com.
+
+; SPF
+mail IN TXT "v=spf1 include:amazonses.com -all"
+
+; DMARC
+_dmarc IN TXT "v=DMARC1; p=reject; rua=mailto:dmarc@getmilo.dev"
